@@ -10,7 +10,7 @@
     "prestart": "export NODE_ENV=development; gulp build",
     "start": "gulp server",
     "build": "git submodule sync; git submodule update --init --remote --recursive; npm run gen-content; export NODE_ENV=production; ./scripts/build-check-err.sh",
-    "gen-content": "bash ./scripts/gen-sub-gitinfo.sh; bash ./scripts/gen-content.sh",
+    "gen-content": "bash ./scripts/gen-content.sh",
     "clean": "rimraf dist",
     "lint": "eslint src"
   },
