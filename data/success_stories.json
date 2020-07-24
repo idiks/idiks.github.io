@@ -3,6 +3,15 @@
     "name": "Internet",
     "children": [
       {
+        "name": "Zhihu",
+        "industry": "Knowledge Sharing",
+        "link": "https://pingcap.com/case-studies/horizontally-scaling-hive-metastore-database-by-migrating-from-mysql-to-tidb",
+        "logo": "/images/customers/zhihu-logo.png",
+        "scale": "220 million registered users",
+        "isShow": true,
+        "summary": "Zhihu used MySQL as the Hive Metastore. As data grew in Hive, MySQL became the system bottleneck. This post shows how TiDB helps Zhihu eliminate their database bottleneck and horizontally scale their Hive Metastore database to meet the growing business needs."
+      },
+      {
         "name": "VNG",
         "industry": "Mobile Payment",
         "websiteLink": "https://en.wikipedia.org/wiki/VNG_Corporation",
@@ -47,15 +56,6 @@
         "logo": "/images/customers/bookmyshow-logo.png",
         "scale": "50 million users in 650 cities",
         "summary": "As India's largest e-commerce site for booking entertainment tickets online, BookMyShow has deployed TiDB in the production environment. With TiDB, BookMyShow has experienced increased uptime and availability. Meanwhile, operational and maintenance cost has been reduced by 30% and no engineer needs to be fully dedicated to database operations anymore."
-      },
-      {
-        "name": "Zhihu",
-        "industry": "Media and Entertainment",
-        "link": "https://pingcap.com/success-stories/lesson-learned-from-queries-over-1.3-trillion-rows-of-data-within-milliseconds-of-response-time-at-zhihu/",
-        "logo": "/images/customers/zhihu-logo.png",
-        "scale": "220 million registered users",
-        "isShow": true,
-        "summary": "As the business boomed and massive data in applications accrued each month, Zhihu faced severe challenges in scaling the backend system. This post introduces how Zhihu managed to keep milliseconds of query response time over a large amount of data and how TiDB, an open source MySQL-compatible HTAP database, empowered Zhihu to get real-time insights into data."
       },
       {
         "name": "Meituan-Dianping",
