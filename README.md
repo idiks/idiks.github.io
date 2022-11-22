@@ -72,11 +72,11 @@ Node version: 8.x (以 .circleci/config.yml 指定的 node version 为准)
 ```
 <title>{{- block "title" . }}
   {{- or .Title "Home" -}}
-{{ end -}} | PingCAP</title>
+{{ end -}} | iDIKS</title>
 ```
 
-* 默认情况 Home | PingCAP
-* 如果对应内容 markdown 有设置 .title front meta，会使用 {{ .Title }} | PingCAP
+* 默认情况 Home | iDIKS
+* 如果对应内容 markdown 有设置 .title front meta，会使用 {{ .Title }} | iDIKS
 * 特殊的页面，可以在 layout 模板页（如不方便在 markdown 设置或无 _index.md）如
   /blog-cn 等，覆盖 define title block
 

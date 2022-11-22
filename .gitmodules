@@ -1,21 +1,16 @@
 [submodule "content/blog"]
 	path = content/blog
-	url = https://github.com/pingcap/blog
+	url = https://github.com/idiks/blog
 	shallowed = true
 [submodule "content/blog-cn"]
 	path = content/blog-cn
-	url = https://github.com/pingcap/blog-cn
+	url = https://github.com/idiks/blog-cn
 	shallowed = true
 [submodule "content/weekly"]
 	path = content/weekly
-	url = https://github.com/pingcap/weekly
+	url = https://github.com/idiks/weekly
 	shallowed = true
 [submodule "content/meetup"]
 	path = content/meetup
-	url = https://github.com/pingcap/meetup
+	url = https://github.com/idiks/meetup
 	shallowed = true
-[submodule "content/tidb-academy"]
-	path = content/tidb-academy
-	url = git@github.com:pingcap/private-tidb-academy.git
-	shallowed = true
-

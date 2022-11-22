@@ -6,7 +6,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            # https://circleci.com/gh/pingcap/pingcap.github.io/edit#checkout
+            # https://circleci.com/gh/idiks/idiks.github.io/edit#checkout
             - '1b:b6:ef:e0:fb:85:6d:8f:78:87:a6:ce:1f:34:ec:66'
             # Use in scripts/push-gh-pages.sh
             - '6a:a6:ac:e8:9e:ee:7d:ef:18:92:94:0b:b0:2c:34:82'
@@ -51,7 +51,7 @@ jobs:
             then
               ssh-keyscan "${DEPLOY_UCLOUD_LA_2_HOST}" >> ~/.ssh/known_hosts 2>/dev/null;
               rsync -avz --delete dist/ "${DEPLOY_UCLOUD_USER}@${DEPLOY_UCLOUD_LA_2_HOST}:${DEPLOY_UCLOUD_PATH}";
-              curl "http://www.google.com/ping?sitemap=https://pingcap.com/sitemap.xml"
+              curl "http://www.google.com/ping?sitemap=https://idiks.com/sitemap.xml"
             fi
 
       - deploy:
@@ -73,7 +73,7 @@ jobs:
             fi
       
       - deploy:
-          name: "Publish pingcap.github.io"
+          name: "Publish idiks.github.io"
           command: |
             if [ "${CIRCLE_BRANCH}" == "src" ]
             then
