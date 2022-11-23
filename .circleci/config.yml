@@ -36,13 +36,14 @@ jobs:
       - run:
           command: npm run build
           no_output_timeout: 20m
-
+      # ssh-keyscan "${DEPLOY_ALIYUN_SH_01_HOST}" >> ~/.ssh/known_hosts 2>/dev/null;
+      - run: echo ${DEPLOY_ALIYUN_HOSTKEY} >> ~/.ssh/known_hosts
+      
       - deploy:
           name: 'Publish Website Could SH_01_HOST'
           command: | 
             if [ "${CIRCLE_BRANCH}" == "src" ]
             then
-              ssh-keyscan "${DEPLOY_ALIYUN_SH_01_HOST}" >> ~/.ssh/known_hosts 2>/dev/null;
               rsync -avz --delete dist/ "${DEPLOY_ALIYUN_WEB_USER}@${DEPLOY_ALIYUN_SH_01_HOST}:${DEPLOY_ALIYUN_WEB_PATH}";
             fi
       
