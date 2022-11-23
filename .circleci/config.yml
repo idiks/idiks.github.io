@@ -10,6 +10,8 @@ jobs:
             - 'bc:2f:ad:eb:c0:07:f1:5d:0e:f1:83:e4:29:d0:6e:23'
             # Use in scripts/push-gh-pages.sh
             - '6a:a6:ac:e8:9e:ee:7d:ef:18:92:94:0b:b0:2c:34:82'
+            # Use in rsync
+            - 'a7:ac:0b:83:80:43:73:8c:ed:14:c3:5c:77:67:03:54'
 
       - checkout
 
