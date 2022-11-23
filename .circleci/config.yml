@@ -1,4 +1,4 @@
-version: 2
+version: '2.1'
 jobs:
   build:
     docker:
@@ -7,7 +7,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             # https://circleci.com/gh/idiks/idiks.github.io/edit#checkout
-            - '1b:b6:ef:e0:fb:85:6d:8f:78:87:a6:ce:1f:34:ec:66'
+            - 'bc:2f:ad:eb:c0:07:f1:5d:0e:f1:83:e4:29:d0:6e:23'
             # Use in scripts/push-gh-pages.sh
             - '6a:a6:ac:e8:9e:ee:7d:ef:18:92:94:0b:b0:2c:34:82'
 
@@ -36,12 +36,12 @@ jobs:
           no_output_timeout: 20m
 
       - deploy:
-          name: 'Publish Website Could BJ_2_HOST'
+          name: 'Publish Website Could SH_01_HOST'
           command: | 
             if [ "${CIRCLE_BRANCH}" == "src" ]
             then
-              ssh-keyscan "${DEPLOY_UCLOUD_BJ_2_HOST}" >> ~/.ssh/known_hosts 2>/dev/null;
-              rsync -avz --delete dist/ "${DEPLOY_UCLOUD_USER}@${DEPLOY_UCLOUD_BJ_2_HOST}:${DEPLOY_UCLOUD_PATH}";
+              ssh-keyscan "${DEPLOY_ALIYUN_SH_01_HOST}" >> ~/.ssh/known_hosts 2>/dev/null;
+              rsync -avz --delete dist/ "${DEPLOY_ALIYUN_WEB_USER}@${DEPLOY_ALIYUN_SH_01_HOST}:${DEPLOY_ALIYUN_WEB_PATH}";
             fi
       
       - deploy:
@@ -62,6 +62,8 @@ workflows:
   build:
     jobs:
       - build:
+          context:
+            - WEB_SITE
           filters:
             branches:
               only:
