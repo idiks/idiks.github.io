@@ -11,8 +11,7 @@ jobs:
             # Use in scripts/push-gh-pages.sh
             - '6a:a6:ac:e8:9e:ee:7d:ef:18:92:94:0b:b0:2c:34:82'
             # Use in rsync
-            #- 'a7:ac:0b:83:80:43:73:8c:ed:14:c3:5c:77:67:03:54'
-            - 'b8:25:30:4b:b5:b8:2d:e4:47:9b:e2:66:f7:6c:d9:b4'
+            - 'a7:ac:0b:83:80:43:73:8c:ed:14:c3:5c:77:67:03:54'
 
       - checkout
 
@@ -38,7 +37,7 @@ jobs:
           command: npm run build
           no_output_timeout: 20m
       # ssh-keyscan "${DEPLOY_ALIYUN_SH_01_HOST}" >> ~/.ssh/known_hosts 2>/dev/null;
-      - run: echo ${DEPLOY_ALIYUN_HOSTKEY} >> ~/.ssh/known_hosts
+      - run: echo ${DEPLOY_HOSTDARE_HOSTKEY} >> ~/.ssh/known_hosts
       
       - deploy:
           name: 'Publish Website Could SH_01_HOST'
