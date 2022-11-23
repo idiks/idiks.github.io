@@ -5,8 +5,8 @@ find ./dist | grep html | xargs sed -i 's/<head>/<head>\n<meta name="robots" con
 
 cd dist
 
-git config --global user.email "ghlndsl@126.com"
-git config --global user.name "gaohailang ci"
+git config --global user.email "hongxing.zhang@idiks.com"
+git config --global user.name "idiks"
 remote=$(git config remote.origin.url)
 git init
 git remote add origin "$remote"
