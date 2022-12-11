@@ -1,7 +1,7 @@
 set -e
 
 # Add noindex to pages
-find ./dist -print0 | grep html | xargs sed -0 -i 's/<head>/<head>\n<meta name="robots" content="noindex">/g'
+#find ./dist -print0 | grep html | xargs sed -0 -i 's/<head>/<head>\n<meta name="robots" content="noindex">/g'
 
 cd dist
 
