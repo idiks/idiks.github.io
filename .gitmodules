@@ -1,10 +1,10 @@
-[submodule "content/doc"]
-	path = content/doc
-	url = https://github.com/idiks/doc
+[submodule "content/docs"]
+	path = content/docs
+	url = https://github.com/idiks/docs
 	shallowed = true
-[submodule "content/doc-cn"]
-	path = content/doc-cn
-	url = https://github.com/idiks/doc-cn
+[submodule "content/docs-cn"]
+	path = content/docs-cn
+	url = https://github.com/idiks/docs-cn
 	shallowed = true
 [submodule "content/blog"]
 	path = content/blog
