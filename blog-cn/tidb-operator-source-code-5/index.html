@@ -1,0 +1,628 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<script>
+window.ga =
+    window.ga ||
+    function() {
+        ;(ga.q = ga.q || []).push(arguments)
+    }
+ga.l = +new Date()
+ga('create', 'UA-99991864-4', 'auto')
+ga('send', 'pageview')
+</script>
+<script async src="https://download.pingcap.com/js/ga-analytics.js"></script>
+
+
+
+<link rel="stylesheet" href="https://download.pingcap.com/style/github-markdown.css">
+
+
+<link rel="stylesheet" href="/css/doc.css">
+
+        <title>TiDB Operator 源码阅读 (五) 备份与恢复 |&nbsp;iDIKS</title><link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="description" content="本篇文章主要介绍了 TiDB Operator 提供的备份与恢复功能的实现与设计。本文为本系列文章的第五篇。">
+<meta name="robots" content="noodp">
+<meta name="keywords" content="TiDB, MySQL, HTAP, Open Source, Cloud-Native, NewSQL, Aurora Alternative">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TiDB Operator 源码阅读 (五) 备份与恢复 | PingCAP">
+<meta property="og:description" content="本篇文章主要介绍了 TiDB Operator 提供的备份与恢复功能的实现与设计。本文为本系列文章的第五篇。">
+<meta property="og:url" content="https://idiks.com/blog-cn/tidb-operator-source-code-5/">
+<meta property="og:site_name" content="MySQL at Scale. No more manual sharding">
+<meta property="og:image" content="/images/pingcap-opengraph.jpg">
+<meta property="og:image:secure_url" content="/images/pingcap-opengraph.jpg"><meta name="twitter:card" content="summary"><meta name="twitter:description" content="本篇文章主要介绍了 TiDB Operator 提供的备份与恢复功能的实现与设计。本文为本系列文章的第五篇。">
+<meta name="twitter:title" content="TiDB Operator 源码阅读 (五) 备份与恢复 | PingCAP">
+<meta name="twitter:site" content="@pingcap">
+<meta name="twitter:image" content="https://download.pingcap.com/images/pingcap-opengraph.jpg"><meta name="twitter:creator" content="@pingcap">
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http:\/\/schema.org",
+    "@type": "WebSite",
+    "url": "https:\/\/pingcap.com\/",
+    "name": "PingCAP",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https:\/\/pingcap.com\/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+<script type="text/javascript" async src="https://accounts.pingcap.com/static/pingcap_sso/js/track.beta.js"></script>
+    
+<link rel="preload" href="https://download.pingcap.com/fonts/lato/lato-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://download.pingcap.com/fonts/lato/lato-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://download.pingcap.com/fonts/lato/lato-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://download.pingcap.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://download.pingcap.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://download.pingcap.com/fonts/titilliumweb/titilliumweb-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+<link rel="preload" href="https://download.pingcap.com/js/jquery.min.js" as="script">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://download.pingcap.com/style/docsearch.min.css">
+<script type="text/javascript">
+var trackOutboundLink = function(url) {
+  var redirectTriggered = false
+  ga('send', 'event', 'outbound', 'click', url, {
+    hitCallback: function() {
+      redirectTriggered = true
+      document.location = url
+    }
+  })
+  setTimeout(function() {
+    if (!redirectTriggered) {
+      document.location = url
+    }
+  }, 1500)
+}
+
+var trackViews = function(btn_type, event_category) {
+  var event_label = btn_type
+  var eventCategory = event_category
+  ga('send', 'event', {
+    'eventCategory': eventCategory,
+    'eventAction': 'click',
+    'eventLabel': event_label,
+    'transport': 'beacon'
+  });
+}
+</script>
+<script>if (location.pathname === '/') {
+        if (location.hostname === 'idiks.github.io') {
+            location.href = '/en/'
+        }
+    }</script></head>       <body data-lang="cn" ><div id="page-content">
+<header role="navigation" class="fixed-top">
+    <div class="container">
+        <a class="nav-brand" href="/zh"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        <div class="nav-wrapper">
+            <div class="navigation">
+                <ul>
+                    <li><a href="https://university.pingcap.com/" target="_blank" class="nav-blinking"
+                            onclick="trackViews('navbar-university', 'pingcap-university_view')">产品</a></li>
+                    <li class="docs-type-selector " id="docsTypeSelector">
+                        
+                        <a class="header-doc-nav" href="https://docs.pingcap.com/zh" target="_blank">方案</a>
+                    </li>
+                    <li ><a href="/cases-cn">案例</a></li>
+                    <li ><a href="/docs-cn">文档</a></li>
+                    <li class="sel" ><a href="/blog-cn">博客</a></li>
+                    <li ><a href="/about-cn">服务与支持</a></li>
+                    <li ><a href="/community-cn">社区</a></li>
+                    <li><a href="https://asktug.com" target="_blank"
+                            onclick="trackViews('navbar-asktug', 'asktug_view')">问答</a></li>
+                    <li ><a href="/download-cn">下载试用</a></li>
+                    <li><a class="link-download" href="mailto:info@pingcap.com" target="_blank"
+                            onclick="trackViews('navbar-contact-us', 'mail_to_info_view')">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="global-search">
+                
+                
+                
+                <div class="search-wrapper">
+    <span class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fff" viewBox="0 0 67.125 67.125"><path d="M23.902 0C11.01 0 .523 10.488.523 23.38c0 12.891 10.487 23.379 23.379 23.379a23.258 23.258 0 0 0 14.471-5.037l24.816 24.817c.391.391.902.586 1.414.586s1.023-.195 1.414-.586a2 2 0 0 0 0-2.828L41.293 38.985c3.721-4.142 5.989-9.613 5.989-15.605C47.282 10.488 36.794 0 23.902 0zM4.523 23.38C4.523 12.694 13.216 4 23.902 4c10.687 0 19.38 8.694 19.38 19.38 0 5.396-2.221 10.279-5.791 13.795a1.959 1.959 0 0 0-.488.349 2.003 2.003 0 0 0-.271.343C33.31 40.9 28.825 42.76 23.903 42.76c-10.686-.001-19.38-8.695-19.38-19.38z"/><path d="M24.075 8.591c-8.25 0-14.962 6.712-14.962 14.962a2 2 0 0 0 4 0c0-6.044 4.918-10.962 10.962-10.962a2 2 0 0 0 0-4z"/></svg></span>
+    <input data-lang="cn" data-type="" type="search" id="search-input" name="q"
+        placeholder="搜索 TiDB 文档">
+</div>
+
+<script>
+    const inputNode = document.getElementById("search-input")
+
+    inputNode.addEventListener('keyup', ({key}) => {
+        if (key === "Enter") {
+            if ($('#search-input').data('lang') == 'cn') {
+                lang = 'zh'
+            }
+
+            const query = $('#search-input').val()
+            if (query) {
+                url = "https://docs.pingcap.com/" + (lang == 'zh' ? 'zh/' : '') + "search/?lang=" + lang + "&type=tidb&version=v4.0&q=" + query
+                window.location.href = url
+            }
+        }
+    })
+</script>
+
+            </div>
+        </div>
+        <div class="nav-btn nav-slider">
+            <i class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 459 459"><path d="M0 382.5h459v-51H0v51zM0 255h459v-51H0v51zM0 76.5v51h459v-51H0z" fill="#FFF"/></svg></i>
+        </div>
+    </div>
+</header>
+
+
+
+<nav class="mobile-sidebar">
+    <div class="nav-header">
+        <div class="logo-wrap">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        </div>
+    </div>
+    <ul class="ul-base">
+        
+
+        <li ><a href="https://docs.pingcap.com/zh/tidb/v4.0/">文档</a></li>
+        <li ><a href="/cases-cn">案例</a></li>
+        <li ><a href="/community-cn">社区</a></li>
+        <li class="sel"><a href="/blog-cn">博客</a></li>
+        <li ><a href="/about-cn">关于</a></li>
+        <li><a href="https://asktug.com" target="_blank"
+            onclick="trackViews('navbar-asktug', 'asktug_view')">问答</a></li>
+        <li ><a href="/download-cn">下载试用</a></li>
+        <li><a class="link-download" href="mailto:info@pingcap.com" target="_blank"
+            onclick="trackViews('navbar-contact-us', 'mail_to_info_view')">联系我们</a></li>
+        <li><a href="https://university.pingcap.com/"
+            onclick="trackViews('navbar-university', 'pingcap-university_view')" target="_blank"
+            class="nav-blinking">PingCAP University</a></li>
+    </ul>
+    <div class="nav-footer">
+        <div class="contact-list-wrap">
+        <div class="flex-list">
+            <h4 class="list-title"><strong>Contact</strong></h4>
+            <ul class="social social-cn ul-base">
+            <li><a href="https://twitter.com/PingCAP" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="18"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/pingcap/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg></a></li>
+            <li><a href="https://www.reddit.com/r/TiDB/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg></a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/tidb-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="18"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg></a></li>
+            <li><a href="https://stackoverflow.com/questions/tagged/tidb" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg></a></li>
+            <li id="wechat-mobile"><a class="wechat" href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 31.403 31.404"><path d="M31.403 21.306c0-4.597-4.388-8.32-9.8-8.32-5.414 0-9.802 3.725-9.802 8.32 0 4.597 4.388 8.322 9.802 8.322 1.701 0 3.302-.369 4.697-1.019l3.863 1.671-.447-4.309c1.066-1.329 1.687-2.937 1.687-4.665zm-13.102-2.254a1.395 1.395 0 1 1 0-2.79 1.395 1.395 0 0 1 0 2.79zm6.604 0a1.395 1.395 0 1 1 .003-2.79 1.395 1.395 0 0 1-.003 2.79z"/><path d="M21.604 11.885c1.515 0 2.957.27 4.271.755.009-.175.03-.345.03-.521 0-6.074-5.801-10.996-12.953-10.996C5.799 1.123 0 6.044 0 12.119c0 2.284.822 4.408 2.229 6.167l-.591 5.694 5.104-2.213c1.264.59 2.661.986 4.136 1.189a8.143 8.143 0 0 1-.179-1.65c.001-5.195 4.892-9.421 10.905-9.421zm-4.287-6.428a1.84 1.84 0 1 1-1.841 1.84c0-1.016.825-1.84 1.841-1.84zM8.586 9.139a1.84 1.84 0 0 1 0-3.682 1.84 1.84 0 1 1 0 3.682z"/></svg></a><div class="qr_code_outer f-hide f-tc">
+    <div class="qr_code">
+        <i id="close_qrcode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224.512 224.512"><path fill="#010002" d="M224.507 6.997L217.521 0 112.256 105.258 6.998 0 .005 6.997l105.258 105.257L.005 217.512l6.993 7L112.256 119.24l105.265 105.272 6.986-7-105.258-105.258z"/></svg></i>
+        <img id="js_qr_code_img" class="qr_code_img" src="/images/wechat-qrcode.jpg" alt="Wechat qrCode" />
+        <p>微信扫一扫<br> 微信ID：pingcap2015</p>
+    </div>
+</div>
+</li>
+            </ul>
+        </div>
+        <div class="subscribe" id="subscribe-mobile"></div>
+        </div>
+        <div class="container">
+        <a href="/blog" class="btn-lang" id="lang">English</a>
+        </div>
+    </div>
+</nav>
+
+<div class="blog">
+        <div class="container">
+<div class="sidebar nav-tags" data-type="single"><div class="title">热门标签<a class="rss" href="/blog-cn/index.xml" title="RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 402.041 402.04"><g fill="#3A59F0"><path d="M54.816 292.382c-15.229 0-28.169 5.331-38.831 15.988C5.33 319.026 0 331.969 0 347.197c0 15.232 5.325 28.172 15.985 38.828 10.662 10.657 23.606 15.988 38.831 15.988 15.227 0 28.168-5.331 38.828-15.988 10.656-10.656 15.986-23.596 15.986-38.828 0-15.229-5.33-28.171-15.986-38.827-10.657-10.657-23.598-15.988-38.828-15.988zM181.01 221.002c-21.51-21.698-46.158-38.97-73.948-51.816-27.79-12.85-56.914-20.511-87.366-22.985h-1.425c-4.949 0-9.042 1.619-12.275 4.854C1.997 154.477 0 158.953 0 164.472v38.543c0 4.757 1.569 8.85 4.708 12.279 3.14 3.429 7.089 5.332 11.848 5.708 43.586 4.189 80.845 21.752 111.773 52.678 30.93 30.926 48.49 68.187 52.677 111.771.382 4.764 2.284 8.712 5.712 11.847 3.427 3.148 7.517 4.72 12.275 4.72h38.545c5.517 0 9.989-1.995 13.415-5.996 3.621-3.812 5.236-8.381 4.863-13.709-2.478-30.447-10.14-59.573-22.987-87.361-12.846-27.792-30.121-52.438-51.819-73.95z"/><path d="M367.728 239.701c-20.365-45.585-48.345-86.078-83.936-121.482-35.405-35.594-75.896-63.572-121.485-83.939C116.723 13.917 68.996 2.494 19.126.02h-.855c-4.949 0-9.136 1.713-12.563 5.14C1.903 8.583 0 12.964 0 18.294v40.825c0 4.76 1.667 8.897 4.996 12.419 3.33 3.523 7.373 5.376 12.132 5.57 40.924 2.478 79.799 12.188 116.63 29.127 36.83 16.94 68.806 38.972 95.93 66.09 27.118 27.123 49.149 59.101 66.089 95.931 16.94 36.836 26.557 75.705 28.839 116.627.195 4.764 2.046 8.809 5.564 12.139 3.524 3.329 7.762 4.999 12.71 4.999h40.823c5.331 0 9.701-1.902 13.134-5.715 3.809-3.806 5.517-8.274 5.144-13.415-2.471-49.874-13.898-97.6-34.263-143.19z"/></g></svg></a></div><a href="#" class="tag all">ALL (289)</a>
+    <div class="tag-list"><a href="#Chaos-Mesh" class="tag " data-tag="Chaos-Mesh">Chaos Mesh&nbsp;(11)
+                </a><a href="#Committer" class="tag " data-tag="Committer">Committer&nbsp;(2)
+                </a><a href="#Contributor" class="tag " data-tag="Contributor">Contributor&nbsp;(9)
+                </a><a href="#DM" class="tag " data-tag="DM">DM&nbsp;(2)
+                </a><a href="#DM-%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb" class="tag " data-tag="DM-源码阅读">DM 源码阅读&nbsp;(10)
+                </a><a href="#Go" class="tag " data-tag="Go">Go&nbsp;(3)
+                </a><a href="#HTAP" class="tag " data-tag="HTAP">HTAP&nbsp;(4)
+                </a><a href="#Hackathon" class="tag " data-tag="Hackathon">Hackathon&nbsp;(4)
+                </a><a href="#K8s" class="tag " data-tag="K8s">K8s&nbsp;(2)
+                </a><a href="#Key-Visualizer" class="tag " data-tag="Key-Visualizer">Key Visualizer&nbsp;(2)
+                </a><a href="#Kubernetes" class="tag " data-tag="Kubernetes">Kubernetes&nbsp;(3)
+                </a><a href="#Linux" class="tag " data-tag="Linux">Linux&nbsp;(4)
+                </a><a href="#MVCC" class="tag " data-tag="MVCC">MVCC&nbsp;(2)
+                </a><a href="#MySQL" class="tag " data-tag="MySQL">MySQL&nbsp;(2)
+                </a><a href="#PD" class="tag " data-tag="PD">PD&nbsp;(5)
+                </a><a href="#Percolator" class="tag " data-tag="Percolator">Percolator&nbsp;(3)
+                </a><a href="#Prometheus" class="tag " data-tag="Prometheus">Prometheus&nbsp;(3)
+                </a><a href="#Raft" class="tag " data-tag="Raft">Raft&nbsp;(11)
+                </a><a href="#RocksDB" class="tag " data-tag="RocksDB">RocksDB&nbsp;(3)
+                </a><a href="#Rust" class="tag " data-tag="Rust">Rust&nbsp;(5)
+                </a><a href="#SQL" class="tag " data-tag="SQL">SQL&nbsp;(6)
+                </a><a href="#Spanner" class="tag " data-tag="Spanner">Spanner&nbsp;(2)
+                </a><a href="#TiDB" class="tag " data-tag="TiDB">TiDB&nbsp;(94)
+                </a><a href="#TiDB-4.0-%e6%96%b0%e7%89%b9%e6%80%a7" class="tag " data-tag="TiDB-4.0-新特性">TiDB 4.0 新特性&nbsp;(11)
+                </a><a href="#TiDB-Binlog" class="tag " data-tag="TiDB-Binlog">TiDB Binlog&nbsp;(5)
+                </a><a href="#TiDB-Binlog-%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb" class="tag " data-tag="TiDB-Binlog-源码阅读">TiDB Binlog 源码阅读&nbsp;(9)
+                </a><a href="#TiDB-Ecosystem-Tools" class="tag " data-tag="TiDB-Ecosystem-Tools">TiDB Ecosystem Tools&nbsp;(3)
+                </a><a href="#TiDB-Hackathon-2020" class="tag " data-tag="TiDB-Hackathon-2020">TiDB Hackathon 2020&nbsp;(7)
+                </a><a href="#TiDB-Operator" class="tag sel" data-tag="TiDB-Operator">TiDB Operator&nbsp;(10)
+                </a><a href="#TiDB-%e6%80%a7%e8%83%bd%e6%8c%91%e6%88%98%e8%b5%9b" class="tag " data-tag="TiDB-性能挑战赛">TiDB 性能挑战赛&nbsp;(2)
+                </a><a href="#TiDB-%e6%98%93%e7%94%a8%e6%80%a7%e6%8c%91%e6%88%98%e8%b5%9b" class="tag " data-tag="TiDB-易用性挑战赛">TiDB 易用性挑战赛&nbsp;(4)
+                </a><a href="#TiDB-%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb" class="tag " data-tag="TiDB-源码阅读">TiDB 源码阅读&nbsp;(24)
+                </a><a href="#TiFlash" class="tag " data-tag="TiFlash">TiFlash&nbsp;(7)
+                </a><a href="#TiKV" class="tag " data-tag="TiKV">TiKV&nbsp;(29)
+                </a><a href="#TiKV-%e6%ba%90%e7%a0%81%e8%a7%a3%e6%9e%90" class="tag " data-tag="TiKV-源码解析">TiKV 源码解析&nbsp;(21)
+                </a><a href="#TiSpark" class="tag " data-tag="TiSpark">TiSpark&nbsp;(4)
+                </a><a href="#WebAssembly" class="tag " data-tag="WebAssembly">WebAssembly&nbsp;(2)
+                </a><a href="#gRPC" class="tag " data-tag="gRPC">gRPC&nbsp;(2)
+                </a><a href="#%e4%ba%8b%e5%8a%a1" class="tag " data-tag="事务">事务&nbsp;(10)
+                </a><a href="#%e4%bc%98%e5%8c%96%e5%99%a8" class="tag " data-tag="优化器">优化器&nbsp;(2)
+                </a><a href="#%e5%88%86%e5%b8%83%e5%bc%8f%e7%b3%bb%e7%bb%9f%e5%89%8d%e6%b2%bf%e6%8a%80%e6%9c%af" class="tag " data-tag="分布式系统前沿技术">分布式系统前沿技术&nbsp;(4)
+                </a><a href="#%e5%88%86%e5%b8%83%e5%bc%8f%e7%b3%bb%e7%bb%9f%e6%b5%8b%e8%af%95" class="tag " data-tag="分布式系统测试">分布式系统测试&nbsp;(3)
+                </a><a href="#%e5%a4%87%e4%bb%bd%e6%81%a2%e5%a4%8d" class="tag " data-tag="备份恢复">备份恢复&nbsp;(2)
+                </a><a href="#%e5%b7%a5%e5%85%b7" class="tag " data-tag="工具">工具&nbsp;(4)
+                </a><a href="#%e6%80%a7%e8%83%bd" class="tag " data-tag="性能">性能&nbsp;(4)
+                </a><a href="#%e6%95%b0%e6%8d%ae%e5%90%8c%e6%ad%a5" class="tag " data-tag="数据同步">数据同步&nbsp;(2)
+                </a><a href="#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5" class="tag " data-tag="最佳实践">最佳实践&nbsp;(6)
+                </a><a href="#%e6%9e%b6%e6%9e%84" class="tag " data-tag="架构">架构&nbsp;(5)
+                </a><a href="#%e7%89%88%e6%9c%ac" class="tag " data-tag="版本">版本&nbsp;(3)
+                </a><a href="#%e7%a4%be%e5%8c%ba" class="tag " data-tag="社区">社区&nbsp;(103)
+                </a><a href="#%e7%a4%be%e5%8c%ba%e5%8a%a8%e6%80%81" class="tag " data-tag="社区动态">社区动态&nbsp;(29)
+                </a><a href="#%e9%87%91%e8%9e%8d" class="tag " data-tag="金融">金融&nbsp;(2)
+                </a><a href="#%e9%9b%86%e7%be%a4%e8%b0%83%e5%ba%a6" class="tag " data-tag="集群调度">集群调度&nbsp;(2)
+                </a>
+    </div>
+</div>
+<div class="archive">
+                <div class="content markdown-body">
+                    <h1 class="title">TiDB Operator 源码阅读 (五) 备份与恢复</h1>
+                    <ul class="blog-post-meta">
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-date.svg" alt="Date icon">Mon, Sep 13, 2021</li>
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-writer.svg" alt="Pen icon">李逸龙</li>
+                    </ul>
+                    <div class="blog-text"><h2 id="heading">前言</h2>
+<p>备份与恢复是数据库运维场景中非常重要且频繁的操作。运维人员通常需要维护一套脚本来实现自动化定时备份，以确保业务数据的安全，并且能在出现数据损坏需要恢复时，方便快速地执行指定数据集的恢复任务。</p>
+<p>对于一个设计良好的备份和恢复操作平台而言，需要能<strong>指定数据源和备份存储目标、定时执行备份任务、维护备份恢复历史</strong>以提供良好的事后审查机制、定时清理老旧的存储以释放不必要的存储空间等。针对以上的需求，TiDB Operator 提供了相应的 <strong>CRD</strong> 来提供管理能力。</p>
+<p>通常而言，软件的架构设计与具体实现没有必然的联系，因此本文着重讲<strong>设计和有所抽象的核心逻辑</strong>，而不是着重于可以有多种选择的具体实现细节。</p>
+<h2 id="heading-1">控制器</h2>
+<p>TiDB Operator 通过 <strong>Backup、Restore、BackupSchedule</strong> 等 <strong>CR</strong> 来指定执行备份、恢复和定时备份工作，因此实现了三个对应的控制器来执行对应的控制循环。
+为了方便理解，先介绍下用户侧感受到的具体功能示例。当用户需要执行备份任务时，可以定义如下 <strong>yaml</strong> 并提交给 Kubernetes，这里以 Backup 为例，并没有覆盖所有选项。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">apiVersion: pingcap.com/v1alpha1
+kind: Backup
+metadata:
+  name: demo-backup-gcp
+  namespace: test1
+spec:
+  br:
+    cluster: mycluster
+  gcs:
+    projectId: gcp
+    location: us-west2
+    bucket: backup
+    prefix: test1-demo1
+    secretName: gcp-secret
+</code></pre></div><p>在 backup 控制器收到创建 Backup 资源的事件时，便会创建相应的 Job 去完成配置的备份工作，在这里就是备份 test1 命名空间下的 <strong>mycluster</strong> 数据库的数据，备份目标为 <strong>gcp 字段中的配置项指定的 GCP 存储</strong>。</p>
+<p>下面分别介绍 backup、restore 和 backupschedule 这三个控制器的主要逻辑。</p>
+<h3 id="backup">backup</h3>
+<p>backup 控制器管理的是 Backup 资源，会根据 <strong>Backup spec</strong> 中的配置，使用 <strong>br 或 dumpling</strong> 工具执行备份任务，并在用户删除 Backup CR 之后删除对应的备份文件。</p>
+<p>跟其他所有的控制器一样，backup 控制器的核心逻辑是一个<strong>控制循环</strong>，监听 Backup 资源的创建、更新和删除事件，并根据 spec 中的配置执行对应的备份操作。因此这里省略最外层通用的控制循环逻辑，主要介绍核心的备份逻辑。</p>
+<h4 id="heading-2">核心逻辑</h4>
+<p>backup 控制器的核心逻辑在 <strong>pkg/backup/backup/backup_manager.go 文件中的 syncBackupJob 函数内</strong>。由于实际代码中需要处理非常多的 <strong>corner case</strong>，为了方便读者理解，我们在这里把一些细枝末节的逻辑砍掉，只留下核心的代码，因此有部分函数签名可能会有不完全一致的情况，并不影响读者自行阅读源码。只保留核心逻辑后的代码，大致长成这样：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    backuputil.ValidateBackup(backup)
+    if err := JobLister.Jobs(ns).Get(backupJobName); err == nil {
+        return nil
+    } else if !errors.IsNotFound(err) {
+        return err
+    }
+    if backup.Spec.BR == nil {
+        // create Job Spec which will use dumpling to do the work
+        job = bm.makeExportJob(backup)
+    } else {
+        // create Job Spec which will use br to do the work
+        job = bm.makeBackupJob(backup)
+    }
+    if err := bm.deps.JobControl.CreateJob(backup, job); err != nil {
+        // update Backup.Status with error message
+    }
+}
+</code></pre></div><p>在上述代码块中，backup 是用户提交的 <strong>Backup yaml</strong> 对应的 <strong>go struct</strong>。首先我们会先使用 ValidateBackup 函数验证 backup 字段的合法性，避免不合法字段的提交。</p>
+<p>由于实际的备份任务以 Kubernetes 原生的 Job 形式执行，且控制器的核心要点之一是需要执行多次不影响最终结果，也就是所谓的<strong>幂等性</strong>，因此有可能在这次执行时，已经存在该 Backup 对应的 Job。所以在代码块的第三行，我们会先尝试在 Backup 的命名空间中获取对应的 Job：如果获取到了，说明已经有正在执行的 Job，则直接返回，终止对当前 Backup 对象的处理；如果没获取到，再进一步往下走。</p>
+<p>用户在创建 Backup 的时候，如果配置了 br 字段，则代表使用 br 执行备份操作，否则使用 dumpling，因此代码块的第 8-14 行根据这个判断分别执行对应的生成 Job 定义的函数。</p>
+<p>第 15 行根据上面返回的 Job 定义，调用 CreateJob 生成实际的 Job 对象，在 Job Pod 中执行真正的备份操作。这部分逻辑会在下面的 backup-manager 一节展开介绍。</p>
+<h4 id="-job">生成 Job</h4>
+<p>实际任务由 <strong>makeExportJob/makeBackupJob</strong> 这两个函数生成，这里以 makeBackupJob 为例，其中最核心的代码经过精简，大致如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    tc := bm.deps.TiDBClusterLister.TidbClusters(backupNamespace).Get(backup.Spec.BR.Cluster)
+    envVars := backuputil.GenerateTidbPasswordEnv(ns, name, backup, bm)
+    envVars = append(envVars, backuputil.GenerateStorageCertEnv(ns, backup, bm))
+    args := []string{&#34;backup&#34;, fmt.Sprintf(&#34;--namespace=%s&#34;, ns), fmt.Sprintf(&#34;--backupName=%s&#34;, name)}
+    podSpec := &amp;corev1.PodTemplateSpec{
+        Spec: corev1.PodSpec{
+            InitContainers: []corev1.Container{{
+                Image:   &#34;pingcap/br&#34;,
+                Command: []string{&#34;/bin/sh&#34;, &#34;-c&#34;},
+                Args:    []string{fmt.Sprintf(&#34;cp /br %s/br; echo &#39;BR copy finished&#39;&#34;, util.BRBinPath)},
+            }},
+            Containers: []corev1.Container{{
+                Image:           &#34;pingcap/tidb-backup-manager&#34;,
+                Args:            args,
+                Env:             util.AppendEnvIfPresent(envVars, &#34;TZ&#34;),
+            }},
+            Volumes:          volumes,
+        },
+    }
+    job := &amp;batchv1.Job{
+        Spec: batchv1.JobSpec{
+            Template:     *podSpec,
+        },
+    }
+}
+</code></pre></div><p>大致来讲，上面代码的流程其实很简单。首先根据 backup 信息获取了对应的 <strong>TidbCluster</strong> 资源，然后设置了对应的环境变量和命令行参数。最后构造了使用 <strong>pingcap/tidb-backup-manager</strong> 为镜像的 Job 来执行对应的备份任务。这里使用了 pingcap/br 镜像作为 <strong>init container</strong>，主要是为了把 br 工具 copy 到实际执行任务的容器中去。当这个 Job 被创建之后，实际执行的就是下面章节会讲到的 backup-manager 的逻辑，这里就不展开了。</p>
+<p>makeExportJob 函数的核心流程与上述类似，只是最后 backup-manager 会调用 dumpling 而不是 br 工具。</p>
+<h4 id="heading-3">清理备份</h4>
+<p>backup 控制器除了负责根据用户提交的 Backup 资源创建对应的备份任务，也负责在用户删除 Backup 资源后，删除对应的备份文件，回收存储空间。</p>
+<p>在前面章节讲到，backup 控制器会在接收到 Backup 资源创建事件时，生成对应的 Job。实际上与此同时，也给这个 Backup 资源的 <strong>finalizer</strong> 属性中添加了字符串 tidb.pingcap.com/backup-protection，用于标明删除时需要经过特殊处理，而不是直接被删掉。在用户删除这个 Backup 资源时，API server 会给 Backup 设置 DeletionTimestamp 属性，此时 backup 控制器会检查 Backup 的 CleanPolicy，只要用户设置的指不是 Retain，就会创建一个 clean job ，来执行相应的备份文件删除操作，<strong>回收对应的存储空间</strong>。</p>
+<h3 id="restore">restore</h3>
+<p>恢复是备份的逆向操作，其主要逻辑跟备份类似。首先 restore 控制器会验证用户提交的 Restore 对象字段的<strong>合法性</strong>，保证没有非法字段。然后会根据 Restore 配置选择调用 makeImportJob（使用 lightning）或者 makeRestoreJob（使用 br）来生成对应的恢复 Job。与备份逻辑一样，恢复任务的 Job 中也会使用 backup-manager 作为基础镜像。</p>
+<h3 id="backupschedule">backupschedule</h3>
+<p>为了保证业务数据的安全，我们通常需要以<strong>定时</strong>的方式<strong>自动地</strong>对重要数据进行备份，backupschedule 控制器就实现了这样的功能。用户可以设置 cron 格式的定时任务，设置跟 Backup 类似的配置，提交给 <strong>API server</strong> 之后，TiDB Operator 就能按照这个配置，定时执行备份操作。为了防止存储资源超限，我们还提供了最长保留多少个备份、多少时间备份的配置，超过这个窗口的过时备份会被清理掉，以释放存储空间。</p>
+<p>backupschedule 控制器的核心设计思路是<strong>利用 backup 控制器的已有功能，在外面封装一层定时执行的逻辑抽象</strong>。在需要执行备份任务时，backupschedule 控制器不需要跟 backup 控制器一样，从验证到创建  Job 全部做一遍，而是只需要创建一个 Backup 资源，剩下的事情由 backup 控制器去执行就好了。熟悉 Kubernetes 的读者可能已经发现了，这个设计思路跟 CronJob 与 Job 控制器的关系非常相似，事实上 backupschedule 控制器的实现正是借鉴了 CronJob 的实现，特别是确定下次执行时间点的逻辑部分。</p>
+<h4 id="heading-4">核心逻辑</h4>
+<p>backupschedule 控制器的核心逻辑在 <strong>pkg/backup/backupschedule/backup_schedule_manager.go</strong> 文件中的 Sync 函数内。与前文提到 backup 控制器核心逻辑时一样，我们省略了不太重要的细节，只在这里呈现了主要逻辑，读者可以自行对照源码查看具体实现细节。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    defer bm.backupGC(bs)
+    if err := bm.canPerformNextBackup(bs); err != nil { return err }
+    scheduledTime, err := getLastScheduledTime(bs, bm.now)
+    if err := bm.deleteLastBackupJob(bs); err != nil { return nil }
+    backup, err := createBackup(bm.deps.BackupControl, bs, *scheduledTime)
+    bs.Status.LastBackup = backup.GetName()
+    bs.Status.LastBackupTime = &amp;metav1.Time{Time: *scheduledTime}
+    bs.Status.AllBackupCleanTime = nil
+    return nil
+}
+</code></pre></div><p>这里首先调用 <strong>canPerformNextBackup 函数</strong>来判断是否应该创建新的 Backup 资源，来执行新的备份任务。该函数中会判断，如果上一次备份已经完成，或者上一次备份已经执行失败，则同意执行下一次备份，否则拒绝。</p>
+<p>在决定执行备份任务后，我们会调用 <strong>getLastScheduledTime 函数</strong>来获取下次备份执行时间。getLastScheduledTime 的核心逻辑是，根据当前时刻 now 和 cron 格式的定时任务描述，计算出当前时刻 now 之前刚刚过去的最近一个 cron 时刻。getLastScheduledTime 的实现里面还有很多边界条件处理的逻辑，这里不再赘述，读者可以自行查看代码。</p>
+<p>在得到备份时刻后，这里会调用 createBackup 创建 Backup 资源，从而将实际的备份任务交给 backup 控制器去完成。</p>
+<h2 id="backup-manager">backup-manager</h2>
+<p>为了适应k8s的执行环境，我们在已有的 br、dumpling、lightning 等备份工具之上，抽象出了一个 backup-manager，来对上述工具进行<strong>统一的入口参数封装</strong>。上面提到的所有控制器在生成任务 Job 资源时，都会以 backup-manager 作为镜像。backup-manager 负责通过容器启动参数和对应 Backup、Restore 资源的 spec 来启动对应的工具执行备份恢复任务，同时也负责同步 Backup、Restore 资源的 status，更新目前的状态和进度。</p>
+<p>与控制器逻辑对应，目前 backup-manager 实现了基于两套工具的备份和恢复，一种是备份和恢复都使用 br，对应 backup 和 restore 命令；一种是使用 dumpling 备份，使用 lightning 恢复，对应 import 和 export 命令。</p>
+<h3 id="backuprestore">backup/restore</h3>
+<p>这里以 br 为例，介绍一下 backup-manager 实现备份与恢复的主要逻辑流程。
+如前所述，当 backup 控制器调用 <strong>makeBackupJob 函数</strong>创建了备份 Job 后，Job 控制器会启动一个 Pod 来执行任务，而使用的镜像正是 backup-manager。makeBackupJob 传入的第一个容器启动参数是 backup，对应的处理逻辑在 <strong>cmd/backup-manager/app/cmd/backup.go</strong> 中。</p>
+<p>启动时与控制器一样，backup-manager 会构建一系列 Informer、Lister、Updater 等常见的 Kubernetes 客户端对象，然后调用 ProcessBackup 函数，执行实际的备份操作，其主要逻辑简化如下所示。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    backup, err := bm.backupLister.Backups(bm.Namespace).Get(bm.ResourceName)
+    if backup.Spec.From == nil {
+        return bm.performBackup(ctx, backup.DeepCopy(), nil)
+    }
+}
+func (bm *Manager) performBackup(ctx context.Context, backup *v1alpha1.Backup, db *sql.DB) error {
+    // update status to BackupRunning
+    backupFullPath, err := util.GetStoragePath(backup)
+    backupErr := bm.backupData(ctx, backup)
+    // update status to BackupComplete
+}
+func (bo *Options) backupData(ctx context.Context, backup *v1alpha1.Backup) error {
+    clusterNamespace := backup.Spec.BR.ClusterNamespace
+    args := make([]string, 0)
+    args = append(args, fmt.Sprintf(&#34;--pd=%s-pd.%s:2379&#34;, backup.Spec.BR.Cluster, clusterNamespace))
+    dataArgs, err := constructOptions(backup)
+    args = append(args, dataArgs...)
+    fullArgs := []string{&#34;backup&#34;, backupType}
+    fullArgs = append(fullArgs, args...)
+    klog.Infof(&#34;Running br command with args: %v&#34;, fullArgs)
+    bin := path.Join(util.BRBinPath, &#34;br&#34;)
+    cmd := exec.CommandContext(ctx, bin, fullArgs...)
+    // parse error messages
+}
+</code></pre></div><p>ProcessBackup 的主要逻辑非常简单，首先获取对应命名空间中的 Backup 对象，然后调用 performBackup。后者先获取备份的路径，目前支持 <strong>s3、gcs 和 local</strong> 三种路径格式，其中 local 指的是 <strong>PV</strong> 方式挂载的本地路径。然后这里会调用 backupData，使用 br 工具进行备份。在 backupData 中，我们首先组合出 br 工具需要的命令行参数，然后使用 “backup“ 作为 br 命令，执行 br 二进制文件，并解析可能的错误输出。当这个命令执行成功时，此次备份任务也就完成了。至此，整个备份的核心逻辑就介绍完毕了。</p>
+<h3 id="importexport">import/export</h3>
+<p>这部分逻辑与上述 br 相关逻辑类似，只是换成了用 dumpling 和 lightning 来进行备份和恢复，因此不再赘述。</p>
+<h3 id="clean">clean</h3>
+<p>在 backup 控制器生成了执行 <strong>clean</strong> 命令的 Job 后，backup-manager 就会执行 clean 对应的逻辑，来清理对应的备份文件。这部分逻辑的入口在 <strong>cmd/backup-manager/app/cmd/clean.go</strong>，调用 ProcessCleanBackup 函数开始清理流程。在一系列检查之后，分别会调用 cleanBRRemoteBackupData/cleanRemoteBackupData 函数来删除存放在远端的 br/dumpling 备份文件。</p>
+<h2 id="heading-5">总结</h2>
+<p>本文讲解了 TiDB Operator 提供的<strong>备份与恢复功能的实现与设计</strong>。当用户提交了相应的备份与恢复任务时，对应的 backup、restore 和 backupschedule 控制器会调用 backup-manager 执行实际的任务。从<strong>抽象封装</strong>的角度来看，backupschedule 基于 backup 封装了定时任务逻辑，而 backup-manager 则是将具体的底层工具封装成了一个统一入口，方便各控制器调用。</p>
+<p>如果有什么好的想法，欢迎通过 <a href="https://slack.tidb.io/invite?team=tidb-community&amp;channel=sig-k8s&amp;ref=pingcap-tidb-operator">#sig-k8s</a> 或 <a href="https://github.com/pingcap/tidb-operator">pingcap/tidb-operator</a> 与 TiDB Operator 社区交流。</p>
+</div>
+                </div><div class="ssba-wrap">
+    <div class="ssba">
+        <a class="ssba_mail_share" href="mailto:info@pingcap.com" target="_blank"
+        onclick="trackViews('blog-contact-us', 'mail_to_info_view')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="18" height="18"><path d="M7 9L5.268 7.484.316 11.729c.18.167.423.271.691.271h11.986c.267 0 .509-.104.688-.271L8.732 7.484 7 9z"/><path d="M13.684 2.271A1.007 1.007 0 0 0 12.993 2H1.007c-.267 0-.509.104-.689.273L7 8l6.684-5.729zM0 2.878v8.308l4.833-4.107zM9.167 7.079L14 11.186V2.875z"/></svg>
+        </a>
+        <a id="wechat_share_btn" data-site="wechat" data-url="https://idiks.com/blog-cn/tidb-operator-source-code-5/" class="ssba_wechat_share" href="javascript:void(0)" onclick="toggleBlogQRCode()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 31.403 31.404"><path d="M31.403 21.306c0-4.597-4.388-8.32-9.8-8.32-5.414 0-9.802 3.725-9.802 8.32 0 4.597 4.388 8.322 9.802 8.322 1.701 0 3.302-.369 4.697-1.019l3.863 1.671-.447-4.309c1.066-1.329 1.687-2.937 1.687-4.665zm-13.102-2.254a1.395 1.395 0 1 1 0-2.79 1.395 1.395 0 0 1 0 2.79zm6.604 0a1.395 1.395 0 1 1 .003-2.79 1.395 1.395 0 0 1-.003 2.79z"/><path d="M21.604 11.885c1.515 0 2.957.27 4.271.755.009-.175.03-.345.03-.521 0-6.074-5.801-10.996-12.953-10.996C5.799 1.123 0 6.044 0 12.119c0 2.284.822 4.408 2.229 6.167l-.591 5.694 5.104-2.213c1.264.59 2.661.986 4.136 1.189a8.143 8.143 0 0 1-.179-1.65c.001-5.195 4.892-9.421 10.905-9.421zm-4.287-6.428a1.84 1.84 0 1 1-1.841 1.84c0-1.016.825-1.84 1.841-1.84zM8.586 9.139a1.84 1.84 0 0 1 0-3.682 1.84 1.84 0 1 1 0 3.682z"/></svg>
+        </a>
+    </div>
+</div>
+
+<style type="text/css">
+    .fixed-qrcode {
+        position: fixed;
+        top: 120px;
+        right: 105px;
+        padding: 10px 15px;
+        width: 200px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.9);
+        text-align: center;
+    }
+
+    .fixed-qrcode p {
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.6;
+        margin: 8px 0;
+        color: #333;
+    }
+
+    .fixed-qrcode #close_share_qrcode {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        padding: 10px;
+    }
+
+    .fixed-qrcode #close_share_qrcode svg {
+        display: block;
+    }
+
+    .f-hide #share_qrcode {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .fixed-qrcode #share_qrcode {
+        visibility: visible;
+        opacity: 1;
+        height: 128px;
+        transition: visibility 0s linear 0s, opacity .3s 0s;
+        -webkit-transition: visibility 0s linear 0s, opacity .3s 0s;
+    }
+
+    #share_qrcode img {
+        margin: 0 auto;
+    }
+</style>
+<div id="share_qrcode_outer" class="f-hide">
+    <i id="close_share_qrcode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224.512 224.512"><path fill="#010002" d="M224.507 6.997L217.521 0 112.256 105.258 6.998 0 .005 6.997l105.258 105.257L.005 217.512l6.993 7L112.256 119.24l105.265 105.272 6.986-7-105.258-105.258z"/></svg></i>
+    <p>分享到微信</p>
+    <div id="share_qrcode"></div>
+    <p>打开微信，使用 “扫一扫” 即可将网页分享至朋友圈。</p>
+</div>
+
+<script type="text/javascript" src="/js/vendor/qrcode.min.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        var close_share_qrcode_btn = document.getElementById('close_share_qrcode')
+        var wechat_share_btn = document.getElementById('wechat_share_btn')
+        var blog_url = wechat_share_btn.getAttribute('data-url')
+
+        window.pingcap_blog_qrcode = new QRCode(
+            document.getElementById('share_qrcode'),
+            {
+            text: blog_url,
+            width: 128,
+            height: 128,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+            }
+        )
+
+        close_share_qrcode_btn.addEventListener('click', function(event) {
+            document
+            .getElementById('share_qrcode_outer')
+            .setAttribute('class', 'f-hide')
+        })
+    }
+
+    function toggleBlogQRCode() {
+        var qrcode_wrapper = document.getElementById('share_qrcode_outer')
+
+        if (qrcode_wrapper.getAttribute('class') == 'f-hide') {
+            qrcode_wrapper.setAttribute('class', 'fixed-qrcode')
+        } else {
+            qrcode_wrapper.setAttribute('class', 'f-hide')
+        }
+    }
+</script>
+</div>
+        </div>
+    </div>
+<footer>
+    <div class="container">
+        <div class="flex-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>产品</strong></h4>
+                <ul>
+                <li><a href="/docs-cn/v3.0/" onclick="trackViews('footer-product-tidb', 'docs-cn_view')">TiDB</a></li>
+                <li><a href="/docs-cn/v3.0/reference/tispark/">TiSpark</a></li>
+                <li><a href="/docs-cn/v3.0/roadmap/">TiDB 路线图</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>文档</strong></h4>
+                <ul>
+                <li><a href="https://docs.idiks.com/zh/tidb/v4.0/quick-start-with-tidb">快速入门</a></li>
+                <li><a href="/blog-cn/tidb-best-practice/">最佳实践</a></li>
+                <li><a href="/docs-cn/stable/faq/tidb/">常见问题解答</a></li>
+                <li><a href="/docs-cn/stable/reference/tools/user-guide/">TiDB 周边工具</a></li>
+                <li><a href="https://docs.idiks.com/zh/tidb/dev/release-notes">版本发布说明</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>资源</strong></h4>
+                <ul>
+                <li><a href="/blog-cn/">博客</a></li>
+                <li><a href="https://github.com/idiks" target="_blank">GitHub</a></li>
+                <li><a href="https://book.tidb.io" target="_blank">TiDB in Action</a></li>
+                <li><a href="https://university.idiks.com/"
+                    onclick="trackViews('footer-source-university', 'idiks-university_view')" target="_blank">PingCAP
+                    University</a></li>
+                <li><a href="/solutions/intel/"
+                    onclick="trackViews('footer-resource-solutions', 'solutions_view')" >联合解决方案</a></li>
+                <li><a href="https://asktug.com/"
+                    onclick="trackViews('footer-resource-asktug', 'asktug_view')" target="_blank">Ask TUG</a></li>
+                
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>公司</strong></h4>
+                <ul>
+                <li><a href="/about-cn/">关于我们</a></li>
+                <li><a href="https://job.idiks.com/" target="_blank" onclick="trackViews('footer-recruit-join', 'recruit-join_view')">招贤纳士</a>
+                </li>
+                <li><a href="/about-cn/news/">新闻报道</a></li>
+                <li><a href="/zh/privacy-policy/">隐私申明</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="contact-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>联系我们</strong></h4>
+                <ul>
+                <li><a href="https://twitter.com/PingCAP" class="twitter"  target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="19"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg> Twitter</a></li>
+                <li><a href="https://www.linkedin.com/company/idiks/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg> LinkedIn</a></li>
+                <li><a href="https://www.reddit.com/r/TiDB/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg> Reddit</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/tidb-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="20"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg> Google Group</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/tidb" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg> Stack Overflow</a></li>
+                <li id="wechat"><a class="wechat" href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 31.403 31.404"><path d="M31.403 21.306c0-4.597-4.388-8.32-9.8-8.32-5.414 0-9.802 3.725-9.802 8.32 0 4.597 4.388 8.322 9.802 8.322 1.701 0 3.302-.369 4.697-1.019l3.863 1.671-.447-4.309c1.066-1.329 1.687-2.937 1.687-4.665zm-13.102-2.254a1.395 1.395 0 1 1 0-2.79 1.395 1.395 0 0 1 0 2.79zm6.604 0a1.395 1.395 0 1 1 .003-2.79 1.395 1.395 0 0 1-.003 2.79z"/><path d="M21.604 11.885c1.515 0 2.957.27 4.271.755.009-.175.03-.345.03-.521 0-6.074-5.801-10.996-12.953-10.996C5.799 1.123 0 6.044 0 12.119c0 2.284.822 4.408 2.229 6.167l-.591 5.694 5.104-2.213c1.264.59 2.661.986 4.136 1.189a8.143 8.143 0 0 1-.179-1.65c.001-5.195 4.892-9.421 10.905-9.421zm-4.287-6.428a1.84 1.84 0 1 1-1.841 1.84c0-1.016.825-1.84 1.841-1.84zM8.586 9.139a1.84 1.84 0 0 1 0-3.682 1.84 1.84 0 1 1 0 3.682z"/></svg> 微信公众号</a> <div class="qr_code_outer f-hide f-tc">
+    <div class="qr_code">
+        <i id="close_qrcode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224.512 224.512"><path fill="#010002" d="M224.507 6.997L217.521 0 112.256 105.258 6.998 0 .005 6.997l105.258 105.257L.005 217.512l6.993 7L112.256 119.24l105.265 105.272 6.986-7-105.258-105.258z"/></svg></i>
+        <img id="js_qr_code_img" class="qr_code_img" src="/images/wechat-qrcode.jpg" alt="Wechat qrCode" />
+        <p>微信扫一扫<br> 微信ID：pingcap2015</p>
+    </div>
+</div>
+</li>
+                </ul>
+            </div>
+            <div class="subscribe" id="subscribe-pc"></div>
+        </div>
+    </div>
+    <div class="container copyright-container">
+        <p class="copyright">&copy; 2020 小长科技（上海）有限公司</p>
+        <a href="/blog" class="copyright-btn-lang copyright-btn-en" id="lang">English</a>
+        <a href="http://www.beian.miit.gov.cn/" class="prepared-num">京 ICP 备 16046278 号 - 2</a>
+    </div>
+</footer>
+<button class="back-to-top" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 284.929 284.929"><path d="M282.082 195.285L149.028 62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 195.285C.95 197.191 0 199.378 0 201.853c0 2.474.953 4.664 2.856 6.566l14.272 14.271c1.903 1.903 4.093 2.854 6.567 2.854s4.664-.951 6.567-2.854l112.204-112.202 112.208 112.209c1.902 1.903 4.093 2.848 6.563 2.848 2.478 0 4.668-.951 6.57-2.848l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.566.001-2.476-.944-4.666-2.846-6.569z" fill="#FFF"/></svg>
+</button>
+</div><div class="overlay"></div><script src="https://download.pingcap.com/js/jquery.min.js"></script><script type="text/javascript" src="/js/vendor/lazyload.min.js"></script>
+    <script type="text/javascript" src="/js/doc.js"></script>
+    <script type="text/javascript" src="/js/anchor.js"></script><script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script><script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script src="https://browser.sentry-cdn.com/5.11.0/bundle.min.js" integrity="sha384-jbFinqIbKkHNg+QL+yxB4VrBC0EAPTuaLGeRT0T+NfEV89YC6u1bKxHLwoo+/xxY" crossorigin="anonymous"></script><script>Sentry.init({ 
+            dsn: 'https://3f28ed393c5545daa74496b3cdb2e9ba@sentry.io/1887163' 
+        });</script><script src="/js/app.js"></script></body></html>
