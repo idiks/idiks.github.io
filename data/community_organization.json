@@ -1197,7 +1197,7 @@
             {
                 "name": "Maintainer",
                 "desc": "The planner and designer of the project; Maintainers are generated from Committers and have the right to merge branches into the master.",
-                "link": "https://github.com/pingcap/community/tree/master/architecture#maintainer"
+                "link": "https://github.com/idiks/community/tree/master/architecture#maintainer"
             },
             {
                 "name": "Committer",
@@ -1261,13 +1261,13 @@
             {
                 "title": "TiDB DDL SIG",
                 "desc": "DDL SIG 主要负责 TiDB DDL 和 parser 及其相关模块的开发和维护。工作内容包括对 DDL 模块和 parser 模块进行稳定性、性能、与 MySQL 的兼容性等方面的提升。",
-                "github_link": "https://github.com/pingcap/community/tree/master/special-interest-groups/sig-ddl",
+                "github_link": "https://github.com/idiks/community/tree/master/special-interest-groups/sig-ddl",
                 "slack_link": "https://join.slack.com/t/tidbcommunity/shared_invite/enQtNzc0MzI4ODExMDc4LWYwYmIzMjZkYzJiNDUxMmZlN2FiMGJkZjAyMzQ5NGU0NGY0NzI3NTYwMjAyNGQ1N2I2ZjAxNzc1OGUwYWM0NzE"
             },
             {
                 "title": "TiDB Scheduling SIG",
                 "desc": "Scheduling SIG 以打造智能、高效、高可用、可扩展的分布式系统为目标。主要工作内容包括集群中心化管理，优化资源分配策略，智能调度，高可用容灾等。",
-                "github_link": "https://github.com/pingcap/community/tree/master/special-interest-groups/sig-scheduling",
+                "github_link": "https://github.com/idiks/community/tree/master/special-interest-groups/sig-scheduling",
                 "slack_link": "https://slack.tidb.io/invite?team=tidb-community&channel=sig-scheduling&ref=pingcap-website-docs-zh"
             }
         ]
@@ -1305,13 +1305,13 @@
             {
                 "title": "TiDB DDL SIG",
                 "desc": "DDL SIG is mainly responsible for the development and maintenance of TiDB DDL, the parser, and related modules. This SIG is engaged in improving the stability, performance, and compatibility with MySQL of the DDL module and the parser module.",
-                "github_link": "https://github.com/pingcap/community/tree/master/special-interest-groups/sig-ddl",
+                "github_link": "https://github.com/idiks/community/tree/master/special-interest-groups/sig-ddl",
                 "slack_link": "https://join.slack.com/t/tidbcommunity/shared_invite/enQtNzc0MzI4ODExMDc4LWYwYmIzMjZkYzJiNDUxMmZlN2FiMGJkZjAyMzQ5NGU0NGY0NzI3NTYwMjAyNGQ1N2I2ZjAxNzc1OGUwYWM0NzE"
             },
             {
                 "title": "TiDB Expression SIG ",
                 "desc": "The TiDB Expression SIG covers the implementation of TiDB expressions, focusing on the development and maintenance of TiDB functions and operators. The responsibilities include but are not limited to: supporting new features, improving performance, and fixing bugs.",
-                "github_link": "https://github.com/pingcap/community/tree/master/special-interest-groups/sig-expr",
+                "github_link": "https://github.com/idiks/community/tree/master/special-interest-groups/sig-expr",
                 "slack_link": "https://join.slack.com/t/tidbcommunity/shared_invite/enQtNzc0MzI4ODExMDc4LWYwYmIzMjZkYzJiNDUxMmZlN2FiMGJkZjAyMzQ5NGU0NGY0NzI3NTYwMjAyNGQ1N2I2ZjAxNzc1OGUwYWM0NzE"
             }
         ]

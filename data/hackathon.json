@@ -365,7 +365,7 @@
     {
       "title": "专项学习文档",
       "desc": "这里汇总了 TiDB 核心团队出品的数十篇精选技术详解文章，轻松掌握 TiDB 各核心组件的原理及功能。",
-      "link": "https://github.com/pingcap/presentations/blob/master/hackathon-2019/reference-document-of-hackathon-2019.md",
+      "link": "https://github.com/idiks/presentations/blob/master/hackathon-2019/reference-document-of-hackathon-2019.md",
       "thumbnail_pc": "https://download.pingcap.com/images/hackathon2019/learning-docs-thumbnail-pc.jpg",
       "thumbnail_mobile": "https://download.pingcap.com/images/hackathon2019/learning-docs-thumbnail-mobile.jpg"
     },
@@ -584,7 +584,7 @@
       "team_name": "VIDB",
       "project_name": "Self-Driving TiDB",
       "project_intro": "根据历史负载统计情况，预测未来不同数据区间的访问模式，在空闲时间段提前对不同区间的数据从不同维度来进行调整以适应未来的访问模式。",
-      "github": "https://github.com/pingcap/pd/pull/1848",
+      "github": "https://github.com/idiks/pd/pull/1848",
       "medal": "https://download.pingcap.com/images/hackathon2019/gift.svg"
     },
     {

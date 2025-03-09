@@ -21,10 +21,10 @@
 {{- $filename := index (split $item.name "___") 1 -}}
 <div class="git-info">
     <a class="link"
-        href="https://github.com/pingcap/{{$docs_repo}}/blob/{{ if $branch }}release-{{$branch}}{{else}}master{{end}}/{{$filename}}">"{{ $.global.Page.Title }}"</a>
+        href="https://github.com/idiks/{{$docs_repo}}/blob/{{ if $branch }}release-{{$branch}}{{else}}master{{end}}/{{$filename}}">"{{ $.global.Page.Title }}"</a>
     {{ if $.isCn }}更新于{{ else }}was last updated{{ end }}
     <span>{{ $month }} {{ $day }} {{ $year }}</span>:
-    <a class="link" href="https://github.com/pingcap/{{$docs_repo}}/commit/{{$commit_id}}">
+    <a class="link" href="https://github.com/idiks/{{$docs_repo}}/commit/{{$commit_id}}">
         {{ $msg }} <span class="hash">({{ $hash }})</span>
     </a>
 </div>

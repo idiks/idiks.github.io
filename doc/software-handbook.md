@@ -87,7 +87,7 @@ submodule update --init --recursive --remote` 来拉取最新子模块内容来�
   branch = master
 [submodule "content/meetup"]
 	path = content/meetup
-	url = https://github.com/pingcap/meetup
+	url = https://github.com/idiks/meetup
 	branch = hugo-refactor
 [submodule "content/blog"]
 	path = content/blog
