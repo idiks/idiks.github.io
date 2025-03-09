@@ -13,6 +13,7 @@ jobs:
             - 'h9k3qkvYOALZYVhX7WGQD4umcUb5CMUWmPJuEvr80eg'
             # Use in rsync
             - 'a7:ac:0b:83:80:43:73:8c:ed:14:c3:5c:77:67:03:54'
+            - 'SHA256:FMiCMiX4O9BKYZ/NJoSDrHc0lnZxtonUIzBHwf9k1+I'
 
       - checkout
 
