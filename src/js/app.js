@@ -100,7 +100,7 @@ function initialSearch(lang, docs_type) {
                         <p>很抱歉，我们没有找到您期望的内容。</p>\
                         <ul>\
                         <li>请尝试其它搜索词，或者去 <a href="https://asktug.com/" target="_blank"> AskTUG</a> (TiDB User Group) 提问试试。</li>\
-                        <li>如果您想搜索英文内容，请移步至<a href="https://pingcap.com/docs/">英文文档</a>进行搜索。</li>\
+                        <li>如果您想搜索英文内容，请移步至<a href="https://idiks.com/docs/">英文文档</a>进行搜索。</li>\
                         </ul>\
                       </div>'
             )
@@ -110,8 +110,8 @@ function initialSearch(lang, docs_type) {
               '<div class="search-category-result">\
                         <p>Sorry. We couldn\'t find what you\'re looking for.</p>\
                         <ul>\
-                        <li>If you\'ve come to pages of an unexpected language, go to <a href="https://pingcap.com/docs-cn/">Chinese documentation</a> and try again.</li>\
-                        <li>If you do want to get some English content, <a href="https://pingcap.com/">PingCAP home page</a> might be a better place for you to go.</li>\
+                        <li>If you\'ve come to pages of an unexpected language, go to <a href="https://idiks.com/docs-cn/">Chinese documentation</a> and try again.</li>\
+                        <li>If you do want to get some English content, <a href="https://idiks.com/">PingCAP home page</a> might be a better place for you to go.</li>\
                         </ul>\
                       </div>'
             )
@@ -267,7 +267,7 @@ function processMobileOverlay() {
 
 // get TiDB contributors count
 function getTidbContributorCount() {
-  const url = 'https://pingcap.com/api/tidb-contributors'
+  const url = 'https://idiks.com/api/tidb-contributors'
   var count
   var countArr = []
   $.ajax({

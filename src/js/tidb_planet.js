@@ -6,7 +6,7 @@ import { getCookies, setCookies } from './cookies.js'
 // import './vendor/jquery-dateformat.js'
 // // https://github.com/phstc/jquery-dateFormat
 
-const url = 'https://pingcap.com/api/contributors'
+const url = 'https://idiks.com/api/contributors'
 $.ajax({
   url,
   crossDomain: true,
@@ -318,7 +318,7 @@ $(function() {
     // location.href = $(this).attr('href')
     const lang = navigator.language
     if (lang.substring(0, 2) == 'zh') {
-      $(this).attr('href', 'https://pingcap.com/docs-cn/releases/3.0beta/')
+      $(this).attr('href', 'https://idiks.com/docs-cn/releases/3.0beta/')
     }
     window.open($(this).attr('href'))
     e.preventDefault()

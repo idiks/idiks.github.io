@@ -6,7 +6,7 @@
         "name": "VNG",
         "industry": "Mobile Payment",
         "websiteLink": "https://en.wikipedia.org/wiki/VNG_Corporation",
-        "link": "https://pingcap.com/success-stories/tidb-at-zalopay-infrastructure-lesson-learned/",
+        "link": "https://idiks.com/success-stories/tidb-at-zalopay-infrastructure-lesson-learned/",
         "logo": "/images/customers/vng-logo.png",
         "scale": "100+ million online users",
         "isShow": true,
@@ -16,7 +16,7 @@
         "name": "Shopee",
         "industry": "E-Commerce",
         "websiteLink": "https://en.wikipedia.org/wiki/Shopee",
-        "link": "https://pingcap.com/success-stories/choosing-right-database-for-your-applications/",
+        "link": "https://idiks.com/success-stories/choosing-right-database-for-your-applications/",
         "logo": "/images/customers/shopee-logo.png",
         "scale": "millions of users in 7 regions",
         "isShow": true,
@@ -26,7 +26,7 @@
         "name": "JD Cloud",
         "industry": "Cloud Computing",
         "websiteLink": "https://www.crunchbase.com/organization/jd-cloud",
-        "link": "https://pingcap.com/success-stories/lesson-learned-from-40-k-qps-and-20-billion-rows-of-data-in-a-single-scale-out-cluster/",
+        "link": "https://idiks.com/success-stories/lesson-learned-from-40-k-qps-and-20-billion-rows-of-data-in-a-single-scale-out-cluster/",
         "logo": "/images/customers/jd-cloud-logo.png",
         "scale": "330+ thousand registered users",
         "summary": "As a leading cloud computing service provider in China, JD Cloud uses TiKV as the primary database for their OSS metadata storage application. Currently, they've deployed 10+ TiKV clusters. In the production environment, a single cluster's QPS reaches 40 K at peak time. The data volume of the largest cluster hits 20+ billion rows."
@@ -35,7 +35,7 @@
         "name": "Xiaomi",
         "industry": "Consumer Electronics",
         "websiteLink": "https://en.wikipedia.org/wiki/Xiaomi",
-        "link": "https://pingcap.com/success-stories/tidb-in-xiaomi/",
+        "link": "https://idiks.com/success-stories/tidb-in-xiaomi/",
         "logo": "/images/customers/xiaomi-logo.png",
         "summary": "As a leading consumer electronics and software company and the fourth-largest smartphone manufacturer in the world, Xiaomi has deployed TiDB in the production environment to service two applications: instant delivery and the third party ad network. These two workloads generate about 100 million read and write queries daily. They also have plans to migrate additional workloads to TiDB in the future."
       },
@@ -43,7 +43,7 @@
         "name": "BookMyShow",
         "industry": "Media and Entertainment",
         "websiteLink": "https://www.crunchbase.com/organization/bookmyshow",
-        "link": "https://pingcap.com/success-stories/tidb-in-bookmyshow/",
+        "link": "https://idiks.com/success-stories/tidb-in-bookmyshow/",
         "logo": "/images/customers/bookmyshow-logo.png",
         "scale": "50 million users in 650 cities",
         "summary": "As India's largest e-commerce site for booking entertainment tickets online, BookMyShow has deployed TiDB in the production environment. With TiDB, BookMyShow has experienced increased uptime and availability. Meanwhile, operational and maintenance cost has been reduced by 30% and no engineer needs to be fully dedicated to database operations anymore."
@@ -51,7 +51,7 @@
       {
         "name": "Zhihu",
         "industry": "Media and Entertainment",
-        "link": "https://pingcap.com/success-stories/lesson-learned-from-queries-over-1.3-trillion-rows-of-data-within-milliseconds-of-response-time-at-zhihu/",
+        "link": "https://idiks.com/success-stories/lesson-learned-from-queries-over-1.3-trillion-rows-of-data-within-milliseconds-of-response-time-at-zhihu/",
         "logo": "/images/customers/zhihu-logo.png",
         "scale": "220 million registered users",
         "isShow": true,
@@ -96,7 +96,7 @@
         "logo": "/images/customers/yiguo-logo.png",
         "websiteLink": "https://www.crunchbase.com/organization/shanghai-yiguo-electron-business",
         "link":
-          "https://pingcap.com/success-stories/hybrid-database-capturing-perishable-insights-at-yiguo/",
+          "https://idiks.com/success-stories/hybrid-database-capturing-perishable-insights-at-yiguo/",
         "summary": "As the largest B2C fresh produce online marketplace in China, serving close to 5 million users and more than 1,000 enterprise customers, Yiguo.com uses TiDB to capture real-time insights from fresh transactional data, in order to make timely and accurate business decisions."
       },
       {
@@ -196,7 +196,7 @@
         "industry": "Gaming",
         "logo": "/images/customers/netease-games-logo.png",
         "websiteLink": "https://www.neteasegames.com/",
-        "link": "https://pingcap.com/success-stories/why-we-chose-a-distributed-sql-database-alongside-mysql-to-break-down-data-silos/",
+        "link": "https://idiks.com/success-stories/why-we-chose-a-distributed-sql-database-alongside-mysql-to-break-down-data-silos/",
         "scale": "280+ games with millions of DAU",
         "summary": "As one of the biggest players in China's online gaming market, NetEase Games has deployed TiDB in the production environment to serve billing applications. With TiDB, NetEase Games is able to gain insights from data and create value for their users. They also plan to move more services to TiDB in the future."
       },

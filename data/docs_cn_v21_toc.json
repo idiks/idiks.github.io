@@ -58,7 +58,7 @@
             "children": [
               {
                 "name": "使用 Docker Compose",
-                "link": "https://pingcap.com/docs-cn/dev/how-to/get-started/deploy-tidb-from-docker-compose/"
+                "link": "https://idiks.com/docs-cn/dev/how-to/get-started/deploy-tidb-from-docker-compose/"
               }
             ]
           },
@@ -1221,7 +1221,7 @@
           },
           {
             "name": "TiDB 最佳实践",
-            "link": "https://pingcap.com/blog-cn/tidb-best-practice/"
+            "link": "https://idiks.com/blog-cn/tidb-best-practice/"
           }
         ]
       },
