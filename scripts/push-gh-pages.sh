@@ -5,7 +5,7 @@ set -e
 
 cd dist
 
-git config --global user.email "hongxing.zhang@idiks.com"
+git config --global user.email "diks00001@outlook.com"
 git config --global user.name "idiks"
 remote=$(git config remote.origin.url)
 git init
