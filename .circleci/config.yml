@@ -19,7 +19,7 @@ jobs:
 
       # Dependencies required for deploy
       # python3-pip for awscli
-      - run: sudo apt update && sudo apt install rsync python3-bs4 python3-pip -y
+      - run: sudo apt update && sudo apt install rsync python-bs4 python3-pip -y
 
       # Download and cache dependencies and submodules
       - restore_cache:
