@@ -2,7 +2,7 @@
     "developer_members": {
         "maintainer": [
             {
-                "avatar": "https://download.pingcap.com/images/community/organization/sunxiaoguang.jpeg",
+                "avatar": "https://static.itspedia.com/images/community/organization/sunxiaoguang.jpeg",
                 "link": "https://github.com/sunxiaoguang",
                 "name": "孙晓光",
                 "title": "知乎 | 技术平台负责人",
@@ -10,7 +10,7 @@
                 "tag": "TiKV"
             },
             {
-                "avatar": "https://download.pingcap.com/images/community/organization/chenfu.png",
+                "avatar": "https://static.itspedia.com/images/community/organization/chenfu.png",
                 "link": "https://github.com/fredchenbj",
                 "name": "陈付",
                 "title": "一点资讯 | 分布式存储工程师",
@@ -18,7 +18,7 @@
                 "tag": "TiKV"
             },
             {
-                "avatar": "https://download.pingcap.com/images/community/organization/lidaobing.png",
+                "avatar": "https://static.itspedia.com/images/community/organization/lidaobing.png",
                 "link": "https://github.com/lidaobing",
                 "name": "李道兵",
                 "title": "京东智联云 | 高级总监",
@@ -28,7 +28,7 @@
         ],
         "committer": [
             {
-                "avatar": "https://download.pingcap.com/images/instructors/likai.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/likai.jpg",
                 "link": "https://github.com/kayaklee",
                 "name": "李凯 （ 知乎 ID 郁白 ）",
                 "title": "美团 | 数据库团队负责人",
@@ -36,7 +36,7 @@
                 "tag": "TiDB"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/wudi.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/wudi.jpg",
                 "link": "https://github.com/foxmailed",
                 "name": "吴镝",
                 "title": "今日头条 | 数据库中间件/分布式数据库负责人",
@@ -44,7 +44,7 @@
                 "tag": "TiDB"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/liyulai.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/liyulai.jpg",
                 "link": "https://github.com/blacktear23",
                 "name": "李雨来",
                 "title": "SpeedyCloud | 架构师",
@@ -52,7 +52,7 @@
                 "tag": "TiDB"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/duchuan.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/duchuan.jpg",
                 "link": "https://github.com/spongedu",
                 "name": "杜川",
                 "title": "腾讯云 | 高级工程师",
@@ -60,7 +60,7 @@
                 "tag": "TiDB"
             },
             {
-                "avatar": "https://download.pingcap.com/images/community/organization/Jun-Seok-Heo.jpeg",
+                "avatar": "https://static.itspedia.com/images/community/organization/Jun-Seok-Heo.jpeg",
                 "link": "https://github.com/dbjoa",
                 "name": "Jun-Seok Heo",
                 "title": "Samsung Electronics | Cloud Database Engineering",
@@ -68,7 +68,7 @@
                 "tag": "TiDB"
             },
             {
-                "avatar": "https://download.pingcap.com/images/community/organization/niedianhui.png",
+                "avatar": "https://static.itspedia.com/images/community/organization/niedianhui.png",
                 "link": "https://github.com/niedhui",
                 "name": "聂殿辉",
                 "title": "连尚网络 | 高级工程师",
@@ -76,7 +76,7 @@
                 "tag": "TiKV"
             },
             {
-                "avatar": "https://download.pingcap.com/images/community/organization/zhuangtianyi.png",
+                "avatar": "https://static.itspedia.com/images/community/organization/zhuangtianyi.png",
                 "link": "https://github.com/TennyZhuang",
                 "name": "庄天翼",
                 "title": "阿里巴巴 | PolarDB 技术专家",
@@ -222,7 +222,7 @@
         ],
         "maintainer_en": [
             {
-                "avatar": "https://download.pingcap.com/images/community/organization/sunxiaoguang.jpeg",
+                "avatar": "https://static.itspedia.com/images/community/organization/sunxiaoguang.jpeg",
                 "link": "https://github.com/sunxiaoguang",
                 "name": "Sun Xiaoguang",
                 "title": "Technology Platform Lead, Zhihu",
@@ -232,7 +232,7 @@
         ],
         "committer_en": [
             {
-                "avatar": "https://download.pingcap.com/images/instructors/likai.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/likai.jpg",
                 "link": "https://github.com/kayaklee",
                 "name": "Kai Li",
                 "title": "Head of Database Team, Meituan",
@@ -240,7 +240,7 @@
                 "tag": "TiDB"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/wudi.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/wudi.jpg",
                 "link": "https://github.com/foxmailed",
                 "name": "Di Wu",
                 "title": "Head of Database Middleware/Distributed Database, Toutiao.com",
@@ -248,7 +248,7 @@
                 "tag": "TiDB"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/liyulai.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/liyulai.jpg",
                 "link": "https://github.com/blacktear23",
                 "name": "Yulai Li ",
                 "title": "Architect, SpeedyCloud",
@@ -256,7 +256,7 @@
                 "tag": "TiDB"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/duchuan.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/duchuan.jpg",
                 "link": "https://github.com/spongedu",
                 "name": "Chuan Du",
                 "title": "Senior Engineer, Tencent Cloud",
@@ -264,7 +264,7 @@
                 "tag": "TiDB"
             },
             {
-                "avatar": "https://download.pingcap.com/images/community/organization/Jun-Seok-Heo.jpeg",
+                "avatar": "https://static.itspedia.com/images/community/organization/Jun-Seok-Heo.jpeg",
                 "link": "https://github.com/dbjoa",
                 "name": "Jun-Seok Heo",
                 "title": "Samsung Electronics | Cloud Database Engineering",
@@ -437,33 +437,33 @@
 
         "leader_en": [
             {
-                "avatar": "https://download.pingcap.com/images/community/organization/sunxiaoguang.jpeg",
+                "avatar": "https://static.itspedia.com/images/community/organization/sunxiaoguang.jpeg",
                 "link": "https://github.com/sunxiaoguang",
                 "name": "Xiaoguang Sun - TUG Leader (Beijing)",
                 "title": "Head of Search Engineering Architecture, Zhihu ",
                 "githubID": "sunxiaoguang"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/luoruixing.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/luoruixing.jpg",
                 "link": "https://github.com/luoruixing",
                 "name": "Ruixing Luo - TUG Leader (Shanghai)",
                 "title": "Data Architecture Expert, YIGUO.COM",
                 "githubID": "luoruixing"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/liyinlong.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/liyinlong.jpg",
                 "name": "Li Yinlong - TUG Leader (Southwest China)",
                 "title": "Head of Container/Cloud and TiDB, Mashang Consumer Finance"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/yangwen.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/yangwen.jpg",
                 "link": "https://github.com/yangwenmai",
                 "name": "Yangwen - TUG Leader (North China)",
                 "title": "Backend Technical Lead, SundayMorning",
                 "githubID": "yangwenmai"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/huoshao.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/huoshao.jpg",
                 "name": "Huo Shao - TUG Leader (Hangzhou)",
                 "title": "Chief Architect, 2DFire"
             }
@@ -471,41 +471,41 @@
 
         "co_leader_en": [
             {
-                "avatar": "https://download.pingcap.com/images/instructors/houshengwen.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/houshengwen.jpg",
                 "name": "Hou Shengwen - TUG Co-Leader",
                 "title": "Oracle ACE Director, Data Technical Director, KE.COM "
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/zhaoyinggang-hackathon.jpeg",
+                "avatar": "https://static.itspedia.com/images/instructors/zhaoyinggang-hackathon.jpeg",
                 "name": "Zhao Yinggang - TUG Co-Leader",
                 "title": "Distributed Database Platform Lead, Researcher, Meituan",
                 "githubID": "nettedfish",
                 "link": "https://github.com/nettedfish"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/yubowei.jpeg",
+                "avatar": "https://static.itspedia.com/images/instructors/yubowei.jpeg",
                 "name": "Yu Bowei - TUG Co-Leader",
                 "title": "Senior Database Manager, 58.com"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/hupanpan.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/hupanpan.jpg",
                 "name": "Hu Panpan - TUG Co-Leader",
                 "title": "Database Platform Manager, WeBank"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/yangjianrong.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/yangjianrong.jpg",
                 "link": "https://github.com/jeanron100",
                 "name": "Yang Jianrong - TUG Co-Leader (Beijing)",
                 "title": "Senior DBA, World Economy",
                 "githubID": "jeanron100"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/wangzhiguang.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/wangzhiguang.jpg",
                 "name": "Wang Zhiguang - TUG Co-Leader (Shanghai)",
                 "title": "Senior Database Engineer, Ping An Technology"
             },
             {
-                "avatar": "https://download.pingcap.com/images/instructors/pengxing.jpg",
+                "avatar": "https://static.itspedia.com/images/instructors/pengxing.jpg",
                 "link": "https://github.com/aioas",
                 "name": "Peng Xing - TUG Co-Leader (Hangzhou)",
                 "title": "DBA Team Lead, CAOCAO Chuxing",

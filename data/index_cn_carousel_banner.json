@@ -4,7 +4,7 @@
             "link": "/community-cn/careers/join",
             "gaTrackEventClass": "community-careers_view",
             "gaTrackEventLabel": "homepage-community-careers",
-            "img": "https://download.pingcap.com/images/home-careers-carousel.jpg",
+            "img": "https://static.itspedia.com/images/home-careers-carousel.jpg",
             "alt": "Community careers",
             "newTab": false
         },
@@ -12,7 +12,7 @@
             "link": "https://university.pingcap.com/",
             "gaTrackEventClass": "pingcap-university_view",
             "gaTrackEventLabel": "homepage-university-banner",
-            "img": "https://download.pingcap.com/images/university-carousel-img.png",
+            "img": "https://static.itspedia.com/images/university-carousel-img.png",
             "alt": "PingCAP University banner",
             "newTab": true
         },
@@ -20,7 +20,7 @@
             "link": "https://asktug.com/t/topic/33760/2",
             "gaTrackEventClass": "asktug_view",
             "gaTrackEventLabel": "homepage-asktug-banner",
-            "img": "https://download.pingcap.com/images/home-asktug-carousel.jpg",
+            "img": "https://static.itspedia.com/images/home-asktug-carousel.jpg",
             "alt": "AskTGU banner",
             "newTab": true
         },
@@ -28,7 +28,7 @@
             "link": "https://idiks.com/cases-cn/user-message-2019/",
             "gaTrackEventClass": "user_message_2019_view",
             "gaTrackEventLabel": "homepage-user-message-2019-banner",
-            "img": "https://download.pingcap.com/user-message-2019-banner.png",
+            "img": "https://static.itspedia.com/user-message-2019-banner.png",
             "alt": "User message 2019 banner",
             "newTab": false
         }

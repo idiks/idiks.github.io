@@ -7,7 +7,7 @@ image: /images/pingcap-opengraph.jpg
 ---
 
 <div class="ins-env-icon">
-    <img src="https://download.pingcap.com/images/download-tidb/mac-icon.png" alt="icon"/>
+    <img src="https://static.itspedia.com/images/download-tidb/mac-icon.png" alt="icon"/>
 </div>
 
 ### TiUP install instructions (Recommended):
@@ -151,7 +151,7 @@ image: /images/pingcap-opengraph.jpg
     ```
 
 <div class="ins-env-icon">
-    <img src="https://download.pingcap.com/images/download-tidb/linux-icon.png" alt="icon"/>
+    <img src="https://static.itspedia.com/images/download-tidb/linux-icon.png" alt="icon"/>
 </div>
 
 ### TiUP install instructions (Recommended):
@@ -295,7 +295,7 @@ image: /images/pingcap-opengraph.jpg
     ```
 
 <div class="ins-env-icon">
-    <img src="https://download.pingcap.com/images/download-tidb/windows-icon.png" alt="icon"/>
+    <img src="https://static.itspedia.com/images/download-tidb/windows-icon.png" alt="icon"/>
 </div>
 
 ### Homebrew install instructions (via Windows Subsystem for Linux):
