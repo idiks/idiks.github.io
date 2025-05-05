@@ -6,6 +6,14 @@
 	path = content/blog-cn
 	url = https://github.com/idiks/blog-cn
 	shallowed = true
+[submodule "content/docs]
+	path = content/docs
+	url = https://github.com/idiks/docs
+	shallowed = true
+[submodule "content/docs-cn"]
+	path = content/docs-cn
+	url = https://github.com/idiks/docs-cn
+	shallowed = true
 [submodule "content/weekly"]
 	path = content/weekly
 	url = https://github.com/idiks/weekly
