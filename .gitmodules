@@ -14,9 +14,3 @@
 	path = content/meetup
 	url = https://github.com/idiks/meetup
 	shallowed = true
-[submodule "content/docs"]
-	path = content/docs
-	url = https://github.com/idiks/docs
-[submodule "content/docs-cn"]
-	path = content/docs-cn
-	url = https://github.com/idiks/docs-cn
