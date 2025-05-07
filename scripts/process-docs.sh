@@ -25,7 +25,7 @@ replace_dist_html_link() {
   fi
 }
 
-misc_repos=(blog-cn blog meetup weekly)
+misc_repos=(blog-cn blog meetup weekly docs-cn docs)
 
 for repo in "${misc_repos[@]}"
 do 
@@ -56,3 +56,6 @@ rm_images_from_media_docs blog-cn
 rm_images_from_media_docs blog
 rm_images_from_media_docs weekly
 rm_images_from_media_docs meetup
+rm_images_from_media_docs docs-cn
+rm_images_from_media_docs docs
+
