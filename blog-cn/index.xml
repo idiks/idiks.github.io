@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog-cns on SQL at Scale</title>
+    <link>https://idiks.com/blog-cn/</link>
+    <description>Recent content in Blog-cns on SQL at Scale</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 25 Aug 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://idiks.com/blog-cn/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>TiDB 在知乎万亿量级业务数据下的实践和挑战</title>
+      <link>https://idiks.com/case/user-case-zhihu/</link>
+      <pubDate>Wed, 26 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/case/user-case-zhihu/</guid>
+      <description>目前已读服务的流量已达每秒 4 万行记录写入，3 万独立查询和 1200 万个文档判读，在这样的压力下已读服务响应时间的 P99 和 P999 仍然稳定的维持在 25ms 和 50ms，其实平均时间是远低于这个数据的。</description>
+    </item>
+    
+    <item>
+      <title>事务前沿研究丨事务并发控制</title>
+      <link>https://idiks.com/blog-cn/transaction-frontiers-research-article-talk4/</link>
+      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/transaction-frontiers-research-article-talk4/</guid>
+      <description>本次我们将学习一些常用的并发控制方法，最后对 VLDB 2020 的 best paper “Opportunities for Optimism in Contended Main-Memory Multicore Transactions” 进行解读，来看看有哪些办法能够提升事务的并行度。</description>
+    </item>
+    
+    <item>
+      <title>没 K8s 用不了 Chaos Mesh？试试 Chaosd</title>
+      <link>https://idiks.com/blog-cn/cannot-use-chaosmesh-without-k8s-then-try-chaosd/</link>
+      <pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/cannot-use-chaosmesh-without-k8s-then-try-chaosd/</guid>
+      <description>本文描述了 Chaosd 作为 Chaos Mesh 提供的一款混沌工程测试工具，用于在物理机环境上注入故障，并提供故障恢复功能。</description>
+    </item>
+    
+    <item>
+      <title>当大数据架构遇上 TiDB</title>
+      <link>https://idiks.com/blog-cn/when-big-data-architecture-meets-tidb/</link>
+      <pubDate>Thu, 29 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/when-big-data-architecture-meets-tidb/</guid>
+      <description>本文将介绍分布式 NewSQL 数据库 TiDB 应用到了大数据架构的其他场景下，如：Hive 大查询报警，NameNode RPC 加速。</description>
+    </item>
+    
+    <item>
+      <title>使用 TiDB 构建实时应用</title>
+      <link>https://idiks.com/blog-cn/use-tidb-to-build-real-time-applications/</link>
+      <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/use-tidb-to-build-real-time-applications/</guid>
+      <description>本文将从宏观角度分析 TiDB 究竟能做什么，创造什么样的价值，以及研发过程中的一些设计立足点。</description>
+    </item>
+    
+    <item>
+      <title>事务前沿研究丨确定性事务</title>
+      <link>https://idiks.com/blog-cn/transaction-frontiers-research-article-talk3/</link>
+      <pubDate>Thu, 15 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/transaction-frontiers-research-article-talk3/</guid>
+      <description>本篇文章将讲解学术上不同的确定性事务和特点，并综合说说他们的优点和面临的问题。</description>
+    </item>
+    
+    <item>
+      <title>事务前沿研究丨事务测试体系解析</title>
+      <link>https://idiks.com/blog-cn/transaction-frontiers-research-article-talk2/</link>
+      <pubDate>Thu, 20 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/transaction-frontiers-research-article-talk2/</guid>
+      <description>本篇文章将继续在第一讲的事务隔离级别的基础上，对数据库事务的测试进行研究，主要讲述我们在 PingCAP 是如何保证事务的正确性的。</description>
+    </item>
+    
+    <item>
+      <title>数字化加速，如何做到数据保鲜和数据价值变现？ — TiDB 行业应用场景及案例解读</title>
+      <link>https://idiks.com/blog-cn/how-to-keep-data-fresh-and-how-to-realize-value/</link>
+      <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/how-to-keep-data-fresh-and-how-to-realize-value/</guid>
+      <description>本文将分享企业级分布式数据库产品 TiDB 如何帮助企业用户完成数字化转型。</description>
+    </item>
+    
+    <item>
+      <title>Chaos Mesh® 的 Chaos Engineering as a Service 探索之路</title>
+      <link>https://idiks.com/blog-cn/chaos-engineering-as-a-service/</link>
+      <pubDate>Thu, 04 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/chaos-engineering-as-a-service/</guid>
+      <description>本篇文章的作者为 CAAS 团队的王相与于畅，他们在本次 Hackathon 比赛中基于 Chaos Engineering as a Service 的理念，对 Chaos Mesh 进行改造，以下就来看看他们的探索历程。</description>
+    </item>
+    
+    <item>
+      <title>中文文档规范化，zh.md 来帮你！｜TiDB Hackathon 2020 优秀项目分享</title>
+      <link>https://idiks.com/blog-cn/let-zhmd-to-help-you-standardizating-chinese-document/</link>
+      <pubDate>Tue, 23 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/let-zhmd-to-help-you-standardizating-chinese-document/</guid>
+      <description>本篇文章将介绍 zh.md 团队赛前幕后的精彩故事。</description>
+    </item>
+    
+    <item>
+      <title>基于 AWS 的一站式分布式数据库测试体系，简单易上手｜TiDB Hackathon 2020 优秀项目分享</title>
+      <link>https://idiks.com/blog-cn/one-stop-distributed-database-testing-system-based-on-aws/</link>
+      <pubDate>Tue, 23 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/one-stop-distributed-database-testing-system-based-on-aws/</guid>
+      <description>本篇文章将通过 Ti-Improve 团队与华创资本企业软件投资负责人谢佳的对话，揭秘团队赛前幕后的精彩故事。</description>
+    </item>
+    
+    <item>
+      <title>大力出奇迹，GPU 加速 TiDB ｜ TiDB Hackathon 2020 优秀项目分享</title>
+      <link>https://idiks.com/blog-cn/gpu-to-speed-tidn-up/</link>
+      <pubDate>Tue, 23 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/gpu-to-speed-tidn-up/</guid>
+      <description>本篇文章将通过 Mods 团队与云启资本合伙人陈昱的对话，揭秘团队赛前幕后的精彩故事。</description>
+    </item>
+    
+    <item>
+      <title>当 TiDB 遇到图数据库 | TiDB Hackathon 2020 优秀项目分享</title>
+      <link>https://idiks.com/blog-cn/when-tidb-meet-graph-database/</link>
+      <pubDate>Tue, 02 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/when-tidb-meet-graph-database/</guid>
+      <description>本篇文章将介绍 TiGraph 团队赛前幕后的精彩故事。</description>
+    </item>
+    
+    <item>
+      <title>2020，Chaos Mesh® 开源第一年：扬帆起航的一年</title>
+      <link>https://idiks.com/blog-cn/chaos-mesh-the-first-year-of-open-source/</link>
+      <pubDate>Mon, 18 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/chaos-mesh-the-first-year-of-open-source/</guid>
+      <description>本文将从多个方面和大家一起回顾 Chaos Mesh 在这一年中的变化与成长，畅谈一些 Chaos Mesh 未来的目标与计划。</description>
+    </item>
+    
+    <item>
+      <title>「我的工作是制造混沌」，我与 Chaos Mesh® 的故事</title>
+      <link>https://idiks.com/blog-cn/my-story-with-chaos-mesh/</link>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/my-story-with-chaos-mesh/</guid>
+      <description>本文将向大家介绍自己与 Chaos Mesh 一起成长的点滴。</description>
+    </item>
+    
+    <item>
+      <title>云原生数据库设计新思路</title>
+      <link>https://idiks.com/blog-cn/new-ideas-for-designing-cloud-native-database/</link>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/new-ideas-for-designing-cloud-native-database/</guid>
+      <description>本文将向大家分享分布式数据库的发展趋势以及云原生数据库设计的新思路。</description>
+    </item>
+    
+    <item>
+      <title>TiDB 常⻅架构应⽤场景</title>
+      <link>https://idiks.com/blog-cn/schema-application-scenario-for-tidb/</link>
+      <pubDate>Tue, 12 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/schema-application-scenario-for-tidb/</guid>
+      <description>本文将向大家介绍TiDB 的常见架构应用场景，以下内容整理自当天活动分享实录。</description>
+    </item>
+    
+    <item>
+      <title>Go Dumpling! 让导出数据更稳定</title>
+      <link>https://idiks.com/blog-cn/go-dumpling-makes-exporteddata-stable/</link>
+      <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/go-dumpling-makes-exporteddata-stable/</guid>
+      <description>在本文中，我们将会介绍一些 Dumpling 的进阶使用方法，帮助大家更稳定高效地导出数据。</description>
+    </item>
+    
+    <item>
+      <title>使用 go-randgen 测试 join 查询</title>
+      <link>https://idiks.com/blog-cn/use-go-randgen-to-test-join-search/</link>
+      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/use-go-randgen-to-test-join-search/</guid>
+      <description>本文将向大家介绍在过去的几个月，使用 go-randgen 框架对 TiDB 进行测试。</description>
+    </item>
+    
+    <item>
+      <title>Linux 内核 VS 内存碎片 （下）</title>
+      <link>https://idiks.com/blog-cn/linux-kernel-vs-memory-fragmentation-2/</link>
+      <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/linux-kernel-vs-memory-fragmentation-2/</guid>
+      <description>本文将重点描述随着时间的推移，当内存碎片过多，无法满足连续物理内存需求时，将会引起性能问题。因此仅仅依靠此功能还不够，所以内核又引入了内存规整等功能。</description>
+    </item>
+    
+    <item>
+      <title>Linux 内核 VS 内存碎片 （上）</title>
+      <link>https://idiks.com/blog-cn/linux-kernel-vs-memory-fragmentation-1/</link>
+      <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/linux-kernel-vs-memory-fragmentation-1/</guid>
+      <description>本文将重点描述当前常用的 3.10 版本内核在伙伴分配器的预防内存碎片的扩展，内存规整原理，如何查看碎片指数，以及如何量化内存规整带来的延迟开销等。</description>
+    </item>
+    
+    <item>
+      <title>Chaos Mesh® 技术内幕 | 如何注入 I/O 故障？</title>
+      <link>https://idiks.com/blog-cn/chaos-mesh-internals-how-to-inject-io-faults-during-runtime/</link>
+      <pubDate>Wed, 02 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/chaos-mesh-internals-how-to-inject-io-faults-during-runtime/</guid>
+      <description>随着 Chaos Mesh 1.0 的发布，提供了运行时注入文件系统错误的功能，使得 IOChaos 的使用和其他所有类型的 Chaos 一样简单方便。这篇文章将会介绍它的实现方式。</description>
+    </item>
+    
+    <item>
+      <title>感受开源的魅力，TiDB Committer 白珅的数据库探索之路</title>
+      <link>https://idiks.com/blog-cn/exploring-the-charming-of-opensource-tidb-committer-baikun/</link>
+      <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/exploring-the-charming-of-opensource-tidb-committer-baikun/</guid>
+      <description>今天我们就来看看 TiDB Committer 白珅的贡献历程吧~</description>
+    </item>
+    
+    <item>
+      <title>当 TiDB 与 Flink 相结合：高效、易用的实时数仓</title>
+      <link>https://idiks.com/blog-cn/when-tidb-and-flink-are-combined/</link>
+      <pubDate>Tue, 27 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/when-tidb-and-flink-are-combined/</guid>
+      <description>本文将向大家介绍 Flink 和 TiDB 的联合实时数仓方案。</description>
+    </item>
+    
+    <item>
+      <title>我们为什么要禁用 THP</title>
+      <link>https://idiks.com/blog-cn/why-should-we-disable-thp/</link>
+      <pubDate>Thu, 22 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/why-should-we-disable-thp/</guid>
+      <description>本文将和大家分享 THP 引起性能抖动的原因、典型的现象，分析方法等，在文章的最后给出使用 THP 时的配置建议及关闭方法。</description>
+    </item>
+    
+    <item>
+      <title>线上环境 Linux 系统调用追踪</title>
+      <link>https://idiks.com/blog-cn/online-environment-analysis-system/</link>
+      <pubDate>Mon, 28 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/online-environment-analysis-system/</guid>
+      <description>本文将向大家分享两款如何在线上环境分析系统调用的工具，方便大家需要时查阅。</description>
+    </item>
+    
+    <item>
+      <title>Chaos Mesh® 1.0 GA，让混沌工程变得简单！</title>
+      <link>https://idiks.com/blog-cn/chaos-mesh-1.0-ga/</link>
+      <pubDate>Fri, 25 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/chaos-mesh-1.0-ga/</guid>
+      <description>从开源到现在近一年的时间里，Chaos Mesh 在所有贡献者的共同努力下，在不断完善新功能的同时，在易用性和稳定性上也都取得了阶段性的成果，今天，我们自豪的宣布 Chaos Mesh 1.0 正式发布！</description>
+    </item>
+    
+    <item>
+      <title>Chaos Mesh® X GitHub Actions —— 把混沌工程集成到你的 CI 中</title>
+      <link>https://idiks.com/blog-cn/chaos-mesh-combined-with-github-actions/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/chaos-mesh-combined-with-github-actions/</guid>
+      <description>本文将介绍如何在 GitHub Actions 的 workflow 中使用 Chaos Mesh，从而将混沌工程集成到系统开发的 CI 中。</description>
+    </item>
+    
+    <item>
+      <title>使用 Horoscope 测试 TiDB 优化器</title>
+      <link>https://idiks.com/blog-cn/use-horoscope-to-test-tidb-optimizer/</link>
+      <pubDate>Wed, 19 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/use-horoscope-to-test-tidb-optimizer/</guid>
+      <description>本文将向大家阐述如何使用 Horoscope 测试 TiDB 优化器。</description>
+    </item>
+    
+    <item>
+      <title>Libbpf-tools —— 让 Tracing 工具身轻如燕</title>
+      <link>https://idiks.com/blog-cn/libbpf-tools/</link>
+      <pubDate>Tue, 11 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/libbpf-tools/</guid>
+      <description>本篇文章概述了 BPF 的主要应用，重点描述了 libbpf-tools  解决了哪些 BCC 痛点以及在 PingCAP 内部的相关实践。</description>
+    </item>
+    
+    <item>
+      <title>Why HTAP Matters</title>
+      <link>https://idiks.com/blog-cn/why-htap-matters/</link>
+      <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/why-htap-matters/</guid>
+      <description>说到 Why HTAP Matters，其实包含两部分，一部分是说为什么我们叫 HTAP，另外一部分是说 TiDB 怎样在 HTAP 架构下发挥它的优势。</description>
+    </item>
+    
+    <item>
+      <title>为什么你需要混沌工程以及 Chaos Mesh®</title>
+      <link>https://idiks.com/blog-cn/why-you-need-chaos-engineering-and-chaos-mesh/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/why-you-need-chaos-engineering-and-chaos-mesh/</guid>
+      <description>本文介绍了帮助我们在复杂的分布式系统环境下保证系统正常稳定运行的办法 —— Chaos Engineering，以及基于 Kubernetes 的云原生混沌工程平台 Chaos Mesh®。</description>
+    </item>
+    
+    <item>
+      <title>基于 Chaos Mesh® 和 Argo 打造分布式测试平台</title>
+      <link>https://idiks.com/blog-cn/building-a-distributed-test-platform-based-on-chaos-mesh-and-argo/</link>
+      <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/building-a-distributed-test-platform-based-on-chaos-mesh-and-argo/</guid>
+      <description>本文介绍我们是如何在 Chaos Mesh 和 Argo 的基础上打造自己的自动化测试平台 TiPocket]，实现完全自动化的混沌测试，构成混沌测试完整闭环。</description>
+    </item>
+    
+    <item>
+      <title>未来数据库应具备什么核心能力？</title>
+      <link>https://idiks.com/blog-cn/core-competence-of-future-database/</link>
+      <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/core-competence-of-future-database/</guid>
+      <description>上周六，我们开启了 The Future of Database 系列 的第一期直播，我司 CTO 黄东旭及 Engineering VP 申砾畅聊了“未来的数据库会是什么样？”这个颇具想象力的话题。这是第一期直播的部分文字&amp;amp;视频回顾。</description>
+    </item>
+    
+    <item>
+      <title>聊聊数据库的未来，写在 PingCAP 成立五周年之际</title>
+      <link>https://idiks.com/blog-cn/talk-about-the-future-of-databese-on-5th-anniversary-of-pingcap/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/talk-about-the-future-of-databese-on-5th-anniversary-of-pingcap/</guid>
+      <description>我们要造的是一个真正能作为整个系统的 Single Source of Truth 的基础软件。</description>
+    </item>
+    
+    <item>
+      <title>一位 Rust 开发者的 Go 初体验</title>
+      <link>https://idiks.com/blog-cn/early-impressions-of-go-from-a-rust-programmer/</link>
+      <pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/early-impressions-of-go-from-a-rust-programmer/</guid>
+      <description>Go 是一种简单、小巧、令人愉悦的语言。它也有一些犄角旮旯，但绝大部分是经过精心设计的。它的学习速度令人难以置信，并且规避了其他语言中一些不那么广为人知的特性。</description>
+    </item>
+    
+    <item>
+      <title>Rust 编译模型之殇</title>
+      <link>https://idiks.com/blog-cn/rust-compilation-model-calamity/</link>
+      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/rust-compilation-model-calamity/</guid>
+      <description>许多人抱怨构建的时间太长。有时，在开发模式下完全重新构建需要花费 15 分钟，而在发布模式则需要 30 分钟。</description>
+    </item>
+    
+    <item>
+      <title>我眼中的分布式系统可观测性</title>
+      <link>https://idiks.com/blog-cn/observability-of-distributed-system/</link>
+      <pubDate>Sat, 22 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/observability-of-distributed-system/</guid>
+      <description>在Cloud Native 和微服务的世界里，大家正在讲“系统的可观测性”放在更高的位置。</description>
+    </item>
+    
+    <item>
+      <title>分布式系统 in 2010s ：测试和运维</title>
+      <link>https://idiks.com/blog-cn/distributed-system-in-2010s-4/</link>
+      <pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/distributed-system-in-2010s-4/</guid>
+      <description>本文为「分布式系统 in 2010s」 系列最终篇，这次我们来聊一聊测试和运维。</description>
+    </item>
+    
+    <item>
+      <title>分布式系统 in 2010s ：硬件的进化</title>
+      <link>https://idiks.com/blog-cn/distributed-system-in-2010s-3/</link>
+      <pubDate>Tue, 07 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/distributed-system-in-2010s-3/</guid>
+      <description>本文为「分布式系统 in 2010s」 系列第三篇，这次我们来聊一聊硬件的进化。</description>
+    </item>
+    
+    <item>
+      <title>Chaos Mesh - 让应用跟混沌在 Kubernetes 上共舞</title>
+      <link>https://idiks.com/blog-cn/chaos-mesh/</link>
+      <pubDate>Thu, 02 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/chaos-mesh/</guid>
+      <description>我们将混沌相关实现从自动化测试平台中抽离出来，作为 Chaos Mesh 的最初原型，并经过重新设计和完善，最终于 Github 上开源。</description>
+    </item>
+    
+    <item>
+      <title>分布式系统 in 2010s ：软件构建方式和演化</title>
+      <link>https://idiks.com/blog-cn/distributed-system-in-2010s-2/</link>
+      <pubDate>Mon, 30 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/distributed-system-in-2010s-2/</guid>
+      <description>本文为「分布式系统 in 2010s」系列第二篇，内容为软件构建的方式和演化。</description>
+    </item>
+    
+    <item>
+      <title>分布式系统 in 2010s ：存储之数据库篇</title>
+      <link>https://idiks.com/blog-cn/distributed-system-in-2010s-1/</link>
+      <pubDate>Thu, 26 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/distributed-system-in-2010s-1/</guid>
+      <description>无论哪个时代，存储都是一个重要的话题，今天先聊聊数据库。</description>
+    </item>
+    
+    <item>
+      <title>效率 10x！打造运维 TiDB 的瑞士军刀</title>
+      <link>https://idiks.com/blog-cn/manage-many-as-one-with-sql/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/manage-many-as-one-with-sql/</guid>
+      <description>为解决分布式数据库的运维难题，本文将介绍如何用 SQL 管理整个 TiDB 集群。</description>
+    </item>
+    
+    <item>
+      <title>从大数据到数据库</title>
+      <link>https://idiks.com/blog-cn/from-big-data-to-databases/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/from-big-data-to-databases/</guid>
+      <description>作为一个从大数据转行做数据库的人，我自以为能感受到两个世界的异同。本篇文章，斗胆聊下这个话题，以及对未来的看法。</description>
+    </item>
+    
+    <item>
+      <title>拥抱 Elasticsearch：给 TiDB 插上全文检索的翅膀</title>
+      <link>https://idiks.com/blog-cn/fulltext-search-with-tidb-and-elasticsearch/</link>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/fulltext-search-with-tidb-and-elasticsearch/</guid>
+      <description>我们尝试为 TiDB 引入“全文检索”功能，为存储在 TiDB 中的文本数据提供随时随地搜索的能力。</description>
+    </item>
+    
+    <item>
+      <title>你呼呼大睡，机器人却在找 bug？</title>
+      <link>https://idiks.com/blog-cn/sqldebug-automatically/</link>
+      <pubDate>Tue, 03 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/sqldebug-automatically/</guid>
+      <description>复杂系统的测试是一件艰难、艰苦和艰巨的事情，可不可以让程序自动帮我们查 bug？</description>
+    </item>
+    
+    <item>
+      <title>Unified Thread Pool | Hackathon 2019 优秀项目介绍</title>
+      <link>https://idiks.com/blog-cn/unified-thread-pool/</link>
+      <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/unified-thread-pool/</guid>
+      <description>Unified Thread Pool 项目实现了在 TiKV 中使用一个统一的自适应线程池处理读请求，能够显著提升性能，并可预测性地限制大查询对小请求的干扰，最终在 TiDB Hackathon 2019 中斩获一等奖。</description>
+    </item>
+    
+    <item>
+      <title>TiDB 最佳实践系列（五）Java 数据库应用开发指南</title>
+      <link>https://idiks.com/blog-cn/best-practice-java/</link>
+      <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/best-practice-java/</guid>
+      <description>本文将从 Java 数据库交互组件开发的角度出发，介绍各组件的推荐配置和推荐使用方式，希望能帮助 Java 开发者在使用 TiDB 时能更好的发挥数据库性能。</description>
+    </item>
+    
+    <item>
+      <title>TiKV Rust Client 迁移记 - futures 0.1 至 0.3</title>
+      <link>https://idiks.com/blog-cn/migrating-a-crate-from-futures-0-1-to-0-3/</link>
+      <pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/migrating-a-crate-from-futures-0-1-to-0-3/</guid>
+      <description>最近我将一个中小型的 crate 从 futures 库的 0.1 迁移至了 0.3 版本。过程本身不是特别麻烦，但还是有些地方或是微妙棘手，或是没有很好的文档说明。这篇文章里，我会把迁移经验总结分享给大家。</description>
+    </item>
+    
+    <item>
+      <title>从使用者到开发者，知乎参与 TiDB 社区背后的故事</title>
+      <link>https://idiks.com/blog-cn/zhihu-the-story-of-contributing-to-tidb-community/</link>
+      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/zhihu-the-story-of-contributing-to-tidb-community/</guid>
+      <description>“从前我们更多是站在使用者的角度从开源社区汲取养分，随着知乎技术架构和内部工程能力的成长，未来我们希望能够以更加积极主动的状态参与开源项目，回馈社区。”</description>
+    </item>
+    
+    <item>
+      <title>如何高效利用 Grafana 监控分析 TiDB 指标</title>
+      <link>https://idiks.com/blog-cn/use-grafana-to-monitor-and-analyze-tidb-metrics/</link>
+      <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/use-grafana-to-monitor-and-analyze-tidb-metrics/</guid>
+      <description>使用 TiDB Ansible 部署 TiDB 集群，会同时部署一套 Grafana + Prometheus 的监控平台，这套监控用来收集和展示 TiDB 集群各个组件和机器的 metric 信息，这些 metric 信息非常丰富，可以帮助使用者分析 TiDB 集群的状态以及 Trouble shooting。</description>
+    </item>
+    
+    <item>
+      <title>诊断修复 TiDB Operator 在 K8s 测试中遇到的 Linux 内核问题</title>
+      <link>https://idiks.com/blog-cn/fix-two-linux-kernel-bugs-while-testing-tidb-operator-in-k8s/</link>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/fix-two-linux-kernel-bugs-while-testing-tidb-operator-in-k8s/</guid>
+      <description>我们在 K8s 中测试 TiDB Operator 时发现了两个 Linux 内核错误，这些错误已经困扰我们很长一段时间，并没有在整个 K8s 社区中彻底修复。经过广泛的调查和诊断，我们已经确定了处理这些问题的方法。</description>
+    </item>
+    
+    <item>
+      <title>Golang Failpoint 的设计与实现</title>
+      <link>https://idiks.com/blog-cn/golang-failpoint/</link>
+      <pubDate>Tue, 30 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/golang-failpoint/</guid>
+      <description>Failpoint 项目是 FreeBSD Failpoints 的 Golang 实现，允许在代码中注入错误或异常行为，并由环境变量或代码动态激活来触发这些异常行为。Failpoint 能用于各种复杂系统中模拟错误处理来提高系统的容错性、正确性和稳定性。</description>
+    </item>
+    
+    <item>
+      <title>The (Near) Future of Database</title>
+      <link>https://idiks.com/blog-cn/the-near-future-of-database/</link>
+      <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/the-near-future-of-database/</guid>
+      <description>在 TiDB DevCon 2019 上，我司联合创始人兼 CTO 黄东旭分享了对数据库行业大趋势以及未来数据库技术的看法。</description>
+    </item>
+    
+    <item>
+      <title>线性一致性和 Raft</title>
+      <link>https://idiks.com/blog-cn/linearizability-and-raft/</link>
+      <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/linearizability-and-raft/</guid>
+      <description>本篇文章会讨论一下线性一致性和 Raft，以及 TiKV 针对前者的一些优化。</description>
+    </item>
+    
+    <item>
+      <title>使用 TiKV 构建分布式类 Redis 服务</title>
+      <link>https://idiks.com/blog-cn/use-tikv-to-build-distributed-redis-service/</link>
+      <pubDate>Fri, 07 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/use-tikv-to-build-distributed-redis-service/</guid>
+      <description>本文将介绍 Redis 的特性与不足，以及使用 TiKV 构建分布式类 Redis 服务的</description>
+    </item>
+    
+    <item>
+      <title>使用 Rust 构建分布式 Key-Value Store</title>
+      <link>https://idiks.com/blog-cn/rust-key-value-store/</link>
+      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/rust-key-value-store/</guid>
+      <description>构建一个分布式 Key-Value Store 并不是一件容易的事情，我们需要考虑很多的问题，首先就是我们的系统到底需要提供什么样的功能。本文将以我们开发的分布式 Key-Value TiKV 作为实际例子，来说明下我们是如何取舍并实现的。</description>
+    </item>
+    
+    <item>
+      <title>谈谈开源(一)</title>
+      <link>https://idiks.com/blog-cn/talk-about-opensource/</link>
+      <pubDate>Mon, 25 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/talk-about-opensource/</guid>
+      <description>很多人的『开源』是一个比较时髦且有情怀的词汇，不少公司也把开源当做 KPI 或者是技术宣传的手段。但是在我们看来，大多数人开源做的并不好，大多数开源项目也没有被很好的维护。比如前一段时间微博上流传关于 Tengine 的讨论，一个优秀的开源项目不止是公布源代码就 OK 了，还需要后续大量的精力去维护，包括制定 RoadMap、开发新功能、和社区交流、推动项目在社区中的使用、对使用者提供一定程度的支持，等等。</description>
+    </item>
+    
+    <item>
+      <title>Linearizability 一致性验证</title>
+      <link>https://idiks.com/blog-cn/linearizability/</link>
+      <pubDate>Mon, 21 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/linearizability/</guid>
+      <description>上篇文章介绍了 TiDB 如何使用 Jepsen 来进行一致性验证，并且介绍了具体的测试案例，但是并没有对 Jepsen 背后的一致性验证算法做过多介绍。这篇文章将会深入 Jepsen 的核心库 knossos，介绍 knossos 库所涉及的 Linearizability（线性化）一致性验证算法。</description>
+    </item>
+    
+    <item>
+      <title>PAX：一个 Cache 友好高效的行列混存方案</title>
+      <link>https://idiks.com/blog-cn/pax/</link>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/pax/</guid>
+      <description>今年，Spanner 终于发了另一篇 Paper，Spanner - Becoming a SQL System，里面提到 Spanner 使用了一种新的存储格式 - Ressi，用来支持 OLTP 和 OLAP。在 Ressi 里面，使用了 PAX 来组织数据。因为 TiDB 定位就是一个 HTAP 系统，所以我也一直在思考在 TiKV 这层如何更好的存储数据，用来满足 HTAP 的需要，既然 Spanner 使用了 PAX，那么就有研究的必要了。</description>
+    </item>
+    
+    <item>
+      <title>gRPC-rs：从 C 到 Rust</title>
+      <link>https://idiks.com/blog-cn/grpc-rs/</link>
+      <pubDate>Tue, 18 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/grpc-rs/</guid>
+      <description>上篇文章中，我们讲到 TiKV 为了支持 gRPC，我们造了个轮子 gRPC-rs，本篇文章会简要地介绍一下这个库。</description>
+    </item>
+    
+    <item>
+      <title>工欲性能调优，必先利其器（2）- 火焰图</title>
+      <link>https://idiks.com/blog-cn/flame-graph/</link>
+      <pubDate>Mon, 26 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/flame-graph/</guid>
+      <description>本篇文章将介绍一下，我们在 TiKV 性能调优上面用的最多的工具 - 火焰图。</description>
+    </item>
+    
+    <item>
+      <title>深入了解 gRPC：协议</title>
+      <link>https://idiks.com/blog-cn/grpc/</link>
+      <pubDate>Sun, 18 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/grpc/</guid>
+      <description>经过很长一段时间的开发，TiDB 终于发了 RC3。RC3 版本对于 TiKV 来说最重要的功能就是支持了 gRPC，也就意味着后面大家可以非常方便的使用自己喜欢的语言对接 TiKV 了。gRPC 是基于 HTTP/2 协议的，要深刻理解 gRPC，理解下 HTTP/2 是必要的，这里先简单介绍一下 HTTP/2 相关的知识，然后再介绍下 gRPC 是如何基于 HTTP/2 构建的。</description>
+    </item>
+    
+    <item>
+      <title>工欲性能调优，必先利其器（1）</title>
+      <link>https://idiks.com/blog-cn/iostat-perf-strace/</link>
+      <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/iostat-perf-strace/</guid>
+      <description>最近在排查 TiDB 性能问题的时候，通过工具发现了一些问题，觉得有必要记录一下，让自己继续深刻的去理解相关工具的使用，也同时让同学们对类似问题的时候别再踩坑。</description>
+    </item>
+    
+    <item>
+      <title>基于 Tile 连接 Row-Store 和 Column-Store</title>
+      <link>https://idiks.com/blog-cn/tile-row-store/</link>
+      <pubDate>Sun, 14 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/tile-row-store/</guid>
+      <description>在之前的 Kudu 的文章里面已经提到过，行列混存是一个非常有意思的研究方向，因为不同的存储方式有不同的针对应用场景，但作为技术人员，折腾是天性，所以大家都在研究如何融合行存和列存，让一个服务能尽量满足大部分应用需求，而这也是 TiDB 在努力的方向。</description>
+    </item>
+    
+    <item>
+      <title>Kudu - 一个融合低延迟写入和高性能分析的存储系统</title>
+      <link>https://idiks.com/blog-cn/kudu/</link>
+      <pubDate>Mon, 08 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/kudu/</guid>
+      <description>Kudu 是一个基于 Raft 的分布式存储系统，它致力于融合低延迟写入和高性能分析这两种场景，并且能很好的嵌入到 Hadoop 生态系统里面，跟其他系统譬如 Cloudera Impala，Apache Spark 等对接。</description>
+    </item>
+    
+    <item>
+      <title>演讲实录|黄东旭：Cloud-Native 的分布式数据库架构与实践</title>
+      <link>https://idiks.com/blog-cn/talk-cloud-native/</link>
+      <pubDate>Sat, 22 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/talk-cloud-native/</guid>
+      <description>4 月 19 日，我司 CTO 黄东旭同学在全球云计算开源大会上，发表了《Cloud-Native 的分布式数据库架构与实践》主题演讲，以下为演讲实录。</description>
+    </item>
+    
+    <item>
+      <title>如何从零开始参与大型开源项目</title>
+      <link>https://idiks.com/blog-cn/how-to-contribute/</link>
+      <pubDate>Mon, 27 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/how-to-contribute/</guid>
+      <description>我们欢迎所有的具有气质的开发者能和 TiDB 一起成长，一起见证数据库领域的革新，改变世界这事儿有时候也不那么难。</description>
+    </item>
+    
+    <item>
+      <title>Spanner - CAP, TrueTime and Transaction</title>
+      <link>https://idiks.com/blog-cn/Spanner-cap-truetime-transaction/</link>
+      <pubDate>Tue, 21 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/Spanner-cap-truetime-transaction/</guid>
+      <description>最近大家非常关注的一件事情就是 Google Spanner Cloud 的发布，这应该算是 NewSQL 又一个里程碑的事件。在本篇文章中，唐刘同学与大家分享了他自己对 Spanner 的理解，Spanner 的一些关键技术的实现以及与 TiDB 的相关对比。</description>
+    </item>
+    
+    <item>
+      <title>分布式系统测试那些事儿 - 信心的毁灭与重建</title>
+      <link>https://idiks.com/blog-cn/distributed-system-test-3/</link>
+      <pubDate>Wed, 07 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/distributed-system-test-3/</guid>
+      <description>本话题系列文章整理自 PingCAP Infra Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为下篇。</description>
+    </item>
+    
+    <item>
+      <title>MPP and SMP in TiDB</title>
+      <link>https://idiks.com/blog-cn/mpp-smp-tidb/</link>
+      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/mpp-smp-tidb/</guid>
+      <description>本篇文章整理自第 21 期 PingCAP Infra Meetup 上申砾分享的《MPP and SMP in TiDB》内容。</description>
+    </item>
+    
+    <item>
+      <title>分布式系统测试那些事儿 - 错误注入</title>
+      <link>https://idiks.com/blog-cn/distributed-system-test-2/</link>
+      <pubDate>Thu, 10 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/distributed-system-test-2/</guid>
+      <description>本话题系列文章整理自 PingCAP Infra Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为中篇。</description>
+    </item>
+    
+    <item>
+      <title>分布式系统测试那些事儿 - 理念</title>
+      <link>https://idiks.com/blog-cn/distributed-system-test-1/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/distributed-system-test-1/</guid>
+      <description>本话题系列文章整理自 PingCAP Infra Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为上篇。</description>
+    </item>
+    
+    <item>
+      <title>Building a Reliable Large-Scale Distributed Database - Principles and Practice</title>
+      <link>https://idiks.com/blog-cn/talk-principles-practice/</link>
+      <pubDate>Fri, 21 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/talk-principles-practice/</guid>
+      <description>日前，PingCAP Engineering VP 申砾受邀参加 2016 中国开源年会，并发表了《Building a Reliable Large-Scale Distributed Database - Principles and Practice》主题演讲。本文为演讲实录。</description>
+    </item>
+    
+    <item>
+      <title>How do we build TiDB</title>
+      <link>https://idiks.com/blog-cn/how-do-we-build-tidb/</link>
+      <pubDate>Sat, 01 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/how-do-we-build-tidb/</guid>
+      <description>首先我们聊聊 Database 的历史，在已经有这么多种数据库的背景下我们为什么要创建另外一个数据库；以及说一下现在方案遇到的困境，说一下 Google Spanner 和 F1，TiKV 和 TiDB，说一下架构的事情，在这里我们会重点聊一下 TiKV。因为我们产品的很多特性是 TiKV 提供的，比如说跨数据中心的复制，Transaction，auto-scale&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>基于 Raft 构建弹性伸缩的存储系统的一些实践</title>
+      <link>https://idiks.com/blog-cn/building-distributed-db-with-raft/</link>
+      <pubDate>Sat, 20 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/building-distributed-db-with-raft/</guid>
+      <description>最近几年来，越来越多的文章介绍了 Raft 或者 Paxos 这样的分布式一致性算法，且主要集中在算法细节和日志同步方面的应用。但是呢，这些算法的潜力并不仅限于此，基于这样的分布式一致性算法构建一个完整的可弹性伸缩的高可用的大规模存储系统，是一个很新的课题，我结合我们这一年多以来在 TiKV 这样一个大规模分布式数据库上的实践，谈谈其中的一些设计和挑战。</description>
+    </item>
+    
+    <item>
+      <title>云时代数据库的核心特点</title>
+      <link>https://idiks.com/blog-cn/cloud-native-db/</link>
+      <pubDate>Tue, 02 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/cloud-native-db/</guid>
+      <description>最近几年，随着云计算相关技术的发展，各种不同类型的云层出不穷，服务越来越多不同类型的企业业务，传统企业也渐渐开始探索上云的道路。在云上，作为业务最核心的数据库，相比之前的传统方案会有哪些变化呢？在正式聊云时代的数据库特点之前，我们需要了解一下目前云时代架构发生的变化</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://idiks.com/blog-cn/README/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/README/</guid>
+      <description>blog-cn 文档规范 meta 信息 头部的 meta 信息可包含以下内容：
+ title 文章标题 author 文章作者, 格式: [&#39;author-1&#39;, &#39;author-2&#39;] date 文章发布日期, 格式: yyyy-mm-dd summary 文章简介 tags 标签分类, 格式: [&#39;tag-1&#39;, &#39;tag-2&#39;] category 表示 blog 的类型，目前只有案例文章需要显示定义 category: case url 表示本篇文章在 PingCAP 官网中指定的 url， 而不是 HUGO 生成器默认生成的 /blog/filename/ 格式的 url aliases 表示可跳转到本篇文章在 PingCAP 官网中相应页面的 url list customer 只在案例 markdown 里添加该 meta， value 为该案例的客户名称，eg. customer: 小米 customerCategory 只在案例 markdown 里添加该 meta， value 为该案例的客户所属领域名称，eg. customerCategory: 金融  其中 title author 是 必填项</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://idiks.com/blog-cn/TOC-User-Case/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog-cn/TOC-User-Case/</guid>
+      <description>用户案例 目录  互联网  中通快递（二） 平安人寿金管家 360(二) 伴鱼(二) 知乎 转转（三） VIPKID U-Next 360 cloud 小红书（二） 中通快递 美团点评 伴鱼 网易互娱 Bigo 京东智联云 小红书(一) 小米 丰巢 易果集团 58 集团 360 智能商业 爱奇艺 Shopee 转转（一） 转转（二） 汽车之家 摩拜单车(一) 摩拜单车(二) 二维火 客如云 今日头条 同程艺龙 去哪儿网 猿辅导 特来电 凤凰网 零氪科技 一面数据 Mobikok 卡思数据 量化派 G7   游戏  西山居 游族网络 盖娅互娱 株式会社 FUNYOURS JAPAN   金融  浙商银行 微众银行（二） 翼支付（二） 中国银行 北银科技 北京银行（二） 翼支付 平安科技 微众银行 ZaloPay 马上消费 贝壳金服 Ping++ 360 金融 北京银行（一）   大型企业  OPPO 中移物联网 海航易建 威锐达测控 万达网络科技集团   政府  吉林祥云    </description>
+    </item>
+    
+  </channel>
+</rss>
