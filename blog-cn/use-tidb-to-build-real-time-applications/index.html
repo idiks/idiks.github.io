@@ -1,0 +1,732 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<script>
+window.ga =
+    window.ga ||
+    function() {
+        ;(ga.q = ga.q || []).push(arguments)
+    }
+ga.l = +new Date()
+ga('create', 'UA-99991864-4', 'auto')
+ga('send', 'pageview')
+</script>
+<script async src="https://static.idiks.com/js/ga-analytics.js"></script>
+
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/github-markdown.css">
+
+
+<link rel="stylesheet" href="/css/doc.css">
+
+        <title>使用 TiDB 构建实时应用 |&nbsp;iDIKS</title><link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="description" content="本文将从宏观角度分析 TiDB 究竟能做什么，创造什么样的价值，以及研发过程中的一些设计立足点。">
+<meta name="robots" content="noodp">
+<meta name="keywords" content="TiDB, MySQL, HTAP, Open Source, Cloud-Native, NewSQL, Aurora Alternative">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="使用 TiDB 构建实时应用 | PingCAP">
+<meta property="og:description" content="本文将从宏观角度分析 TiDB 究竟能做什么，创造什么样的价值，以及研发过程中的一些设计立足点。">
+<meta property="og:url" content="https://idiks.com/blog-cn/use-tidb-to-build-real-time-applications/">
+<meta property="og:site_name" content="MySQL at Scale. No more manual sharding">
+<meta property="og:image" content="/images/pingcap-opengraph.jpg">
+<meta property="og:image:secure_url" content="/images/pingcap-opengraph.jpg"><meta name="twitter:card" content="summary"><meta name="twitter:description" content="本文将从宏观角度分析 TiDB 究竟能做什么，创造什么样的价值，以及研发过程中的一些设计立足点。">
+<meta name="twitter:title" content="使用 TiDB 构建实时应用 | PingCAP">
+<meta name="twitter:site" content="@pingcap">
+<meta name="twitter:image" content="https://static.idiks.com/images/pingcap-opengraph.jpg"><meta name="twitter:creator" content="@pingcap">
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http:\/\/schema.org",
+    "@type": "WebSite",
+    "url": "https:\/\/pingcap.com\/",
+    "name": "PingCAP",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https:\/\/pingcap.com\/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+<script type="text/javascript" async src="https://accounts.pingcap.com/static/pingcap_sso/js/track.beta.js"></script>
+    
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+<link rel="preload" href="https://static.idiks.com/js/jquery.min.js" as="script">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/docsearch.min.css">
+<script type="text/javascript">
+var trackOutboundLink = function(url) {
+  var redirectTriggered = false
+  ga('send', 'event', 'outbound', 'click', url, {
+    hitCallback: function() {
+      redirectTriggered = true
+      document.location = url
+    }
+  })
+  setTimeout(function() {
+    if (!redirectTriggered) {
+      document.location = url
+    }
+  }, 1500)
+}
+
+var trackViews = function(btn_type, event_category) {
+  var event_label = btn_type
+  var eventCategory = event_category
+  ga('send', 'event', {
+    'eventCategory': eventCategory,
+    'eventAction': 'click',
+    'eventLabel': event_label,
+    'transport': 'beacon'
+  });
+}
+</script>
+<script>if (location.pathname === '/') {
+        if (location.hostname === 'idiks.github.io') {
+            location.href = '/en/'
+        }
+    }</script></head>       <body data-lang="cn" ><div id="page-content">
+<header role="navigation" class="fixed-top">
+    <div class="container">
+        <a class="nav-brand" href="/zh"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        <div class="nav-wrapper">
+            <div class="navigation">
+                <ul>
+                    <li><a href="/university" target="_blank" class="nav-blinking"
+                            onclick="trackViews('navbar-university', 'pingcap-university_view')">iDIKS University</a></li>
+                    <li class="docs-type-selector " id="docsTypeSelector">
+                        
+                        <a class="header-doc-nav" href="/docs-cn" target="_blank">文档</a>
+                    </li>
+                    <li ><a href="/cases-cn">案例</a></li>
+                    <li ><a href="/community-cn">社区</a></li>
+                    <li class="sel" ><a href="/blog-cn">博客</a></li>
+                    <li ><a href="/about-cn">关于</a></li>
+                    <li><a href="/qa" target="_blank"
+                            onclick="trackViews('navbar-asktug', 'asktug_view')">问答</a></li>
+                    <li ><a href="/download-cn">下载试用</a></li>
+                    <li><a class="link-download" href="mailto:info@idiks.com" target="_blank"
+                            onclick="trackViews('navbar-contact-us', 'mail_to_info_view')">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="global-search">
+                
+                
+                
+                <div class="search-wrapper">
+    <span class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fff" viewBox="0 0 67.125 67.125"><path d="M23.902 0C11.01 0 .523 10.488.523 23.38c0 12.891 10.487 23.379 23.379 23.379a23.258 23.258 0 0 0 14.471-5.037l24.816 24.817c.391.391.902.586 1.414.586s1.023-.195 1.414-.586a2 2 0 0 0 0-2.828L41.293 38.985c3.721-4.142 5.989-9.613 5.989-15.605C47.282 10.488 36.794 0 23.902 0zM4.523 23.38C4.523 12.694 13.216 4 23.902 4c10.687 0 19.38 8.694 19.38 19.38 0 5.396-2.221 10.279-5.791 13.795a1.959 1.959 0 0 0-.488.349 2.003 2.003 0 0 0-.271.343C33.31 40.9 28.825 42.76 23.903 42.76c-10.686-.001-19.38-8.695-19.38-19.38z"/><path d="M24.075 8.591c-8.25 0-14.962 6.712-14.962 14.962a2 2 0 0 0 4 0c0-6.044 4.918-10.962 10.962-10.962a2 2 0 0 0 0-4z"/></svg></span>
+    <input data-lang="cn" data-type="" type="search" id="search-input" name="q"
+        placeholder="搜索 TiDB 文档">
+</div>
+
+<script>
+    const inputNode = document.getElementById("search-input")
+
+    inputNode.addEventListener('keyup', ({key}) => {
+        if (key === "Enter") {
+            if ($('#search-input').data('lang') == 'cn') {
+                lang = 'zh'
+            }
+
+            const query = $('#search-input').val()
+            if (query) {
+                url = "https://idiks.com/docs" + (lang == 'zh' ? 'zh/' : '') + "search/?lang=" + lang + "&type=tidb&version=v4.0&q=" + query
+                window.location.href = url
+            }
+        }
+    })
+</script>
+
+            </div>
+        </div>
+        <div class="nav-btn nav-slider">
+            <i class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 459 459"><path d="M0 382.5h459v-51H0v51zM0 255h459v-51H0v51zM0 76.5v51h459v-51H0z" fill="#FFF"/></svg></i>
+        </div>
+    </div>
+</header>
+
+
+
+<nav class="mobile-sidebar">
+    <div class="nav-header">
+        <div class="logo-wrap">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        </div>
+    </div>
+    <ul class="ul-base">
+        
+
+        <li ><a href="https://docs.pingcap.com/zh/tidb/v4.0/">文档</a></li>
+        <li ><a href="/cases-cn">案例</a></li>
+        <li ><a href="/community-cn">社区</a></li>
+        <li class="sel"><a href="/blog-cn">博客</a></li>
+        <li ><a href="/about-cn">关于</a></li>
+        <li><a href="https://asktug.com" target="_blank"
+            onclick="trackViews('navbar-asktug', 'asktug_view')">问答</a></li>
+        <li ><a href="/download-cn">下载试用</a></li>
+        <li><a class="link-download" href="mailto:info@pingcap.com" target="_blank"
+            onclick="trackViews('navbar-contact-us', 'mail_to_info_view')">联系我们</a></li>
+        <li><a href="https://university.pingcap.com/"
+            onclick="trackViews('navbar-university', 'pingcap-university_view')" target="_blank"
+            class="nav-blinking">PingCAP University</a></li>
+    </ul>
+    <div class="nav-footer">
+        <div class="contact-list-wrap">
+        <div class="flex-list">
+            <h4 class="list-title"><strong>Contact</strong></h4>
+            <ul class="social social-cn ul-base">
+            <li><a href="https://twitter.com/PingCAP" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="18"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/pingcap/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg></a></li>
+            <li><a href="https://www.reddit.com/r/TiDB/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg></a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/tidb-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="18"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg></a></li>
+            <li><a href="https://stackoverflow.com/questions/tagged/tidb" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg></a></li>
+            <li id="wechat-mobile"><a class="wechat" href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 31.403 31.404"><path d="M31.403 21.306c0-4.597-4.388-8.32-9.8-8.32-5.414 0-9.802 3.725-9.802 8.32 0 4.597 4.388 8.322 9.802 8.322 1.701 0 3.302-.369 4.697-1.019l3.863 1.671-.447-4.309c1.066-1.329 1.687-2.937 1.687-4.665zm-13.102-2.254a1.395 1.395 0 1 1 0-2.79 1.395 1.395 0 0 1 0 2.79zm6.604 0a1.395 1.395 0 1 1 .003-2.79 1.395 1.395 0 0 1-.003 2.79z"/><path d="M21.604 11.885c1.515 0 2.957.27 4.271.755.009-.175.03-.345.03-.521 0-6.074-5.801-10.996-12.953-10.996C5.799 1.123 0 6.044 0 12.119c0 2.284.822 4.408 2.229 6.167l-.591 5.694 5.104-2.213c1.264.59 2.661.986 4.136 1.189a8.143 8.143 0 0 1-.179-1.65c.001-5.195 4.892-9.421 10.905-9.421zm-4.287-6.428a1.84 1.84 0 1 1-1.841 1.84c0-1.016.825-1.84 1.841-1.84zM8.586 9.139a1.84 1.84 0 0 1 0-3.682 1.84 1.84 0 1 1 0 3.682z"/></svg></a><div class="qr_code_outer f-hide f-tc">
+    <div class="qr_code">
+        <i id="close_qrcode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224.512 224.512"><path fill="#010002" d="M224.507 6.997L217.521 0 112.256 105.258 6.998 0 .005 6.997l105.258 105.257L.005 217.512l6.993 7L112.256 119.24l105.265 105.272 6.986-7-105.258-105.258z"/></svg></i>
+        <img id="js_qr_code_img" class="qr_code_img" src="/images/wechat-qrcode.jpg" alt="Wechat qrCode" />
+        <p>微信扫一扫<br> 微信ID：pingcap2015</p>
+    </div>
+</div>
+</li>
+            </ul>
+        </div>
+        <div class="subscribe" id="subscribe-mobile"></div>
+        </div>
+        <div class="container">
+        <a href="/blog" class="btn-lang" id="lang">English</a>
+        </div>
+    </div>
+</nav>
+
+<div class="blog">
+        <div class="container">
+<div class="sidebar nav-tags" data-type="single"><div class="title">热门标签<a class="rss" href="/blog-cn/index.xml" title="RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 402.041 402.04"><g fill="#3A59F0"><path d="M54.816 292.382c-15.229 0-28.169 5.331-38.831 15.988C5.33 319.026 0 331.969 0 347.197c0 15.232 5.325 28.172 15.985 38.828 10.662 10.657 23.606 15.988 38.831 15.988 15.227 0 28.168-5.331 38.828-15.988 10.656-10.656 15.986-23.596 15.986-38.828 0-15.229-5.33-28.171-15.986-38.827-10.657-10.657-23.598-15.988-38.828-15.988zM181.01 221.002c-21.51-21.698-46.158-38.97-73.948-51.816-27.79-12.85-56.914-20.511-87.366-22.985h-1.425c-4.949 0-9.042 1.619-12.275 4.854C1.997 154.477 0 158.953 0 164.472v38.543c0 4.757 1.569 8.85 4.708 12.279 3.14 3.429 7.089 5.332 11.848 5.708 43.586 4.189 80.845 21.752 111.773 52.678 30.93 30.926 48.49 68.187 52.677 111.771.382 4.764 2.284 8.712 5.712 11.847 3.427 3.148 7.517 4.72 12.275 4.72h38.545c5.517 0 9.989-1.995 13.415-5.996 3.621-3.812 5.236-8.381 4.863-13.709-2.478-30.447-10.14-59.573-22.987-87.361-12.846-27.792-30.121-52.438-51.819-73.95z"/><path d="M367.728 239.701c-20.365-45.585-48.345-86.078-83.936-121.482-35.405-35.594-75.896-63.572-121.485-83.939C116.723 13.917 68.996 2.494 19.126.02h-.855c-4.949 0-9.136 1.713-12.563 5.14C1.903 8.583 0 12.964 0 18.294v40.825c0 4.76 1.667 8.897 4.996 12.419 3.33 3.523 7.373 5.376 12.132 5.57 40.924 2.478 79.799 12.188 116.63 29.127 36.83 16.94 68.806 38.972 95.93 66.09 27.118 27.123 49.149 59.101 66.089 95.931 16.94 36.836 26.557 75.705 28.839 116.627.195 4.764 2.046 8.809 5.564 12.139 3.524 3.329 7.762 4.999 12.71 4.999h40.823c5.331 0 9.701-1.902 13.134-5.715 3.809-3.806 5.517-8.274 5.144-13.415-2.471-49.874-13.898-97.6-34.263-143.19z"/></g></svg></a></div><a href="#" class="tag all">ALL (77)</a>
+    <div class="tag-list"><a href="#Chaos-Mesh" class="tag " data-tag="Chaos-Mesh">Chaos Mesh&nbsp;(10)
+                </a><a href="#Go" class="tag " data-tag="Go">Go&nbsp;(2)
+                </a><a href="#HTAP" class="tag " data-tag="HTAP">HTAP&nbsp;(2)
+                </a><a href="#Hackathon" class="tag " data-tag="Hackathon">Hackathon&nbsp;(2)
+                </a><a href="#Linux" class="tag " data-tag="Linux">Linux&nbsp;(4)
+                </a><a href="#Raft" class="tag " data-tag="Raft">Raft&nbsp;(4)
+                </a><a href="#Rust" class="tag " data-tag="Rust">Rust&nbsp;(5)
+                </a><a href="#SQL" class="tag " data-tag="SQL">SQL&nbsp;(2)
+                </a><a href="#Spanner" class="tag " data-tag="Spanner">Spanner&nbsp;(2)
+                </a><a href="#TiDB" class="tag sel" data-tag="TiDB">TiDB&nbsp;(27)
+                </a><a href="#TiDB-Hackathon-2020" class="tag " data-tag="TiDB-Hackathon-2020">TiDB Hackathon 2020&nbsp;(4)
+                </a><a href="#TiKV" class="tag " data-tag="TiKV">TiKV&nbsp;(9)
+                </a><a href="#gRPC" class="tag " data-tag="gRPC">gRPC&nbsp;(2)
+                </a><a href="#%e4%ba%8b%e5%8a%a1" class="tag " data-tag="事务">事务&nbsp;(3)
+                </a><a href="#%e5%88%86%e5%b8%83%e5%bc%8f%e7%b3%bb%e7%bb%9f%e5%89%8d%e6%b2%bf%e6%8a%80%e6%9c%af" class="tag " data-tag="分布式系统前沿技术">分布式系统前沿技术&nbsp;(4)
+                </a><a href="#%e5%88%86%e5%b8%83%e5%bc%8f%e7%b3%bb%e7%bb%9f%e6%b5%8b%e8%af%95" class="tag " data-tag="分布式系统测试">分布式系统测试&nbsp;(3)
+                </a><a href="#%e5%b7%a5%e5%85%b7" class="tag " data-tag="工具">工具&nbsp;(2)
+                </a><a href="#%e6%80%a7%e8%83%bd" class="tag " data-tag="性能">性能&nbsp;(2)
+                </a><a href="#%e6%9e%b6%e6%9e%84" class="tag " data-tag="架构">架构&nbsp;(3)
+                </a><a href="#%e7%a4%be%e5%8c%ba" class="tag " data-tag="社区">社区&nbsp;(3)
+                </a>
+    </div>
+</div>
+<div class="archive">
+                <div class="content markdown-body">
+                    <h1 class="title">使用 TiDB 构建实时应用</h1>
+                    <ul class="blog-post-meta">
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-date.svg" alt="Date icon">Wed, Jul 21, 2021</li>
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-writer.svg" alt="Pen icon">雷宇</li>
+                    </ul>
+                    <div class="blog-text"><p><strong>本文由 PingCAP 研发工程师雷宇分享，主要从宏观角度分析 TiDB 究竟能做什么，创造什么样的价值，以及研发过程中的一些设计立足点。</strong> 文章将从四个部分分享：</p>
+<ul>
+<li>
+<p>首先，数据管理技术的演进；</p>
+</li>
+<li>
+<p>其次，TiDB 能做什么？</p>
+</li>
+<li>
+<p>第三，大家是怎么用 TiDB 的？</p>
+</li>
+<li>
+<p>第四，TiDB HTAP 的未来。</p>
+</li>
+</ul>
+<h2 id="heading">数据管理技术的演进</h2>
+<p><img src="media/use-tidb-to-build-real-time-applications/1.png" alt="1"></p>
+<p>首先，简单的回顾一下数据管理技术的演进。</p>
+<ul>
+<li>
+<p>上个世纪 70 年代，IBM 研发了世界上第一个关系型数据库 System R，是第一个使用 SQL 作为查询语言的数据库，也为后来的关系型数据库的设计奠定了基础。</p>
+</li>
+<li>
+<p>到了 80 和 90 年代，关系型数据库开始野蛮生长，涌现出一大批商业关系型数据库，比如当前知名的 Oracle、IBM 的 DB2、微软的 SQL Server，以及现在比较流行的开源关系型数据库 PostgreSQL、MySQL 等。这个时期，技术上的重点主要是数据库的功能完善，比如存储过程、触发器、各种各样的索引，以满足不同的业务需求。</p>
+</li>
+<li>
+<p>2000 年代初期，全世界都进入了互联网时代，数据开始呈现指数型增长，传统的关系型数据库无法容纳如此庞大的数据。此时，一些互联网公司开始牵头，将内部处理海量数据的方案进行开源。2004 年左右，由谷歌牵头发表了三篇论文，分别是他们的<strong>分布式文件系统 GFS、分布式计算系统 MapReduce、分布式存储系统 BigTable</strong>。在这三篇论文的指导下，Hadoop 生态社区繁荣发展。同时，分布式 KV 数据库 Cassandra、MongoDB 等也在这个时期出现；传统的关系型数据库也在发展，出现了一些非常关键的技术，比如 MySQL 的 InnoDB 引擎、Oracle RAC 分析引擎。单一的数据库产品已无法满足用户的需求，整个数据处理领域的技术方向出现了严重的分化。OLTP 领域依然被传统关系型数据库占领，OLAP 领域则成为了后来的大数据技术主战场。</p>
+</li>
+<li>
+<p>Pre - 2010s，得益于硬件的发展，内存的容量和网络的带宽与延迟有了极大提升，数据库架构迎来变革。内存数据库和分布式数据库大规模投入生产。代表产品：Google Spanner、SAP HANA、SQL Server Hekaton、Amazon Aurora。这个时期 OLTP 的概念和 OLAP 的概念逐渐开始模糊，并有人提出了 HTAP，将 OLTP 和 OLAP 混合在一起，在同一个数据库上同时处理这两种负载，回到了数据库产品的初衷。</p>
+</li>
+<li>
+<p>Post - 2010s，延续了 2010 年代初期的辉煌，各种 NewSQL 数据库出现，可以承载更加复杂的负载。代表产品：CockroachDB、TiDB、VoltDB、Azure Cosmos DB，各种技术开始走向不同的方向。</p>
+</li>
+</ul>
+<p>整体来看，从 2000 年开始，大数据的技术就迈入了互联网生态，使用大数据技术来建立数据仓库已较为普遍。尽管数据仓库的理念在 90 年代就已经出现了，但各个数据仓库的产品都尚未开源，业界缺乏共识。而 Hadoop 开源之后，基于<strong>Hadoop 的数仓架构逐渐成为主流</strong>，也即传统的数仓架构。</p>
+<h3 id="heading-1">传统数仓架构</h3>
+<p><img src="media/use-tidb-to-build-real-time-applications/2.png" alt="2"></p>
+<p>如上图所示，左边是 OLTP 在线业务所使用的数据库，因为无法直接在上面进行分析，所以一般会通过 MySQL 的 Binlog CDC 或直接读写数据库 ETL 的方式，将数据变更或全量的数据导至 Hadoop 平台，然后在 Hadoop 中使用 Hive 等软件进行数据分析，并且生成报表，将结果写入到另一个 OLTP 的数据库中，也就是右边用来做离线分析的结果呈现的 Data Serving 层。最后再由 Data Serving 层将数据展现给应用。</p>
+<p>由于这一整套链路非常长，还有 Hadoop 中各种各样实现的原因，所以这一架构在最开始只能做到 T+1 的程度，即当天的数据写入后第二天才能计算出来。</p>
+<p>虽然解决了海量存储与计算的问题，但是失去了数据处理的实时性。近年来，随着实时性的需求越来越多，为了保证数据处理的实时性，出现了一种新的架构：<strong>Lambda</strong>架构。</p>
+<h3 id="lambda-">Lambda 实时数仓</h3>
+<p><img src="media/use-tidb-to-build-real-time-applications/3.png" alt="3"></p>
+<p>Lambda 架构的特点在于为离线的 Hadoop 加了一个实时计算层，一般称之为 Speed Layer，早期主要使用 Spark Streaming 或 Storm 流式计算引擎来直接采集 OLTP 的数据，将其计算为实时的数据，然后和离线的 T+1 的数据混合在一起，提供给应用。如此，应用即可得到一个相对来说比较实时的数据。</p>
+<p>传统数仓时代只能做到 T+1，有了 Lambda 的架构后，就可以实现 T 加零点几，昨天的数据和今天半天的数据合并在一起处理。不过，在此基础上能否实现更实时的数据分析？</p>
+<h3 id="kappa-">Kappa 实时数仓</h3>
+<p><img src="media/use-tidb-to-build-real-time-applications/4.png" alt="4"></p>
+<p>Kappa 架构应运而生。之前 Lambda 架构的痛点在于需要做非常复杂的维护，因为同时要把数据写到 T+0，也要把数据写到实时的部分，然后再将两部分的结果整合起来。有了 Kappa 架构之后，只要通过实时的计算层，按需拉取 OLTP 业务的变更，然后将计算结果数据呈现出来即可。但是这一套体系因为性能方面的原因，暂时还没有得到特别广泛的应用。</p>
+<p>可以看到，在数仓架构演讲的过程中，数据实时性已经变成了大家普遍的需求，同时海量的数据处理能力也必不可少。在这种情况下，我们来看看 TiDB 能做什么。</p>
+<h2 id="tidb-">TiDB 能做什么？</h2>
+<h3 id="tidb-40-">TiDB 4.0 之前</h3>
+<p>TiDB 1.0 发布时，架构图如下，这也是很多人对 TiDB 的第一印象。</p>
+<p><img src="media/use-tidb-to-build-real-time-applications/5.png" alt="5"></p>
+<p>TiDB 的架构非常简单，首先是 Load Balancer，可以将用户的 SQL 请求打散，发送到 TiDB Server 中。TiDB Server 是一个无状态的计算层，可以随意扩展，实际的数据存储在分布式 KV 存储 TiKV 中。此外，还有一个 PD 组件来对这些数据进行调度以及规整。</p>
+<p>这一套架构最突出的部分是扩容，以扩容作为第一要义。扩容体现在两个方面，一是存储扩容，传统的单机数据库无法承载的数据量，TiDB 可以将其存储到分布式存储中。二是计算上，传统数据库单机无法承受较高的 QPS， 通过这种扩容的方式，QPS 可以打散到不同的计算节点上。</p>
+<p>在 TiDB 4.0 之前，我们一直延续这套架构。以下是 TiDB 4.0 之前我们能做到什么的总结：</p>
+<ul>
+<li>
+<p>兼容 MySQL 协议及特性的关系型数据库；</p>
+</li>
+<li>
+<p>存储天生具备水平扩展能力，无需分库分表；</p>
+</li>
+<li>
+<p>承载千万级 QPS 在线业务；</p>
+</li>
+<li>
+<p>计算存储分离，可进行弹性的资源配置；</p>
+</li>
+<li>
+<p>数仓 Serving 层的优质载体（数据中台）。</p>
+</li>
+</ul>
+<p>首先，TiDB 的立足点是一个<strong>兼容 MySQL 协议以及 MySQL 特性的关系型数据库</strong>，具备水平扩展能力，包括存储和计算都可以进行水平扩展，并且不需要分库分表。在此基础上，因为支持计算的水平扩展，所以能承载高 QPS 的在线业务，并且存储、计算分离，为弹性资源配置提供了基础。</p>
+<p>但超乎我们想象的是，许多开源社区用户将 TiDB 作为数仓的优质载体。TiDB 可以接受海量数据的存储，同时也可以提供比较方便的访问接口，所以很多用户自然地将其作为数仓的中间层。</p>
+<p>在 TiDB 4.0 之前，设计上完全没有考虑到这种用法，所以存在很多问题，比如计算是单节点，无法进行分布式扩容，一些比较重的计算任务也不支持。同时，TiDB 的存储引擎 TiKV 使用的是行存的存储格式，行存的优势在于 OLTP 场景下可以较好的处理并发事务，但是在 OLAP 场景下的性能不太理想。</p>
+<p>因为收到了各种各样的用户需求，所以我们专门研发了 TiDB 的列存引擎 TiFlash，来承载 TiDB 的 OLAP 负载。在 TiDB 4.0 中，TiFlash 正式成为了 TiDB 家族的一名成员。</p>
+<h3 id="tidb-40--1">TiDB 4.0 之后</h3>
+<p>在 4.0 之前，社区已经提供了一套 TiSpark。TiSpark 本质上是一个 Spark 插件，通过 TiSpark，我们可以在 Spark 中访问 TiDB 集群中的数据，并对其进行读写。但是使用 Spark 访问 TiDB 的数据会存在一定问题，因为它是一个高并发的扫表请求，会导致 TiKV 本身 OLTP 的负载受到影响。</p>
+<p><img src="media/use-tidb-to-build-real-time-applications/6.png" alt="6"></p>
+<p>在有了 TiFlash 之后，就可以完全隔离到 OLAP 和 OLTP 的负载，也能保证一致性。TiFlash 的一致性是通过 Raft 的同步协议来做的，熟悉 Raft 的同学应该知道，它是一个同步复制协议，所有的数据都是以 log 的形式来呈现。每一条 log 都有一个全局一致的 ID，也是其位置的 index。假如两条 log，一个是 4，一个是 5，那么 Raft 协议可以保证 5 一定是在 4 之后才会写入，当 5 进行写入时所有的 Client(TiDB) 均能读到 4，从而满足线性一致性。</p>
+<p><img src="media/use-tidb-to-build-real-time-applications/7.png" alt="7"></p>
+<p>一般来说，在 Raft 中只有 leader 可以进行读写操作，但如果对此进行优化，实现一个 learner 或者 follower 的状态即可满足读取 leader 上同样一个 index 的条件，就可以直接从 learner 上读取数据。TiFlash 就是利用这样一种机制从 TiKV 集群中同步数据，并且达到线性一致性的。这样做的优点在于：</p>
+<p>首先，假设用 binlog 等方式来将数据同步到列式分析引擎中，中间会有额外的传输开销或者类似于中间件的处理开销。而直接通过 Raft 协议来进行写入，在一条数据写到 leader 时，会走 Raft 的 quorum 确认流程，此时数据已经被发送到 TiFlash 进行写入了。另外，虽然 TiFlash 的写入确认不需要同步，但是它的数据和 TiKV 内部的高可用优先级是一样的，这是达到一致性的关键。</p>
+<p>总体而言，在有了 TiDB 4.0之后，<strong>分析能力上了一个台阶</strong>。此时，我们可以自豪说 TiDB 是一个真正意义上的 HTAP 数据库了。<strong>TiDB 的特点</strong>如下：</p>
+<ul>
+<li>
+<p>真正意义上的 HTAP 数据库；</p>
+</li>
+<li>
+<p>互相隔离的 OLAP 和 OLTP 负载；</p>
+</li>
+<li>
+<p>分析友好，强实时性、强一致性的列存；</p>
+</li>
+<li>
+<p>一体化部署运维体系，优化器智能选择存储引擎；</p>
+</li>
+<li>
+<p>ALTER TABLE `db`.`table` SET TIFLASH REPLICA 1，一句简单的 SQL 即可体验 TiFlash 带来的增强。</p>
+</li>
+</ul>
+<h3 id="tidb-50-htap">TiDB 5.0 HTAP</h3>
+<p>在 5.0 的时候，为了解决上述痛点，我们研发了 TiDB 的 MPP。先了解一下 MPP 究竟是什么。</p>
+<p>在执行 SQL 时，使用的是一套  Volcano 的模型，其优势在于算子之间是可以解耦的，缺点在于上下游之间的调用有耦合，即必须是上游找下游要数据，然后下游才会将数据算出来提供给上游。每一个算子之间的消费能力和生产能力非常不匹配。尽管 TiDB 本身也做了非常多的优化，在算子内部通过并行计算来加快其计算速度。但归根结底它也只是一个单机的计算引擎，上限非常低。为了解决这个问题，我们充分利用了 TiFlash 节点。</p>
+<p>首先，看看如何实现。</p>
+<p>一条 SQL 从 TiDB 进来，经过 Parser 和 Planner 生成一个 TiDB Logical Plan，然后 Logical Plan 经过 TiDB 的优化器之后，会判断是否是 OLAP 请求。</p>
+<p><img src="media/use-tidb-to-build-real-time-applications/8.png" alt="8"></p>
+<p>如果是 OLAP 的请求，需要根据代价估算来选择从 TiKV 进行读写，还是 TiFlash 进行读写。在此过程中，我们还会为这些 join 的算子加上 exchange，也就是  <strong>Volcano 论文</strong>中提到的并行化的方式，生成一个并行的执行计划，再将这些执行计划的片段给推送到对应的 TiFlash 节点执行。</p>
+<p>来看一个实际的例子。</p>
+<p><img src="media/use-tidb-to-build-real-time-applications/9.png" alt="9"></p>
+<p>上述是来自于 TPCH 数据集的数据。TPCH 数据集中有一个叫做 lineitem 的表，lineitem 的表中存取的是所有的商品的信息，一般来说是6亿行左右。此外，还有 orders 表，orders 表是商品订单的事实表，我们在做简单的 Join 之后，加上一个 Count Star 的聚合。此时的 Plan 在 MPP 架构下则有所不同。以前，通常情况下 Join 下面是两个 Table Scan，如果是在 TiDB 中进行计算，两个 Table Scan 之后可以直接放到 Join 的算子中。但在 MPP 之后，我们会先对 Scan 出来的 Table 进行一个根据 Join Key 的 Shuffle，然后将数据推送到对应的计算节点，整体计算完成之后，再推到 TiDB 中返回给用户。</p>
+<p>这样的<strong>好处有两点</strong>，一方面如果使用单个 TiDB 节点来进行计算，当数据量超过 TiDB 节点的内存容量时，就必须将其落到磁盘上，计算效率非常低。但是通过 shuffle 分区之后，每个计算节点上需要计算的数据量变小，可以全部容纳在内存中，实现加速的效果。另外，MPP 可以同时利用多台机器的 CPU，理论上可以实现非常强的扩展性。</p>
+<p>为了验证 TiDB MPP 的性能，我们对比了其他产品，集群是三个节点的集群，每个节点上面使用的都是 NVMe 的 SSD，尽可能地排除存储上读取对于整个计算速度的影响。</p>
+<p><img src="media/use-tidb-to-build-real-time-applications/10.png" alt="10"></p>
+<p>如上图，可以看到蓝色的是 TiFlash MPP 的执行时间，这项指标越短越好。图中可以看出，对比 Greenplum 和 Apache Spark，TiFlash MPP 在绝大多数的查询下都处于优势地位。原因在于：一，TiDB 5.0 的列式存储引擎读取性能非常好；二，TiDB 5.0 集成了一套向量化列式计算引擎，性能非常强大；三，MPP 架构下所有计算（包括任务间的 shuffle）都是完全不落盘的，计算效率更高。这套 MPP 架构的缺点在于无法支持过于庞大的数据量（PB 级别），不过在绝大多数的场景下已经非常够用了。</p>
+<p>总结一下<strong>TiDB 的 MPP</strong>。</p>
+<ul>
+<li>
+<p>支持多种并行执行算法：</p>
+<ul>
+<li>
+<p>Broadcast Join。</p>
+</li>
+<li>
+<p>Repartition(Shuffle) Join；</p>
+</li>
+<li>
+<p>Two Phase Aggregation；</p>
+</li>
+<li>
+<p>One Phase Aggregation；</p>
+</li>
+</ul>
+</li>
+<li>
+<p>可扩展复杂的查询处理能力；</p>
+</li>
+<li>
+<p>TiDB 高度集成，优化器自动选择；</p>
+</li>
+<li>
+<p>升级到 TiDB 5.0 后，仅需开启开关 SET tidb_allow_mpp=ON 即可使用。</p>
+</li>
+</ul>
+<p>TiDB 5.0 新引入的几个 Feature，使 TiDB 的 HTAP 能力得到了极大的提升：</p>
+<ul>
+<li>
+<p><strong>OLTP</strong>:</p>
+<ul>
+<li>
+<p>Async Commit，1PC 提供更低的事务延迟。</p>
+</li>
+<li>
+<p>Clustered Index 强化特定负载下的延迟和吞吐量。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>OLAP</strong>:</p>
+<ul>
+<li>MPP 大幅提升 TiDB 处理复杂查询的能力。</li>
+</ul>
+</li>
+</ul>
+<p>以上分享了 TiDB 不同阶段的功能特性和产品能力，下面将具体说明大家是怎么用 TiDB 的。</p>
+<h2 id="-tidb-">大家是怎么用 TiDB 的</h2>
+<p>根据用户反馈以及我们自己的整理，发现了当前 TiDB 最常用的几个场景。</p>
+<h3 id="heading-2">交易/分析一体化</h3>
+<p><img src="media/use-tidb-to-build-real-time-applications/11.png" alt="11"></p>
+<p>首先，交易分析的一体化，这种场景下数据量级一般处于中等程度，即 TB 级别。</p>
+<p>如果单纯使用 MySQL，无法比较好地进行数据计算，所以一般需要将这些数据导入到分析型数据库中进行计算，比如 ClickHouse、GreenPlum 等，再将计算出来的报表呈现出来。有了 TiDB 之后，可以将这两部分相结合，<strong>TP 直接写 TiDB，AP 也直接在 TiDB 上进行计算</strong>，然后呈现结果，这样可以<strong>极大节省了运维成本，并且可能实现性能上的提升</strong>。</p>
+<p>交易分析一体化的场景比较常见的，如：CRM 系统、ERP 系统等，也是我们非常推崇的最完整的 HTAP 的场景。但是互联网公司一般无法使用，必须也有离线的部分来处理海量的数据。</p>
+<p>因此，在这套体系中，TiDB 主要被用于实时分析。</p>
+<h3 id="heading-3">实时分析</h3>
+<p><img src="media/use-tidb-to-build-real-time-applications/12.png" alt="12"></p>
+<p>业务数据通过 Kafka + Flink 的方式，在 Flink 中做预聚合或拼宽表，然后再将这个结果写入到 TiDB 中，供应用查询。这是常见的实时分析架构。而如果应用的线上业务已经用了 TiDB，整套架构就更自然了，可以直接使用 TiDB 的 CDC 功能，将数据导入到 Flink 中进行处理。</p>
+<p>由于整套架构非常实用，目前已广泛应用于多个业务场景，后面将举例说明。</p>
+<h3 id="flink-">实时分析：Flink 架构</h3>
+<p>实时分析中使用 Flink 也有几种常见的架构。</p>
+<ul>
+<li><strong>使用 Flink MySQL connector 解析 MySQL CDC</strong></li>
+</ul>
+<p><img src="media/use-tidb-to-build-real-time-applications/13.png" alt="13"></p>
+<p>第一种架构，前端业务使用的是 MySQL，比如分库分表方案，通过 Flink MySQL Connector 获取MySQL 的数据变更，然后再将数据写入 TiDB。</p>
+<ul>
+<li><strong>使用 Kafka 推送 Canal JSON 等格式</strong></li>
+</ul>
+<p><img src="media/use-tidb-to-build-real-time-applications/14.png" alt="14"></p>
+<p>第二种架构，通过 MySQL binlog 处理的中间件，比如 Canal 等处理数据，然后写入到 Kafka 供 Flink 消费，最后再写进 TiDB，这种方式比较常见。</p>
+<ul>
+<li><strong>使用 TiCDC 推送 Canal JSON 到 Kafka</strong></li>
+</ul>
+<p><img src="media/use-tidb-to-build-real-time-applications/15.png" alt="15"></p>
+<p>第三种架构，用户前端已经使用了 TiDB，通过 TiDB 的 CDC 功能，输出 Canal JSON 格式到 Kafka 中供消费，Flink 再将数据写入到 TiDB 类似的数据库或者其他 sink 中。</p>
+<ul>
+<li><strong>数仓加速层 / ODS 层</strong></li>
+</ul>
+<p><img src="media/use-tidb-to-build-real-time-applications/16.png" alt="16"></p>
+<p>还有一种常见的方案，数据仓库的加速层或者说 ODS 层。</p>
+<p>最常见的用法一般数据仓库会将加速层分开，有了 TiDB 之后，两部分是可以合起来的，用户的数据可以通过各种各样的方式写进 TiDB，在 TiDB 里面在进行一些 ETL 之类的操作然后写入到离线计算中，最后再将结果反馈到 TiDB。TiDB 可以直接对外提供实时数据分析的服务，这也是非常流行的架构之一。</p>
+<h3 id="heading-4">应用案例</h3>
+<p>接下来，将分享一些现实中公司的案例。</p>
+<h4 id="heading-5">中通快递物流</h4>
+<p>首先是大家都比较熟悉的中通快递，中通快递是全球业务规模最大的快递企业之一。近几年，他们开始尝试使用 TiDB 来支持包裹追踪管理的业务。在早期的架构中，他们会定期使用 Spark 进行批处理，将来自在线业务的数据拼成宽表写入到 TiDB 中以提供数据分析服务。这套架构可以满足当时他们的业务需求，但是无法实现强实时的数据分析。</p>
+<ul>
+<li>
+<p><strong>中通快递</strong></p>
+<ul>
+<li>全球业务规模最大快递企业。</li>
+</ul>
+</li>
+<li>
+<p><strong>物流全链路生命周期管理</strong></p>
+<ul>
+<li>
+<p>同一套 TiDB 平台服务包裹追踪管理与实时报表。</p>
+</li>
+<li>
+<p>QPS 峰值 12万+。</p>
+</li>
+<li>
+<p>实时统计分析。</p>
+</li>
+<li>
+<p>通过 TiSpark 衔接离线平台。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="media/use-tidb-to-build-real-time-applications/17.png" alt="17"></p>
+<p>中通快递的架构如上。首先，包裹追踪是线上业务，通过 Spark Streaming 训练方式写入到 TiDB 中，同时进行实时分析，然后 TiDB 的归档数据将发送到中通的大数据平台进行计算，最后大数据平台的计算的结果再写回到 TiDB。在这个结构中，TiDB 是整个实时计算的整合层。</p>
+<h4 id="heading-6">小红书</h4>
+<p>小红书是一个内容同时做垂直电商相关的平台，目前用户量和访问量都也非常大。</p>
+<p><img src="media/use-tidb-to-build-real-time-applications/18.png" alt="18"></p>
+<p>小红书的早期架构是业务使用 MySQL 分库分表的方案，业务数据通过 ETL 写入到离线产品，进行 T+1 的计算后，再写回到另一个 MySQL 的分库分表集群中，对外提供数据服务。同时，也会利用离线数仓来做风控相关的业务。</p>
+<p>上述架构的痛点在于 T+1，业务和运维都非常难受。在尝试 TiDB 之后，将架构进行了升级。</p>
+<p><img src="media/use-tidb-to-build-real-time-applications/19.png" alt="19"></p>
+<p>目前业务在线层仍然使用分库分表，但业务数据会直接通过一些简单的方式写到 TiDB 中，同时 TiDB 将数据反馈给离线层，做完离线数据的处理再写回到 TiDB。</p>
+<p>上述结构直接使用 TiDB 进行数据分析或风控服务，整体架构从 T+1 变成了 T+0，并且据小红书工程师反馈，用了 TiDB 之后，<strong>节省了很多 MySQL 分库分表的运维精力</strong>，这也是 TiDB 的优点之一。</p>
+<h4 id="heading-7">智慧芽</h4>
+<p>智慧芽是提供 SaaS 服务的厂商，为全球 50 多个国家超 10000 家科技公司、高校、科研与金融机构提供大数据情报服务。</p>
+<ul>
+<li>
+<p><strong>智慧芽</strong></p>
+<ul>
+<li>高速发展的科技创新 SaaS 服务商，为全球 50 多个国家超 10000 家科技公司、高校、科研与金融机构提供大数据情报服务。</li>
+</ul>
+</li>
+<li>
+<p><strong>实时数仓</strong></p>
+<ul>
+<li>部署于 AWS 云环境。</li>
+</ul>
+</li>
+<li>
+<p><strong>通过 AWS Kinesis / AWS EMR Flink 进行数仓建模</strong>。</p>
+</li>
+</ul>
+<p><img src="media/use-tidb-to-build-real-time-applications/20.png" alt="20"></p>
+<p>智慧芽的所有业务都部署在 AWS 之上。早期，智慧芽通过 AWS 的 Redshift 来进行数据分析，但是 Redshift 本身的速度并不特别理想，因此为了获得更好的实时性，智慧芽开始尝试使用 TiDB 构建实时数仓。在数仓架构上跟其他公司非常相似，也是使用 Flink 进行实时数据处理，然后将各种各样的数据写入到 TiDB，最后直接呈现给数据应用。</p>
+<p>以上几个案例是非常典型的使用 TiDB 来做实时数据分析的场景，其中也有相对偏向于 HTAP 的业务如小红书的架构，其线上业务数据会直接写到 TiDB 中，可以充分利用 TiDB 的 OLTP 能力。</p>
+<p>看了这么多案例之后，我们也可以想象一下 TiDB HTAP 的未来。</p>
+<h2 id="tidb-htap-">TiDB HTAP 的未来</h2>
+<p>首先，最重要的一点，5.0之后，TiDB 已经<strong>可以用来做复杂计算了，同时我们可以提供更加实时的场景来验证</strong>。</p>
+<h3 id="sql-mpp-">SQL MPP 意味着什么？</h3>
+<p><img src="media/use-tidb-to-build-real-time-applications/21.png" alt="21"></p>
+<p>有了 MPP 之后，TiDB 拥有了更快的计算速度和更大的计算容量，因此可以承载更复杂的计算任务；再加上强实时性的数据，以及强一致性保证，让人不禁想象：使用 TiDB 5.0，我们可以做到什么？</p>
+<h3 id="heading-8">直播场景</h3>
+<p><img src="media/use-tidb-to-build-real-time-applications/22.png" alt="22"></p>
+<p>在直播场景中，当某个大主播开播时，用户会直接就涌进来，此时用户的信息会插入到访问的事实表中，主播的直播间也会对其维度表进行更新。这一套架构如果按照传统的方式来，可能会使用 Flink 对数据进行处理，但同时也存在一个问题，操作的并发度将会非常高，并且需要在短时间内完成。因此，如果要 Flink 进行处理，需要维护一些比较复杂的 Watermark 等，并且在进行预处理后，可能也会带来一些延迟。</p>
+<p>如果直接使用 TiDB 来承载这些负载，当数据写进来时可以马上对它进行分析，生成分析报表，及时反馈到平台或主播，以便及时进行业务上的调整。当然，直播场景的应用目前还是假设，我们期待着 TiDB 在直播场景的落地。</p>
+<h3 id="heading-9">实时风控场景</h3>
+<p><img src="media/use-tidb-to-build-real-time-applications/23.png" alt="23"></p>
+<p>另外一个场景，以实时风控为例。部分在线平台经常会产生交易和转账类业务，但新闻中经常报道的诈骗事件也与此相关。事实上，金融或其他交易平台一般存在风控业务来检测和规避类似事件的发生。</p>
+<p>之前的风控可能存在的问题之一是作案过程非常迅速，以至于风控规则还未触发但诈骗的流程已经结束了。不仅造成用户的经济损失，也影响警察办案效率。</p>
+<p>如果将 TiDB 应用于风控业务中，在违规交易发生的瞬间，可以直接进行分析，触发风控策略。整个链路延迟将极大降低，也有助于相关部门能更快破案。</p>
+<p>其他更多 TiDB HTAP 的应用场景也欢迎大家来帮助我们想象，共同畅想 TiDB 的未来。</p>
+</div>
+                </div><div class="ssba-wrap">
+    <div class="ssba">
+        <a class="ssba_mail_share" href="mailto:info@pingcap.com" target="_blank"
+        onclick="trackViews('blog-contact-us', 'mail_to_info_view')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="18" height="18"><path d="M7 9L5.268 7.484.316 11.729c.18.167.423.271.691.271h11.986c.267 0 .509-.104.688-.271L8.732 7.484 7 9z"/><path d="M13.684 2.271A1.007 1.007 0 0 0 12.993 2H1.007c-.267 0-.509.104-.689.273L7 8l6.684-5.729zM0 2.878v8.308l4.833-4.107zM9.167 7.079L14 11.186V2.875z"/></svg>
+        </a>
+        <a id="wechat_share_btn" data-site="wechat" data-url="https://idiks.com/blog-cn/use-tidb-to-build-real-time-applications/" class="ssba_wechat_share" href="javascript:void(0)" onclick="toggleBlogQRCode()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 31.403 31.404"><path d="M31.403 21.306c0-4.597-4.388-8.32-9.8-8.32-5.414 0-9.802 3.725-9.802 8.32 0 4.597 4.388 8.322 9.802 8.322 1.701 0 3.302-.369 4.697-1.019l3.863 1.671-.447-4.309c1.066-1.329 1.687-2.937 1.687-4.665zm-13.102-2.254a1.395 1.395 0 1 1 0-2.79 1.395 1.395 0 0 1 0 2.79zm6.604 0a1.395 1.395 0 1 1 .003-2.79 1.395 1.395 0 0 1-.003 2.79z"/><path d="M21.604 11.885c1.515 0 2.957.27 4.271.755.009-.175.03-.345.03-.521 0-6.074-5.801-10.996-12.953-10.996C5.799 1.123 0 6.044 0 12.119c0 2.284.822 4.408 2.229 6.167l-.591 5.694 5.104-2.213c1.264.59 2.661.986 4.136 1.189a8.143 8.143 0 0 1-.179-1.65c.001-5.195 4.892-9.421 10.905-9.421zm-4.287-6.428a1.84 1.84 0 1 1-1.841 1.84c0-1.016.825-1.84 1.841-1.84zM8.586 9.139a1.84 1.84 0 0 1 0-3.682 1.84 1.84 0 1 1 0 3.682z"/></svg>
+        </a>
+    </div>
+</div>
+
+<style type="text/css">
+    .fixed-qrcode {
+        position: fixed;
+        top: 120px;
+        right: 105px;
+        padding: 10px 15px;
+        width: 200px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.9);
+        text-align: center;
+    }
+
+    .fixed-qrcode p {
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.6;
+        margin: 8px 0;
+        color: #333;
+    }
+
+    .fixed-qrcode #close_share_qrcode {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        padding: 10px;
+    }
+
+    .fixed-qrcode #close_share_qrcode svg {
+        display: block;
+    }
+
+    .f-hide #share_qrcode {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .fixed-qrcode #share_qrcode {
+        visibility: visible;
+        opacity: 1;
+        height: 128px;
+        transition: visibility 0s linear 0s, opacity .3s 0s;
+        -webkit-transition: visibility 0s linear 0s, opacity .3s 0s;
+    }
+
+    #share_qrcode img {
+        margin: 0 auto;
+    }
+</style>
+<div id="share_qrcode_outer" class="f-hide">
+    <i id="close_share_qrcode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224.512 224.512"><path fill="#010002" d="M224.507 6.997L217.521 0 112.256 105.258 6.998 0 .005 6.997l105.258 105.257L.005 217.512l6.993 7L112.256 119.24l105.265 105.272 6.986-7-105.258-105.258z"/></svg></i>
+    <p>分享到微信</p>
+    <div id="share_qrcode"></div>
+    <p>打开微信，使用 “扫一扫” 即可将网页分享至朋友圈。</p>
+</div>
+
+<script type="text/javascript" src="/js/vendor/qrcode.min.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        var close_share_qrcode_btn = document.getElementById('close_share_qrcode')
+        var wechat_share_btn = document.getElementById('wechat_share_btn')
+        var blog_url = wechat_share_btn.getAttribute('data-url')
+
+        window.pingcap_blog_qrcode = new QRCode(
+            document.getElementById('share_qrcode'),
+            {
+            text: blog_url,
+            width: 128,
+            height: 128,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+            }
+        )
+
+        close_share_qrcode_btn.addEventListener('click', function(event) {
+            document
+            .getElementById('share_qrcode_outer')
+            .setAttribute('class', 'f-hide')
+        })
+    }
+
+    function toggleBlogQRCode() {
+        var qrcode_wrapper = document.getElementById('share_qrcode_outer')
+
+        if (qrcode_wrapper.getAttribute('class') == 'f-hide') {
+            qrcode_wrapper.setAttribute('class', 'fixed-qrcode')
+        } else {
+            qrcode_wrapper.setAttribute('class', 'f-hide')
+        }
+    }
+</script>
+</div>
+        </div>
+    </div>
+<footer>
+    <div class="container">
+        <div class="flex-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>产品</strong></h4>
+                <ul>
+                <li><a href="/docs-cn/v3.0/" onclick="trackViews('footer-product-tidb', 'docs-cn_view')">TiDB</a></li>
+                <li><a href="/docs-cn/v3.0/reference/iSkillUp/">iSkillUp</a></li>
+                <li><a href="/docs-cn/v3.0/roadmap/">iSkillUp 路线图</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>文档</strong></h4>
+                <ul>
+                <li><a href="https://docs.idiks.com/zh/iSkillUp/v4.0/quick-start-with-SkillUp">快速入门</a></li>
+                <li><a href="/blog-cn/iSkillUp-best-practice/">最佳实践</a></li>
+                <li><a href="/docs-cn/stable/faq/iSkillUp/">常见问题解答</a></li>
+                <li><a href="/docs-cn/stable/reference/tools/user-guide/">iSkillUp 周边工具</a></li>
+                <li><a href="https://docs.idiks.com/zh/iSkillUp/dev/release-notes">版本发布说明</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>资源</strong></h4>
+                <ul>
+                <li><a href="/blog-cn/">博客</a></li>
+                <li><a href="https://github.com/idiks" target="_blank">GitHub</a></li>
+                <li><a href="https://idiks.com/tutorials" target="_blank">iSkillUp in Action</a></li>
+                <li><a href="https://learning.idiks.com/"
+                    onclick="trackViews('footer-source-university', 'idiks-university_view')" target="_blank">PingCAP
+                    University</a></li>
+                <li><a href="/solutions/intel/"
+                    onclick="trackViews('footer-resource-solutions', 'solutions_view')" >联合解决方案</a></li>
+                <li><a href="https://idiks.com/support"
+                    onclick="trackViews('footer-resource-asktug', 'asktug_view')" target="_blank">Ask SUG</a></li>
+                
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>公司</strong></h4>
+                <ul>
+                <li><a href="/about-cn/">关于我们</a></li>
+                <li><a href="https://idiks.com/jobs" target="_blank" onclick="trackViews('footer-recruit-join', 'recruit-join_view')">招贤纳士</a>
+                </li>
+                <li><a href="/about-cn/news/">新闻报道</a></li>
+                <li><a href="/zh/privacy-policy/">隐私申明</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="contact-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>联系我们</strong></h4>
+                <ul>
+                <li><a href="https://twitter.com/idiks" class="twitter"  target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="19"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg> Twitter</a></li>
+                <li><a href="https://www.linkedin.com/company/idiks/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg> LinkedIn</a></li>
+                <li><a href="https://www.reddit.com/r/idiks/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg> Reddit</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/idiks-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="20"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg> Google Group</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/idiks" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg> Stack Overflow</a></li>
+                <li id="wechat"><a class="wechat" href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 31.403 31.404"><path d="M31.403 21.306c0-4.597-4.388-8.32-9.8-8.32-5.414 0-9.802 3.725-9.802 8.32 0 4.597 4.388 8.322 9.802 8.322 1.701 0 3.302-.369 4.697-1.019l3.863 1.671-.447-4.309c1.066-1.329 1.687-2.937 1.687-4.665zm-13.102-2.254a1.395 1.395 0 1 1 0-2.79 1.395 1.395 0 0 1 0 2.79zm6.604 0a1.395 1.395 0 1 1 .003-2.79 1.395 1.395 0 0 1-.003 2.79z"/><path d="M21.604 11.885c1.515 0 2.957.27 4.271.755.009-.175.03-.345.03-.521 0-6.074-5.801-10.996-12.953-10.996C5.799 1.123 0 6.044 0 12.119c0 2.284.822 4.408 2.229 6.167l-.591 5.694 5.104-2.213c1.264.59 2.661.986 4.136 1.189a8.143 8.143 0 0 1-.179-1.65c.001-5.195 4.892-9.421 10.905-9.421zm-4.287-6.428a1.84 1.84 0 1 1-1.841 1.84c0-1.016.825-1.84 1.841-1.84zM8.586 9.139a1.84 1.84 0 0 1 0-3.682 1.84 1.84 0 1 1 0 3.682z"/></svg> 微信公众号</a> <div class="qr_code_outer f-hide f-tc">
+    <div class="qr_code">
+        <i id="close_qrcode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224.512 224.512"><path fill="#010002" d="M224.507 6.997L217.521 0 112.256 105.258 6.998 0 .005 6.997l105.258 105.257L.005 217.512l6.993 7L112.256 119.24l105.265 105.272 6.986-7-105.258-105.258z"/></svg></i>
+        <img id="js_qr_code_img" class="qr_code_img" src="/images/wechat-qrcode.jpg" alt="Wechat qrCode" />
+        <p>微信扫一扫<br> 微信ID：pingcap2015</p>
+    </div>
+</div>
+</li>
+                </ul>
+            </div>
+            <div class="subscribe" id="subscribe-pc"></div>
+        </div>
+    </div>
+    <div class="container copyright-container">
+        <p class="copyright">&copy; 2025 小长科技（上海）有限公司</p>
+        <a href="/blog" class="copyright-btn-lang copyright-btn-en" id="lang">English</a>
+        <a href="https://beian.miit.gov.cn/" target="_blank" class="prepared-num">沪ICP备14049619号-2</a>
+    </div>
+</footer>
+<button class="back-to-top" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 284.929 284.929"><path d="M282.082 195.285L149.028 62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 195.285C.95 197.191 0 199.378 0 201.853c0 2.474.953 4.664 2.856 6.566l14.272 14.271c1.903 1.903 4.093 2.854 6.567 2.854s4.664-.951 6.567-2.854l112.204-112.202 112.208 112.209c1.902 1.903 4.093 2.848 6.563 2.848 2.478 0 4.668-.951 6.57-2.848l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.566.001-2.476-.944-4.666-2.846-6.569z" fill="#FFF"/></svg>
+</button>
+</div><div class="overlay"></div><script src="https://static.idiks.com/js/jquery.min.js"></script><script type="text/javascript" src="/js/vendor/lazyload.min.js"></script>
+    <script type="text/javascript" src="/js/doc.js"></script>
+    <script type="text/javascript" src="/js/anchor.js"></script><script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script><script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script src="https://browser.sentry-cdn.com/5.11.0/bundle.min.js" integrity="sha384-jbFinqIbKkHNg+QL+yxB4VrBC0EAPTuaLGeRT0T+NfEV89YC6u1bKxHLwoo+/xxY" crossorigin="anonymous"></script><script>Sentry.init({ 
+            dsn: 'https://3f28ed393c5545daa74496b3cdb2e9ba@sentry.io/1887163' 
+        });</script><script src="/js/app.js"></script></body></html>

@@ -1,0 +1,1191 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<script>
+window.ga =
+    window.ga ||
+    function() {
+        ;(ga.q = ga.q || []).push(arguments)
+    }
+ga.l = +new Date()
+ga('create', 'UA-99991864-4', 'auto')
+ga('send', 'pageview')
+</script>
+<script async src="https://static.idiks.com/js/ga-analytics.js"></script>
+
+
+    
+    
+
+<link rel="stylesheet" href="/css/doc.css">
+
+
+<link rel="stylesheet" href="/css/list.css">
+<title>博客 |&nbsp;iDIKS</title><link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="description" content="为了帮助大家更好的理解 TiDB 的技术细节并参与到项目贡献中来，我们准备了包含「 TiDB 源码阅读」、「TiKV 源码解析」、「十分钟成为 contributor」等一系列技术详解文章，enjoy~">
+<meta name="robots" content="noodp">
+<meta name="keywords" content="TiDB, MySQL, HTAP, Open Source, Cloud-Native, NewSQL, Aurora Alternative">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blog-cns | PingCAP">
+<meta property="og:description" content="为了帮助大家更好的理解 TiDB 的技术细节并参与到项目贡献中来，我们准备了包含「 TiDB 源码阅读」、「TiKV 源码解析」、「十分钟成为 contributor」等一系列技术详解文章，enjoy~">
+<meta property="og:url" content="https://idiks.com/blog-cn/">
+<meta property="og:site_name" content="MySQL at Scale. No more manual sharding">
+<meta property="og:image" content="/images/pingcap-opengraph.jpg">
+<meta property="og:image:secure_url" content="/images/pingcap-opengraph.jpg"><meta name="twitter:card" content="summary"><meta name="twitter:description" content="为了帮助大家更好的理解 TiDB 的技术细节并参与到项目贡献中来，我们准备了包含「 TiDB 源码阅读」、「TiKV 源码解析」、「十分钟成为 contributor」等一系列技术详解文章，enjoy~">
+<meta name="twitter:title" content="Blog-cns | PingCAP">
+<meta name="twitter:site" content="@pingcap">
+<meta name="twitter:image" content="https://static.idiks.com/images/pingcap-opengraph.jpg"><meta name="twitter:creator" content="@pingcap">
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http:\/\/schema.org",
+    "@type": "WebSite",
+    "url": "https:\/\/pingcap.com\/",
+    "name": "PingCAP",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https:\/\/pingcap.com\/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+<script type="text/javascript" async src="https://accounts.pingcap.com/static/pingcap_sso/js/track.beta.js"></script>
+    
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+<link rel="preload" href="https://static.idiks.com/js/jquery.min.js" as="script">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/docsearch.min.css">
+<script type="text/javascript">
+var trackOutboundLink = function(url) {
+  var redirectTriggered = false
+  ga('send', 'event', 'outbound', 'click', url, {
+    hitCallback: function() {
+      redirectTriggered = true
+      document.location = url
+    }
+  })
+  setTimeout(function() {
+    if (!redirectTriggered) {
+      document.location = url
+    }
+  }, 1500)
+}
+
+var trackViews = function(btn_type, event_category) {
+  var event_label = btn_type
+  var eventCategory = event_category
+  ga('send', 'event', {
+    'eventCategory': eventCategory,
+    'eventAction': 'click',
+    'eventLabel': event_label,
+    'transport': 'beacon'
+  });
+}
+</script>
+<script>if (location.pathname === '/') {
+        if (location.hostname === 'idiks.github.io') {
+            location.href = '/en/'
+        }
+    }</script></head>       <body data-lang="cn" ><div id="page-content">
+<header role="navigation" class="fixed-top">
+    <div class="container">
+        <a class="nav-brand" href="/zh"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        <div class="nav-wrapper">
+            <div class="navigation">
+                <ul>
+                    <li><a href="/university" target="_blank" class="nav-blinking"
+                            onclick="trackViews('navbar-university', 'pingcap-university_view')">iDIKS University</a></li>
+                    <li class="docs-type-selector " id="docsTypeSelector">
+                        
+                        <a class="header-doc-nav" href="/docs-cn" target="_blank">文档</a>
+                    </li>
+                    <li ><a href="/cases-cn">案例</a></li>
+                    <li ><a href="/community-cn">社区</a></li>
+                    <li class="sel" ><a href="/blog-cn">博客</a></li>
+                    <li ><a href="/about-cn">关于</a></li>
+                    <li><a href="/qa" target="_blank"
+                            onclick="trackViews('navbar-asktug', 'asktug_view')">问答</a></li>
+                    <li ><a href="/download-cn">下载试用</a></li>
+                    <li><a class="link-download" href="mailto:info@idiks.com" target="_blank"
+                            onclick="trackViews('navbar-contact-us', 'mail_to_info_view')">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="global-search">
+                
+                
+                
+                <div class="search-wrapper">
+    <span class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fff" viewBox="0 0 67.125 67.125"><path d="M23.902 0C11.01 0 .523 10.488.523 23.38c0 12.891 10.487 23.379 23.379 23.379a23.258 23.258 0 0 0 14.471-5.037l24.816 24.817c.391.391.902.586 1.414.586s1.023-.195 1.414-.586a2 2 0 0 0 0-2.828L41.293 38.985c3.721-4.142 5.989-9.613 5.989-15.605C47.282 10.488 36.794 0 23.902 0zM4.523 23.38C4.523 12.694 13.216 4 23.902 4c10.687 0 19.38 8.694 19.38 19.38 0 5.396-2.221 10.279-5.791 13.795a1.959 1.959 0 0 0-.488.349 2.003 2.003 0 0 0-.271.343C33.31 40.9 28.825 42.76 23.903 42.76c-10.686-.001-19.38-8.695-19.38-19.38z"/><path d="M24.075 8.591c-8.25 0-14.962 6.712-14.962 14.962a2 2 0 0 0 4 0c0-6.044 4.918-10.962 10.962-10.962a2 2 0 0 0 0-4z"/></svg></span>
+    <input data-lang="cn" data-type="" type="search" id="search-input" name="q"
+        placeholder="搜索 TiDB 文档">
+</div>
+
+<script>
+    const inputNode = document.getElementById("search-input")
+
+    inputNode.addEventListener('keyup', ({key}) => {
+        if (key === "Enter") {
+            if ($('#search-input').data('lang') == 'cn') {
+                lang = 'zh'
+            }
+
+            const query = $('#search-input').val()
+            if (query) {
+                url = "https://idiks.com/docs" + (lang == 'zh' ? 'zh/' : '') + "search/?lang=" + lang + "&type=tidb&version=v4.0&q=" + query
+                window.location.href = url
+            }
+        }
+    })
+</script>
+
+            </div>
+        </div>
+        <div class="nav-btn nav-slider">
+            <i class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 459 459"><path d="M0 382.5h459v-51H0v51zM0 255h459v-51H0v51zM0 76.5v51h459v-51H0z" fill="#FFF"/></svg></i>
+        </div>
+    </div>
+</header>
+
+
+
+<nav class="mobile-sidebar">
+    <div class="nav-header">
+        <div class="logo-wrap">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        </div>
+    </div>
+    <ul class="ul-base">
+        
+
+        <li ><a href="https://docs.pingcap.com/zh/tidb/v4.0/">文档</a></li>
+        <li ><a href="/cases-cn">案例</a></li>
+        <li ><a href="/community-cn">社区</a></li>
+        <li class="sel"><a href="/blog-cn">博客</a></li>
+        <li ><a href="/about-cn">关于</a></li>
+        <li><a href="https://asktug.com" target="_blank"
+            onclick="trackViews('navbar-asktug', 'asktug_view')">问答</a></li>
+        <li ><a href="/download-cn">下载试用</a></li>
+        <li><a class="link-download" href="mailto:info@pingcap.com" target="_blank"
+            onclick="trackViews('navbar-contact-us', 'mail_to_info_view')">联系我们</a></li>
+        <li><a href="https://university.pingcap.com/"
+            onclick="trackViews('navbar-university', 'pingcap-university_view')" target="_blank"
+            class="nav-blinking">PingCAP University</a></li>
+    </ul>
+    <div class="nav-footer">
+        <div class="contact-list-wrap">
+        <div class="flex-list">
+            <h4 class="list-title"><strong>Contact</strong></h4>
+            <ul class="social social-cn ul-base">
+            <li><a href="https://twitter.com/PingCAP" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="18"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/pingcap/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg></a></li>
+            <li><a href="https://www.reddit.com/r/TiDB/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg></a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/tidb-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="18"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg></a></li>
+            <li><a href="https://stackoverflow.com/questions/tagged/tidb" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg></a></li>
+            <li id="wechat-mobile"><a class="wechat" href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 31.403 31.404"><path d="M31.403 21.306c0-4.597-4.388-8.32-9.8-8.32-5.414 0-9.802 3.725-9.802 8.32 0 4.597 4.388 8.322 9.802 8.322 1.701 0 3.302-.369 4.697-1.019l3.863 1.671-.447-4.309c1.066-1.329 1.687-2.937 1.687-4.665zm-13.102-2.254a1.395 1.395 0 1 1 0-2.79 1.395 1.395 0 0 1 0 2.79zm6.604 0a1.395 1.395 0 1 1 .003-2.79 1.395 1.395 0 0 1-.003 2.79z"/><path d="M21.604 11.885c1.515 0 2.957.27 4.271.755.009-.175.03-.345.03-.521 0-6.074-5.801-10.996-12.953-10.996C5.799 1.123 0 6.044 0 12.119c0 2.284.822 4.408 2.229 6.167l-.591 5.694 5.104-2.213c1.264.59 2.661.986 4.136 1.189a8.143 8.143 0 0 1-.179-1.65c.001-5.195 4.892-9.421 10.905-9.421zm-4.287-6.428a1.84 1.84 0 1 1-1.841 1.84c0-1.016.825-1.84 1.841-1.84zM8.586 9.139a1.84 1.84 0 0 1 0-3.682 1.84 1.84 0 1 1 0 3.682z"/></svg></a><div class="qr_code_outer f-hide f-tc">
+    <div class="qr_code">
+        <i id="close_qrcode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224.512 224.512"><path fill="#010002" d="M224.507 6.997L217.521 0 112.256 105.258 6.998 0 .005 6.997l105.258 105.257L.005 217.512l6.993 7L112.256 119.24l105.265 105.272 6.986-7-105.258-105.258z"/></svg></i>
+        <img id="js_qr_code_img" class="qr_code_img" src="/images/wechat-qrcode.jpg" alt="Wechat qrCode" />
+        <p>微信扫一扫<br> 微信ID：pingcap2015</p>
+    </div>
+</div>
+</li>
+            </ul>
+        </div>
+        <div class="subscribe" id="subscribe-mobile"></div>
+        </div>
+        <div class="container">
+        <a href="/blog" class="btn-lang" id="lang">English</a>
+        </div>
+    </div>
+</nav>
+
+<div class="blog">
+        <div class="container">
+<div class="sidebar nav-tags" data-type="list"><div class="title">热门标签<a class="rss" href="/blog-cn/index.xml" title="RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 402.041 402.04"><g fill="#3A59F0"><path d="M54.816 292.382c-15.229 0-28.169 5.331-38.831 15.988C5.33 319.026 0 331.969 0 347.197c0 15.232 5.325 28.172 15.985 38.828 10.662 10.657 23.606 15.988 38.831 15.988 15.227 0 28.168-5.331 38.828-15.988 10.656-10.656 15.986-23.596 15.986-38.828 0-15.229-5.33-28.171-15.986-38.827-10.657-10.657-23.598-15.988-38.828-15.988zM181.01 221.002c-21.51-21.698-46.158-38.97-73.948-51.816-27.79-12.85-56.914-20.511-87.366-22.985h-1.425c-4.949 0-9.042 1.619-12.275 4.854C1.997 154.477 0 158.953 0 164.472v38.543c0 4.757 1.569 8.85 4.708 12.279 3.14 3.429 7.089 5.332 11.848 5.708 43.586 4.189 80.845 21.752 111.773 52.678 30.93 30.926 48.49 68.187 52.677 111.771.382 4.764 2.284 8.712 5.712 11.847 3.427 3.148 7.517 4.72 12.275 4.72h38.545c5.517 0 9.989-1.995 13.415-5.996 3.621-3.812 5.236-8.381 4.863-13.709-2.478-30.447-10.14-59.573-22.987-87.361-12.846-27.792-30.121-52.438-51.819-73.95z"/><path d="M367.728 239.701c-20.365-45.585-48.345-86.078-83.936-121.482-35.405-35.594-75.896-63.572-121.485-83.939C116.723 13.917 68.996 2.494 19.126.02h-.855c-4.949 0-9.136 1.713-12.563 5.14C1.903 8.583 0 12.964 0 18.294v40.825c0 4.76 1.667 8.897 4.996 12.419 3.33 3.523 7.373 5.376 12.132 5.57 40.924 2.478 79.799 12.188 116.63 29.127 36.83 16.94 68.806 38.972 95.93 66.09 27.118 27.123 49.149 59.101 66.089 95.931 16.94 36.836 26.557 75.705 28.839 116.627.195 4.764 2.046 8.809 5.564 12.139 3.524 3.329 7.762 4.999 12.71 4.999h40.823c5.331 0 9.701-1.902 13.134-5.715 3.809-3.806 5.517-8.274 5.144-13.415-2.471-49.874-13.898-97.6-34.263-143.19z"/></g></svg></a></div><a href="#" class="tag all">ALL (77)</a>
+    <div class="tag-list"><a href="#Chaos-Mesh" class="tag " data-tag="Chaos-Mesh">Chaos Mesh&nbsp;(10)
+                </a><a href="#Go" class="tag " data-tag="Go">Go&nbsp;(2)
+                </a><a href="#HTAP" class="tag " data-tag="HTAP">HTAP&nbsp;(2)
+                </a><a href="#Hackathon" class="tag " data-tag="Hackathon">Hackathon&nbsp;(2)
+                </a><a href="#Linux" class="tag " data-tag="Linux">Linux&nbsp;(4)
+                </a><a href="#Raft" class="tag " data-tag="Raft">Raft&nbsp;(4)
+                </a><a href="#Rust" class="tag " data-tag="Rust">Rust&nbsp;(5)
+                </a><a href="#SQL" class="tag " data-tag="SQL">SQL&nbsp;(2)
+                </a><a href="#Spanner" class="tag " data-tag="Spanner">Spanner&nbsp;(2)
+                </a><a href="#TiDB" class="tag " data-tag="TiDB">TiDB&nbsp;(27)
+                </a><a href="#TiDB-Hackathon-2020" class="tag " data-tag="TiDB-Hackathon-2020">TiDB Hackathon 2020&nbsp;(4)
+                </a><a href="#TiKV" class="tag " data-tag="TiKV">TiKV&nbsp;(9)
+                </a><a href="#gRPC" class="tag " data-tag="gRPC">gRPC&nbsp;(2)
+                </a><a href="#%e4%ba%8b%e5%8a%a1" class="tag " data-tag="事务">事务&nbsp;(3)
+                </a><a href="#%e5%88%86%e5%b8%83%e5%bc%8f%e7%b3%bb%e7%bb%9f%e5%89%8d%e6%b2%bf%e6%8a%80%e6%9c%af" class="tag " data-tag="分布式系统前沿技术">分布式系统前沿技术&nbsp;(4)
+                </a><a href="#%e5%88%86%e5%b8%83%e5%bc%8f%e7%b3%bb%e7%bb%9f%e6%b5%8b%e8%af%95" class="tag " data-tag="分布式系统测试">分布式系统测试&nbsp;(3)
+                </a><a href="#%e5%b7%a5%e5%85%b7" class="tag " data-tag="工具">工具&nbsp;(2)
+                </a><a href="#%e6%80%a7%e8%83%bd" class="tag " data-tag="性能">性能&nbsp;(2)
+                </a><a href="#%e6%9e%b6%e6%9e%84" class="tag " data-tag="架构">架构&nbsp;(3)
+                </a><a href="#%e7%a4%be%e5%8c%ba" class="tag " data-tag="社区">社区&nbsp;(3)
+                </a>
+    </div>
+</div>
+
+
+
+
+<div class="list article-list"><div class="article" data-tag="TiDB 事务 "><h1 class="title"><a href="/blog-cn/transaction-frontiers-research-article-talk4/">事务前沿研究丨事务并发控制</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-08-25</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />童牧</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#%25E4%25BA%258B%25E5%258A%25A1" class="link anchor-tag" data-tag="事务">事务</a></div></li>
+                </ul><a href="/blog-cn/transaction-frontiers-research-article-talk4/">
+                    <div class="brief">
+                        <p>本次我们将学习一些常用的并发控制方法，最后对 VLDB 2020 的 best paper “Opportunities for Optimism in Contended Main-Memory Multicore Transactions” 进行解读，来看看有哪些办法能够提升事务的并行度。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Chaos-Mesh "><h1 class="title"><a href="/blog-cn/cannot-use-chaosmesh-without-k8s-then-try-chaosd/">没 K8s 用不了 Chaos Mesh？试试 Chaosd</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-08-11</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />王相</li>
+                <li class="meta-item"><div><a href="#Chaos-Mesh" class="link anchor-tag" data-tag="Chaos-Mesh">Chaos-Mesh</a></div></li>
+                </ul><a href="/blog-cn/cannot-use-chaosmesh-without-k8s-then-try-chaosd/">
+                    <div class="brief">
+                        <p>本文描述了 Chaosd 作为 Chaos Mesh 提供的一款混沌工程测试工具，用于在物理机环境上注入故障，并提供故障恢复功能。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB "><h1 class="title"><a href="/blog-cn/when-big-data-architecture-meets-tidb/">当大数据架构遇上 TiDB</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-07-29</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />胡梦宇</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a></div></li>
+                </ul><a href="/blog-cn/when-big-data-architecture-meets-tidb/">
+                    <div class="brief">
+                        <p>本文将介绍分布式 NewSQL 数据库 TiDB 应用到了大数据架构的其他场景下，如：Hive 大查询报警，NameNode RPC 加速。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB "><h1 class="title"><a href="/blog-cn/use-tidb-to-build-real-time-applications/">使用 TiDB 构建实时应用</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-07-21</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />雷宇</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a></div></li>
+                </ul><a href="/blog-cn/use-tidb-to-build-real-time-applications/">
+                    <div class="brief">
+                        <p>本文将从宏观角度分析 TiDB 究竟能做什么，创造什么样的价值，以及研发过程中的一些设计立足点。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB 事务 "><h1 class="title"><a href="/blog-cn/transaction-frontiers-research-article-talk3/">事务前沿研究丨确定性事务</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-07-15</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />童牧</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#%25E4%25BA%258B%25E5%258A%25A1" class="link anchor-tag" data-tag="事务">事务</a></div></li>
+                </ul><a href="/blog-cn/transaction-frontiers-research-article-talk3/">
+                    <div class="brief">
+                        <p>本篇文章将讲解学术上不同的确定性事务和特点，并综合说说他们的优点和面临的问题。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB 事务 "><h1 class="title"><a href="/blog-cn/transaction-frontiers-research-article-talk2/">事务前沿研究丨事务测试体系解析</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-05-20</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />童牧</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#%25E4%25BA%258B%25E5%258A%25A1" class="link anchor-tag" data-tag="事务">事务</a></div></li>
+                </ul><a href="/blog-cn/transaction-frontiers-research-article-talk2/">
+                    <div class="brief">
+                        <p>本篇文章将继续在第一讲的事务隔离级别的基础上，对数据库事务的测试进行研究，主要讲述我们在 PingCAP 是如何保证事务的正确性的。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB "><h1 class="title"><a href="/blog-cn/how-to-keep-data-fresh-and-how-to-realize-value/">数字化加速，如何做到数据保鲜和数据价值变现？ — TiDB 行业应用场景及案例解读</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-05-13</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />余军</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a></div></li>
+                </ul><a href="/blog-cn/how-to-keep-data-fresh-and-how-to-realize-value/">
+                    <div class="brief">
+                        <p>本文将分享企业级分布式数据库产品 TiDB 如何帮助企业用户完成数字化转型。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Chaos-Mesh "><h1 class="title"><a href="/blog-cn/chaos-engineering-as-a-service/">Chaos Mesh® 的 Chaos Engineering as a Service 探索之路</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-03-04</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />于畅,王相</li>
+                <li class="meta-item"><div><a href="#Chaos-Mesh" class="link anchor-tag" data-tag="Chaos-Mesh">Chaos-Mesh</a></div></li>
+                </ul><a href="/blog-cn/chaos-engineering-as-a-service/">
+                    <div class="brief">
+                        <p>本篇文章的作者为 CAAS 团队的王相与于畅，他们在本次 Hackathon 比赛中基于 Chaos Engineering as a Service 的理念，对 Chaos Mesh 进行改造，以下就来看看他们的探索历程。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB-Hackathon-2020 "><h1 class="title"><a href="/blog-cn/gpu-to-speed-tidn-up/">大力出奇迹，GPU 加速 TiDB ｜ TiDB Hackathon 2020 优秀项目分享</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-02-23</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />PingCAP</li>
+                <li class="meta-item"><div><a href="#TiDB-Hackathon-2020" class="link anchor-tag" data-tag="TiDB-Hackathon-2020">TiDB-Hackathon-2020</a></div></li>
+                </ul><a href="/blog-cn/gpu-to-speed-tidn-up/">
+                    <div class="brief">
+                        <p>本篇文章将通过 Mods 团队与云启资本合伙人陈昱的对话，揭秘团队赛前幕后的精彩故事。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB-Hackathon-2020 "><h1 class="title"><a href="/blog-cn/one-stop-distributed-database-testing-system-based-on-aws/">基于 AWS 的一站式分布式数据库测试体系，简单易上手｜TiDB Hackathon 2020 优秀项目分享</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-02-23</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />PingCAP</li>
+                <li class="meta-item"><div><a href="#TiDB-Hackathon-2020" class="link anchor-tag" data-tag="TiDB-Hackathon-2020">TiDB-Hackathon-2020</a></div></li>
+                </ul><a href="/blog-cn/one-stop-distributed-database-testing-system-based-on-aws/">
+                    <div class="brief">
+                        <p>本篇文章将通过 Ti-Improve 团队与华创资本企业软件投资负责人谢佳的对话，揭秘团队赛前幕后的精彩故事。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB-Hackathon-2020 "><h1 class="title"><a href="/blog-cn/let-zhmd-to-help-you-standardizating-chinese-document/">中文文档规范化，zh.md 来帮你！｜TiDB Hackathon 2020 优秀项目分享</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-02-23</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />PingCAP</li>
+                <li class="meta-item"><div><a href="#TiDB-Hackathon-2020" class="link anchor-tag" data-tag="TiDB-Hackathon-2020">TiDB-Hackathon-2020</a></div></li>
+                </ul><a href="/blog-cn/let-zhmd-to-help-you-standardizating-chinese-document/">
+                    <div class="brief">
+                        <p>本篇文章将介绍 zh.md 团队赛前幕后的精彩故事。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB-Hackathon-2020 "><h1 class="title"><a href="/blog-cn/when-tidb-meet-graph-database/">当 TiDB 遇到图数据库 | TiDB Hackathon 2020 优秀项目分享</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-02-02</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />PingCAP</li>
+                <li class="meta-item"><div><a href="#TiDB-Hackathon-2020" class="link anchor-tag" data-tag="TiDB-Hackathon-2020">TiDB-Hackathon-2020</a></div></li>
+                </ul><a href="/blog-cn/when-tidb-meet-graph-database/">
+                    <div class="brief">
+                        <p>本篇文章将介绍 TiGraph 团队赛前幕后的精彩故事。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Chaos-Mesh "><h1 class="title"><a href="/blog-cn/chaos-mesh-the-first-year-of-open-source/">2020，Chaos Mesh® 开源第一年：扬帆起航的一年</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-01-18</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />殷成文, 翁浩</li>
+                <li class="meta-item"><div><a href="#Chaos-Mesh" class="link anchor-tag" data-tag="Chaos-Mesh">Chaos-Mesh</a></div></li>
+                </ul><a href="/blog-cn/chaos-mesh-the-first-year-of-open-source/">
+                    <div class="brief">
+                        <p>本文将从多个方面和大家一起回顾 Chaos Mesh 在这一年中的变化与成长，畅谈一些 Chaos Mesh 未来的目标与计划。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB "><h1 class="title"><a href="/blog-cn/new-ideas-for-designing-cloud-native-database/">云原生数据库设计新思路</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-01-14</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />黄东旭</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a></div></li>
+                </ul><a href="/blog-cn/new-ideas-for-designing-cloud-native-database/">
+                    <div class="brief">
+                        <p>本文将向大家分享分布式数据库的发展趋势以及云原生数据库设计的新思路。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Chaos-Mesh "><h1 class="title"><a href="/blog-cn/my-story-with-chaos-mesh/">「我的工作是制造混沌」，我与 Chaos Mesh® 的故事</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-01-14</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />殷成文</li>
+                <li class="meta-item"><div><a href="#Chaos-Mesh" class="link anchor-tag" data-tag="Chaos-Mesh">Chaos-Mesh</a></div></li>
+                </ul><a href="/blog-cn/my-story-with-chaos-mesh/">
+                    <div class="brief">
+                        <p>本文将向大家介绍自己与 Chaos Mesh 一起成长的点滴。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB "><h1 class="title"><a href="/blog-cn/schema-application-scenario-for-tidb/">TiDB 常⻅架构应⽤场景</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-01-12</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />黄潇</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a></div></li>
+                </ul><a href="/blog-cn/schema-application-scenario-for-tidb/">
+                    <div class="brief">
+                        <p>本文将向大家介绍TiDB 的常见架构应用场景，以下内容整理自当天活动分享实录。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Dumpling "><h1 class="title"><a href="/blog-cn/go-dumpling-makes-exporteddata-stable/">Go Dumpling! 让导出数据更稳定</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2021-01-04</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />李淳竹</li>
+                <li class="meta-item"><div><a href="#Dumpling" class="link anchor-tag" data-tag="Dumpling">Dumpling</a></div></li>
+                </ul><a href="/blog-cn/go-dumpling-makes-exporteddata-stable/">
+                    <div class="brief">
+                        <p>在本文中，我们将会介绍一些 Dumpling 的进阶使用方法，帮助大家更稳定高效地导出数据。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB "><h1 class="title"><a href="/blog-cn/use-go-randgen-to-test-join-search/">使用 go-randgen 测试 join 查询</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-12-25</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />陈朋</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a></div></li>
+                </ul><a href="/blog-cn/use-go-randgen-to-test-join-search/">
+                    <div class="brief">
+                        <p>本文将向大家介绍在过去的几个月，使用 go-randgen 框架对 TiDB 进行测试。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Linux "><h1 class="title"><a href="/blog-cn/linux-kernel-vs-memory-fragmentation-2/">Linux 内核 VS 内存碎片 （下）</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-12-16</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />张文博</li>
+                <li class="meta-item"><div><a href="#Linux" class="link anchor-tag" data-tag="Linux">Linux</a></div></li>
+                </ul><a href="/blog-cn/linux-kernel-vs-memory-fragmentation-2/">
+                    <div class="brief">
+                        <p>本文将重点描述随着时间的推移，当内存碎片过多，无法满足连续物理内存需求时，将会引起性能问题。因此仅仅依靠此功能还不够，所以内核又引入了内存规整等功能。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Linux "><h1 class="title"><a href="/blog-cn/linux-kernel-vs-memory-fragmentation-1/">Linux 内核 VS 内存碎片 （上）</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-12-10</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />张文博</li>
+                <li class="meta-item"><div><a href="#Linux" class="link anchor-tag" data-tag="Linux">Linux</a></div></li>
+                </ul><a href="/blog-cn/linux-kernel-vs-memory-fragmentation-1/">
+                    <div class="brief">
+                        <p>本文将重点描述当前常用的 3.10 版本内核在伙伴分配器的预防内存碎片的扩展，内存规整原理，如何查看碎片指数，以及如何量化内存规整带来的延迟开销等。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB Chaos-Mesh "><h1 class="title"><a href="/blog-cn/chaos-mesh-internals-how-to-inject-io-faults-during-runtime/">Chaos Mesh® 技术内幕 | 如何注入 I/O 故障？</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-12-02</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />杨可奥</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#Chaos-Mesh" class="link anchor-tag" data-tag="Chaos-Mesh">Chaos-Mesh</a></div></li>
+                </ul><a href="/blog-cn/chaos-mesh-internals-how-to-inject-io-faults-during-runtime/">
+                    <div class="brief">
+                        <p>随着 Chaos Mesh 1.0 的发布，提供了运行时注入文件系统错误的功能，使得 IOChaos 的使用和其他所有类型的 Chaos 一样简单方便。这篇文章将会介绍它的实现方式。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB Committer "><h1 class="title"><a href="/blog-cn/exploring-the-charming-of-opensource-tidb-committer-baikun/">感受开源的魅力，TiDB Committer 白珅的数据库探索之路</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-11-30</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />PingCAP</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#Committer" class="link anchor-tag" data-tag="Committer">Committer</a></div></li>
+                </ul><a href="/blog-cn/exploring-the-charming-of-opensource-tidb-committer-baikun/">
+                    <div class="brief">
+                        <p>今天我们就来看看 TiDB Committer 白珅的贡献历程吧~</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB Flink "><h1 class="title"><a href="/blog-cn/when-tidb-and-flink-are-combined/">当 TiDB 与 Flink 相结合：高效、易用的实时数仓</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-10-27</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />齐智</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#Flink" class="link anchor-tag" data-tag="Flink">Flink</a></div></li>
+                </ul><a href="/blog-cn/when-tidb-and-flink-are-combined/">
+                    <div class="brief">
+                        <p>本文将向大家介绍 Flink 和 TiDB 的联合实时数仓方案。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="THP TiDB "><h1 class="title"><a href="/blog-cn/why-should-we-disable-thp/">我们为什么要禁用 THP</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-10-22</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />张文博</li>
+                <li class="meta-item"><div><a href="#THP" class="link anchor-tag" data-tag="THP">THP</a>|<a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a></div></li>
+                </ul><a href="/blog-cn/why-should-we-disable-thp/">
+                    <div class="brief">
+                        <p>本文将和大家分享 THP 引起性能抖动的原因、典型的现象，分析方法等，在文章的最后给出使用 THP 时的配置建议及关闭方法。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Linux TiDB "><h1 class="title"><a href="/blog-cn/online-environment-analysis-system/">线上环境 Linux 系统调用追踪</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-09-28</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />张文博</li>
+                <li class="meta-item"><div><a href="#Linux" class="link anchor-tag" data-tag="Linux">Linux</a>|<a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a></div></li>
+                </ul><a href="/blog-cn/online-environment-analysis-system/">
+                    <div class="brief">
+                        <p>本文将向大家分享两款如何在线上环境分析系统调用的工具，方便大家需要时查阅。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Chaos-Mesh "><h1 class="title"><a href="/blog-cn/chaos-mesh-1.0-ga/">Chaos Mesh® 1.0 GA，让混沌工程变得简单！</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-09-25</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />殷成文</li>
+                <li class="meta-item"><div><a href="#Chaos-Mesh" class="link anchor-tag" data-tag="Chaos-Mesh">Chaos-Mesh</a></div></li>
+                </ul><a href="/blog-cn/chaos-mesh-1.0-ga/">
+                    <div class="brief">
+                        <p>从开源到现在近一年的时间里，Chaos Mesh 在所有贡献者的共同努力下，在不断完善新功能的同时，在易用性和稳定性上也都取得了阶段性的成果，今天，我们自豪的宣布 Chaos Mesh 1.0 正式发布！</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Chaos-Mesh "><h1 class="title"><a href="/blog-cn/chaos-mesh-combined-with-github-actions/">Chaos Mesh® X GitHub Actions —— 把混沌工程集成到你的 CI 中</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-08-20</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />王相</li>
+                <li class="meta-item"><div><a href="#Chaos-Mesh" class="link anchor-tag" data-tag="Chaos-Mesh">Chaos-Mesh</a></div></li>
+                </ul><a href="/blog-cn/chaos-mesh-combined-with-github-actions/">
+                    <div class="brief">
+                        <p>本文将介绍如何在 GitHub Actions 的 workflow 中使用 Chaos Mesh，从而将混沌工程集成到系统开发的 CI 中。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Horoscope TiDB "><h1 class="title"><a href="/blog-cn/use-horoscope-to-test-tidb-optimizer/">使用 Horoscope 测试 TiDB 优化器</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-08-19</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />满俊朋,&nbsp;李晨曦</li>
+                <li class="meta-item"><div><a href="#Horoscope" class="link anchor-tag" data-tag="Horoscope">Horoscope</a>|<a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a></div></li>
+                </ul><a href="/blog-cn/use-horoscope-to-test-tidb-optimizer/">
+                    <div class="brief">
+                        <p>本文将向大家阐述如何使用 Horoscope 测试 TiDB 优化器。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Libbpf-tools "><h1 class="title"><a href="/blog-cn/libbpf-tools/">Libbpf-tools —— 让 Tracing 工具身轻如燕</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-08-11</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />张文博</li>
+                <li class="meta-item"><div><a href="#Libbpf-tools" class="link anchor-tag" data-tag="Libbpf-tools">Libbpf-tools</a></div></li>
+                </ul><a href="/blog-cn/libbpf-tools/">
+                    <div class="brief">
+                        <p>本篇文章概述了 BPF 的主要应用，重点描述了 libbpf-tools  解决了哪些 BCC 痛点以及在 PingCAP 内部的相关实践。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB-4.0 HTAP "><h1 class="title"><a href="/blog-cn/why-htap-matters/">Why HTAP Matters</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-07-31</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />马晓宇</li>
+                <li class="meta-item"><div><a href="#TiDB-4.0" class="link anchor-tag" data-tag="TiDB-4.0">TiDB-4.0</a>|<a href="#HTAP" class="link anchor-tag" data-tag="HTAP">HTAP</a></div></li>
+                </ul><a href="/blog-cn/why-htap-matters/">
+                    <div class="brief">
+                        <p>说到 Why HTAP Matters，其实包含两部分，一部分是说为什么我们叫 HTAP，另外一部分是说 TiDB 怎样在 HTAP 架构下发挥它的优势。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Chaos-Mesh "><h1 class="title"><a href="/blog-cn/why-you-need-chaos-engineering-and-chaos-mesh/">为什么你需要混沌工程以及 Chaos Mesh®</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-07-13</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />唐刘</li>
+                <li class="meta-item"><div><a href="#Chaos-Mesh" class="link anchor-tag" data-tag="Chaos-Mesh">Chaos-Mesh</a></div></li>
+                </ul><a href="/blog-cn/why-you-need-chaos-engineering-and-chaos-mesh/">
+                    <div class="brief">
+                        <p>本文介绍了帮助我们在复杂的分布式系统环境下保证系统正常稳定运行的办法 —— Chaos Engineering，以及基于 Kubernetes 的云原生混沌工程平台 Chaos Mesh®。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Chaos-Mesh TiPocket "><h1 class="title"><a href="/blog-cn/building-a-distributed-test-platform-based-on-chaos-mesh-and-argo/">基于 Chaos Mesh® 和 Argo 打造分布式测试平台</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-06-29</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />叶奔,&nbsp;殷成文</li>
+                <li class="meta-item"><div><a href="#Chaos-Mesh" class="link anchor-tag" data-tag="Chaos-Mesh">Chaos-Mesh</a>|<a href="#TiPocket" class="link anchor-tag" data-tag="TiPocket">TiPocket</a></div></li>
+                </ul><a href="/blog-cn/building-a-distributed-test-platform-based-on-chaos-mesh-and-argo/">
+                    <div class="brief">
+                        <p>本文介绍我们是如何在 Chaos Mesh 和 Argo 的基础上打造自己的自动化测试平台 TiPocket]，实现完全自动化的混沌测试，构成混沌测试完整闭环。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="The-Future-of-Database TiDB "><h1 class="title"><a href="/blog-cn/core-competence-of-future-database/">未来数据库应具备什么核心能力？</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-04-15</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />PingCAP</li>
+                <li class="meta-item"><div><a href="#The-Future-of-Database" class="link anchor-tag" data-tag="The-Future-of-Database">The-Future-of-Database</a>|<a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a></div></li>
+                </ul><a href="/blog-cn/core-competence-of-future-database/">
+                    <div class="brief">
+                        <p>上周六，我们开启了 The Future of Database 系列 的第一期直播，我司 CTO 黄东旭及 Engineering VP 申砾畅聊了“未来的数据库会是什么样？”这个颇具想象力的话题。这是第一期直播的部分文字&amp;视频回顾。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="架构 "><h1 class="title"><a href="/blog-cn/talk-about-the-future-of-databese-on-5th-anniversary-of-pingcap/">聊聊数据库的未来，写在 PingCAP 成立五周年之际</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-04-08</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />黄东旭</li>
+                <li class="meta-item"><div><a href="#%25E6%259E%25B6%25E6%259E%2584" class="link anchor-tag" data-tag="架构">架构</a></div></li>
+                </ul><a href="/blog-cn/talk-about-the-future-of-databese-on-5th-anniversary-of-pingcap/">
+                    <div class="brief">
+                        <p>我们要造的是一个真正能作为整个系统的 Single Source of Truth 的基础软件。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Go Rust "><h1 class="title"><a href="/blog-cn/early-impressions-of-go-from-a-rust-programmer/">一位 Rust 开发者的 Go 初体验</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-03-05</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />Nick Cameron</li>
+                <li class="meta-item"><div><a href="#Go" class="link anchor-tag" data-tag="Go">Go</a>|<a href="#Rust" class="link anchor-tag" data-tag="Rust">Rust</a></div></li>
+                </ul><a href="/blog-cn/early-impressions-of-go-from-a-rust-programmer/">
+                    <div class="brief">
+                        <p>Go 是一种简单、小巧、令人愉悦的语言。它也有一些犄角旮旯，但绝大部分是经过精心设计的。它的学习速度令人难以置信，并且规避了其他语言中一些不那么广为人知的特性。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Rust TiKV "><h1 class="title"><a href="/blog-cn/rust-compilation-model-calamity/">Rust 编译模型之殇</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-03-01</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />Brian Anderson</li>
+                <li class="meta-item"><div><a href="#Rust" class="link anchor-tag" data-tag="Rust">Rust</a>|<a href="#TiKV" class="link anchor-tag" data-tag="TiKV">TiKV</a></div></li>
+                </ul><a href="/blog-cn/rust-compilation-model-calamity/">
+                    <div class="brief">
+                        <p>许多人抱怨构建的时间太长。有时，在开发模式下完全重新构建需要花费 15 分钟，而在发布模式则需要 30 分钟。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Key-Visualizer TiDB-4.0-新特性 "><h1 class="title"><a href="/blog-cn/observability-of-distributed-system/">我眼中的分布式系统可观测性</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-02-22</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />黄东旭</li>
+                <li class="meta-item"><div><a href="#Key-Visualizer" class="link anchor-tag" data-tag="Key-Visualizer">Key-Visualizer</a>|<a href="#TiDB-4.0-%25E6%2596%25B0%25E7%2589%25B9%25E6%2580%25A7" class="link anchor-tag" data-tag="TiDB-4.0-新特性">TiDB-4.0-新特性</a></div></li>
+                </ul><a href="/blog-cn/observability-of-distributed-system/">
+                    <div class="brief">
+                        <p>在Cloud Native 和微服务的世界里，大家正在讲“系统的可观测性”放在更高的位置。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="分布式系统前沿技术 "><h1 class="title"><a href="/blog-cn/distributed-system-in-2010s-4/">分布式系统 in 2010s ：测试和运维</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-01-14</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />黄东旭</li>
+                <li class="meta-item"><div><a href="#%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E7%25B3%25BB%25E7%25BB%259F%25E5%2589%258D%25E6%25B2%25BF%25E6%258A%2580%25E6%259C%25AF" class="link anchor-tag" data-tag="分布式系统前沿技术">分布式系统前沿技术</a></div></li>
+                </ul><a href="/blog-cn/distributed-system-in-2010s-4/">
+                    <div class="brief">
+                        <p>本文为「分布式系统 in 2010s」 系列最终篇，这次我们来聊一聊测试和运维。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="分布式系统前沿技术 "><h1 class="title"><a href="/blog-cn/distributed-system-in-2010s-3/">分布式系统 in 2010s ：硬件的进化</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-01-07</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />黄东旭</li>
+                <li class="meta-item"><div><a href="#%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E7%25B3%25BB%25E7%25BB%259F%25E5%2589%258D%25E6%25B2%25BF%25E6%258A%2580%25E6%259C%25AF" class="link anchor-tag" data-tag="分布式系统前沿技术">分布式系统前沿技术</a></div></li>
+                </ul><a href="/blog-cn/distributed-system-in-2010s-3/">
+                    <div class="brief">
+                        <p>本文为「分布式系统 in 2010s」 系列第三篇，这次我们来聊一聊硬件的进化。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Kubernetes Chaos-Mesh "><h1 class="title"><a href="/blog-cn/chaos-mesh/">Chaos Mesh - 让应用跟混沌在 Kubernetes 上共舞</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2020-01-02</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />殷成文</li>
+                <li class="meta-item"><div><a href="#Kubernetes" class="link anchor-tag" data-tag="Kubernetes">Kubernetes</a>|<a href="#Chaos-Mesh" class="link anchor-tag" data-tag="Chaos-Mesh">Chaos-Mesh</a></div></li>
+                </ul><a href="/blog-cn/chaos-mesh/">
+                    <div class="brief">
+                        <p>我们将混沌相关实现从自动化测试平台中抽离出来，作为 Chaos Mesh 的最初原型，并经过重新设计和完善，最终于 Github 上开源。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="分布式系统前沿技术 "><h1 class="title"><a href="/blog-cn/distributed-system-in-2010s-2/">分布式系统 in 2010s ：软件构建方式和演化</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-12-30</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />黄东旭</li>
+                <li class="meta-item"><div><a href="#%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E7%25B3%25BB%25E7%25BB%259F%25E5%2589%258D%25E6%25B2%25BF%25E6%258A%2580%25E6%259C%25AF" class="link anchor-tag" data-tag="分布式系统前沿技术">分布式系统前沿技术</a></div></li>
+                </ul><a href="/blog-cn/distributed-system-in-2010s-2/">
+                    <div class="brief">
+                        <p>本文为「分布式系统 in 2010s」系列第二篇，内容为软件构建的方式和演化。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="分布式系统前沿技术 "><h1 class="title"><a href="/blog-cn/distributed-system-in-2010s-1/">分布式系统 in 2010s ：存储之数据库篇</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-12-26</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />黄东旭</li>
+                <li class="meta-item"><div><a href="#%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E7%25B3%25BB%25E7%25BB%259F%25E5%2589%258D%25E6%25B2%25BF%25E6%258A%2580%25E6%259C%25AF" class="link anchor-tag" data-tag="分布式系统前沿技术">分布式系统前沿技术</a></div></li>
+                </ul><a href="/blog-cn/distributed-system-in-2010s-1/">
+                    <div class="brief">
+                        <p>无论哪个时代，存储都是一个重要的话题，今天先聊聊数据库。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB SQL "><h1 class="title"><a href="/blog-cn/manage-many-as-one-with-sql/">效率 10x！打造运维 TiDB 的瑞士军刀</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-12-20</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />陈霜</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#SQL" class="link anchor-tag" data-tag="SQL">SQL</a></div></li>
+                </ul><a href="/blog-cn/manage-many-as-one-with-sql/">
+                    <div class="brief">
+                        <p>为解决分布式数据库的运维难题，本文将介绍如何用 SQL 管理整个 TiDB 集群。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="大数据 数据库 "><h1 class="title"><a href="/blog-cn/from-big-data-to-databases/">从大数据到数据库</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-12-18</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />马晓宇</li>
+                <li class="meta-item"><div><a href="#%25E5%25A4%25A7%25E6%2595%25B0%25E6%258D%25AE" class="link anchor-tag" data-tag="大数据">大数据</a>|<a href="#%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593" class="link anchor-tag" data-tag="数据库">数据库</a></div></li>
+                </ul><a href="/blog-cn/from-big-data-to-databases/">
+                    <div class="brief">
+                        <p>作为一个从大数据转行做数据库的人，我自以为能感受到两个世界的异同。本篇文章，斗胆聊下这个话题，以及对未来的看法。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB Elasticsearch 全文检索 "><h1 class="title"><a href="/blog-cn/fulltext-search-with-tidb-and-elasticsearch/">拥抱 Elasticsearch：给 TiDB 插上全文检索的翅膀</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-12-10</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />孙晓光</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#Elasticsearch" class="link anchor-tag" data-tag="Elasticsearch">Elasticsearch</a>|<a href="#%25E5%2585%25A8%25E6%2596%2587%25E6%25A3%2580%25E7%25B4%25A2" class="link anchor-tag" data-tag="全文检索">全文检索</a></div></li>
+                </ul><a href="/blog-cn/fulltext-search-with-tidb-and-elasticsearch/">
+                    <div class="brief">
+                        <p>我们尝试为 TiDB 引入“全文检索”功能，为存储在 TiDB 中的文本数据提供随时随地搜索的能力。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="测试 Hackathon "><h1 class="title"><a href="/blog-cn/sqldebug-automatically/">你呼呼大睡，机器人却在找 bug？</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-12-03</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />我和我的 SQL 队</li>
+                <li class="meta-item"><div><a href="#%25E6%25B5%258B%25E8%25AF%2595" class="link anchor-tag" data-tag="测试">测试</a>|<a href="#Hackathon" class="link anchor-tag" data-tag="Hackathon">Hackathon</a></div></li>
+                </ul><a href="/blog-cn/sqldebug-automatically/">
+                    <div class="brief">
+                        <p>复杂系统的测试是一件艰难、艰苦和艰巨的事情，可不可以让程序自动帮我们查 bug？</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiKV 社区 Hackathon "><h1 class="title"><a href="/blog-cn/unified-thread-pool/">Unified Thread Pool | Hackathon 2019 优秀项目介绍</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-11-14</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />夏锐航</li>
+                <li class="meta-item"><div><a href="#TiKV" class="link anchor-tag" data-tag="TiKV">TiKV</a>|<a href="#%25E7%25A4%25BE%25E5%258C%25BA" class="link anchor-tag" data-tag="社区">社区</a>|<a href="#Hackathon" class="link anchor-tag" data-tag="Hackathon">Hackathon</a></div></li>
+                </ul><a href="/blog-cn/unified-thread-pool/">
+                    <div class="brief">
+                        <p>Unified Thread Pool 项目实现了在 TiKV 中使用一个统一的自适应线程池处理读请求，能够显著提升性能，并可预测性地限制大查询对小请求的干扰，最终在 TiDB Hackathon 2019 中斩获一等奖。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="java 最佳实践 TiDB "><h1 class="title"><a href="/blog-cn/best-practice-java/">TiDB 最佳实践系列（五）Java 数据库应用开发指南</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-11-06</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />Su Li,&nbsp;Zhang Ming</li>
+                <li class="meta-item"><div><a href="#java" class="link anchor-tag" data-tag="java">java</a>|<a href="#%25E6%259C%2580%25E4%25BD%25B3%25E5%25AE%259E%25E8%25B7%25B5" class="link anchor-tag" data-tag="最佳实践">最佳实践</a>|<a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a></div></li>
+                </ul><a href="/blog-cn/best-practice-java/">
+                    <div class="brief">
+                        <p>本文将从 Java 数据库交互组件开发的角度出发，介绍各组件的推荐配置和推荐使用方式，希望能帮助 Java 开发者在使用 TiDB 时能更好的发挥数据库性能。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Rust TiKV futures "><h1 class="title"><a href="/blog-cn/migrating-a-crate-from-futures-0-1-to-0-3/">TiKV Rust Client 迁移记 - futures 0.1 至 0.3</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-09-25</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />Nick Cameron</li>
+                <li class="meta-item"><div><a href="#Rust" class="link anchor-tag" data-tag="Rust">Rust</a>|<a href="#TiKV" class="link anchor-tag" data-tag="TiKV">TiKV</a>|<a href="#futures" class="link anchor-tag" data-tag="futures">futures</a></div></li>
+                </ul><a href="/blog-cn/migrating-a-crate-from-futures-0-1-to-0-3/">
+                    <div class="brief">
+                        <p>最近我将一个中小型的 crate 从 futures 库的 0.1 迁移至了 0.3 版本。过程本身不是特别麻烦，但还是有些地方或是微妙棘手，或是没有很好的文档说明。这篇文章里，我会把迁移经验总结分享给大家。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="社区 "><h1 class="title"><a href="/blog-cn/zhihu-the-story-of-contributing-to-tidb-community/">从使用者到开发者，知乎参与 TiDB 社区背后的故事</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-09-12</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />孙晓光</li>
+                <li class="meta-item"><div><a href="#%25E7%25A4%25BE%25E5%258C%25BA" class="link anchor-tag" data-tag="社区">社区</a></div></li>
+                </ul><a href="/blog-cn/zhihu-the-story-of-contributing-to-tidb-community/">
+                    <div class="brief">
+                        <p>“从前我们更多是站在使用者的角度从开源社区汲取养分，随着知乎技术架构和内部工程能力的成长，未来我们希望能够以更加积极主动的状态参与开源项目，回馈社区。”</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Prometheus Grafana 监控 "><h1 class="title"><a href="/blog-cn/use-grafana-to-monitor-and-analyze-tidb-metrics/">如何高效利用 Grafana 监控分析 TiDB 指标</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-09-09</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />李坤</li>
+                <li class="meta-item"><div><a href="#Prometheus" class="link anchor-tag" data-tag="Prometheus">Prometheus</a>|<a href="#Grafana" class="link anchor-tag" data-tag="Grafana">Grafana</a>|<a href="#%25E7%259B%2591%25E6%258E%25A7" class="link anchor-tag" data-tag="监控">监控</a></div></li>
+                </ul><a href="/blog-cn/use-grafana-to-monitor-and-analyze-tidb-metrics/">
+                    <div class="brief">
+                        <p>使用 TiDB Ansible 部署 TiDB 集群，会同时部署一套 Grafana &#43; Prometheus 的监控平台，这套监控用来收集和展示 TiDB 集群各个组件和机器的 metric 信息，这些 metric 信息非常丰富，可以帮助使用者分析 TiDB 集群的状态以及 Trouble shooting。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="K8s TiDB-Operator Linux "><h1 class="title"><a href="/blog-cn/fix-two-linux-kernel-bugs-while-testing-tidb-operator-in-k8s/">诊断修复 TiDB Operator 在 K8s 测试中遇到的 Linux 内核问题</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-05-23</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />张文博</li>
+                <li class="meta-item"><div><a href="#K8s" class="link anchor-tag" data-tag="K8s">K8s</a>|<a href="#TiDB-Operator" class="link anchor-tag" data-tag="TiDB-Operator">TiDB-Operator</a>|<a href="#Linux" class="link anchor-tag" data-tag="Linux">Linux</a></div></li>
+                </ul><a href="/blog-cn/fix-two-linux-kernel-bugs-while-testing-tidb-operator-in-k8s/">
+                    <div class="brief">
+                        <p>我们在 K8s 中测试 TiDB Operator 时发现了两个 Linux 内核错误，这些错误已经困扰我们很长一段时间，并没有在整个 K8s 社区中彻底修复。经过广泛的调查和诊断，我们已经确定了处理这些问题的方法。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Failpoint "><h1 class="title"><a href="/blog-cn/golang-failpoint/">Golang Failpoint 的设计与实现</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-04-30</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />龙恒</li>
+                <li class="meta-item"><div><a href="#Failpoint" class="link anchor-tag" data-tag="Failpoint">Failpoint</a></div></li>
+                </ul><a href="/blog-cn/golang-failpoint/">
+                    <div class="brief">
+                        <p>Failpoint 项目是 FreeBSD Failpoints 的 Golang 实现，允许在代码中注入错误或异常行为，并由环境变量或代码动态激活来触发这些异常行为。Failpoint 能用于各种复杂系统中模拟错误处理来提高系统的容错性、正确性和稳定性。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB 架构 "><h1 class="title"><a href="/blog-cn/the-near-future-of-database/">The (Near) Future of Database</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2019-03-05</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />黄东旭</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#%25E6%259E%25B6%25E6%259E%2584" class="link anchor-tag" data-tag="架构">架构</a></div></li>
+                </ul><a href="/blog-cn/the-near-future-of-database/">
+                    <div class="brief">
+                        <p>在 TiDB DevCon 2019 上，我司联合创始人兼 CTO 黄东旭分享了对数据库行业大趋势以及未来数据库技术的看法。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Raft 线性一致 TiKV "><h1 class="title"><a href="/blog-cn/linearizability-and-raft/">线性一致性和 Raft</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2018-10-18</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />沈泰宁</li>
+                <li class="meta-item"><div><a href="#Raft" class="link anchor-tag" data-tag="Raft">Raft</a>|<a href="#%25E7%25BA%25BF%25E6%2580%25A7%25E4%25B8%2580%25E8%2587%25B4" class="link anchor-tag" data-tag="线性一致">线性一致</a>|<a href="#TiKV" class="link anchor-tag" data-tag="TiKV">TiKV</a></div></li>
+                </ul><a href="/blog-cn/linearizability-and-raft/">
+                    <div class="brief">
+                        <p>本篇文章会讨论一下线性一致性和 Raft，以及 TiKV 针对前者的一些优化。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Redis TiKV "><h1 class="title"><a href="/blog-cn/use-tikv-to-build-distributed-redis-service/">使用 TiKV 构建分布式类 Redis 服务</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2018-09-07</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />唐刘</li>
+                <li class="meta-item"><div><a href="#Redis" class="link anchor-tag" data-tag="Redis">Redis</a>|<a href="#TiKV" class="link anchor-tag" data-tag="TiKV">TiKV</a></div></li>
+                </ul><a href="/blog-cn/use-tikv-to-build-distributed-redis-service/">
+                    <div class="brief">
+                        <p>本文将介绍 Redis 的特性与不足，以及使用 TiKV 构建分布式类 Redis 服务的</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Rust TiKV "><h1 class="title"><a href="/blog-cn/rust-key-value-store/">使用 Rust 构建分布式 Key-Value Store</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2017-11-15</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />唐刘</li>
+                <li class="meta-item"><div><a href="#Rust" class="link anchor-tag" data-tag="Rust">Rust</a>|<a href="#TiKV" class="link anchor-tag" data-tag="TiKV">TiKV</a></div></li>
+                </ul><a href="/blog-cn/rust-key-value-store/">
+                    <div class="brief">
+                        <p>构建一个分布式 Key-Value Store 并不是一件容易的事情，我们需要考虑很多的问题，首先就是我们的系统到底需要提供什么样的功能。本文将以我们开发的分布式 Key-Value TiKV 作为实际例子，来说明下我们是如何取舍并实现的。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="OpenSource "><h1 class="title"><a href="/blog-cn/talk-about-opensource/">谈谈开源(一)</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2017-09-25</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />申砾</li>
+                <li class="meta-item"><div><a href="#OpenSource" class="link anchor-tag" data-tag="OpenSource">OpenSource</a></div></li>
+                </ul><a href="/blog-cn/talk-about-opensource/">
+                    <div class="brief">
+                        <p>很多人的『开源』是一个比较时髦且有情怀的词汇，不少公司也把开源当做 KPI 或者是技术宣传的手段。但是在我们看来，大多数人开源做的并不好，大多数开源项目也没有被很好的维护。比如前一段时间微博上流传关于 Tengine 的讨论，一个优秀的开源项目不止是公布源代码就 OK 了，还需要后续大量的精力去维护，包括制定 RoadMap、开发新功能、和社区交流、推动项目在社区中的使用、对使用者提供一定程度的支持，等等。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB knossos Linearizability "><h1 class="title"><a href="/blog-cn/linearizability/">Linearizability 一致性验证</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2017-08-21</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />徐鹏</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#knossos" class="link anchor-tag" data-tag="knossos">knossos</a>|<a href="#Linearizability" class="link anchor-tag" data-tag="Linearizability">Linearizability</a></div></li>
+                </ul><a href="/blog-cn/linearizability/">
+                    <div class="brief">
+                        <p>上篇文章介绍了 TiDB 如何使用 Jepsen 来进行一致性验证，并且介绍了具体的测试案例，但是并没有对 Jepsen 背后的一致性验证算法做过多介绍。这篇文章将会深入 Jepsen 的核心库 knossos，介绍 knossos 库所涉及的 Linearizability（线性化）一致性验证算法。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Spanner TiKV "><h1 class="title"><a href="/blog-cn/pax/">PAX：一个 Cache 友好高效的行列混存方案</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2017-07-19</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />唐刘</li>
+                <li class="meta-item"><div><a href="#Spanner" class="link anchor-tag" data-tag="Spanner">Spanner</a>|<a href="#TiKV" class="link anchor-tag" data-tag="TiKV">TiKV</a></div></li>
+                </ul><a href="/blog-cn/pax/">
+                    <div class="brief">
+                        <p>今年，Spanner 终于发了另一篇 Paper，Spanner - Becoming a SQL System，里面提到 Spanner 使用了一种新的存储格式 - Ressi，用来支持 OLTP 和 OLAP。在 Ressi 里面，使用了 PAX 来组织数据。因为 TiDB 定位就是一个 HTAP 系统，所以我也一直在思考在 TiKV 这层如何更好的存储数据，用来满足 HTAP 的需要，既然 Spanner 使用了 PAX，那么就有研究的必要了。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiKV gRPC Rust "><h1 class="title"><a href="/blog-cn/grpc-rs/">gRPC-rs：从 C 到 Rust</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2017-07-18</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />沈泰宁</li>
+                <li class="meta-item"><div><a href="#TiKV" class="link anchor-tag" data-tag="TiKV">TiKV</a>|<a href="#gRPC" class="link anchor-tag" data-tag="gRPC">gRPC</a>|<a href="#Rust" class="link anchor-tag" data-tag="Rust">Rust</a></div></li>
+                </ul><a href="/blog-cn/grpc-rs/">
+                    <div class="brief">
+                        <p>上篇文章中，我们讲到 TiKV 为了支持 gRPC，我们造了个轮子 gRPC-rs，本篇文章会简要地介绍一下这个库。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="性能 工具 "><h1 class="title"><a href="/blog-cn/flame-graph/">工欲性能调优，必先利其器（2）- 火焰图</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2017-06-26</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />唐刘</li>
+                <li class="meta-item"><div><a href="#%25E6%2580%25A7%25E8%2583%25BD" class="link anchor-tag" data-tag="性能">性能</a>|<a href="#%25E5%25B7%25A5%25E5%2585%25B7" class="link anchor-tag" data-tag="工具">工具</a></div></li>
+                </ul><a href="/blog-cn/flame-graph/">
+                    <div class="brief">
+                        <p>本篇文章将介绍一下，我们在 TiKV 性能调优上面用的最多的工具 - 火焰图。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiKV gRPC "><h1 class="title"><a href="/blog-cn/grpc/">深入了解 gRPC：协议</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2017-06-18</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />唐刘</li>
+                <li class="meta-item"><div><a href="#TiKV" class="link anchor-tag" data-tag="TiKV">TiKV</a>|<a href="#gRPC" class="link anchor-tag" data-tag="gRPC">gRPC</a></div></li>
+                </ul><a href="/blog-cn/grpc/">
+                    <div class="brief">
+                        <p>经过很长一段时间的开发，TiDB 终于发了 RC3。RC3 版本对于 TiKV 来说最重要的功能就是支持了 gRPC，也就意味着后面大家可以非常方便的使用自己喜欢的语言对接 TiKV 了。gRPC 是基于 HTTP/2 协议的，要深刻理解 gRPC，理解下 HTTP/2 是必要的，这里先简单介绍一下 HTTP/2 相关的知识，然后再介绍下 gRPC 是如何基于 HTTP/2 构建的。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="性能 工具 "><h1 class="title"><a href="/blog-cn/iostat-perf-strace/">工欲性能调优，必先利其器（1）</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2017-05-31</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />唐刘</li>
+                <li class="meta-item"><div><a href="#%25E6%2580%25A7%25E8%2583%25BD" class="link anchor-tag" data-tag="性能">性能</a>|<a href="#%25E5%25B7%25A5%25E5%2585%25B7" class="link anchor-tag" data-tag="工具">工具</a></div></li>
+                </ul><a href="/blog-cn/iostat-perf-strace/">
+                    <div class="brief">
+                        <p>最近在排查 TiDB 性能问题的时候，通过工具发现了一些问题，觉得有必要记录一下，让自己继续深刻的去理解相关工具的使用，也同时让同学们对类似问题的时候别再踩坑。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Tile HTAP "><h1 class="title"><a href="/blog-cn/tile-row-store/">基于 Tile 连接 Row-Store 和 Column-Store</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2017-05-14</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />唐刘</li>
+                <li class="meta-item"><div><a href="#Tile" class="link anchor-tag" data-tag="Tile">Tile</a>|<a href="#HTAP" class="link anchor-tag" data-tag="HTAP">HTAP</a></div></li>
+                </ul><a href="/blog-cn/tile-row-store/">
+                    <div class="brief">
+                        <p>在之前的 Kudu 的文章里面已经提到过，行列混存是一个非常有意思的研究方向，因为不同的存储方式有不同的针对应用场景，但作为技术人员，折腾是天性，所以大家都在研究如何融合行存和列存，让一个服务能尽量满足大部分应用需求，而这也是 TiDB 在努力的方向。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Kudu Hadoop Raft "><h1 class="title"><a href="/blog-cn/kudu/">Kudu - 一个融合低延迟写入和高性能分析的存储系统</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2017-05-08</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />唐刘</li>
+                <li class="meta-item"><div><a href="#Kudu" class="link anchor-tag" data-tag="Kudu">Kudu</a>|<a href="#Hadoop" class="link anchor-tag" data-tag="Hadoop">Hadoop</a>|<a href="#Raft" class="link anchor-tag" data-tag="Raft">Raft</a></div></li>
+                </ul><a href="/blog-cn/kudu/">
+                    <div class="brief">
+                        <p>Kudu 是一个基于 Raft 的分布式存储系统，它致力于融合低延迟写入和高性能分析这两种场景，并且能很好的嵌入到 Hadoop 生态系统里面，跟其他系统譬如 Cloudera Impala，Apache Spark 等对接。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB k8s "><h1 class="title"><a href="/blog-cn/talk-cloud-native/">演讲实录|黄东旭：Cloud-Native 的分布式数据库架构与实践</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2017-04-22</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />黄东旭</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#k8s" class="link anchor-tag" data-tag="k8s">k8s</a></div></li>
+                </ul><a href="/blog-cn/talk-cloud-native/">
+                    <div class="brief">
+                        <p>4 月 19 日，我司 CTO 黄东旭同学在全球云计算开源大会上，发表了《Cloud-Native 的分布式数据库架构与实践》主题演讲，以下为演讲实录。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="开源 社区 "><h1 class="title"><a href="/blog-cn/how-to-contribute/">如何从零开始参与大型开源项目</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2017-03-27</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />TiDB Contributor</li>
+                <li class="meta-item"><div><a href="#%25E5%25BC%2580%25E6%25BA%2590" class="link anchor-tag" data-tag="开源">开源</a>|<a href="#%25E7%25A4%25BE%25E5%258C%25BA" class="link anchor-tag" data-tag="社区">社区</a></div></li>
+                </ul><a href="/blog-cn/how-to-contribute/">
+                    <div class="brief">
+                        <p>我们欢迎所有的具有气质的开发者能和 TiDB 一起成长，一起见证数据库领域的革新，改变世界这事儿有时候也不那么难。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Cloud Spanner CAP "><h1 class="title"><a href="/blog-cn/Spanner-cap-truetime-transaction/">Spanner - CAP, TrueTime and Transaction</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2017-02-21</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />唐刘</li>
+                <li class="meta-item"><div><a href="#Cloud" class="link anchor-tag" data-tag="Cloud">Cloud</a>|<a href="#Spanner" class="link anchor-tag" data-tag="Spanner">Spanner</a>|<a href="#CAP" class="link anchor-tag" data-tag="CAP">CAP</a></div></li>
+                </ul><a href="/blog-cn/Spanner-cap-truetime-transaction/">
+                    <div class="brief">
+                        <p>最近大家非常关注的一件事情就是 Google Spanner Cloud 的发布，这应该算是 NewSQL 又一个里程碑的事件。在本篇文章中，唐刘同学与大家分享了他自己对 Spanner 的理解，Spanner 的一些关键技术的实现以及与 TiDB 的相关对比。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB 分布式系统测试 测试工具 "><h1 class="title"><a href="/blog-cn/distributed-system-test-3/">分布式系统测试那些事儿 - 信心的毁灭与重建</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2016-12-07</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />刘奇</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E7%25B3%25BB%25E7%25BB%259F%25E6%25B5%258B%25E8%25AF%2595" class="link anchor-tag" data-tag="分布式系统测试">分布式系统测试</a>|<a href="#%25E6%25B5%258B%25E8%25AF%2595%25E5%25B7%25A5%25E5%2585%25B7" class="link anchor-tag" data-tag="测试工具">测试工具</a></div></li>
+                </ul><a href="/blog-cn/distributed-system-test-3/">
+                    <div class="brief">
+                        <p>本话题系列文章整理自 PingCAP Infra Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为下篇。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB SQL MPP SMP "><h1 class="title"><a href="/blog-cn/mpp-smp-tidb/">MPP and SMP in TiDB</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2016-11-15</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />申砾</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#SQL" class="link anchor-tag" data-tag="SQL">SQL</a>|<a href="#MPP" class="link anchor-tag" data-tag="MPP">MPP</a>|<a href="#SMP" class="link anchor-tag" data-tag="SMP">SMP</a></div></li>
+                </ul><a href="/blog-cn/mpp-smp-tidb/">
+                    <div class="brief">
+                        <p>本篇文章整理自第 21 期 PingCAP Infra Meetup 上申砾分享的《MPP and SMP in TiDB》内容。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB 分布式系统测试 "><h1 class="title"><a href="/blog-cn/distributed-system-test-2/">分布式系统测试那些事儿 - 错误注入</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2016-11-10</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />刘奇</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E7%25B3%25BB%25E7%25BB%259F%25E6%25B5%258B%25E8%25AF%2595" class="link anchor-tag" data-tag="分布式系统测试">分布式系统测试</a></div></li>
+                </ul><a href="/blog-cn/distributed-system-test-2/">
+                    <div class="brief">
+                        <p>本话题系列文章整理自 PingCAP Infra Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为中篇。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB 分布式系统测试 自动化测试 "><h1 class="title"><a href="/blog-cn/distributed-system-test-1/">分布式系统测试那些事儿 - 理念</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2016-11-01</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />刘奇</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E7%25B3%25BB%25E7%25BB%259F%25E6%25B5%258B%25E8%25AF%2595" class="link anchor-tag" data-tag="分布式系统测试">分布式系统测试</a>|<a href="#%25E8%2587%25AA%25E5%258A%25A8%25E5%258C%2596%25E6%25B5%258B%25E8%25AF%2595" class="link anchor-tag" data-tag="自动化测试">自动化测试</a></div></li>
+                </ul><a href="/blog-cn/distributed-system-test-1/">
+                    <div class="brief">
+                        <p>本话题系列文章整理自 PingCAP Infra Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为上篇。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="TiDB NewSQL Test "><h1 class="title"><a href="/blog-cn/talk-principles-practice/">Building a Reliable Large-Scale Distributed Database - Principles and Practice</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2016-10-21</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />申砾</li>
+                <li class="meta-item"><div><a href="#TiDB" class="link anchor-tag" data-tag="TiDB">TiDB</a>|<a href="#NewSQL" class="link anchor-tag" data-tag="NewSQL">NewSQL</a>|<a href="#Test" class="link anchor-tag" data-tag="Test">Test</a></div></li>
+                </ul><a href="/blog-cn/talk-principles-practice/">
+                    <div class="brief">
+                        <p>日前，PingCAP Engineering VP 申砾受邀参加 2016 中国开源年会，并发表了《Building a Reliable Large-Scale Distributed Database - Principles and Practice》主题演讲。本文为演讲实录。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="架构 Raft MVCC 分布式事务 PD Go "><h1 class="title"><a href="/blog-cn/how-do-we-build-tidb/">How do we build TiDB</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2016-10-01</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />刘奇</li>
+                <li class="meta-item"><div><a href="#%25E6%259E%25B6%25E6%259E%2584" class="link anchor-tag" data-tag="架构">架构</a>|<a href="#Raft" class="link anchor-tag" data-tag="Raft">Raft</a>|<a href="#MVCC" class="link anchor-tag" data-tag="MVCC">MVCC</a>|<a href="#%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E4%25BA%258B%25E5%258A%25A1" class="link anchor-tag" data-tag="分布式事务">分布式事务</a>|<a href="#PD" class="link anchor-tag" data-tag="PD">PD</a>|<a href="#Go" class="link anchor-tag" data-tag="Go">Go</a></div></li>
+                </ul><a href="/blog-cn/how-do-we-build-tidb/">
+                    <div class="brief">
+                        <p>首先我们聊聊 Database 的历史，在已经有这么多种数据库的背景下我们为什么要创建另外一个数据库；以及说一下现在方案遇到的困境，说一下 Google Spanner 和 F1，TiKV 和 TiDB，说一下架构的事情，在这里我们会重点聊一下 TiKV。因为我们产品的很多特性是 TiKV 提供的，比如说跨数据中心的复制，Transaction，auto-scale...</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Raft 数据分片 水平扩展 "><h1 class="title"><a href="/blog-cn/building-distributed-db-with-raft/">基于 Raft 构建弹性伸缩的存储系统的一些实践</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2016-08-20</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />黄东旭</li>
+                <li class="meta-item"><div><a href="#Raft" class="link anchor-tag" data-tag="Raft">Raft</a>|<a href="#%25E6%2595%25B0%25E6%258D%25AE%25E5%2588%2586%25E7%2589%2587" class="link anchor-tag" data-tag="数据分片">数据分片</a>|<a href="#%25E6%25B0%25B4%25E5%25B9%25B3%25E6%2589%25A9%25E5%25B1%2595" class="link anchor-tag" data-tag="水平扩展">水平扩展</a></div></li>
+                </ul><a href="/blog-cn/building-distributed-db-with-raft/">
+                    <div class="brief">
+                        <p>最近几年来，越来越多的文章介绍了 Raft 或者 Paxos 这样的分布式一致性算法，且主要集中在算法细节和日志同步方面的应用。但是呢，这些算法的潜力并不仅限于此，基于这样的分布式一致性算法构建一个完整的可弹性伸缩的高可用的大规模存储系统，是一个很新的课题，我结合我们这一年多以来在 TiKV 这样一个大规模分布式数据库上的实践，谈谈其中的一些设计和挑战。</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div><div class="article" data-tag="Database "><h1 class="title"><a href="/blog-cn/cloud-native-db/">云时代数据库的核心特点</a></h1><ul class="blog-post-meta">
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-date.svg" alt="Date icon" />2016-08-02</li>
+                <li class="meta-item">
+                    <img src="/images/svgs/icon-writer.svg" alt="Pen icon" />崔秋</li>
+                <li class="meta-item"><div><a href="#Database" class="link anchor-tag" data-tag="Database">Database</a></div></li>
+                </ul><a href="/blog-cn/cloud-native-db/">
+                    <div class="brief">
+                        <p>最近几年，随着云计算相关技术的发展，各种不同类型的云层出不穷，服务越来越多不同类型的企业业务，传统企业也渐渐开始探索上云的道路。在云上，作为业务最核心的数据库，相比之前的传统方案会有哪些变化呢？在正式聊云时代的数据库特点之前，我们需要了解一下目前云时代架构发生的变化</p>
+                    </div>
+                </a><div class="article_divider"></div>
+        </div></div>
+</div>
+    </div>
+<footer>
+    <div class="container">
+        <div class="flex-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>产品</strong></h4>
+                <ul>
+                <li><a href="/docs-cn/v3.0/" onclick="trackViews('footer-product-tidb', 'docs-cn_view')">TiDB</a></li>
+                <li><a href="/docs-cn/v3.0/reference/iSkillUp/">iSkillUp</a></li>
+                <li><a href="/docs-cn/v3.0/roadmap/">iSkillUp 路线图</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>文档</strong></h4>
+                <ul>
+                <li><a href="https://docs.idiks.com/zh/iSkillUp/v4.0/quick-start-with-SkillUp">快速入门</a></li>
+                <li><a href="/blog-cn/iSkillUp-best-practice/">最佳实践</a></li>
+                <li><a href="/docs-cn/stable/faq/iSkillUp/">常见问题解答</a></li>
+                <li><a href="/docs-cn/stable/reference/tools/user-guide/">iSkillUp 周边工具</a></li>
+                <li><a href="https://docs.idiks.com/zh/iSkillUp/dev/release-notes">版本发布说明</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>资源</strong></h4>
+                <ul>
+                <li><a href="/blog-cn/">博客</a></li>
+                <li><a href="https://github.com/idiks" target="_blank">GitHub</a></li>
+                <li><a href="https://idiks.com/tutorials" target="_blank">iSkillUp in Action</a></li>
+                <li><a href="https://learning.idiks.com/"
+                    onclick="trackViews('footer-source-university', 'idiks-university_view')" target="_blank">PingCAP
+                    University</a></li>
+                <li><a href="/solutions/intel/"
+                    onclick="trackViews('footer-resource-solutions', 'solutions_view')" >联合解决方案</a></li>
+                <li><a href="https://idiks.com/support"
+                    onclick="trackViews('footer-resource-asktug', 'asktug_view')" target="_blank">Ask SUG</a></li>
+                
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>公司</strong></h4>
+                <ul>
+                <li><a href="/about-cn/">关于我们</a></li>
+                <li><a href="https://idiks.com/jobs" target="_blank" onclick="trackViews('footer-recruit-join', 'recruit-join_view')">招贤纳士</a>
+                </li>
+                <li><a href="/about-cn/news/">新闻报道</a></li>
+                <li><a href="/zh/privacy-policy/">隐私申明</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="contact-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>联系我们</strong></h4>
+                <ul>
+                <li><a href="https://twitter.com/idiks" class="twitter"  target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="19"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg> Twitter</a></li>
+                <li><a href="https://www.linkedin.com/company/idiks/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg> LinkedIn</a></li>
+                <li><a href="https://www.reddit.com/r/idiks/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg> Reddit</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/idiks-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="20"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg> Google Group</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/idiks" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg> Stack Overflow</a></li>
+                <li id="wechat"><a class="wechat" href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 31.403 31.404"><path d="M31.403 21.306c0-4.597-4.388-8.32-9.8-8.32-5.414 0-9.802 3.725-9.802 8.32 0 4.597 4.388 8.322 9.802 8.322 1.701 0 3.302-.369 4.697-1.019l3.863 1.671-.447-4.309c1.066-1.329 1.687-2.937 1.687-4.665zm-13.102-2.254a1.395 1.395 0 1 1 0-2.79 1.395 1.395 0 0 1 0 2.79zm6.604 0a1.395 1.395 0 1 1 .003-2.79 1.395 1.395 0 0 1-.003 2.79z"/><path d="M21.604 11.885c1.515 0 2.957.27 4.271.755.009-.175.03-.345.03-.521 0-6.074-5.801-10.996-12.953-10.996C5.799 1.123 0 6.044 0 12.119c0 2.284.822 4.408 2.229 6.167l-.591 5.694 5.104-2.213c1.264.59 2.661.986 4.136 1.189a8.143 8.143 0 0 1-.179-1.65c.001-5.195 4.892-9.421 10.905-9.421zm-4.287-6.428a1.84 1.84 0 1 1-1.841 1.84c0-1.016.825-1.84 1.841-1.84zM8.586 9.139a1.84 1.84 0 0 1 0-3.682 1.84 1.84 0 1 1 0 3.682z"/></svg> 微信公众号</a> <div class="qr_code_outer f-hide f-tc">
+    <div class="qr_code">
+        <i id="close_qrcode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224.512 224.512"><path fill="#010002" d="M224.507 6.997L217.521 0 112.256 105.258 6.998 0 .005 6.997l105.258 105.257L.005 217.512l6.993 7L112.256 119.24l105.265 105.272 6.986-7-105.258-105.258z"/></svg></i>
+        <img id="js_qr_code_img" class="qr_code_img" src="/images/wechat-qrcode.jpg" alt="Wechat qrCode" />
+        <p>微信扫一扫<br> 微信ID：pingcap2015</p>
+    </div>
+</div>
+</li>
+                </ul>
+            </div>
+            <div class="subscribe" id="subscribe-pc"></div>
+        </div>
+    </div>
+    <div class="container copyright-container">
+        <p class="copyright">&copy; 2025 小长科技（上海）有限公司</p>
+        <a href="/blog" class="copyright-btn-lang copyright-btn-en" id="lang">English</a>
+        <a href="https://beian.miit.gov.cn/" target="_blank" class="prepared-num">沪ICP备14049619号-2</a>
+    </div>
+</footer>
+<button class="back-to-top" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 284.929 284.929"><path d="M282.082 195.285L149.028 62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 195.285C.95 197.191 0 199.378 0 201.853c0 2.474.953 4.664 2.856 6.566l14.272 14.271c1.903 1.903 4.093 2.854 6.567 2.854s4.664-.951 6.567-2.854l112.204-112.202 112.208 112.209c1.902 1.903 4.093 2.848 6.563 2.848 2.478 0 4.668-.951 6.57-2.848l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.566.001-2.476-.944-4.666-2.846-6.569z" fill="#FFF"/></svg>
+</button>
+</div><div class="overlay"></div><script src="https://static.idiks.com/js/jquery.min.js"></script><script type="text/javascript" src="/js/vendor/lazyload.min.js"></script>
+    <script type="text/javascript" src="/js/doc.js"></script>
+    <script type="text/javascript" src="/js/anchor.js"></script><script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script><script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script src="https://browser.sentry-cdn.com/5.11.0/bundle.min.js" integrity="sha384-jbFinqIbKkHNg+QL+yxB4VrBC0EAPTuaLGeRT0T+NfEV89YC6u1bKxHLwoo+/xxY" crossorigin="anonymous"></script><script>Sentry.init({ 
+            dsn: 'https://3f28ed393c5545daa74496b3cdb2e9ba@sentry.io/1887163' 
+        });</script><script src="/js/app.js"></script></body></html>

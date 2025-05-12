@@ -1,0 +1,456 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<script>
+window.ga =
+    window.ga ||
+    function() {
+        ;(ga.q = ga.q || []).push(arguments)
+    }
+ga.l = +new Date()
+ga('create', 'UA-99991864-4', 'auto')
+ga('send', 'pageview')
+</script>
+<script async src="https://static.idiks.com/js/ga-analytics.js"></script>
+
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/github-markdown.css">
+
+
+<link rel="stylesheet" href="/css/doc.css">
+
+    
+    <title>How to Simulate I/O Faults at Runtime |&nbsp;TiDB</title><link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="description" content="This post dives deep into how we implement the IOChaos experiment without using a sidecar.">
+<meta name="robots" content="noodp">
+<meta name="keywords" content="TiDB, MySQL, HTAP, Open Source, Cloud-Native, NewSQL, Aurora Alternative">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="How to Simulate I/O Faults at Runtime | TiDB">
+<meta property="og:description" content="This post dives deep into how we implement the IOChaos experiment without using a sidecar.">
+<meta property="og:url" content="https://idiks.com/blog/how-to-simulate-io-faults-at-runtime/">
+<meta property="og:site_name" content="MySQL at Scale. No more manual sharding">
+<meta property="og:image" content="/images/blog/how-to-simulate-io-faults-at-runtime.jpg">
+<meta property="og:image:secure_url" content="/images/blog/how-to-simulate-io-faults-at-runtime.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="og:image:width" content="1200">
+<meta name="og:image:height" content="600"><meta name="twitter:description" content="This post dives deep into how we implement the IOChaos experiment without using a sidecar.">
+<meta name="twitter:title" content="How to Simulate I/O Faults at Runtime | TiDB">
+<meta name="twitter:site" content="@pingcap">
+<meta name="twitter:image" content="https://static.idiks.com/images/blog/how-to-simulate-io-faults-at-runtime.jpg"><meta name="twitter:creator" content="@pingcap">
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http:\/\/schema.org",
+    "@type": "WebSite",
+    "url": "https:\/\/pingcap.com\/",
+    "name": "PingCAP",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https:\/\/pingcap.com\/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+<script type="text/javascript" async src="https://accounts.pingcap.com/static/pingcap_sso/js/track.beta.js"></script>
+    
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+<link rel="preload" href="https://static.idiks.com/js/jquery.min.js" as="script">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/docsearch.min.css">
+<script type="text/javascript">
+var trackOutboundLink = function(url) {
+  var redirectTriggered = false
+  ga('send', 'event', 'outbound', 'click', url, {
+    hitCallback: function() {
+      redirectTriggered = true
+      document.location = url
+    }
+  })
+  setTimeout(function() {
+    if (!redirectTriggered) {
+      document.location = url
+    }
+  }, 1500)
+}
+
+var trackViews = function(btn_type, event_category) {
+  var event_label = btn_type
+  var eventCategory = event_category
+  ga('send', 'event', {
+    'eventCategory': eventCategory,
+    'eventAction': 'click',
+    'eventLabel': event_label,
+    'transport': 'beacon'
+  });
+}
+</script>
+<script>if (location.pathname === '/') {
+        if (location.hostname === 'idiks.github.io') {
+            location.href = '/en/'
+        }
+    }</script></head>       <body data-lang="en" ><div id="page-content">
+
+<header role="navigation" class="fixed-top">
+    <div class="container">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        <div class="nav-wrapper">
+            <div class="navigation">
+                <ul>
+                <li ><a class="a-en" href="https://idiks.com">Cloud</a></li>
+                <li ><a class="a-en" class="tidb-academy"
+                    href="/tidb-academy">iDIKS Academy</a></li>
+                <li class="docs-type-selector " id="docsTypeSelector">
+                    <a class="header-doc-nav" href="#">Docs</a>
+                    <div class="header-dropdown-menu" id="docsTypeSelectorItem">
+                        <a class="header-dropdown-item" href="/docs/stable/">TiDB</a>
+                        <a class="header-dropdown-item" href="/docs/tidb-in-kubernetes/stable/">TiDB in Kubernetes</a>
+                        <a class="header-dropdown-item" href="/docs/tidb-data-migration/stable/">TiDB Data Migration (DM)</a>
+                    </div>
+                </li>
+                
+                <li ><a class="a-en" href="/success-stories">Success
+                    Stories</a></li>
+                <li class="sel" ><a class="a-en" href="/blog">Blog</a></li>
+                <li ><a class="link-download link-download-en" href="/download">Free Download</a></li>
+                </ul>
+            </div>
+            <div class="global-search">
+                
+                
+                
+                <div class="search-wrapper">
+    <span class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fff" viewBox="0 0 67.125 67.125"><path d="M23.902 0C11.01 0 .523 10.488.523 23.38c0 12.891 10.487 23.379 23.379 23.379a23.258 23.258 0 0 0 14.471-5.037l24.816 24.817c.391.391.902.586 1.414.586s1.023-.195 1.414-.586a2 2 0 0 0 0-2.828L41.293 38.985c3.721-4.142 5.989-9.613 5.989-15.605C47.282 10.488 36.794 0 23.902 0zM4.523 23.38C4.523 12.694 13.216 4 23.902 4c10.687 0 19.38 8.694 19.38 19.38 0 5.396-2.221 10.279-5.791 13.795a1.959 1.959 0 0 0-.488.349 2.003 2.003 0 0 0-.271.343C33.31 40.9 28.825 42.76 23.903 42.76c-10.686-.001-19.38-8.695-19.38-19.38z"/><path d="M24.075 8.591c-8.25 0-14.962 6.712-14.962 14.962a2 2 0 0 0 4 0c0-6.044 4.918-10.962 10.962-10.962a2 2 0 0 0 0-4z"/></svg></span>
+    <input data-lang="en" data-type="" type="search" id="search-input" name="q"
+        placeholder="Search TiDB Docs">
+</div>
+
+<script>
+    const inputNode = document.getElementById("search-input")
+
+    inputNode.addEventListener('keyup', ({key}) => {
+        if (key === "Enter") {
+            if ($('#search-input').data('lang') == 'cn') {
+                lang = 'zh'
+            }
+
+            const query = $('#search-input').val()
+            if (query) {
+                url = "https://idiks.com/docs" + (lang == 'zh' ? 'zh/' : '') + "search/?lang=" + lang + "&type=tidb&version=v4.0&q=" + query
+                window.location.href = url
+            }
+        }
+    })
+</script>
+
+            </div>
+        </div>
+        <div class="nav-btn nav-slider">
+            <i class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 459 459"><path d="M0 382.5h459v-51H0v51zM0 255h459v-51H0v51zM0 76.5v51h459v-51H0z" fill="#FFF"/></svg></i>
+        </div>
+    </div>
+</header>
+
+
+
+<nav class="mobile-sidebar">
+    <div class="nav-header">
+        <div class="logo-wrap">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        </div>
+    </div>
+    <ul class="ul-base">
+        <li ><a href="https://idiks.com/">Cloud</a></li>
+        <li ><a class="tidb-academy" href="/tidb-academy">TiDB Academy</a></li>
+        <li class="docs-type-selector " id="docsTypeSelector">
+            <p class="header-doc-nav">Docs</p>
+            <div class="header-dropdown-menu" id="docsTypeSelectorItem">
+                <a class="header-dropdown-item" href="/docs/stable/">TiDB</a>
+                <a class="header-dropdown-item" href="/docs/tidb-in-kubernetes/stable/">TiDB in Kubernetes</a>
+                <a class="header-dropdown-item" href="/docs/tidb-data-migration/stable/">TiDB Data Migration (DM)</a>
+            </div>
+        </li>
+        <li ><a href="/success-stories">Success Stories</a></li>
+        <li class="sel"><a href="/blog">Blog</a></li>
+        <li><a class="link-download" href="/download">Free Download</a></li>
+    </ul>
+    <div class="nav-footer">
+        <div class="contact-list-wrap">
+        <div class="flex-list">
+            <h4 class="list-title"><strong>Contact</strong></h4>
+            <ul class="social ul-base">
+            <li><a href="https://twitter.com/PingCAP" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="18"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/pingcap/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg></a></li>
+            <li><a href="https://www.reddit.com/r/TiDB/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg></a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/tidb-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="18"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg></a></li>
+            <li><a href="https://stackoverflow.com/questions/tagged/tidb" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg></a></li>
+            </ul>
+        </div>
+        <div class="subscribe">
+            <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"><button class="btn btn-subscribe f-tc" style="margin-left: 0.75rem;">Subscribe to Blog</button></a>
+        </div>
+        </div>
+        <div class="container">
+        <a href="/blog-cn" class="btn-lang" id="lang">中文</a>
+        </div>
+    </div>
+</nav>
+
+<div class="blog">
+        <div class="blogArticle__container">
+            
+            <div class="archive"><div class="article-nav">
+                            <a href="/blog/#Engineering">BLOG HOME</a> <span> > </span>Engineering</div><div class="content markdown-body">
+                    <h1 class="title">How to Simulate I/O Faults at Runtime</h1>
+                    <ul class="blog-post-meta">
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-date.svg" alt="Date icon">Fri, Jan 8, 2021</li>
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-writer.svg" alt="Pen icon">Ke&#39;ao Yang</li>
+                    </ul>
+                    <div class="blog-text"><p><strong>Author:</strong> Ke'ao Yang (Software Engineer at PingCAP)</p>
+<p><strong>Transcreator:</strong> <a href="https://github.com/TomShawn">Tom Xiong</a>; <strong>Editor:</strong> Tom Dewan</p>
+<p><img src="media/how-to-simulate-io-faults-at-runtime.jpg" alt="How to simulate I/O faults at runtime"></p>
+<p>In a production environment, filesystem faults might occur due to various incidents such as disk failures and administrator errors. As a Chaos Engineering platform, <a href="https://pingcap.com/blog/chaos-mesh-your-chaos-engineering-solution-for-system-resiliency-on-kubernetes">Chaos Mesh</a> has supported simulating I/O faults in a filesystem ever since its early versions. By simply adding an IOChaos CustomResourceDefinition (CRD), we can watch how the filesystem fails and returns errors.</p>
+<p>However, before Chaos Mesh 1.0, this experiment was not easy and may have consumed a lot of resources. We needed to inject sidecar containers to the Pod through the mutating admission webhooks and rewrite the <code>ENTRYPOINT</code> command. Even if no fault was injected, the injected sidecar container caused a substantial amount of overhead.</p>
+<p>Chaos Mesh 1.0 has changed all this. Now, we can use IOChaos to inject faults to a filesystem at runtime. This simplifies the process and greatly reduces system overhead. This blog post introduces how we implement the IOChaos experiment without using a sidecar.</p>
+<h2 id="io-fault-injection">I/O fault injection</h2>
+<p>To simulate I/O faults at runtime, we need to inject faults into a filesystem after the program starts <a href="https://man7.org/linux/man-pages/man2/syscall.2.html">system calls</a> (such as reads and writes) but before the call requests arrive at the target filesystem. We can do that in one of two ways:</p>
+<ul>
+<li>Use Berkeley Packet Filter (BPF); however, it <a href="https://github.com/iovisor/bcc/issues/2336">cannot be used to inject delay</a>.</li>
+<li>Add a filesystem layer called ChaosFS before the target filesystem. ChaosFS uses the target filesystem as the backend and receives requests from the operating system. The entire call link is <strong>target program syscall</strong> -&gt; <strong>Linux kernel</strong> -&gt; <strong>ChaosFS</strong> -&gt; <strong>target filesystem</strong>. Because ChaosFS is customizable, we can inject delays and errors as we want. Therefore, ChaosFS is our choice.</li>
+</ul>
+<p>But ChaosFS has several problems:</p>
+<ul>
+<li>If ChaosFS reads and writes files in the target filesystem, we need to <a href="https://man7.org/linux/man-pages/man2/mount.2.html">mount</a> ChaosFS to a different path than the target path specified in the Pod configuration. ChaosFS <strong>cannot</strong> be mounted to the path of the target directory.</li>
+<li>We need to mount ChaosFS <strong>before</strong> the target program starts running. This is because the newly-mounted ChaosFS takes effect only on files that are newly opened by the program in the target filesystem.</li>
+<li>We need to mount ChaosFS to the target containter's <code>mnt</code> namespace. For details, see <a href="https://man7.org/linux/man-pages/man7/mount_namespaces.7.html">mount_namespaces(7) — Linux manual page</a>.</li>
+</ul>
+<p>Before Chaos Mesh 1.0, we used the <a href="https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/">mutating admission webhook</a> to implement IOChaos. This technique addressed the three problems lists above and allowed us to:</p>
+<ul>
+<li>Run scripts in the target container. This action changed the target directory of the ChaosFS's backend filesystem (for example, from <code>/mnt/a</code> to <code>/mnt/a_bak</code>) so that we could mount ChaosFS to the target path (<code>/mnt/a</code>).</li>
+<li>Modify the command that starts the Pod. For example, we could modify the original command <code>/app</code> to <code>/waitfs.sh /app</code>.</li>
+<li>The <code>waitfs.sh</code> script kept checking whether the filesystem was successfully mounted. If it was mounted, <code>/app</code> was started.</li>
+<li>Add a new container in the Pod to run ChaosFS. This container needed to share a volume with the target container (for example, <code>/mnt</code>), and then we mounted this volume to the target directory (for example, <code>/mnt/a</code>). We also properly enabled <a href="https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation">mount propagation</a> for this volume's mount to penetrate the share to host and then penetrate slave to the target.</li>
+</ul>
+<p>These three approaches allowed us to inject I/O faults while the program was running. However, the injection was far from convenient:</p>
+<ul>
+<li>We could only inject faults into a volume subdirectory, not into the entire volume. The workaround was to replace <code>mv</code> (rename) with <code>mount move</code> to move the mount point of the target volume.</li>
+<li>We had to explicitly write commands in the Pod rather than implicitly use the image commands. Otherwise, the <code>/waitfs.sh</code> script could not properly start the program after the filesystem was mounted.</li>
+<li>The corresponding container needed to have a proper configuration for mount propagation. Due to potential privacy and security issues, we <strong>could not</strong> modify the configuration via the mutating admission webhook.</li>
+<li>The injection configuration was troublesome. Worse still, we had to create a new Pod after the configuration was able to inject faults.</li>
+<li>We could not withdraw ChaosFS while the program was running. Even if no fault or error was injected, the performance was greatly affected.</li>
+</ul>
+<h2 id="inject-io-faults-without-the-mutating-admission-webhook">Inject I/O faults without the mutating admission webhook</h2>
+<p>What about cracking these tough nuts without the mutating admission webhook? Let's get back and think a bit about the reason why we used the mutating admission webhook to add a container in which ChaosFS runs. We do that to mount the filesystem to the target container.</p>
+<p>In fact, there is another solution. Instead of adding containers to the Pod, we can first use the <code>setns</code> Linux system call to modify the namespace of the current process and then use the <code>mount</code> call to mount ChaosFS to the target container. Suppose that the filesystem to inject is <code>/mnt</code>. The new injection process is as follows:</p>
+<ol>
+<li>Use <code>setns</code> for the current process to enter the mnt namespace of the target container.</li>
+<li>Execute <code>mount --move</code> to move <code>/mnt</code> to <code>/mnt_bak</code>.</li>
+<li>Mount ChaosFS to <code>/mnt</code> and use <code>/mnt_bak</code> as the backend.</li>
+</ol>
+<p>After the process is finished, the target container will open, read, and write the files in <code>/mnt</code> through ChaosFS. In this way, delays or faults are injected much more easily. However, there are still two questions to answer:</p>
+<ul>
+<li>How do you handle the files that are already opened by the target process?</li>
+<li>How do you recover the process given that we cannot unmount the filesystem when files are opened?</li>
+</ul>
+<h3 id="dynamically-replace-file-descriptors">Dynamically replace file descriptors</h3>
+<p><strong>ptrace solves both of the two questions above.</strong> We can use ptrace to replace the opened file descriptors (FD) at runtime and replace the current working directory (CWD) and mmap.</p>
+<h4 id="use-ptrace-to-allow-a-tracee-to-run-a-binary-program">Use ptrace to allow a tracee to run a binary program</h4>
+<p><a href="https://man7.org/linux/man-pages/man2/ptrace.2.html">ptrace</a> is a powerful tool that makes the target process (tracee) to run any system call or binary program. For a tracee to run the program, ptrace modifies the RIP-pointed address to the target process and adds an <code>int3</code> instruction to trigger a breakpoint. When the binary program stops, we need to restore the registers and memory.</p>
+<blockquote>
+<p><strong>Note:</strong></p>
+<p>In the <a href="https://en.wikipedia.org/wiki/X86_assembly_language">x86_64 architecture</a>, the RIP register (also called an instruction pointer) always points to the memory address at which the next directive is run.</p>
+</blockquote>
+<p>To load the program into the target process memory spaces:</p>
+<ol>
+<li>Use ptrace to call mmap in the target program to allocate the needed memory.</li>
+<li>Write the binary program to the newly allocated memory and make the RIP register point to it.</li>
+<li>After the binary program stops, call munmap to clean up the memory section.</li>
+</ol>
+<p>As a best practice, we often replace ptrace <code>POKE_TEXT</code> writes with <code>process_vm_writev</code> because if there is a huge amount of data to write, <code>process_vm_writev</code> performs more efficiently.</p>
+<p>Using ptrace, we are able to make a process to replace its own FD. Now we only need a method to make that replacement happen. This method is the <code>dup2</code> system call.</p>
+<div class="trackable-btns">
+  <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm" onclick="trackViews('How to Simulate I/O Faults at Runtime', 'subscribe-blog-btn-middle')"><button>Subscribe to Blog</button></a>
+</div>
+<h4 id="use-dup2-to-replace-file-descriptor">Use <code>dup2</code> to replace file descriptor</h4>
+<p>The signature of the <code>dup2</code> function is <code>int dup2(int oldfd, int newfd);</code>. It is used to create a copy of the old FD (<code>oldfd</code>). This copy has an FD number of <code>newfd</code>. If <code>newfd</code> already corresponds to the FD of an opened file, the FD on the file that's already opened is automatically closed.</p>
+<p>For example, the current process opens <code>/var/run/__chaosfs__test__/a</code> whose FD is <code>1</code>. To replace this opened file with <code>/var/run/test/a</code>, this process performs the following operations:</p>
+<ol>
+<li>Uses the <code>fcntl</code> system call to get the <code>OFlags</code> (the parameter used by the <code>open</code> system call, such as <code>O_WRONLY</code>) of <code>/var/run/__chaosfs__test__/a</code>.</li>
+<li>Uses the <code>Iseek</code> system call to get the current location of <code>seek</code>.</li>
+<li>Uses the <code>open</code> system call to open <code>/var/run/test/a</code> using the same <code>OFlags</code>. Assume that the FD is <code>2</code>.</li>
+<li>Uses <code>Iseek</code> to change the <code>seek</code> location of the newly opened FD <code>2</code>.</li>
+<li>Uses <code>dup2(2, 1)</code> to replace the FD <code>1</code> of <code>/var/run/__chaosfs__test__/a</code> with the newly opened FD <code>2</code>.</li>
+<li>Closes FD <code>2</code>.</li>
+</ol>
+<p>After the process is finished, FD <code>1</code> of the current process points to <code>/var/run/test/a</code>. So that we can inject faults, any subsequent operations on the target file go through the <a href="https://en.wikipedia.org/wiki/Filesystem_in_Userspace">Filesystem in Userspace</a> (FUSE). FUSE is a software interface for Unix and Unix-like computer operating systems that lets non-privileged users create their own file systems without editing kernel code.</p>
+<h4 id="write-a-program-to-make-the-target-process-replace-its-own-file-descriptor">Write a program to make the target process replace its own file descriptor</h4>
+<p>The combined functionality of ptrace and dup2 makes it possible for the tracer to make the tracee replace the opened FD by itself. Now, we need to write a binary program and make the target process run it:</p>
+<blockquote>
+<p><strong>Note:</strong></p>
+<p>In the implementation above, we assume that:</p>
+<ul>
+<li>The threads of the target process are POSIX threads and share the opened files.</li>
+<li>When the target process creates threads using the <code>clone</code> function, the <code>CLONE_FILES</code> parameter is passed.</li>
+</ul>
+<p>Therefore, Chaos Mesh only replaces the FD of the first thread in the thread group.</p>
+</blockquote>
+<ol>
+<li>Write a piece of assembly code according to the two sections above and the usage of syscall directives. <a href="https://github.com/chaos-mesh/toda/blob/1d73871d8ab72b8d1eace55f5222b01957193531/src/replacer/fd_replacer.rs#L133">Here</a> is an example of the assembly code.</li>
+<li>Use an assembler to translate the code into a binary program. We use <a href="https://github.com/CensoredUsername/dynasm-rs">dynasm-rs</a> as the assembler.</li>
+<li>Use ptrace to make the target process run this program.</li>
+</ol>
+<p>When the program runs, the FD is replaced at runtime.</p>
+<h3 id="overall-fault-injection-process">Overall fault injection process</h3>
+<p>The following diagram illustrates the overall I/O fault injection process:</p>
+<p><img src="media/fault-injection-process.jpg" alt="Fault injection process"></p>
+<div class="caption-center"> Fault injection process </div>
+<p>In this diagram, each horizontal line corresponds to a thread that runs in the direction of the arrows. The <strong>Mount/Umount Filesystem</strong> and <strong>Replace FD</strong> tasks are carefully arranged in sequence. Given the process above, this arrangement makes a lot of sense.</p>
+<h2 id="whats-next">What's next</h2>
+<p>I've discussed how we implement fault injection to simulate I/O faults at runtime (see <a href="https://github.com/chaos-mesh/toda">chaos-mesh/toda</a>). However, the current implementation is far from perfect:</p>
+<ul>
+<li>Generation numbers are not supported.</li>
+<li>ioctl is not supported.</li>
+<li>Chaos Mesh does not immediately determine whether a filesystem is successfully mounted. It does so only after one second.</li>
+</ul>
+<p>If you are interested in Chaos Mesh and would like to help us improve it, you're welcome to join <a href="https://slack.cncf.io/">our Slack channel</a> or submit your pull requests or issues to our <a href="https://github.com/chaos-mesh/chaos-mesh">GitHub repository</a>.</p>
+<p>This is the first post in a series on Chaos Mesh implementation. If you want to see how other types of fault injection are implemented, stay tuned.</p>
+</div>
+                </div>
+                <div class="article-toc"></div><div class="ssba-wrap">
+    <div class="ssba">
+        <a data-site="" class="ssba_twitter_share" href="http://twitter.com/share?url=https%3a%2f%2fidiks.com%2fblog%2fhow-to-simulate-io-faults-at-runtime%2f" target="_blank">
+        
+            <img src="/images/svgs/twitter-icon.svg" alt="Twitter icon" />
+        </a>
+        <a data-site="reddit" class="ssba_reddit_share" href="http://reddit.com/submit?url=https%3a%2f%2fidiks.com%2fblog%2fhow-to-simulate-io-faults-at-runtime%2f&title=How%20to%20Simulate%20I%2fO%20Faults%20at%20Runtime" target="_blank">
+        
+            <img src="/images/svgs/reddit-icon.svg" alt="Reddit icon" />
+        </a>
+        <a data-site="" class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fidiks.com%2fblog%2fhow-to-simulate-io-faults-at-runtime%2f" target="_blank">
+        
+            <img src="/images/svgs/facebook-icon.svg" alt="Fackbook icon" />
+        </a>
+        <a data-site="linkedin" class="ssba_linkedin_share" href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fidiks.com%2fblog%2fhow-to-simulate-io-faults-at-runtime%2f" target="_blank">
+        
+            <img src="/images/svgs/linkedin-icon.svg" alt="Linkedin icon" />
+        </a>
+        <a data-site="hackernews" class="ssba_hackernews_share" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fidiks.com%2fblog%2fhow-to-simulate-io-faults-at-runtime%2f&t=How%20to%20Simulate%20I%2fO%20Faults%20at%20Runtime" target="_blank">
+        
+            <img src="/images/svgs/hacker-news-icon.svg" alt="Hacker News icon" />
+        </a>
+    </div>
+</div>
+<div class="trackable-btns">
+                    <a href="/download" onclick="trackViews('How to Simulate I\/O Faults at Runtime', 'download-tidb-btn-bottom')"><button>Download
+                        TiDB</button></a>
+                    <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"
+                      onclick="trackViews('How to Simulate I\/O Faults at Runtime', 'subscribe-blog-btn-bottom')"><button>Subscribe to
+                        Blog</button></a>
+                </div>
+            </div>
+            <div class="sidebar-page">
+                <div class="sticky-sidebar">
+                    <p class="toc-title">What’s on this page</p>
+                    <div id="smart_toc_wrapper"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer>
+    <div class="container">
+        <div class="flex-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Product</strong></h4>
+                <ul>
+                <li><a href="/docs/v3.0/">TiDB</a></li>
+                <li><a href="/docs/v3.0/reference/tispark/">TiSpark</a></li>
+                <li><a href="/docs/v3.0/roadmap/">Roadmap</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Docs</strong></h4>
+                <ul>
+                <li><a href="/docs/stable/quick-start-with-tidb/">Quick Start</a></li>
+                <li><a href="/blog/2017-07-24-tidbbestpractice/">Best Practices</a></li>
+                <li><a href="/docs/stable/faq/tidb/">FAQ</a></li>
+                <li><a href="/docs/stable/reference/tools/user-guide/">TiDB Tools</a></li>
+                <li><a href="/docs/dev/releases/rn/">Release Notes</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Resources</strong></h4>
+                <ul>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/weekly/">Monthly</a></li>
+                <li><a href="https://github.com/idiks" target="_blank">GitHub</a></li>
+                <li><a href="/community">TiDB Community</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Company</strong></h4>
+                <ul>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/jobs" target="_blank">Careers</a></li>
+                <li><a href="/news/">News</a></li>
+                <li><a href="/contact-us/">Contact Us</a></li>
+                <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                <li><a href="/terms-of-service/">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="contact-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Connect</strong></h4>
+                <ul>
+                <li><a href="https://twitter.com/idiks" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="19"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg> Twitter</a></li>
+                <li><a href="https://www.linkedin.com/company/idiks/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg> LinkedIn</a></li>
+                <li><a href="https://www.reddit.com/r/idiks/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg>Reddit</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/idiks-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="20"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg>Google Group</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/idiks" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg>Stack Overflow</a></li>
+                </ul>
+            </div>
+            <div class="subscribe">
+                <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"><button class="btn btn-subscribe f-tc">Subscribe to Blog</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="container copyright-container">
+        <p class="copyright">&copy; 2025 iDIKS. All Rights Reserved.</p>
+        <a href="/blog-cn" class="copyright-btn-lang" id="lang">中文</a>
+    </div>
+</footer>
+<button class="back-to-top" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 284.929 284.929"><path d="M282.082 195.285L149.028 62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 195.285C.95 197.191 0 199.378 0 201.853c0 2.474.953 4.664 2.856 6.566l14.272 14.271c1.903 1.903 4.093 2.854 6.567 2.854s4.664-.951 6.567-2.854l112.204-112.202 112.208 112.209c1.902 1.903 4.093 2.848 6.563 2.848 2.478 0 4.668-.951 6.57-2.848l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.566.001-2.476-.944-4.666-2.846-6.569z" fill="#FFF"/></svg>
+</button>
+</div><div class="overlay"></div><script src="https://static.idiks.com/js/jquery.min.js"></script><script type="text/javascript" src="/js/vendor/lazyload.min.js"></script>
+    <script type="text/javascript" src="/js/doc.js"></script>
+    <script type="text/javascript" src="/js/anchor.js"></script><script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script><script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script src="https://browser.sentry-cdn.com/5.11.0/bundle.min.js" integrity="sha384-jbFinqIbKkHNg+QL+yxB4VrBC0EAPTuaLGeRT0T+NfEV89YC6u1bKxHLwoo+/xxY" crossorigin="anonymous"></script><script>Sentry.init({ 
+            dsn: 'https://3f28ed393c5545daa74496b3cdb2e9ba@sentry.io/1887163' 
+        });</script><script src="/js/app.js"></script></body></html>

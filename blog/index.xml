@@ -1,0 +1,2444 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on SQL at Scale</title>
+    <link>https://idiks.com/blog/</link>
+    <description>Recent content in Blogs on SQL at Scale</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 16 Dec 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://idiks.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How SHAREit Powers Its AI Workflow with TiDB and TiKV</title>
+      <link>https://idiks.com/blog/how-shareit-powers-its-ai-workflow-with-tidb-and-tikv/</link>
+      <pubDate>Thu, 16 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-shareit-powers-its-ai-workflow-with-tidb-and-tikv/</guid>
+      <description>In this article, Marshall Zhu from SHAREit shares their AI workflow, the challenges they faced, and how TiDB and TiKV power their AI platform and recommendation system.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Operator Source Code Reading (V): Backup and Restore</title>
+      <link>https://idiks.com/blog/tidb-operator-source-code-reading-v-backup-and-restore/</link>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-operator-source-code-reading-v-backup-and-restore/</guid>
+      <description>This post explains the design and implementation of the backup and restore features provided by TiDB Operator. You&#39;ll learn about the core logic of three related controllers and the backup-manager.</description>
+    </item>
+    
+    <item>
+      <title>Implementing Chaos Engineering in K8s: Chaos Mesh Principle Analysis and Control Plane Development</title>
+      <link>https://idiks.com/blog/implement-chaos-engineering-in-k8s-chaos-mesh-principle-analysis-and-control-plane-development/</link>
+      <pubDate>Thu, 09 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/implement-chaos-engineering-in-k8s-chaos-mesh-principle-analysis-and-control-plane-development/</guid>
+      <description>This post describes the practice of Chaos Engineering in K8s clusters, discusses important Chaos Mesh features through analysis of its source code, and explains how to develop Chaos Mesh&#39;s control plane with code examples.</description>
+    </item>
+    
+    <item>
+      <title>TiDB 5.3: Delivering Enhancements for Data Intensive Applications</title>
+      <link>https://idiks.com/blog/tidb-5.3-delivering-enhancements-for-data-intensive-applications/</link>
+      <pubDate>Tue, 07 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-5.3-delivering-enhancements-for-data-intensive-applications/</guid>
+      <description>We are proud to announce the release of TiDB 5.3. This release makes significant advances in real-time HTAP capabilities and overall stability, with improvements in data migration, high availability, and ease of use.  It also introduces experimental support for Continuous Profiling.</description>
+    </item>
+    
+    <item>
+      <title>How TiDB Powers Real-Time Analytics for a Streaming Media Giant</title>
+      <link>https://idiks.com/blog/how-tidb-powers-real-time-analytics-for-a-streaming-media-giant/</link>
+      <pubDate>Thu, 02 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-tidb-powers-real-time-analytics-for-a-streaming-media-giant/</guid>
+      <description>This post talks about the bottlenecks of traditional real-time analytics architectures and how TiDB helps iQIYI succeed in real-time analytics scenarios.</description>
+    </item>
+    
+    <item>
+      <title>Believe in the Multiplicative Power of Openness</title>
+      <link>https://idiks.com/blog/believe-in-the-multiplicative-power-of-openness-open-source-community/</link>
+      <pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/believe-in-the-multiplicative-power-of-openness-open-source-community/</guid>
+      <description>Max Liu, PingCAP CEO, talks about the power of open source. Learn how the open source community helps PingCAP grow and how PingCAP gives back to the community.</description>
+    </item>
+    
+    <item>
+      <title>How to Connect TiDB Cloud to Metabase</title>
+      <link>https://idiks.com/blog/how-to-connect-tidb-cloud-to-metabase/</link>
+      <pubDate>Wed, 24 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-to-connect-tidb-cloud-to-metabase/</guid>
+      <description>This post describes how to connect TiDB Cloud to Metabase, an open source business intelligence tool.</description>
+    </item>
+    
+    <item>
+      <title>Using a NewSQL DBMS to Improve Data Freshness and Execute Analytical Queries in Minutes</title>
+      <link>https://idiks.com/blog/use-newsql-dbms-to-improve-data-freshness-and-execute-analytical-queries-in-minutes/</link>
+      <pubDate>Thu, 18 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/use-newsql-dbms-to-improve-data-freshness-and-execute-analytical-queries-in-minutes/</guid>
+      <description>For several years, ZTO Express has used TiDB to scale out their database and perform multi-dimensional analytics in real time. Now, they also use TiDB in the HTAP scenario to improve data freshness and execute analytical queries in minutes.</description>
+    </item>
+    
+    <item>
+      <title>KubeCon 2021 Q&amp;A: PingCAP Recaps the Event and Explores Its HTAP Database</title>
+      <link>https://idiks.com/blog/kubecon-2021-qa-pingcap-recaps-event-and-explores-htap-database/</link>
+      <pubDate>Tue, 16 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/kubecon-2021-qa-pingcap-recaps-event-and-explores-htap-database/</guid>
+      <description>VMblog followed up with Liming Deng, PingCAP&#39;s database engineer, on his recent presentation on KubeCon 2021.</description>
+    </item>
+    
+    <item>
+      <title>How to Troubleshoot RocksDB Write Stalls in TiKV</title>
+      <link>https://idiks.com/blog/how-to-troubleshoot-rocksdb-write-stalls-in-tikv/</link>
+      <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-to-troubleshoot-rocksdb-write-stalls-in-tikv/</guid>
+      <description>This troubleshooting guide discusses write performance degradation in TiKV related to the RocksDB built-in write stall feature.</description>
+    </item>
+    
+    <item>
+      <title>PingCAP Introduces Its New Developer Tier to Boost Application Innovation with TiDB Cloud</title>
+      <link>https://idiks.com/blog/pingcap-introduces-its-new-developer-tier-to-boost-application-innovation-with-tidb-cloud/</link>
+      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pingcap-introduces-its-new-developer-tier-to-boost-application-innovation-with-tidb-cloud/</guid>
+      <description>PingCAP, the leading distributed SQL provider, announced today the availability of its new Developer Tier for TiDB Cloud. The fully-managed database as a service now allows developers to easily launch a small TiDB cluster for free for up to one year..</description>
+    </item>
+    
+    <item>
+      <title>TiDB Cloud Introduces Developer Tier</title>
+      <link>https://idiks.com/blog/tidb-cloud-introduces-developer-tier/</link>
+      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-cloud-introduces-developer-tier/</guid>
+      <description>We are excited to announce the Developer Tier of TiDB Cloud, the fully-managed TiDB service by PingCAP.</description>
+    </item>
+    
+    <item>
+      <title>Why SHAREit Selects TiKV as Data Storage for Its 2.4-Billion-User Business</title>
+      <link>https://idiks.com/blog/why-shareit-selects-tikv-for-data-storage-for-its-2.4-billion-user-business/</link>
+      <pubDate>Thu, 04 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/why-shareit-selects-tikv-for-data-storage-for-its-2.4-billion-user-business/</guid>
+      <description>This post talks about why SHAREit Group embraces TiKV, an open-source distributed KV database, as its storage infrastructure. Learn how TiKV beats other solutions and provides bulk load and real-time data writes.</description>
+    </item>
+    
+    <item>
+      <title>The Past, Present, and Future of TiDB as an HTAP Database</title>
+      <link>https://idiks.com/blog/past-present-future-of-tidb-as-htap-database/</link>
+      <pubDate>Tue, 02 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/past-present-future-of-tidb-as-htap-database/</guid>
+      <description>As an HTAP database, TiDB has evolved through three distinct stages. It currently serves countless applications for hybrid workloads, stream computing, and data hubs. In the future, TiDB will become a cloud-native, multi-model database.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Operator Source Code Reading (IV): Implementing a Component Control Loop</title>
+      <link>https://idiks.com/blog/tidb-operator-source-code-reading-4-implement-component-control-loop/</link>
+      <pubDate>Thu, 28 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-operator-source-code-reading-4-implement-component-control-loop/</guid>
+      <description>This post explains how TiDB Operator implements a component control loop by taking PD as an example. You&#39;ll learn PD and other component&#39;s lifecycle management.</description>
+    </item>
+    
+    <item>
+      <title>An 8x System Performance Boost: Why We Migrated from MySQL to a NewSQL Database</title>
+      <link>https://idiks.com/blog/8x-system-performance-boost-why-we-migrated-from-mysql-to-newsql-database/</link>
+      <pubDate>Tue, 26 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/8x-system-performance-boost-why-we-migrated-from-mysql-to-newsql-database/</guid>
+      <description>As JD.com&#39;s business grew, they faced big database challenges. To solve their problems, they migrated from MySQL to TiDB. TiDB helps scale out their databases and increases their large parcel sorting system&#39;s performance by 8x.</description>
+    </item>
+    
+    <item>
+      <title>Introducing the PingCAP External Referral Program</title>
+      <link>https://idiks.com/blog/introducing-pingcap-external-referral-program/</link>
+      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/introducing-pingcap-external-referral-program/</guid>
+      <description>At PingCAP, we are always looking for talented people who want to help us build the database of the future. Do you know someone like that? Tell us about them, and if we hire them, you&#39;ll get a referral bonus in the form of an eGift card.</description>
+    </item>
+    
+    <item>
+      <title>How WebAssembly Powers Databases: Build a UDF Engine with WASM</title>
+      <link>https://idiks.com/blog/how-webassembly-powers-databases-build-a-udf-engine-with-wasm/</link>
+      <pubDate>Mon, 18 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-webassembly-powers-databases-build-a-udf-engine-with-wasm/</guid>
+      <description>WebAssembly is a binary instruction format designed for secure and near-native execution in the sandboxed environment. This post shares how we use WebAssembly to build a user-defined function engine for TiDB.</description>
+    </item>
+    
+    <item>
+      <title>PingCAP&#39;s TiDB Cloud Attains GDPR Certification, Solidifying Its Position as a Trusted Global Database Provider</title>
+      <link>https://idiks.com/blog/pingcaps-tidb-cloud-attains-gdpr-certification/</link>
+      <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pingcaps-tidb-cloud-attains-gdpr-certification/</guid>
+      <description>We are proud to announce that TiDB Cloud now holds the highest level of data privacy with full GDPR certification.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Community joins Hacktoberfest 2021!</title>
+      <link>https://idiks.com/blog/tidb-hacktoberfest-2021/</link>
+      <pubDate>Mon, 11 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-hacktoberfest-2021/</guid>
+      <description>TiDB is proud to be back at Hacktoberfest, a global celebration of open-source and technology. Join us and make contributions, whoever you are, whatever your experience, to the ever-growing TiDB community!</description>
+    </item>
+    
+    <item>
+      <title>The Benefits of a Hybrid Transactional and Analytical Processing Database</title>
+      <link>https://idiks.com/blog/benefits-of-a-hybrid-transactional-and-analytical-processing-database/</link>
+      <pubDate>Thu, 07 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/benefits-of-a-hybrid-transactional-and-analytical-processing-database/</guid>
+      <description>Hybrid Transactional and Analytical Processing, or HTAP, is a defining feature of TiDB. It means that you can run both transactional and analytical queries from within the same database. TiDB provides HTAP, ensuring that your queries are always running against the most current data available.</description>
+    </item>
+    
+    <item>
+      <title>How Databricks Tackles the Scalability Limit with a MySQL Alternative</title>
+      <link>https://idiks.com/blog/how-databricks-tackles-the-scalability-limit-with-a-mysql-alternative/</link>
+      <pubDate>Mon, 04 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-databricks-tackles-the-scalability-limit-with-a-mysql-alternative/</guid>
+      <description>Databricks is an enterprise software company that helps data teams solve some of the world&#39;s toughest problems. This article describes why they chose TiDB as their database and shares some TiDB best practices.</description>
+    </item>
+    
+    <item>
+      <title>Power Up Your Rails Apps with a NewSQL Database</title>
+      <link>https://idiks.com/blog/build-a-ruby-on-rails-app-with-tidb/</link>
+      <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/build-a-ruby-on-rails-app-with-tidb/</guid>
+      <description>This post helps Ruby on Rails developers get started with TiDB and use it as the backend storage layer of Rails applications.</description>
+    </item>
+    
+    <item>
+      <title>Best Practices for TiDB Load Balancing</title>
+      <link>https://idiks.com/blog/best-practices-for-tidb-load-balancing/</link>
+      <pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/best-practices-for-tidb-load-balancing/</guid>
+      <description>Load balancing helps you distribute application connections over multiple servers and reroute connections if a TiDB instance becomes unavailable. This article talks about the best practices for TiDB load balancing.</description>
+    </item>
+    
+    <item>
+      <title>How We Scale Out Databases and Get Big Data Queries 6x Faster with a MySQL Alternative</title>
+      <link>https://idiks.com/blog/how-we-scale-out-databases-and-get-big-data-queries-6x-faster-with-a-mysql-alternative/</link>
+      <pubDate>Wed, 22 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-we-scale-out-databases-and-get-big-data-queries-6x-faster-with-a-mysql-alternative/</guid>
+      <description>As Huya Live&#39;s business grew, their storage capacity became a bottleneck. Their live broadcasts had high latency, and their database maintenance cost was high. Learn how TiDB helps them achieve database scalability, high availability, and strong consistency with low costs.</description>
+    </item>
+    
+    <item>
+      <title>PingCAP Announces Collaboration with the Advanced Software Technologies Lab at ETH Zürich to Explore DBMS Testing</title>
+      <link>https://idiks.com/blog/pingcap-announces-collaboration-with-the-ast-lab/</link>
+      <pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pingcap-announces-collaboration-with-the-ast-lab/</guid>
+      <description>PingCAP is proud to announce a collaboration with the Advanced Software Technologies Lab (AST) at ETH Zürich to research DBMS testing based on TiDB.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started with JuiceFS Using TiKV</title>
+      <link>https://idiks.com/blog/get-started-with-juicefs-using-tikv/</link>
+      <pubDate>Fri, 17 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/get-started-with-juicefs-using-tikv/</guid>
+      <description>JuiceFS is an open-source, cloud-native distributed file system that allows users to freely choose the backend storage engine. This post introduces how to use TiKV as a metadata engine for JuiceFS.</description>
+    </item>
+    
+    <item>
+      <title>How to Run Chaos Experiments on Your Physical Machine</title>
+      <link>https://idiks.com/blog/how-to-run-chaos-experiments-on-your-physical-machine/</link>
+      <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-to-run-chaos-experiments-on-your-physical-machine/</guid>
+      <description>This article describes how to use chaosd to simulate faults on physical machines. You can run chaosd as a command-line tool or as a service.</description>
+    </item>
+    
+    <item>
+      <title>How Pinterest Reduced Costs and Improved Data Consistency with a NewSQL Database</title>
+      <link>https://idiks.com/blog/how-pinterest-reduced-costs-and-improved-data-consistency-with-newsql-database/</link>
+      <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-pinterest-reduced-costs-and-improved-data-consistency-with-newsql-database/</guid>
+      <description>Pinterest used the HBase ecosystem for their data storage. But this infrastructure was complex, with limited functionalities and high maintenance costs. They switched to TiDB over YugaByteDB and CockroachDB because it best met their requirements for stability and performance.</description>
+    </item>
+    
+    <item>
+      <title>Easy Local Development with TiDB</title>
+      <link>https://idiks.com/blog/easy-local-development-with-tidb/</link>
+      <pubDate>Tue, 07 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/easy-local-development-with-tidb/</guid>
+      <description>This post describes how you can develop your application locally and use the type of database used in production.</description>
+    </item>
+    
+    <item>
+      <title>Raft and High Availability</title>
+      <link>https://idiks.com/blog/raft-and-high-availability/</link>
+      <pubDate>Wed, 01 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/raft-and-high-availability/</guid>
+      <description>Raft is a consensus-based method that distributes data in such a way that it creates and maintains a high availability environment for your database. This article introduces the general components and mechanisms of Raft, and how distributed databases such as TiDB and TiKV use Raft to achieve high availability and consistency.</description>
+    </item>
+    
+    <item>
+      <title>TiDB 5.2 - Translytical Processing Made Easier and Faster</title>
+      <link>https://idiks.com/blog/announcing-tidb-5.2/</link>
+      <pubDate>Wed, 01 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/announcing-tidb-5.2/</guid>
+      <description>We are proud to announce our the release of TiDB 5.2. TiDB 5.2 focuses on real-world scenarios, aiming to push the boundaries of transactional and analytical processing even further to meet the demands of massive, real-time data processing.</description>
+    </item>
+    
+    <item>
+      <title>A MySQL Alternative, Scale-Out Database Helps Xiaomi&#39;s Hyper Growth</title>
+      <link>https://idiks.com/blog/a-mysql-alternative-scale-out-database-helps-xiaomi-hyper-growth/</link>
+      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/a-mysql-alternative-scale-out-database-helps-xiaomi-hyper-growth/</guid>
+      <description>Xiaomi is a world-leading consumer electronics company. When MySQL no longer met their business needs, they migrated to TiDB for its scalability, high availability, and HTAP performance.</description>
+    </item>
+    
+    <item>
+      <title>Securing Online Gaming: Combine Chaos Engineering with DevOps Practices</title>
+      <link>https://idiks.com/blog/securing-online-gaming-combine-chaos-engineering-with-devops-practices/</link>
+      <pubDate>Tue, 24 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/securing-online-gaming-combine-chaos-engineering-with-devops-practices/</guid>
+      <description>Tencent Interactive Entertainment Group is known as the publisher of some of the most popular video games. This article shares why and how they use chaos engineering in their DevOps workflow.</description>
+    </item>
+    
+    <item>
+      <title>Building a Real-Time Data Warehouse with TiDB and Pravega</title>
+      <link>https://idiks.com/blog/building-a-real-time-data-warehouse-with-tidb-and-pravega/</link>
+      <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/building-a-real-time-data-warehouse-with-tidb-and-pravega/</guid>
+      <description>This article introduces a new solution for real-time data warehouse: Pravega + TiDB. This combination resolves Kafka&#39;s data persistence dilemma and provides auto scaling capabilities.</description>
+    </item>
+    
+    <item>
+      <title>Boosting Big Data Performance by Combining TiDB with Hive and HDFS</title>
+      <link>https://idiks.com/blog/boosting-big-data-performance-by-combining-tidb-with-hive-and-hdfs/</link>
+      <pubDate>Tue, 17 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/boosting-big-data-performance-by-combining-tidb-with-hive-and-hdfs/</guid>
+      <description>Zhihu, China&#39;s largest knowledge sharing platform, uses TiDB to complement their big data architecture. TiDB helps them build a large query alert system for Hive and accelerate NameNode RPC requests in HDFS.</description>
+    </item>
+    
+    <item>
+      <title>Chaos Mesh® 2.0 GA: To a Chaos Engineering Ecology</title>
+      <link>https://idiks.com/blog/chaos-mesh-2.0-ga-to-a-chaos-engineering-ecology/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/chaos-mesh-2.0-ga-to-a-chaos-engineering-ecology/</guid>
+      <description>Chaos Mesh 2.0 GA: an exciting release, marking a solid milestone towards the chaos engineering ecology that we hope to build.</description>
+    </item>
+    
+    <item>
+      <title>How Chaos Mesh Helps Apache APISIX Improve System Stability</title>
+      <link>https://idiks.com/blog/how-chaos-mesh-helps-apache-apisix-improve-system-stability/</link>
+      <pubDate>Tue, 10 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-chaos-mesh-helps-apache-apisix-improve-system-stability/</guid>
+      <description>This post describes how Apache APISIX uses Chaos Mesh to improve their system stability.</description>
+    </item>
+    
+    <item>
+      <title>How to Deploy TiDB on Google Cloud Platform—Part 2</title>
+      <link>https://idiks.com/blog/how-to-deploy-tidb-on-google-cloud-platform-part-2/</link>
+      <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-to-deploy-tidb-on-google-cloud-platform-part-2/</guid>
+      <description>This post shows how to install, configure, and run TiDB on a Google Cloud Platform instance.</description>
+    </item>
+    
+    <item>
+      <title>How to Deploy TiDB on Google Cloud Platform—Part 1</title>
+      <link>https://idiks.com/blog/how-to-deploy-tidb-on-google-cloud-platform-part-1/</link>
+      <pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-to-deploy-tidb-on-google-cloud-platform-part-1/</guid>
+      <description>This two-part blog series will teach you how to get a TiDB cluster up and running on Google Cloud Platform. The first part shows how to prepare your GCP environment.</description>
+    </item>
+    
+    <item>
+      <title>Flink on TiDB: Reliable, Convenient Real-Time Data Service</title>
+      <link>https://idiks.com/blog/flink-on-tidb-reliable-convenient-real-time-data-service/</link>
+      <pubDate>Wed, 28 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/flink-on-tidb-reliable-convenient-real-time-data-service/</guid>
+      <description>Combining Flink and TiDB provide powerful support for real-time data processing. In this article, a NetEase senior engineer introduces how they use Flink on TiDB to guarantee end-to-end exactly-once semantics.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Operator Source Code Reading (III): The Component Control Loop</title>
+      <link>https://idiks.com/blog/tidb-operator-source-code-reading-3-component-control-loop/</link>
+      <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-operator-source-code-reading-3-component-control-loop/</guid>
+      <description>Learn about TiDB Operator&#39;s component control loop and how it manages TiDB&#39;s component lifecycle.</description>
+    </item>
+    
+    <item>
+      <title>Simplifying Database Management in a Highly Automated and Scalable Cloud Environment with Google Cloud</title>
+      <link>https://idiks.com/blog/simplifing-database-management-in-a-highly-automated-and-scalable-cloud-environment-with-google-cloud/</link>
+      <pubDate>Thu, 15 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/simplifing-database-management-in-a-highly-automated-and-scalable-cloud-environment-with-google-cloud/</guid>
+      <description>To simplify the development of data-intensive applications of all sizes for global enterprises, PingCAP deploys its database service on Google Cloud, creating a fully managed database-as-a-service TiDB Cloud with high automation, scalability, ease of use, and security compliance.</description>
+    </item>
+    
+    <item>
+      <title>How to Efficiently Stress Test Pod Memory</title>
+      <link>https://idiks.com/blog/how-to-efficiently-stress-test-pod-memory/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-to-efficiently-stress-test-pod-memory/</guid>
+      <description>Chaos Mesh provides StressChaos, a tool that allows you to inject CPU and memory stress into your Pod. Learn how to get the most of StressChaos.</description>
+    </item>
+    
+    <item>
+      <title>TiDB 5.1: Easily Build Your Mission-Critical Applications at Any Scale</title>
+      <link>https://idiks.com/blog/tidb-5.1-easily-build-your-mission-critical-applications-at-any-scale/</link>
+      <pubDate>Fri, 09 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-5.1-easily-build-your-mission-critical-applications-at-any-scale/</guid>
+      <description>TiDB 5.1 is released. It features more stable latency, optimized MPP performance and stability, and more convenient maintenance. Developers and DBAs can more easily build mission-critical applications at any scale.</description>
+    </item>
+    
+    <item>
+      <title>Announcing ISO 27001 Certification for TiDB Cloud</title>
+      <link>https://idiks.com/blog/announcing-iso-27001-certification-for-tidb-cloud/</link>
+      <pubDate>Thu, 08 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/announcing-iso-27001-certification-for-tidb-cloud/</guid>
+      <description>PingCAP is proud to announce today that the company has achieved the International Organization for Standardization (ISO) 27001:2013 certification for TiDB Cloud.</description>
+    </item>
+    
+    <item>
+      <title>How We Trace a KV Database with Less than 5% Performance Impact</title>
+      <link>https://idiks.com/blog/how-we-trace-a-kv-database-with-less-than-5-percent-performance-impact/</link>
+      <pubDate>Wed, 30 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-we-trace-a-kv-database-with-less-than-5-percent-performance-impact/</guid>
+      <description>As a key-value database, TiKV has much higher performance requirements than a regular application, so tracing tools must have minimal impact. Learn how we trace TiKV requests while impacting performance less than 5%.</description>
+    </item>
+    
+    <item>
+      <title>Dive Deep into TiKV Transactions: The Life Story of a TiKV Prewrite Request</title>
+      <link>https://idiks.com/blog/tikv-prewrite-request-life-story/</link>
+      <pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tikv-prewrite-request-life-story/</guid>
+      <description>This post introduces the execution workflow of a TiKV request in the prewrite phase. It offers a top-down description of how the prewrite request of an optimistic transaction is executed within the multiple modules of the Region leader.</description>
+    </item>
+    
+    <item>
+      <title>Chaos Mesh Remake: One Step Closer toward Chaos as a Service</title>
+      <link>https://idiks.com/blog/chaos-mesh-remake-one-step-closer-toward-chaos-as-a-service/</link>
+      <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/chaos-mesh-remake-one-step-closer-toward-chaos-as-a-service/</guid>
+      <description>A TiDB Hackathon team describes Chaos Engineering as a Service and how they&#39;re bringing Chaos Mesh one step closer to being a service.</description>
+    </item>
+    
+    <item>
+      <title>Reducing Query Latency from Seconds to Milliseconds with a Scale-Out Database</title>
+      <link>https://idiks.com/blog/reduce-query-latency-from-seconds-to-milliseconds-with-a-scale-out-database/</link>
+      <pubDate>Thu, 17 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/reduce-query-latency-from-seconds-to-milliseconds-with-a-scale-out-database/</guid>
+      <description>As China Zheshang Bank&#39;s data size boomed, their databases couldn&#39;t meet their requirements for data storage and analytics. They switched to TiDB to scale out their databases and perform real-time analytics.</description>
+    </item>
+    
+    <item>
+      <title>Managing Your Data Lifecycle with Time to Live Tables</title>
+      <link>https://idiks.com/blog/managing-you-data-lifecycle-with-time-to-live-tables/</link>
+      <pubDate>Thu, 10 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/managing-you-data-lifecycle-with-time-to-live-tables/</guid>
+      <description>Time to live, or TTL, is a mechanism to manage the data lifecycle in a system. At TiDB Hackathon 2020, a team introduced TTL tables into TiDB to enable automatic management of the data lifecycle.</description>
+    </item>
+    
+    <item>
+      <title>TiDB 5.0: A One-Stop HTAP Database Solution</title>
+      <link>https://idiks.com/blog/tidb-5.0-a-one-stop-htap-database-solution/</link>
+      <pubDate>Thu, 03 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-5.0-a-one-stop-htap-database-solution/</guid>
+      <description>TiDB 5.0 features a comprehensive HTAP solution enhanced by an MPP analytical query engine. This article introduces the new TiDB 5.0 HTAP architecture and how TiDB 5.0 serves various transactional &amp;amp; analytical hybrid workload scenarios.</description>
+    </item>
+    
+    <item>
+      <title>Why We Chose a Scale-Out Data Warehouse for Real-Time Analytics</title>
+      <link>https://idiks.com/blog/why-we-chose-a-scale-out-data-warehouse-for-real-time-analytics/</link>
+      <pubDate>Mon, 31 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/why-we-chose-a-scale-out-data-warehouse-for-real-time-analytics/</guid>
+      <description>As PatSnap&#39;s businesses developed, their data size quickly grew. To perform real-time analytics, they replaced their Segment + Amazon Redshift data analytics architecture with a TiDB + Apache Flink data warehouse solution.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Operator Source Code Reading (II): Operator Pattern</title>
+      <link>https://idiks.com/blog/tidb-operator-source-code-reading-2-operator-pattern/</link>
+      <pubDate>Thu, 27 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-operator-source-code-reading-2-operator-pattern/</guid>
+      <description>Learn about Kubernetes&#39;s Operator pattern and TiDB Operator&#39;s major reconcile loop.</description>
+    </item>
+    
+    <item>
+      <title>TiFS, a TiKV-Based Partition Tolerant, Strictly Consistent File System</title>
+      <link>https://idiks.com/blog/tifs-a-tikv-based-partition-tolerant-strictly-consistent-file-system/</link>
+      <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tifs-a-tikv-based-partition-tolerant-strictly-consistent-file-system/</guid>
+      <description>TiFS is a distributed file system built upon TiKV. It is partition tolerant, strictly consistent, and most efficient for reading and writing small files or other complicated file system operations.</description>
+    </item>
+    
+    <item>
+      <title>Async Commit, the Accelerator for Transaction Commit in TiDB 5.0</title>
+      <link>https://idiks.com/blog/async-commit-the-accelerator-for-transaction-commit-in-tidb-5.0/</link>
+      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/async-commit-the-accelerator-for-transaction-commit-in-tidb-5.0/</guid>
+      <description>As a major new feature introduced in TiDB 5.0, Async Commit can greatly reduce the latency of transaction commits. This post describes Async Commit&#39;s design ideas and its key implementation details.</description>
+    </item>
+    
+    <item>
+      <title>TiDE: Developing a Distributed Database in a Breeze</title>
+      <link>https://idiks.com/blog/tide-developing-a-distributed-database-in-a-breeze/</link>
+      <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tide-developing-a-distributed-database-in-a-breeze/</guid>
+      <description>TiDE is a VS Code extension for developing TiDB. It offers IDE, debugging, log search, Kubernetes integration, and VM management for TiDB clusters.</description>
+    </item>
+    
+    <item>
+      <title>PingCAP Successfully Completes SOC 2 Type 2 Examination for TiDB Cloud</title>
+      <link>https://idiks.com/blog/pingcap-successfully-completes-soc2-type2-examination-for-tidb-cloud/</link>
+      <pubDate>Mon, 10 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pingcap-successfully-completes-soc2-type2-examination-for-tidb-cloud/</guid>
+      <description>We are proud to announce the completion of our first SOC 2 Type 2 examination for the TiDB Cloud service, which demonstrated the operating effectiveness of our controls designed to keep our service and our customers&amp;rsquo; data secure.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Cloud Now in Public Preview</title>
+      <link>https://idiks.com/blog/tidb-cloud-in-public-preview/</link>
+      <pubDate>Mon, 10 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-cloud-in-public-preview/</guid>
+      <description>We are excited to announce the public preview of TiDB Cloud, the fully-managed TiDB service by PingCAP. With TiDB Cloud, customers can now easily use TiDB on Amazon Web Services and Google Cloud to quickly build modern, mission critical applications.</description>
+    </item>
+    
+    <item>
+      <title>Linux Kernel vs. Memory Fragmentation (Part II)</title>
+      <link>https://idiks.com/blog/linux-kernel-vs-memory-fragmentation-2/</link>
+      <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/linux-kernel-vs-memory-fragmentation-2/</guid>
+      <description>This post introduces the principle of memory compaction, how to view the fragmentation index, and how to quantify the latency overheads caused by memory compaction.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started with Rails &amp; TiDB</title>
+      <link>https://idiks.com/blog/getting-started-with-rails-tidb/</link>
+      <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/getting-started-with-rails-tidb/</guid>
+      <description>Integrating a complex ORM like ActiveRecord with TiDB can be difficult. This tutorial helps you get started with TiDB and Rails.</description>
+    </item>
+    
+    <item>
+      <title>TiKV &#43; SPDK: Pushing the Limits of Storage Performance</title>
+      <link>https://idiks.com/blog/tikv-and-spdk-pushing-the-limits-of-storage-performance/</link>
+      <pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tikv-and-spdk-pushing-the-limits-of-storage-performance/</guid>
+      <description>By introducing SPDK into TiKV, we enable the database to directly send instructions to NVMe disks, reducing read/write latency significantly.</description>
+    </item>
+    
+    <item>
+      <title>Announcing Establishment of Japan Office</title>
+      <link>https://idiks.com/blog/announcing-establishment-of-japan-office/</link>
+      <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/announcing-establishment-of-japan-office/</guid>
+      <description>In order to better serve the Japan market and support its growth, PingCAP formally established a new office in Tokyo, Japan.</description>
+    </item>
+    
+    <item>
+      <title>Using a GPU Boosts TiDB Analytics Performance by 10 to 150 Times</title>
+      <link>https://idiks.com/blog/use-gpu-boosts-tidb-analytics-performance-by-10-to-150-times/</link>
+      <pubDate>Mon, 19 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/use-gpu-boosts-tidb-analytics-performance-by-10-to-150-times/</guid>
+      <description>At TiDB Hackathon 2020, a team used GPU acceleration techniques to improve the performance of CPU-intensive analytical query processing and achieved 10x~150x performance improvement.</description>
+    </item>
+    
+    <item>
+      <title>Empower Your Business with Big Data &#43; Real-time Analytics in TiDB</title>
+      <link>https://idiks.com/blog/empower-your-business-with-big-data-real-time-analytics-in-tidb/</link>
+      <pubDate>Thu, 15 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/empower-your-business-with-big-data-real-time-analytics-in-tidb/</guid>
+      <description>Big data is a growing need for ambitious companies. Learn the usage, cost, and technology selection of real-time big data analytics and how TiDB prevails over other solutions.</description>
+    </item>
+    
+    <item>
+      <title>TiDB 5.0 GA: A One-Stop HTAP Solution Delivering Speed, Stability, and Simplicity</title>
+      <link>https://idiks.com/blog/tidb-5.0-ga-one-stop-htap-solution-deliver-speed-stability-simplicity/</link>
+      <pubDate>Mon, 12 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-5.0-ga-one-stop-htap-solution-deliver-speed-stability-simplicity/</guid>
+      <description>TiDB 5.0 GA is released. As a one-stop HTAP solution, it delivers better and more stable OLTP performance and enhanced OLAP performance with a Massively Parallel Processing engine.</description>
+    </item>
+    
+    <item>
+      <title>How I Enabled TiKV Coprocessor to Support ENUM and SET Calculations</title>
+      <link>https://idiks.com/blog/how-i-enabled-tikv-coprocessor-to-support-enum-and-set-calculations/</link>
+      <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-i-enabled-tikv-coprocessor-to-support-enum-and-set-calculations/</guid>
+      <description>A TiKV contributor participated in the Coprocessor support ENUM/SET project and implemented these two calculations. This helped improve TiKV&#39;s calculation performance.</description>
+    </item>
+    
+    <item>
+      <title>Using TiDB in Mission Critical Scenarios of the Financial Industry (Part I)</title>
+      <link>https://idiks.com/blog/using-tidb-in-mission-critical-scenarios-of-the-financial-industry-part-1/</link>
+      <pubDate>Tue, 30 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/using-tidb-in-mission-critical-scenarios-of-the-financial-industry-part-1/</guid>
+      <description>In this post, you&#39;ll learn how the financial industry uses databases in their mission critical systems and how TiDB-based solutions help them address the pain points of traditional RDBMS.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Operator Source Code Reading (I): Overview</title>
+      <link>https://idiks.com/blog/tidb-operator-source-code-reading-1-overview/</link>
+      <pubDate>Tue, 23 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-operator-source-code-reading-1-overview/</guid>
+      <description>TiDB Operator is an operator for running TiDB in Kubernetes. This article will introduce its architecture and what value it brings to you.</description>
+    </item>
+    
+    <item>
+      <title>Why This MySQL Alternative Beats Vitess and CRDB in Scaling Out Our Databases on K8s</title>
+      <link>https://idiks.com/blog/why-this-mysql-alternative-beats-vitess-and-crdb-in-scaling-out-our-databases-on-k8s/</link>
+      <pubDate>Thu, 18 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/why-this-mysql-alternative-beats-vitess-and-crdb-in-scaling-out-our-databases-on-k8s/</guid>
+      <description>Ninja Van, a Southeast Asia logistics giant, chose TiDB as a MySQL alternative over Vitess and CockroachDB to scale out their databases on Kubernetes. Learn how this MySQL alternative helps Ninji Van fix their pain points.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Hackathon: Reducing Cross-AZ Data Transfer Costs by 89%</title>
+      <link>https://idiks.com/blog/tidb-hackathon-reducing-cross-az-data-transfer-costs-by-89-percent/</link>
+      <pubDate>Tue, 16 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-hackathon-reducing-cross-az-data-transfer-costs-by-89-percent/</guid>
+      <description>At TiDB Hackathon 2020, the Pingtouge team focused on reducing TiDB&#39;s cross-AZ data transfer costs on the cloud. They managed to reduce read traffic by 89% and write traffic by 15%.</description>
+    </item>
+    
+    <item>
+      <title>Empowering Your Gaming Application with a Scale-out NewSQL Database</title>
+      <link>https://idiks.com/blog/empowering-your-gaming-application-with-a-scale-out-newsql-database/</link>
+      <pubDate>Thu, 11 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/empowering-your-gaming-application-with-a-scale-out-newsql-database/</guid>
+      <description>To handle increasing data of their gaming business, Kunlun migrated from MySQL to TiDB, a MySQL compatible NewSQL database featuring horizontal scalability and a powerful ecosystem.</description>
+    </item>
+    
+    <item>
+      <title>TiDB on Arm-based Kubernetes Cluster Achieves Up to 25% Better Price-Performance Ratio than x86</title>
+      <link>https://idiks.com/blog/tidb-on-arm-based-k8s-cluster-achieves-up-to-25-percent-better-price-performance-ratio-than-x86/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-on-arm-based-k8s-cluster-achieves-up-to-25-percent-better-price-performance-ratio-than-x86/</guid>
+      <description>Running TiDB on EKS clusters with Graviton processors offers up to 25% better price-performance ratio compared to an x86-based cluster. This article discusses the benchmark tests we ran.</description>
+    </item>
+    
+    <item>
+      <title>Announcing the TiDB Hacking Camp</title>
+      <link>https://idiks.com/blog/announcing-the-tidb-hacking-camp/</link>
+      <pubDate>Fri, 05 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/announcing-the-tidb-hacking-camp/</guid>
+      <description>TiDB Hackathon 2020 ended up with many star projects. To actually land these projects in the community, PingCAP is now launching an 8-week TiDB Hacking Camp.</description>
+    </item>
+    
+    <item>
+      <title>tidb-lite: A Simpler Way to Unit Test Golang Database Code</title>
+      <link>https://idiks.com/blog/tidb-lite-a-simpler-way-to-unit-test-golang-database-code/</link>
+      <pubDate>Thu, 04 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-lite-a-simpler-way-to-unit-test-golang-database-code/</guid>
+      <description>If your Golang app uses a MySQL-compatible database, you will have a lot of database-related code to unit test. Unlike go-sqlmock, tidb-lite lets you test your code easily without the need to start a database instance in the external environment.</description>
+    </item>
+    
+    <item>
+      <title>How We Use a MySQL Alternative to Avoid Sharding and Provide Strong Consistency</title>
+      <link>https://idiks.com/blog/how-we-use-a-mysql-alternative-to-avoid-sharding-and-provide-strong-consistency/</link>
+      <pubDate>Wed, 24 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-we-use-a-mysql-alternative-to-avoid-sharding-and-provide-strong-consistency/</guid>
+      <description>Meituan is the largest local life service company in China. As their business expanded, Meituan chose TiDB as a MySQL alternative to solve the difficulty of manual sharding and provide strong consistency.</description>
+    </item>
+    
+    <item>
+      <title>TiGraph: 8,700x Computing Performance Achieved by Combining Graphs &#43; the RDBMS Syntax</title>
+      <link>https://idiks.com/blog/tigraph-8700x-computing-performance-achieved-by-combining-graphs-&#43;-rdbms-syntax/</link>
+      <pubDate>Tue, 23 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tigraph-8700x-computing-performance-achieved-by-combining-graphs-&#43;-rdbms-syntax/</guid>
+      <description>TiGraph can manipulate graph data and relational data in one transaction while guaranteeing strong consistency. It boosts TiDB&#39;s computing performance by 8,700x in four-degree separation.</description>
+    </item>
+    
+    <item>
+      <title>Reducing Real-Time Query Latency from 0.5 s to 0.01 s with a Scale-Out HTAP Database</title>
+      <link>https://idiks.com/blog/reduce-real-time-query-latency-from-0.5s-to-0.01s-with-scale-out-htap-database/</link>
+      <pubDate>Thu, 18 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/reduce-real-time-query-latency-from-0.5s-to-0.01s-with-scale-out-htap-database/</guid>
+      <description>As Autohome&#39;s businesses quickly grew, their huge data size placed great pressure on their SQL Server database. To scale out their database and perform real-time analytics, they migrated from SQL Server to TiDB and use TiDB in multiple important apps.</description>
+    </item>
+    
+    <item>
+      <title>How to Efficiently Choose the Right Database for Your Applications</title>
+      <link>https://idiks.com/blog/how-to-efficiently-choose-the-right-database-for-your-applications/</link>
+      <pubDate>Tue, 16 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-to-efficiently-choose-the-right-database-for-your-applications/</guid>
+      <description>Learn how to efficiently find the right database for your applications.</description>
+    </item>
+    
+    <item>
+      <title>TiDB on JD Cloud: A Cloud-native Distributed Database Service</title>
+      <link>https://idiks.com/blog/tidb-on-jd-cloud-a-cloud-native-distributed-database-service/</link>
+      <pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-on-jd-cloud-a-cloud-native-distributed-database-service/</guid>
+      <description>PingCAP teams up with JD Cloud to provide Cloud-TiDB service on the JD Cloud platform.</description>
+    </item>
+    
+    <item>
+      <title>Celebrating One Year of Chaos Mesh: Looking Back and Ahead</title>
+      <link>https://idiks.com/blog/celebrating-one-year-of-chaos-mesh-looking-back-and-ahead/</link>
+      <pubDate>Fri, 05 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/celebrating-one-year-of-chaos-mesh-looking-back-and-ahead/</guid>
+      <description>Chaos Mesh started out as a mere fault injection tool and is now heading towards the goal of building a Chaos Engineering ecology. Meanwhile, the Chaos Mesh community was also built from scratch and has helped Chaos Mesh join CNCF as a Sandbox project.</description>
+    </item>
+    
+    <item>
+      <title>Linux Kernel vs. Memory Fragmentation (Part I)</title>
+      <link>https://idiks.com/blog/linux-kernel-vs-memory-fragmentation-1/</link>
+      <pubDate>Thu, 04 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/linux-kernel-vs-memory-fragmentation-1/</guid>
+      <description>This post introduces common methods to prevent Linux memory fragmentation, the principle of memory compaction, how to view the fragmentation index, etc.</description>
+    </item>
+    
+    <item>
+      <title>Five Principles that Guide TiDB and PingCAP (Part II)</title>
+      <link>https://idiks.com/blog/five-principles-that-guide-tidb-and-pingcap-II/</link>
+      <pubDate>Tue, 26 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/five-principles-that-guide-tidb-and-pingcap-II/</guid>
+      <description>PingCAP&#39;s CEO talks about the philosophy of TiDB&#39;s evolution, focusing on two more principles.</description>
+    </item>
+    
+    <item>
+      <title>Five Principles that Guide TiDB and PingCAP (Part I)</title>
+      <link>https://idiks.com/blog/five-principles-that-guide-tidb-and-pingcap/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/five-principles-that-guide-tidb-and-pingcap/</guid>
+      <description>PingCAP&#39;s CEO talks about the philosophy of TiDB&#39;s evolution and how PingCAP built TiDB in the past five years.</description>
+    </item>
+    
+    <item>
+      <title>Announcing the TiDB Incubator Program</title>
+      <link>https://idiks.com/blog/announcing-tidb-incubator-program/</link>
+      <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/announcing-tidb-incubator-program/</guid>
+      <description>Today, we are excited to introduce the TiDB Incubator Program, a program designed to ensure that new projects in the TiDB ecosystem can obtain resources and help from the community towards their desired maturity level.</description>
+    </item>
+    
+    <item>
+      <title>Goodbye, MySQL Sharding: Use a Scale-Out MySQL Alternative to Store 160&#43; TB of Data</title>
+      <link>https://idiks.com/blog/goodbye-mysql-sharding-use-scale-out-mysql-alternative-to-store-160-tb-of-data/</link>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/goodbye-mysql-sharding-use-scale-out-mysql-alternative-to-store-160-tb-of-data/</guid>
+      <description>This post talks about how TiDB, a highly available MySQL alternative, helps 58.com avoid MySQL sharding, scale out their databases, and simplify their database maintenance.</description>
+    </item>
+    
+    <item>
+      <title>A Top Car Trading Platform Chooses a Scale-out Database as a MySQL Alternative</title>
+      <link>https://idiks.com/blog/top-car-trading-platform-chooses-scale-out-database-as-mysql-alternative/</link>
+      <pubDate>Tue, 12 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/top-car-trading-platform-chooses-scale-out-database-as-mysql-alternative/</guid>
+      <description>Chehaoduo, one of the largest auto trading platforms in China, migrated from MySQL to TiDB and got rid of the troublesome process of MySQL sharding and schema changes.</description>
+    </item>
+    
+    <item>
+      <title>How to Simulate I/O Faults at Runtime</title>
+      <link>https://idiks.com/blog/how-to-simulate-io-faults-at-runtime/</link>
+      <pubDate>Fri, 08 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-to-simulate-io-faults-at-runtime/</guid>
+      <description>This post dives deep into how we implement the IOChaos experiment without using a sidecar.</description>
+    </item>
+    
+    <item>
+      <title>GitHub Discussions: Bringing the Open Source Community Closer Together and All in GitHub</title>
+      <link>https://idiks.com/blog/github-discussions-bringing-the-open-source-community-closer-together-and-all-in-github/</link>
+      <pubDate>Thu, 07 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/github-discussions-bringing-the-open-source-community-closer-together-and-all-in-github/</guid>
+      <description>This post introduces how Discussions, a beta feature GitHub recently launched, helps open source projects build their own communities or bring the communities nearer to the source code.</description>
+    </item>
+    
+    <item>
+      <title>PingCAP 2020 Year in Review</title>
+      <link>https://idiks.com/blog/pingcap-2020-year-in-review/</link>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pingcap-2020-year-in-review/</guid>
+      <description>Thank you for a great 2020!</description>
+    </item>
+    
+    <item>
+      <title>PingCAP&#39;s Top 10 Posts of 2020</title>
+      <link>https://idiks.com/blog/pingcap-top-10-posts-of-2020/</link>
+      <pubDate>Wed, 30 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pingcap-top-10-posts-of-2020/</guid>
+      <description>Check out PingCAP&#39;s top 10 most popular posts in 2020.</description>
+    </item>
+    
+    <item>
+      <title>Trace Linux System Calls with Least Impact on Performance in Production</title>
+      <link>https://idiks.com/blog/trace-linux-system-calls-with-least-impact-on-performance/</link>
+      <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/trace-linux-system-calls-with-least-impact-on-performance/</guid>
+      <description>To trace system calls in Linux effectively, you can use perf to analyze system calls that have latency in general scenarios. For containers or Kubernetes that use cgroup v2, traceloop is more convenient.</description>
+    </item>
+    
+    <item>
+      <title>Batch Processing Massive Data Much Quicker with TiSpark</title>
+      <link>https://idiks.com/blog/batch-processing-massive-data-much-quicker-with-tispark/</link>
+      <pubDate>Tue, 22 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/batch-processing-massive-data-much-quicker-with-tispark/</guid>
+      <description>A senior solution architect at PingCAP explains why TiSpark (TiDB + Apache Spark) is better than the traditional batch processing solution, how you can benefit from TiSpark, and how it works.</description>
+    </item>
+    
+    <item>
+      <title>TiDB on KubeSphere: Release a Cloud-Native Distributed Database to the KubeSphere App Store</title>
+      <link>https://idiks.com/blog/release-a-cloud-native-distributed-database-on-kubesphere-app-store/</link>
+      <pubDate>Thu, 17 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/release-a-cloud-native-distributed-database-on-kubesphere-app-store/</guid>
+      <description>This article walks you through how to deploy TiDB on KubeSphere and release TiDB to the App Store to make it available to other tenants.</description>
+    </item>
+    
+    <item>
+      <title>Tips and Tricks for Writing Linux BPF Applications with libbpf</title>
+      <link>https://idiks.com/blog/tips-and-tricks-for-writing-linux-bpf-applications-with-libbpf/</link>
+      <pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tips-and-tricks-for-writing-linux-bpf-applications-with-libbpf/</guid>
+      <description>Compared to BCC, the libbpf + BPF CO-RE solution greatly reduces storage space and runtime overhead. That&#39;s why we switched from bcc-tools to libbpf-tools. This post introduces some tips and tricks for writing BPF applications with libbpf.</description>
+    </item>
+    
+    <item>
+      <title>Transparent Huge Pages: Why We Disable It for Databases</title>
+      <link>https://idiks.com/blog/transparent-huge-pages-why-we-disable-it-for-databases/</link>
+      <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/transparent-huge-pages-why-we-disable-it-for-databases/</guid>
+      <description>This post dives deep into how transparent huge pages (THP) slow down the system. You&#39;ll learn why you should disable THP to improve your database performance and how to disable it in Linux.</description>
+    </item>
+    
+    <item>
+      <title>How China&#39;s Insurance Giant Improved Agile Application Performance with a NewSQL Database</title>
+      <link>https://idiks.com/success-stories/how-chinas-insurance-giant-improved-agile-application-performance-with-a-newsql-database/</link>
+      <pubDate>Tue, 08 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/how-chinas-insurance-giant-improved-agile-application-performance-with-a-newsql-database/</guid>
+      <description>Ping An Life Insurance shares a case where TiDB helped them support 100 billion RMB payment volume in a single day, the pain points before they used TiDB, how they use TiDB, and why they chose TiDB.</description>
+    </item>
+    
+    <item>
+      <title>Why We Switched from BCC to libbpf for Linux BPF Performance Analysis</title>
+      <link>https://idiks.com/blog/why-we-switched-from-bcc-to-libbpf-for-linux-bpf-performance-analysis/</link>
+      <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/why-we-switched-from-bcc-to-libbpf-for-linux-bpf-performance-analysis/</guid>
+      <description>Libbpf + BPF CO-RE is better than BCC. It greatly reduces storage space and runtime overhead, and it improves programmers&amp;rsquo; deployment and development experience.</description>
+    </item>
+    
+    <item>
+      <title>How We Reduced Our Batch Processing Time by About 58% with a Scale-Out MySQL Alternative</title>
+      <link>https://idiks.com/success-stories/how-we-reduced-batch-processing-time-by-58-percent-with-a-scale-out-mysql-alternative/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/how-we-reduced-batch-processing-time-by-58-percent-with-a-scale-out-mysql-alternative/</guid>
+      <description>WeBank is China&#39;s first privately-owned Internet bank. As they grew, they encountered database performance and capacity bottlenecks. By using TiDB, a scale-out MySQL alternative, they reduced their batch processing time by ~58%.</description>
+    </item>
+    
+    <item>
+      <title>How a Top Game Company Uses Chaos Engineering to Improve Testing</title>
+      <link>https://idiks.com/blog/how-a-top-game-company-uses-chaos-engineering-to-improve-testing/</link>
+      <pubDate>Thu, 26 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-a-top-game-company-uses-chaos-engineering-to-improve-testing/</guid>
+      <description>NetEase Fuxi AI Lab is China&#39;s first professional game AI research institution. In their search for a Chaos Engineering tool to test their Kubernetes-based AI training platform, they chose Chaos Mesh and have improved their system resiliency ever since.</description>
+    </item>
+    
+    <item>
+      <title>Best Practices for TiDB on AWS Cloud</title>
+      <link>https://idiks.com/blog/best-practices-for-tidb-on-aws-cloud/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/best-practices-for-tidb-on-aws-cloud/</guid>
+      <description>This article illustrates the best practices of running TiDB on AWS, including how to choose the suitable cloud storage and properly configure the system.</description>
+    </item>
+    
+    <item>
+      <title>How We Process Data Five Times More Efficiently Using a Scale-Out MySQL Alternative</title>
+      <link>https://idiks.com/success-stories/how-we-process-data-five-times-more-efficiently-using-a-scale-out-mysql-alternative/</link>
+      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/how-we-process-data-five-times-more-efficiently-using-a-scale-out-mysql-alternative/</guid>
+      <description>A senior architect at China Telecom Bestpay shared how TiDB, a MySQL-compatible, distributed SQL database, boosted the performance of their core systems by 3–5 times.</description>
+    </item>
+    
+    <item>
+      <title>PingCAP, the Company Behind TiDB, Raises $270 Million in Series D Funding</title>
+      <link>https://idiks.com/blog/pingcap-the-company-behind-tidb-raises-270-million-in-series-d-funding/</link>
+      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pingcap-the-company-behind-tidb-raises-270-million-in-series-d-funding/</guid>
+      <description>With great pleasure, we are announcing that we have raised $270 million in Series D funding led by global investors. We are looking for more innovations, global expansion, and more team growth as we strive to build the database of the future.</description>
+    </item>
+    
+    <item>
+      <title>TiDB on KubeSphere: Run a Cloud-Native Distributed Database on a Hybrid-Cloud Kubernetes Platform</title>
+      <link>https://idiks.com/blog/run-cloud-native-distributed-database-on-hybrid-cloud-kubernetes-platform/</link>
+      <pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/run-cloud-native-distributed-database-on-hybrid-cloud-kubernetes-platform/</guid>
+      <description>A site reliability engineer gives a step-by-step tutorial on how to deploy TiDB on KubeSphere, an open-source, distributed GUI operating system with Kubernetes as its kernel.</description>
+    </item>
+    
+    <item>
+      <title>Embracing NewSQL: Why We Chose TiDB over MongoDB and MySQL</title>
+      <link>https://idiks.com/success-stories/embracing-newsql-why-we-chose-tidb-over-mongodb-and-mysql/</link>
+      <pubDate>Thu, 12 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/embracing-newsql-why-we-chose-tidb-over-mongodb-and-mysql/</guid>
+      <description>In this post, PalFish explains why they chose TiDB over MongoDB and MySQL. The key factors were their application requirements and their perspective on NewSQL databases.</description>
+    </item>
+    
+    <item>
+      <title>Apache Flink &#43; TiDB: A Scale-Out Real-Time Data Warehouse for Analytics Within Seconds</title>
+      <link>https://idiks.com/blog/apache-flink-&#43;-tidb-a-scale-out-real-time-data-warehouse-for-analytics-within-seconds/</link>
+      <pubDate>Wed, 11 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/apache-flink-&#43;-tidb-a-scale-out-real-time-data-warehouse-for-analytics-within-seconds/</guid>
+      <description>By combining Apache Flink and TiDB, we offer an efficient, easy-to-use, real-time data warehouse with horizontal scalability and high availability.</description>
+    </item>
+    
+    <item>
+      <title>DM 2.0 GA: Secure, Easy, Highly Available Data Migration</title>
+      <link>https://idiks.com/blog/dm-2.0-ga-secure-easy-highly-available-data-migration/</link>
+      <pubDate>Wed, 04 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/dm-2.0-ga-secure-easy-highly-available-data-migration/</guid>
+      <description>DM 2.0 has reached general availability. It supports highly available migration tasks and shard merging and migration in optimistic mode.</description>
+    </item>
+    
+    <item>
+      <title>Choosing the Right Enterprise-Grade Disaster Recovery Solution for the Financial Industry</title>
+      <link>https://idiks.com/blog/tidb-financial-level-backup-and-multi-center-disaster-recovery/</link>
+      <pubDate>Tue, 03 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-financial-level-backup-and-multi-center-disaster-recovery/</guid>
+      <description>Financial companies have stringent requirements for high availability and disaster recovery, which many databases cannot meet. This article describes how TiDB addresses both these issues with a range of options that make it an excellent choice for the industry.</description>
+    </item>
+    
+    <item>
+      <title>Metrics Relation Graph Helps DBAs Quickly Locate Performance Problems in TiDB</title>
+      <link>https://idiks.com/blog/metrics-relation-graph-helps-dba-quickly-locate-performance-problems/</link>
+      <pubDate>Thu, 29 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/metrics-relation-graph-helps-dba-quickly-locate-performance-problems/</guid>
+      <description>TiDB v4.0.7 introduced a new feature: the metrics relation graph. It helps users clearly see the relationship between different performance metrics in a database cluster and thus quickly locate the root causes of performance problems.</description>
+    </item>
+    
+    <item>
+      <title>Running a Scale-Out Database on ARM as a MySQL Alternative</title>
+      <link>https://idiks.com/success-stories/running-a-scale-out-database-on-arm-as-mysql-alternative/</link>
+      <pubDate>Tue, 27 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/running-a-scale-out-database-on-arm-as-mysql-alternative/</guid>
+      <description>In this article, an engineer at U-Next talks about why they chose TiDB and why they run it on the ARM architecture. He also provides detailed benchmarking results showing that TiDB runs equally well on ARM and x86.</description>
+    </item>
+    
+    <item>
+      <title>Making an HTAP Database a Reality: What I Learned from PingCAP&#39;s VLDB Paper</title>
+      <link>https://idiks.com/blog/making-htap-database-reality-what-i-learned-from-pingcap-vldb-paper/</link>
+      <pubDate>Thu, 22 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/making-htap-database-reality-what-i-learned-from-pingcap-vldb-paper/</guid>
+      <description>Recently, VLDB published the PingCAP paper, TiDB: A Raft-based HTAP Database. In this article, a DBA at PalFish shares his thoughts on the article and his expectations for TiDB&#39;s future development.</description>
+    </item>
+    
+    <item>
+      <title>A 3x IT Efficiency Boost: Using a Scale-Out HTAP Database for Near Real-Time Analytics</title>
+      <link>https://idiks.com/blog/3x-it-efficiency-boost-use-a-scale-out-htap-database-for-near-real-time-analytics/</link>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/3x-it-efficiency-boost-use-a-scale-out-htap-database-for-near-real-time-analytics/</guid>
+      <description>As its business quickly grew, ZTO Express found Exadata, Kudu, and HBase couldn&#39;t meet their database requirements. To scale out their database and perform multi-dimensional analytics in near real time, they migrated from Oracle Exadata to TiDB.</description>
+    </item>
+    
+    <item>
+      <title>TiCDC GA: Offering High-Availability Replication Services for Production Environments</title>
+      <link>https://idiks.com/blog/ticdc-ga-offer-high-availability-replication-services-for-production-environments/</link>
+      <pubDate>Thu, 15 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/ticdc-ga-offer-high-availability-replication-services-for-production-environments/</guid>
+      <description>TiCDC is TiDB&#39;s change data capture framework. It is now generally available. This post introduces its features, application scenarios, and real-world case studies.</description>
+    </item>
+    
+    <item>
+      <title>TiDB X Hacktoberfest 2020 - An Invitation to Open Source</title>
+      <link>https://idiks.com/blog/tidb-x-hacktoberfest-2020-an-invitation-to-open-source/</link>
+      <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-x-hacktoberfest-2020-an-invitation-to-open-source/</guid>
+      <description>TiDB is in Hacktoberfest, a celebration open to everyone in our global community. Whether you&#39;re an experienced developer or an open-source newbie learning to code, you can help drive the growth of open source and make positive contributions to the ever-growing TiDB community.</description>
+    </item>
+    
+    <item>
+      <title>How Bank of China Uses a Scale-Out Database to Support Zabbix Monitoring at Scale</title>
+      <link>https://idiks.com/success-stories/how-bank-of-china-uses-a-scale-out-database-to-support-zabbix-monitoring-at-scale/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/how-bank-of-china-uses-a-scale-out-database-to-support-zabbix-monitoring-at-scale/</guid>
+      <description>To monitor their large-scale IT infrastructure, Bank of China chose TiDB, a scale-out relational database, to replace Zabbix&#39;s MySQL backend. Learn how they use TiDB to manage over 10,000 monitored devices and 18 TB data.</description>
+    </item>
+    
+    <item>
+      <title>How Bank of Beijing Achieves Database Scaling Without Downtime</title>
+      <link>https://idiks.com/success-stories/how-we-use-a-distributed-database-to-achieve-horizontal-scaling-without-downtime/</link>
+      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/how-we-use-a-distributed-database-to-achieve-horizontal-scaling-without-downtime/</guid>
+      <description>Bank of Beijing sought an open-source, horizontally scalable database to scale out their database. Learn how they use TiDB to achieve database scaling with zero downtime.</description>
+    </item>
+    
+    <item>
+      <title>Lessons from TiDB&#39;s No. 1 Bug Hunters Who&#39;ve Found 400&#43; Bugs in Popular DBMSs</title>
+      <link>https://idiks.com/blog/lessons-from-tidb-no.-1-bug-hunters-who-have-found-over-400-bugs-in-popular-dbmss/</link>
+      <pubDate>Tue, 06 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/lessons-from-tidb-no.-1-bug-hunters-who-have-found-over-400-bugs-in-popular-dbmss/</guid>
+      <description>Dr. Manuel Rigger and his colleague have found 400+ bugs in popular DBMSs, including 50+ TiDB bugs. Learn their experience in finding logic bugs in DBMSs.</description>
+    </item>
+    
+    <item>
+      <title>How We Use a Scale-Out HTAP Database for Real-Time Analytics and Complex Queries</title>
+      <link>https://idiks.com/success-stories/how-we-use-a-scale-out-htap-database-for-real-time-analytics-and-complex-queries/</link>
+      <pubDate>Fri, 02 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/how-we-use-a-scale-out-htap-database-for-real-time-analytics-and-complex-queries/</guid>
+      <description>Xiaohongshu receives more than 100 million rows of data every day. They adopted TiDB because it supports both transactional and analytical queries, real-time data analytics, and horizontal scalability.</description>
+    </item>
+    
+    <item>
+      <title>chaos-mesh-action: Integrate Chaos Engineering into Your CI</title>
+      <link>https://idiks.com/blog/chaos-mesh-action-integrate-chaos-engineering-into-your-ci/</link>
+      <pubDate>Tue, 29 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/chaos-mesh-action-integrate-chaos-engineering-into-your-ci/</guid>
+      <description>Chaos Mesh is a cloud-native chaos testing platform that orchestrates chaos in Kubernetes environments. This article shares how to use chaos-mesh-action, a GitHub action to integrate Chaos Mesh into the CI process.</description>
+    </item>
+    
+    <item>
+      <title>Chaos Mesh 1.0: Chaos Engineering on Kubernetes Made Easier</title>
+      <link>https://idiks.com/blog/Chaos-Mesh-1.0-Chaos-Engineering-on-Kubernetes-Made-Easier/</link>
+      <pubDate>Fri, 25 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/Chaos-Mesh-1.0-Chaos-Engineering-on-Kubernetes-Made-Easier/</guid>
+      <description>Today, we are proud to announce the general availability of Chaos Mesh® 1.0, following its entry into CNCF as a sandbox project in July, 2020. After 10 months of effort within the open-source community, Chaos Mesh is now ready in terms of functionality, scalability, and ease of use. Here are some highlights.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Operator: Your TiDB Operations Expert in Kubernetes</title>
+      <link>https://idiks.com/blog/tidb-operator-your-tidb-operations-expert-in-kubernetes/</link>
+      <pubDate>Thu, 24 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-operator-your-tidb-operations-expert-in-kubernetes/</guid>
+      <description>This post analyzes the pros and cons of running databases in Kubernetes. It also introduces TiDB Operator, a tool for managing TiDB clusters in Kubernetes, and describes how large companies are using it in their production environments as well as their best practices.</description>
+    </item>
+    
+    <item>
+      <title>A Scale-Out Database Powers China&#39;s Letgo with Reduced Maintenance Costs</title>
+      <link>https://idiks.com/success-stories/scale-out-database-powers-china-letgo-with-reduced-maintenance-costs/</link>
+      <pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/scale-out-database-powers-china-letgo-with-reduced-maintenance-costs/</guid>
+      <description>Zhuan Zhuan embraced TiDB 4.0&#39;s new features with great results. It&#39;s a truly HTAP database with one-minute deployment, visual troubleshooting, and reduced maintenance costs.</description>
+    </item>
+    
+    <item>
+      <title>ZaloPay: Using a Scale-Out MySQL Alternative to Serve Millions of Users</title>
+      <link>https://idiks.com/success-stories/zalopay-using-a-scale-out-mysql-alternative-to-serve-millions-of-users/</link>
+      <pubDate>Thu, 17 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/zalopay-using-a-scale-out-mysql-alternative-to-serve-millions-of-users/</guid>
+      <description>A DevOps engineer in ZaloPay, Vietnam&#39;s most popular mobile payment application, shared why his team chose TiDB as ZaloPay&#39;s merchant platform core database. He talked about their pain points, how they use TiDB, and what he likes about it the most.</description>
+    </item>
+    
+    <item>
+      <title>How We Build an HTAP Database That Simplifies Your Data Platform</title>
+      <link>https://idiks.com/blog/how-we-build-an-htap-database-that-simplifies-your-data-platform/</link>
+      <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-we-build-an-htap-database-that-simplifies-your-data-platform/</guid>
+      <description>This post talks about why HTAP matters in a database platform, how TiDB implements HTAP, and how you can apply TiDB in different scenarios.</description>
+    </item>
+    
+    <item>
+      <title>Horizontal Scaling: Why BIGO chose TiDB over MySQL</title>
+      <link>https://idiks.com/blog/horizontal-scaling-why-bigo-chose-tidb-over-mysql/</link>
+      <pubDate>Thu, 10 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/horizontal-scaling-why-bigo-chose-tidb-over-mysql/</guid>
+      <description>After trying out different database solutions, BIGO chose TiDB for its horizontal scalability. In this post, a BIGO DBA talks about why MySQL, among other solutions, failed to meet their scalability requirements. You&#39;ll also learn about TiDB&#39;s impressive features, how they benefit BIGO&#39;s business, and BIGO&#39;s plan to deepen TiDB usage in the future.</description>
+    </item>
+    
+    <item>
+      <title>Announcing HTAP support in TiDB Cloud</title>
+      <link>https://idiks.com/blog/announcing-htap-support-in-tidb-cloud/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/announcing-htap-support-in-tidb-cloud/</guid>
+      <description>Today, we&#39;re glad to announce that TiDB Cloud, our fully managed database service powered by TiDB, now supports Hybrid Transactional/Analytical Processing (HTAP) workloads.</description>
+    </item>
+    
+    <item>
+      <title>How to Migrate Data from Amazon Aurora MySQL to TiDB Cloud</title>
+      <link>https://idiks.com/blog/how-to-migrate-data-from-amazon-aurora-mysql-to-tidb-cloud/</link>
+      <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-to-migrate-data-from-amazon-aurora-mysql-to-tidb-cloud/</guid>
+      <description>This post introduces how to smoothly migrate data from Amazon Aurora MySQL to TiDB Cloud using Dumpling and TiDB Lightning.</description>
+    </item>
+    
+    <item>
+      <title>Celebrate TiKV Graduation within CNCF</title>
+      <link>https://idiks.com/blog/celebrate-tikv-graduation-within-cncf/</link>
+      <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/celebrate-tikv-graduation-within-cncf/</guid>
+      <description>The Cloud Native Computing Foundation (CNCF) today just announced that TiKV has become the twelfth project to graduate, joining other graduated projects such as Kubernetes, Jaeger, Harbor, etc.</description>
+    </item>
+    
+    <item>
+      <title>PingCAPers Make Their Debut at VLDB</title>
+      <link>https://idiks.com/blog/pingcapers-make-their-debut-at-vldb/</link>
+      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pingcapers-make-their-debut-at-vldb/</guid>
+      <description>The 46th VLDB conference will be broadcast online from August 31st to September 4th. PingCAP is honored to attend this conference, and we will share two papers with you TiDB: A Raft-based HTAP Database and Interleaved Multi-Vectorizing.</description>
+    </item>
+    
+    <item>
+      <title>PingCAP Successfully Completes SOC 2 Type 1 Examination for TiDB Cloud</title>
+      <link>https://idiks.com/blog/pingcap-successfully-completes-soc-2-type-1-examination-for-tidb-cloud/</link>
+      <pubDate>Fri, 28 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pingcap-successfully-completes-soc-2-type-1-examination-for-tidb-cloud/</guid>
+      <description>PingCAP, provider of the cloud-native hybrid transactional/analytical processing (HTAP) TiDB database, successfully completes an SOC 2 Type 1 examination for TiDB Cloud.</description>
+    </item>
+    
+    <item>
+      <title>Why We Chose a Distributed SQL Database to Complement MySQL</title>
+      <link>https://idiks.com/success-stories/why-we-chose-a-distributed-sql-database-to-complement-mysql/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/why-we-chose-a-distributed-sql-database-to-complement-mysql/</guid>
+      <description>VIPKid chose TiDB to manage its high data volume, highly concurrent write application. Learn how TiDB excels in that scenario, along with multidimensional queries, data life cycle management, and real-time analytics.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Cloud: Managed SQL at Scale on AWS and GCP</title>
+      <link>https://idiks.com/blog/tidb-cloud-managed-sql-at-scale-on-aws-and-gcp/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-cloud-managed-sql-at-scale-on-aws-and-gcp/</guid>
+      <description>This post introduces in detail the features of TiDB Cloud - the fully managed, horizontally scaling, cloud-native, distributed SQL database in the cloud.</description>
+    </item>
+    
+    <item>
+      <title>Building an Automated Testing Framework Based on Chaos Mesh® and Argo</title>
+      <link>https://idiks.com/blog/building-automated-testing-framework-based-on-chaos-mesh-and-argo/</link>
+      <pubDate>Mon, 17 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/building-automated-testing-framework-based-on-chaos-mesh-and-argo/</guid>
+      <description>This article describes how we use TiPocket, an automated testing framework, to build a full Chaos Engineering testing loop for TiDB.</description>
+    </item>
+    
+    <item>
+      <title>Announcing PD Transfer to TiKV Project</title>
+      <link>https://idiks.com/blog/announcing-pd-transfer-to-tikv-project/</link>
+      <pubDate>Fri, 14 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/announcing-pd-transfer-to-tikv-project/</guid>
+      <description>We decide to move the Placement Driver library entirely to TiKV org, happening at 11 AM, UTC+8, August 17, 2020.</description>
+    </item>
+    
+    <item>
+      <title>What&#39;s New and Improved in TiDB Docs</title>
+      <link>https://idiks.com/blog/what-is-new-and-improved-in-tidb-docs/</link>
+      <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/what-is-new-and-improved-in-tidb-docs/</guid>
+      <description>Along with the rapid releases of TiDB products and projects, we also constantly update and improve our TiDB documentation. This post covers recent big changes, new content, and improvements in TiDB documentation.</description>
+    </item>
+    
+    <item>
+      <title>TiDB 4.0: An Elastic, Real-Time HTAP Database Ready for the Cloud</title>
+      <link>https://idiks.com/blog/tidb-4.0-elastic-real-time-htap-database-ready-for-cloud/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-4.0-elastic-real-time-htap-database-ready-for-cloud/</guid>
+      <description>At TiDB DevCon 2020, Max Liu, CEO at PingCAP, gave a keynote speech. He believes that today&#39;s database should be more flexible, more real-time, and easier to use, and TiDB, an elastic, cloud-native, real-time HTAP database, is exactly that kind of database.</description>
+    </item>
+    
+    <item>
+      <title>Create a Scale-Out Hive Cluster with a Distributed, MySQL-Compatible Database</title>
+      <link>https://idiks.com/blog/create-scale-out-hive-cluster-with-distributed-mysql-compatible-database/</link>
+      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/create-scale-out-hive-cluster-with-distributed-mysql-compatible-database/</guid>
+      <description>This post shows how to deploy a Hive cluster with TiDB to achieve horizontal scalability of Hive Metastore.</description>
+    </item>
+    
+    <item>
+      <title>Heterogeneous Database Replication to TiDB</title>
+      <link>https://idiks.com/blog/heterogeneous-database-replication-to-tidb/</link>
+      <pubDate>Thu, 30 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/heterogeneous-database-replication-to-tidb/</guid>
+      <description>PingCAP is experienced in heterogeneous database replication. This post gives best practice tips for database migration to TiDB.</description>
+    </item>
+    
+    <item>
+      <title>Announcing Chaos Mesh® as a CNCF Sandbox Project</title>
+      <link>https://idiks.com/blog/announcing-chaos-mesh-as-a-cncf-sandbox-project/</link>
+      <pubDate>Tue, 28 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/announcing-chaos-mesh-as-a-cncf-sandbox-project/</guid>
+      <description>We&#39;re thrilled to announce that Chaos Mesh®, our open-sourced Chaos Engineering platform for Kubernetes, is now officially accepted as a CNCF Sandbox project.</description>
+    </item>
+    
+    <item>
+      <title>Horizontally Scaling the Hive Metastore Database by Migrating from MySQL to TiDB</title>
+      <link>https://idiks.com/success-stories/horizontally-scaling-hive-metastore-database-by-migrating-from-mysql-to-tidb/</link>
+      <pubDate>Fri, 24 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/horizontally-scaling-hive-metastore-database-by-migrating-from-mysql-to-tidb/</guid>
+      <description>This post shows how TiDB helps Zhihu scale its Hive Metastore database horizontally to meet its growing business needs and eliminate its database bottlenecks.</description>
+    </item>
+    
+    <item>
+      <title>How TiDB&#39;s HTAP Makes Truly Hybrid Workloads Possible</title>
+      <link>https://idiks.com/blog/how-tidb-htap-makes-truly-hybrid-workloads-possible/</link>
+      <pubDate>Thu, 16 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-tidb-htap-makes-truly-hybrid-workloads-possible/</guid>
+      <description>This post introduces the design details of the HTAP architecture of TiDB, including the real-time updatable columnar engine, the multi-Raft replication strategy, and smart selection.</description>
+    </item>
+    
+    <item>
+      <title>Cluster Diagnostics: Troubleshoot Cluster Issues Using Only SQL Queries</title>
+      <link>https://idiks.com/blog/cluster-diagnostics-troubleshoot-cluster-issues-using-only-sql-queries/</link>
+      <pubDate>Wed, 01 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/cluster-diagnostics-troubleshoot-cluster-issues-using-only-sql-queries/</guid>
+      <description>TiDB 4.0 introduces cluster diagnostics, a built-in widget in TiDB Dashboard, which lets you diagnose cluster problems within a specified time range. You can summarize the diagnostic results and cluster-related load monitoring information in a diagnostic report.</description>
+    </item>
+    
+    <item>
+      <title>A Few More Reasons Rust Compiles Slowly</title>
+      <link>https://idiks.com/blog/reasons-rust-compiles-slowly/</link>
+      <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/reasons-rust-compiles-slowly/</guid>
+      <description>This is the fourth episode of the Rust Compile Time series. It discusses some factors that cause Rust to build slow, including LLVM, compiler architecture, and linking.</description>
+    </item>
+    
+    <item>
+      <title>Announcing TiDB as a Service, Fully-Managed TiDB Offering</title>
+      <link>https://idiks.com/blog/announcing-tidb-as-a-service-fully-managed-tidb-offering/</link>
+      <pubDate>Tue, 23 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/announcing-tidb-as-a-service-fully-managed-tidb-offering/</guid>
+      <description>TiDB Cloud Beta is released. It&#39;s the easiest, most economical, and most resilient way to unlock the full power of TiDB in the cloud, allowing the users to deploy and run TiDB clusters with just a few clicks.</description>
+    </item>
+    
+    <item>
+      <title>Rust&#39;s Huge Compilation Units</title>
+      <link>https://idiks.com/blog/rust-huge-compilation-units/</link>
+      <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/rust-huge-compilation-units/</guid>
+      <description>The third episode of the Rust Compile Time series discusses why Rust&#39;s compilation units are so big and how that affects compile times.</description>
+    </item>
+    
+    <item>
+      <title>VLDB 2020: TiDB, A Raft-based HTAP Database</title>
+      <link>https://idiks.com/blog/vldb-2020-tidb-a-raft-based-htap-database/</link>
+      <pubDate>Fri, 19 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/vldb-2020-tidb-a-raft-based-htap-database/</guid>
+      <description>PingCAP will publish a research paper &amp;ldquo;TiDB: A Raft-based HTAP Database&amp;rdquo; in the August issue of the Proceedings of the VLDB Endowment.</description>
+    </item>
+    
+    <item>
+      <title>TiDB 4.0 GA, Gearing You Up for an Unpredictable World with a Real-Time HTAP Database</title>
+      <link>https://idiks.com/blog/tidb-4.0-ga-gearing-you-up-for-an-unpredictable-world-with-real-time-htap-database/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-4.0-ga-gearing-you-up-for-an-unpredictable-world-with-real-time-htap-database/</guid>
+      <description>TiDB 4.0 has reached general availability. It&#39;s an elastic, real-time Hybrid Transactional/Analytical Processing (HTAP) database, and, best of all, it&#39;s now ready for the cloud.</description>
+    </item>
+    
+    <item>
+      <title>Generics and Compile-Time in Rust</title>
+      <link>https://idiks.com/blog/generics-and-compile-time-in-rust/</link>
+      <pubDate>Mon, 15 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/generics-and-compile-time-in-rust/</guid>
+      <description>This is the second episode of the Rust Compile Time series. Brian Anderson, one of Rust&#39;s original authors, talks about monomorphization and generics in Rust, using the TiKV project as a case study.</description>
+    </item>
+    
+    <item>
+      <title>How We Improved TPC-C Performance by 50% and TPC-H Performance by 100%</title>
+      <link>https://idiks.com/blog/how-we-improved-tpcc-performance-50-percent-and-tpch-performance-100-percent/</link>
+      <pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-we-improved-tpcc-performance-50-percent-and-tpch-performance-100-percent/</guid>
+      <description>TiDB 4.0 release greatly outperforms TiDB 3.0. Our TPC-C benchmark improved by about 50% and our TPC-H benchmark improved by about 100%.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Dashboard: Easier Troubleshooting for Distributed Databases</title>
+      <link>https://idiks.com/blog/easier-troubleshooting-for-distributed-databases/</link>
+      <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/easier-troubleshooting-for-distributed-databases/</guid>
+      <description>TiDB 4.0 introduces TiDB Dashboard, which provides various built-in widgets in a graphical interface that let you easily diagnose, monitor, and manage your clusters in one place. Now you can troubleshoot TiDB clusters more easily.</description>
+    </item>
+    
+    <item>
+      <title>Pessimistic Locking: Better MySQL Compatibility, Fewer Rollbacks Under High Load</title>
+      <link>https://idiks.com/blog/pessimistic-locking-better-mysql-compatibility-fewer-rollbacks-under-high-load/</link>
+      <pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pessimistic-locking-better-mysql-compatibility-fewer-rollbacks-under-high-load/</guid>
+      <description>With improvements in stability and functionality in TiDB 4.0, we finally remove the experimental label for pessimistic locking, making it a generally available feature. See how pessimistic locking behaves in TiDB.</description>
+    </item>
+    
+    <item>
+      <title>TiCDC: Replication Latency in Milliseconds for 100&#43; TB Clusters</title>
+      <link>https://idiks.com/blog/replication-latency-in-milliseconds-for-100-tb-clusters/</link>
+      <pubDate>Wed, 20 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/replication-latency-in-milliseconds-for-100-tb-clusters/</guid>
+      <description>TiDB 4.0 introduces TiCDC, an open-source feature that replicates TiDB&#39;s incremental changes to downstream platforms. It shows only millisecond replication latency for 100+ TB clusters.</description>
+    </item>
+    
+    <item>
+      <title>Large Transactions in TiDB</title>
+      <link>https://idiks.com/blog/large-transactions-in-tidb/</link>
+      <pubDate>Fri, 15 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/large-transactions-in-tidb/</guid>
+      <description>This post describes how we implemented support for large transactions in TiDB 4.0.</description>
+    </item>
+    
+    <item>
+      <title>TiDB at ZaloPay Infrastructure &amp; Lesson Learned</title>
+      <link>https://idiks.com/success-stories/tidb-at-zalopay-infrastructure-lesson-learned/</link>
+      <pubDate>Mon, 11 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/tidb-at-zalopay-infrastructure-lesson-learned/</guid>
+      <description>As VNG&#39;s business developed, their infrastructure became an obstacle to their growth. Then they chose TiDB as the core database for their ZaloPay app and used it to store their critical data. Now, VNG has 20+ TiDB nodes in their production environment.</description>
+    </item>
+    
+    <item>
+      <title>SQL Plan Management: Never Worry About Slow Queries Again</title>
+      <link>https://idiks.com/blog/sql-plan-management-never-worry-about-slow-queries-again/</link>
+      <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/sql-plan-management-never-worry-about-slow-queries-again/</guid>
+      <description>This post introduces how SQL Plan Management helps the optimizer automatically select efficient execution plans to prevent performance regressions caused by unexpected plan changes.</description>
+    </item>
+    
+    <item>
+      <title>Building, Running, and Benchmarking TiKV and TiDB</title>
+      <link>https://idiks.com/blog/building-running-and-benchmarking-tikv-and-tidb/</link>
+      <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/building-running-and-benchmarking-tikv-and-tidb/</guid>
+      <description>This post introduces how to build and run your own TiDB or TiKV, and how to run some benchmarks on those databases.</description>
+    </item>
+    
+    <item>
+      <title>Get a TiDB Cluster Up in Only One Minute</title>
+      <link>https://idiks.com/blog/get-tidb-cluster-up-in-only-one-minute/</link>
+      <pubDate>Wed, 29 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/get-tidb-cluster-up-in-only-one-minute/</guid>
+      <description>TiUP is a component manager that streamlines installing and configuring a TiDB cluster into a few easy commands. It helps get your cluster up and running quickly with a minimal learning curve.</description>
+    </item>
+    
+    <item>
+      <title>Key Visualizer: Observe Distributed Databases to Discover the Unknowns</title>
+      <link>https://idiks.com/blog/observe-distributed-databases-to-discover-unknowns/</link>
+      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/observe-distributed-databases-to-discover-unknowns/</guid>
+      <description>Key Visualizer is a visual diagnostic tool that makes it easier to troubleshoot distributed SQL databases. Users can observe system health, quickly find hotspots in the cluster, and gain deep insights into applications.</description>
+    </item>
+    
+    <item>
+      <title>Simulating Clock Skew in K8s Without Affecting Other Containers on the Node</title>
+      <link>https://idiks.com/blog/simulating-clock-skew-in-k8s-without-affecting-other-containers-on-node/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/simulating-clock-skew-in-k8s-without-affecting-other-containers-on-node/</guid>
+      <description>As a cloud-native chaos engineering platform, Chaos Mesh supports TimeChaos, which simulates clock skew in containers or K8s for distributed systems to test system robustness, without affecting other containers on the node.</description>
+    </item>
+    
+    <item>
+      <title>How to Back Up and Restore a 10-TB Cluster at 1&#43; GB/s</title>
+      <link>https://idiks.com/blog/back-up-and-restore-a-10-tb-cluster-at-1-gb-per-second/</link>
+      <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/back-up-and-restore-a-10-tb-cluster-at-1-gb-per-second/</guid>
+      <description>Backing up or restoring a large-scale distributed SQL database is a time-consuming task. Our upcoming TiDB 4.0 release will support Backup &amp;amp; Restore (BR), a distributed backup and restore tool, which lets you back up and restore data at 1+ GB/s for 10-TB data.</description>
+    </item>
+    
+    <item>
+      <title>TiDB 4.0 Preview: An Easier-to-Use, Production-Ready HTAP Database</title>
+      <link>https://idiks.com/blog/tidb-4.0-preview-easier-to-use-production-ready-htap-database/</link>
+      <pubDate>Fri, 10 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-4.0-preview-easier-to-use-production-ready-htap-database/</guid>
+      <description>Get a preview of TiDB 4.0. Our landmark release has production-ready HTAP capabilities, continues to solve issues for large-scale, distributed SQL databases, and is easier to use than ever.</description>
+    </item>
+    
+    <item>
+      <title>A Peek into the Future of Database: A Unified Infrastructure to Adapt Intelligently</title>
+      <link>https://idiks.com/blog/future-of-database-unified-infrastructure-to-adapt-intelligently/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/future-of-database-unified-infrastructure-to-adapt-intelligently/</guid>
+      <description>Today is PingCAP&#39;s 5-year birthday. In this post, Ed Huang, PingCAP&#39;s CTO, discusses about what he thinks the future holds for databases. The future of the database is about unification, adaptiveness, and intelligence.</description>
+    </item>
+    
+    <item>
+      <title>Quickly Find Rust Program Bottlenecks Online Using a Go Tool</title>
+      <link>https://idiks.com/blog/quickly-find-rust-program-bottlenecks-online-using-a-go-tool/</link>
+      <pubDate>Wed, 25 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/quickly-find-rust-program-bottlenecks-online-using-a-go-tool/</guid>
+      <description>It can be hard to find Rust programs&amp;rsquo; performance bottlenecks online. By integrating pprof-rs in TiKV, we can use the Go tool pprof to visualize TiKV&#39;s profiling data. This helps analyze the program&#39;s performance online.</description>
+    </item>
+    
+    <item>
+      <title>Run Your First Chaos Experiment in 10 Minutes</title>
+      <link>https://idiks.com/blog/run-first-chaos-experiment-in-ten-minutes/</link>
+      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/run-first-chaos-experiment-in-ten-minutes/</guid>
+      <description>In this 10-minute tutorial, we will help you to quickly get started with Chaos Engineering and run your first chaos experiment with Chaos Mesh.</description>
+    </item>
+    
+    <item>
+      <title>Choosing the Right Database for Your Applications</title>
+      <link>https://idiks.com/success-stories/choosing-right-database-for-your-applications/</link>
+      <pubDate>Wed, 11 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/choosing-right-database-for-your-applications/</guid>
+      <description>With so many databases on the market, choosing the right fit for your app is not an easy task. As a leading e-commerce platform in Southeast Asia and Taiwan, Shopee has an effective strategy for database selection. Learn from their experience.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Usability Challenge - Dare to Dream Bigger</title>
+      <link>https://idiks.com/blog/tidb-usability-challenge-dare-to-dream-bigger/</link>
+      <pubDate>Fri, 06 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-usability-challenge-dare-to-dream-bigger/</guid>
+      <description>TiDB Challenge Program is a series community program to bring TiDB to a new level in terms of stability, performance, and usability. With amazing improvements in performance in season 1 last year, we are now pleased to announce that season 2 is ready for you.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Celebrates 400 Contributors</title>
+      <link>https://idiks.com/blog/tidb-celebrates-400-contributors/</link>
+      <pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-celebrates-400-contributors/</guid>
+      <description>The TiDB repository reaches the 400th contributor milestone. All our honors and achievements belong to the TiDB community, our beloved contributors, and distinguished committers.</description>
+    </item>
+    
+    <item>
+      <title>Early Impressions of Go from a Rust Programmer</title>
+      <link>https://idiks.com/blog/early-impressions-of-go-from-a-rust-programmer/</link>
+      <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/early-impressions-of-go-from-a-rust-programmer/</guid>
+      <description>Nick Cameron is a long-time Rust programmer who has recently started using Go. In this post, he talks about his early impressions of Go. Read this post to learn more.</description>
+    </item>
+    
+    <item>
+      <title>How We Reduced Multi-region Read Latency and Network Traffic by 50%</title>
+      <link>https://idiks.com/blog/how-we-reduced-multi-region-read-latency-and-network-traffic-by-50/</link>
+      <pubDate>Wed, 19 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-we-reduced-multi-region-read-latency-and-network-traffic-by-50/</guid>
+      <description>High read latency and network traffic are common issues for a multi-region architecture. At TiDB Hackathon 2019, a team won 2nd place by reducing multi-region read latency and network traffic by 50%. Read this post to learn how they did it.</description>
+    </item>
+    
+    <item>
+      <title>Remote Work - Part 3</title>
+      <link>https://idiks.com/blog/remote-work-part-3/</link>
+      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/remote-work-part-3/</guid>
+      <description>It&#39;s the third post in a series on remote work. In this post, Nick Cameron talks a bit about some of the practicalities, specifically around work and life balance.</description>
+    </item>
+    
+    <item>
+      <title>Remote Work - Part 2</title>
+      <link>https://idiks.com/blog/remote-work-part-2/</link>
+      <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/remote-work-part-2/</guid>
+      <description>Nick Cameron has nearly ten-year experience of remote work. In this post, he discusses communication in remote work.</description>
+    </item>
+    
+    <item>
+      <title>Remote Work - Part 1</title>
+      <link>https://idiks.com/blog/remote-work-part-1/</link>
+      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/remote-work-part-1/</guid>
+      <description>Nick has been working remotely for nearly ten years. In this post, he introduces why you might benefit from remote work and some of the things that make remote work successful.</description>
+    </item>
+    
+    <item>
+      <title>Doubling System Read Throughput with Only 26 Lines of Code</title>
+      <link>https://idiks.com/blog/doubling-system-read-throughput-with-only-26-lines-of-code/</link>
+      <pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/doubling-system-read-throughput-with-only-26-lines-of-code/</guid>
+      <description>The Follower Read feature lets any follower replica in a Region serve a read request under the premise of strongly consistent reads. It reduces the load on the Raft leader and improves the read throughput of the TiDB cluster. Read this post to learn more.</description>
+    </item>
+    
+    <item>
+      <title>The Rust Compilation Model Calamity</title>
+      <link>https://idiks.com/blog/rust-compilation-model-calamity/</link>
+      <pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/rust-compilation-model-calamity/</guid>
+      <description>In this first episode of the Rust Compile time series, Brian Anderson, one of Rust&#39;s original authors, shares with you his researches and experiences with Rust compile times, using the TiKV project as a case study.</description>
+    </item>
+    
+    <item>
+      <title>Chaos Mesh - Your Chaos Engineering Solution for System Resiliency on Kubernetes</title>
+      <link>https://idiks.com/blog/chaos-mesh-your-chaos-engineering-solution-for-system-resiliency-on-kubernetes/</link>
+      <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/chaos-mesh-your-chaos-engineering-solution-for-system-resiliency-on-kubernetes/</guid>
+      <description>Recently, PingCAP open-sourced Chaos Mesh, a Chaos Engineering platform that features all-around fault injection methods for complex Kubernetes systems. Find out how this testing tool can make your applications more reliable.</description>
+    </item>
+    
+    <item>
+      <title>How TiKV Reads and Writes</title>
+      <link>https://idiks.com/blog/how-tikv-reads-and-writes/</link>
+      <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-tikv-reads-and-writes/</guid>
+      <description>This post details how TiKV, as a distributed database, stores the data contained in a write request and how it retrieves the corresponding data with consistency guaranteed.</description>
+    </item>
+    
+    <item>
+      <title>AutoTiKV: TiKV Tuning Made Easy by Machine Learning</title>
+      <link>https://idiks.com/blog/autotikv-tikv-tuning-made-easy-by-machine-learning/</link>
+      <pubDate>Fri, 27 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/autotikv-tikv-tuning-made-easy-by-machine-learning/</guid>
+      <description>AutoTiKV is a machine-learning-based tuning tool that helps decrease tuning costs and make life easier for DBAs. This post shows AutoTiKV&#39;s design, its machine learning model, and the automatic tuning workflow.</description>
+    </item>
+    
+    <item>
+      <title>Squashed Bugs, Served Hot and Fresh with Failure Rate Heatmaps</title>
+      <link>https://idiks.com/blog/squashed-bugs-served-hot-and-fresh-with-failure-rate-heatmaps/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/squashed-bugs-served-hot-and-fresh-with-failure-rate-heatmaps/</guid>
+      <description>At TiDB Hackathon 2019, a team won the third prize by building a bot that helps quickly locate bugs in the code. Read this post to get more details.</description>
+    </item>
+    
+    <item>
+      <title>How We Achieved 40 K QPS and 20&#43; Billion Rows of Data in a Single Scale-out Cluster</title>
+      <link>https://idiks.com/success-stories/lesson-learned-from-40-k-qps-and-20-billion-rows-of-data-in-a-single-scale-out-cluster/</link>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/lesson-learned-from-40-k-qps-and-20-billion-rows-of-data-in-a-single-scale-out-cluster/</guid>
+      <description>As the business developed, standalone MySQL couldn&#39;t meet JD Cloud&#39;s OSS metadata storage requirements. This post introduces how TiKV empowered JD Cloud to manage huge amounts of OSS metadata with a simple and horizontally scalable architecture.</description>
+    </item>
+    
+    <item>
+      <title>NetEase Games: Why We Chose TiDB over Other MySQL-based and NewSQL Storage Solutions</title>
+      <link>https://idiks.com/success-stories/why-we-chose-tidb-over-other-mysql-based-and-newsql-storage-solutions/</link>
+      <pubDate>Wed, 04 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/why-we-chose-tidb-over-other-mysql-based-and-newsql-storage-solutions/</guid>
+      <description>As business boomed, NetEase Games met bottlenecks in database scalability and data isolation. This post introduces why they chose TiDB over other MySQL-based and NewSQL storage solutions to solve their pain points.</description>
+    </item>
+    
+    <item>
+      <title>New Structure, New Roles - TiDB Community Upgrade!</title>
+      <link>https://idiks.com/blog/tidb-community-upgrade/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-community-upgrade/</guid>
+      <description>PingCAP has upgraded and adjusted the TiDB community organization structure, with more community roles and community organizations introduced to better stimulate the vitality of the community and maintain a positive and healthy community environment.</description>
+    </item>
+    
+    <item>
+      <title>10x Performance Improvement for Expression Evaluation Made Possible by Vectorized Execution and the Community</title>
+      <link>https://idiks.com/blog/10x-performance-improvement-for-expression-evaluation-made-possible-by-vectorized-execution/</link>
+      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/10x-performance-improvement-for-expression-evaluation-made-possible-by-vectorized-execution/</guid>
+      <description>We vectorized 360+ built-in functions along with the TiDB community. Vectorized execution has greatly improved the expression evaluation performance. Some functions even achieved 10x performance. Here is our vectorization story.</description>
+    </item>
+    
+    <item>
+      <title>Building a Large-scale Distributed Storage System Based on Raft</title>
+      <link>https://idiks.com/blog/building-a-large-scale-distributed-storage-system-based-on-raft/</link>
+      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/building-a-large-scale-distributed-storage-system-based-on-raft/</guid>
+      <description>This post introduces the PingCAP team&#39;s firsthand experience in designing a large-scale distributed storage system based on the Raft consensus algorithm.</description>
+    </item>
+    
+    <item>
+      <title>How We Compiled a Golang Database in the Browser Using WebAssembly</title>
+      <link>https://idiks.com/blog/how-we-compiled-a-golang-database-in-the-browser-using-webassembly/</link>
+      <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-we-compiled-a-golang-database-in-the-browser-using-webassembly/</guid>
+      <description>We compiled a Golang database (TiDB) into an in-browser database using WebAssembly (Wasm). This post introduces why and how we built an in-browser database.</description>
+    </item>
+    
+    <item>
+      <title>TiDB in the Browser: Running a Golang Database on WebAssembly</title>
+      <link>https://idiks.com/blog/tidb-in-the-browser-running-a-golang-database-on-webassembly/</link>
+      <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-in-the-browser-running-a-golang-database-on-webassembly/</guid>
+      <description>This post introduces how you can run TiDB directly in a web browser, how it is possible, and what the limitations are.</description>
+    </item>
+    
+    <item>
+      <title>Delivering Real-time Analytics and True HTAP by Combining Columnstore and Rowstore</title>
+      <link>https://idiks.com/blog/delivering-real-time-analytics-and-true-htap-by-combining-columnstore-and-rowstore/</link>
+      <pubDate>Mon, 04 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/delivering-real-time-analytics-and-true-htap-by-combining-columnstore-and-rowstore/</guid>
+      <description>TiDB is an HTAP database that targets both OLTP and OLAP scenarios. TiFlash is its extended analytical engine. This post introduces how TiFlash fuels TiDB to become a true HTAP database that lets users perform real-time analytics.</description>
+    </item>
+    
+    <item>
+      <title>INSERT INTO tidb.hackathon_2019 VALUES (&#34;Hack&#34;, &#34;Fun&#34;, &#34;TiDB Ecosystem&#34;)</title>
+      <link>https://idiks.com/blog/insert-into-tidb-hackathon-2019-values-hack-fun-tidb-ecosystem/</link>
+      <pubDate>Wed, 30 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/insert-into-tidb-hackathon-2019-values-hack-fun-tidb-ecosystem/</guid>
+      <description>This post introduces the top 3 winners at TiDB Hackathon 2019 and the cozy and friendly environment of this meeting.</description>
+    </item>
+    
+    <item>
+      <title>Safety First! Common Safety Pitfalls in Distributed Databases Found by Jepsen Tests</title>
+      <link>https://idiks.com/blog/safety-first-common-safety-pitfalls-in-distributed-databases-found-by-jepsen-tests/</link>
+      <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/safety-first-common-safety-pitfalls-in-distributed-databases-found-by-jepsen-tests/</guid>
+      <description>This post introduces why Jepsen is important to the distributed database industry, how it works, common issues found, how we use Jepsen with TiDB, and a short summary of all problems Jepsen has found.</description>
+    </item>
+    
+    <item>
+      <title>How TSQ Becomes a Performance Bottleneck for TiKV in AWS ARM Environment</title>
+      <link>https://idiks.com/blog/how-tsq-becomes-a-performance-bottleneck-for-tikv-in-aws-arm-environment/</link>
+      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-tsq-becomes-a-performance-bottleneck-for-tikv-in-aws-arm-environment/</guid>
+      <description>Explore into Linux kernel to find out how TSQ becomes a performance bottleneck for TiKV in an AWS ARM environment.</description>
+    </item>
+    
+    <item>
+      <title>Lesson Learned from Queries over 1.3 Trillion Rows of Data Within Milliseconds of Response Time at Zhihu.com</title>
+      <link>https://idiks.com/success-stories/lesson-learned-from-queries-over-1.3-trillion-rows-of-data-within-milliseconds-of-response-time-at-zhihu/</link>
+      <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/lesson-learned-from-queries-over-1.3-trillion-rows-of-data-within-milliseconds-of-response-time-at-zhihu/</guid>
+      <description>As the business boomed and massive data in applications accrued each month, Zhihu faced severe challenges in scaling the backend system. This post introduces how Zhihu managed to keep milliseconds of query response time over a large amount of data and how TiDB, an open source MySQL-compatible HTAP database, empowered Zhihu to get real-time insights into data.</description>
+    </item>
+    
+    <item>
+      <title>Porting TiDB to Arm64 for Greater Flexibility</title>
+      <link>https://idiks.com/blog/porting-tidb-to-arm64-for-greater-flexibility/</link>
+      <pubDate>Fri, 16 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/porting-tidb-to-arm64-for-greater-flexibility/</guid>
+      <description>This article describes how PingCAP compiled and benchmarked TiDB on the Amazon Web Services (AWS) Arm64 platform.</description>
+    </item>
+    
+    <item>
+      <title>Migrating the TiKV Rust Client from Futures 0.1 to 0.3</title>
+      <link>https://idiks.com/blog/migrating-the-tikv-rust-client-from-futures-0.1-to-0.3/</link>
+      <pubDate>Thu, 08 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/migrating-the-tikv-rust-client-from-futures-0.1-to-0.3/</guid>
+      <description>This post introduces Nick&#39;s experience in migrating the TiKV Rust client from Futures 0.1 to 0.3.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Operator 1.0 GA: Database Cluster Deployment and Management Made Easy with Kubernetes</title>
+      <link>https://idiks.com/blog/database-cluster-deployment-and-management-made-easy-with-kubernetes/</link>
+      <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/database-cluster-deployment-and-management-made-easy-with-kubernetes/</guid>
+      <description>Deploying transactional databases like TiDB in Kubernetes for production has always been challenging. Now, with TiDB Operator 1.0, running TiDB database clusters has never been easier.</description>
+    </item>
+    
+    <item>
+      <title>Why Benchmarking Distributed Databases Is So Hard</title>
+      <link>https://idiks.com/blog/why-benchmarking-distributed-databases-is-so-hard/</link>
+      <pubDate>Mon, 08 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/why-benchmarking-distributed-databases-is-so-hard/</guid>
+      <description>Benchmarks are hard to get right, and many articles touting benchmarks are actually benchmarketing, showcasing skewed outcomes to sell products. This post introduces some of the motivations for benchmarking and the common tools, and discusses a few things to keep in mind when benchmarking.</description>
+    </item>
+    
+    <item>
+      <title>The KOST Stack: An Open-Source Cloud-Native Hybrid Database Stack</title>
+      <link>https://idiks.com/blog/kost-stack/</link>
+      <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/kost-stack/</guid>
+      <description>A new infrastructure pattern is emerging called the KOST stack (Kubernetes, Operator, Spark, TiDB). This blog post introduces each component of the KOST stack and cloud-native HTAP in the wild.</description>
+    </item>
+    
+    <item>
+      <title>TiDB 3.0 Reaches GA, Delivers Stability at Scale and Performance Boost</title>
+      <link>https://idiks.com/blog/tidb-3.0-announcement/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-3.0-announcement/</guid>
+      <description>TiDB 3.0 is released! This blog post introduces some highlights of TiDB 3.0, including major features focused on stability, significant performance improvements in Sysbench and TPC-C benchmarks, a newly introduced component, and important features and improvements.</description>
+    </item>
+    
+    <item>
+      <title>Distributed Systems Training in Go and Rust</title>
+      <link>https://idiks.com/blog/distributed-systems-training-in-go-and-rust/</link>
+      <pubDate>Thu, 20 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/distributed-systems-training-in-go-and-rust/</guid>
+      <description>PingCAP has made a talent plan for training and/or evaluating students, new employees, and new contributors to TiDB and TiKV. This blog post gives a brief overview of training courses for this plan on writing distributed systems in Go and Rust.</description>
+    </item>
+    
+    <item>
+      <title>Best Practices for Developing Applications with TiDB</title>
+      <link>https://idiks.com/blog/best-practices-for-developing-applications-with-tidb/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/best-practices-for-developing-applications-with-tidb/</guid>
+      <description>This article shows how to efficiently develop high-quality applications with TiDB, an open-source NewSQL database that supports Hybrid Transactional and Analytical Processing (HTAP) workloads and can serve as a scale-out MySQL database without manual sharding.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Passes Jepsen Test for Snapshot Isolation and Single-Key Linearizability</title>
+      <link>https://idiks.com/blog/tidb-passes-jepsen-test-for-snapshot-isolation-and-single-key-linearizability/</link>
+      <pubDate>Wed, 12 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-passes-jepsen-test-for-snapshot-isolation-and-single-key-linearizability/</guid>
+      <description>TiDB&#39;s first official Jepsen Test report is published. This post introduces some additional context to the test results and PingCAP&#39;s thoughts on what&#39;s next.</description>
+    </item>
+    
+    <item>
+      <title>Percona Live Austin -- Summary and Reflection</title>
+      <link>https://idiks.com/blog/percona-live-austin-summary-and-reflection/</link>
+      <pubDate>Tue, 11 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/percona-live-austin-summary-and-reflection/</guid>
+      <description>In this post, Kevin Xu shares the PingCAP team&#39;s experience and activities at Percona Live in Austin, including several technical sharing sessions and boosting friendship with people inside and outside PingCAP.</description>
+    </item>
+    
+    <item>
+      <title>Tutorial: Use TiDB DM to Migrate and Replicate Data from MySQL, MariaDB &amp; Amazon Aurora</title>
+      <link>https://idiks.com/blog/use-tidb-dm-to-migrate-and-replicate-data-from-mysqlmariadb-amazon-aurora/</link>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/use-tidb-dm-to-migrate-and-replicate-data-from-mysqlmariadb-amazon-aurora/</guid>
+      <description>Learn to migrate and replicate data from MySQL, MariaDB and Amazon Aurora using TiDB Data Migration.</description>
+    </item>
+    
+    <item>
+      <title>Design and Implementation of Golang Failpoints</title>
+      <link>https://idiks.com/blog/design-and-implementation-of-golang-failpoints/</link>
+      <pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/design-and-implementation-of-golang-failpoints/</guid>
+      <description>This post introduces design and implementation of Golang Failpoint.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Binlog Tutorial</title>
+      <link>https://idiks.com/blog/tidb-binlog-tutorial/</link>
+      <pubDate>Wed, 08 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-binlog-tutorial/</guid>
+      <description>Learn to deploy TiDB Binlog with a simple TiDB cluster.</description>
+    </item>
+    
+    <item>
+      <title>PingCAP Open-Sources TiDB Binlog to Reduce Migration Cost</title>
+      <link>https://idiks.com/blog/pingcap-open-sources-tidb-binlog-to-reduce-migration-cost/</link>
+      <pubDate>Mon, 06 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pingcap-open-sources-tidb-binlog-to-reduce-migration-cost/</guid>
+      <description>Our team at PingCAP is excited to announce that we are open-sourcing our own binlog implementation, TiDB Binlog. TiDB Binlog is a tool we&#39;ve been developing in-house (until now) to collect binary log data from TiDB server and provide real-time data backup and replication.</description>
+    </item>
+    
+    <item>
+      <title>Try to Fix Two Linux Kernel Bugs While Testing TiDB Operator in K8s</title>
+      <link>https://idiks.com/blog/try-to-fix-two-linux-kernel-bugs-while-testing-tidb-operator-in-k8s/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/try-to-fix-two-linux-kernel-bugs-while-testing-tidb-operator-in-k8s/</guid>
+      <description>This post introduces how the EE team at PingCAP tackled two Linux kernel bugs while testing TiDB Operator in K8s. PingCAP engineers also hope the K8s community, RHEL and CentOS can help fix these bugs thoroughly in the near future.</description>
+    </item>
+    
+    <item>
+      <title>PingCAPers at the First RustCon Asia!</title>
+      <link>https://idiks.com/blog/pingcapers-at-the-first-rustcon-asia/</link>
+      <pubDate>Mon, 29 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pingcapers-at-the-first-rustcon-asia/</guid>
+      <description>PingCAP has been an active member in the Rust community and one of the first production users of Rust in building TiKV. As part of being a co-organizer for the first RustCon Asia, PingCAP also contributed several topics in both keynote sessions and workshops.</description>
+    </item>
+    
+    <item>
+      <title>Titan: A RocksDB Plugin to Reduce Write Amplification</title>
+      <link>https://idiks.com/blog/titan-storage-engine-design-and-implementation/</link>
+      <pubDate>Thu, 25 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/titan-storage-engine-design-and-implementation/</guid>
+      <description>As a RocksDB plugin for key-value separation, inspired by WiscKey, Titan is available for preview in TiDB 3.0. This post introduces the design and implementation of Titan.</description>
+    </item>
+    
+    <item>
+      <title>Powering the Xiaomi Mobile Lifestyle with TiDB</title>
+      <link>https://idiks.com/success-stories/tidb-in-xiaomi/</link>
+      <pubDate>Thu, 11 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/tidb-in-xiaomi/</guid>
+      <description>As sales of Xiaomi smartphones continue to climb and the MIUI user base continues to grow, the Database Administration team at Xiaomi was having an increasingly hard time managing their MySQL database infrastructure until they adopted TiDB, an open source distributed hybrid transactional and analytical processing database created and supported by PingCAP. Now they also have plans to migrate additional workloads to TiDB in the future.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Analytics Queries for the MySQL DBA</title>
+      <link>https://idiks.com/blog/introduction-to-analytics-queries-for-the-mysql-dba/</link>
+      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/introduction-to-analytics-queries-for-the-mysql-dba/</guid>
+      <description>This post introduces some simple use cases of analytics queries where a MySQL DBA can expand their repertoire and answer some basic business questions by writing SQL queries with window functions.</description>
+    </item>
+    
+    <item>
+      <title>BookMyShow.com: More Uptime, 30% Less Operational Cost with TiDB</title>
+      <link>https://idiks.com/success-stories/tidb-in-bookmyshow/</link>
+      <pubDate>Fri, 15 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/tidb-in-bookmyshow/</guid>
+      <description>With TiDB, BookMyShow has experienced increased uptime and availability, since TiDB automatically partitions and distributes data across the cluster. Meanwhile, operational and maintenance cost has been reduced by 30%. No engineer needs to be fully dedicated to database operations anymore. This post will introduce why BookMyShow chose TiDB over Greenplum by illustrating how TiDB solved their pain points.</description>
+    </item>
+    
+    <item>
+      <title>Shopping on Shopee, the TiDB Way</title>
+      <link>https://idiks.com/success-stories/tidb-in-shopee/</link>
+      <pubDate>Thu, 14 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/tidb-in-shopee/</guid>
+      <description>As our business boom, our team faced severe challenges in scaling our backend system to meet the demand until we found TiDB, a MySQL-compatible NewSQL hybrid transactional and analytical processing (HTAP) database, built and supported by PingCAP. Now we can provide better service and experience for our users without worrying about our database capacity.</description>
+    </item>
+    
+    <item>
+      <title>FOSDEM 2019 Recap: Global Technology, Local Community</title>
+      <link>https://idiks.com/blog/fosdem-2019-recap-global-technology-local-community/</link>
+      <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/fosdem-2019-recap-global-technology-local-community/</guid>
+      <description>In this post, Kevin Xu shares the PingCAP team&#39;s experience and activities at FOSDEM 2019, including three talks they delivered at the conference &amp;ndash; the first one about TiDB and its architecture, horizontal scalability and MySQL compatibility, the second about improving development posture in Rust based on the work building TiKV, and the last about Rust implementation of Prometheus.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Tools (III): TiDB Data Migration Architecture Design and Implementation Principles</title>
+      <link>https://idiks.com/blog/tidb-dm-architecture-design-and-implementation-principles/</link>
+      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-dm-architecture-design-and-implementation-principles/</guid>
+      <description>TiDB Data Migration is an integrated data transfer and replication management platform that supports full data migration or incremental data replication from MySQL or MariaDB instances into a TiDB cluster. This post introduces its architecture design and implementation principles.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Tools (II): Introducing TiDB Lightning</title>
+      <link>https://idiks.com/blog/introducing-tidb-lightning/</link>
+      <pubDate>Wed, 30 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/introducing-tidb-lightning/</guid>
+      <description>TiDB Lightning is an open source TiDB ecosystem tool that supports high speed full-import of a large SQL dump into a TiDB cluster. This post introduces its architecture and future improvements on the roadmap.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Tools (I): TiDB Binlog Architecture Evolution and Implementation Principles</title>
+      <link>https://idiks.com/blog/tidb-binlog-architecture-evolution-and-implementation-principles/</link>
+      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-binlog-architecture-evolution-and-implementation-principles/</guid>
+      <description>TiDB Binlog is a tool used to collect the logical changes made to a TiDB cluster and provide incremental backup and replication. This post introduces its architecture evolution and implementation principles.</description>
+    </item>
+    
+    <item>
+      <title>TiDB 3.0 Beta: Stability at Scale</title>
+      <link>https://idiks.com/blog/tidb-3.0-beta-stability-at-scale/</link>
+      <pubDate>Thu, 24 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-3.0-beta-stability-at-scale/</guid>
+      <description>This post introduces the key new features of TiDB 3.0 Beta.</description>
+    </item>
+    
+    <item>
+      <title>PingCAP 2018 Year in Review</title>
+      <link>https://idiks.com/blog/pingcap-2018-year-in-review/</link>
+      <pubDate>Mon, 24 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pingcap-2018-year-in-review/</guid>
+      <description>Thank you for a great 2018!</description>
+    </item>
+    
+    <item>
+      <title>5 Key Differences Between MySQL and TiDB for Scaling in the Cloud</title>
+      <link>https://idiks.com/blog/5-key-differences-between-mysql-and-tidb-for-scaling-in-the-cloud/</link>
+      <pubDate>Tue, 11 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/5-key-differences-between-mysql-and-tidb-for-scaling-in-the-cloud/</guid>
+      <description>This post introduces the top five key differences between TiDB and MySQL.</description>
+    </item>
+    
+    <item>
+      <title>Migrating from MySQL to a Scale-Out Database to Serve Our 290 Million Monthly Users</title>
+      <link>https://idiks.com/success-stories/tidb-in-meituan-dianping/</link>
+      <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/tidb-in-meituan-dianping/</guid>
+      <description>As our business grew quickly, we were overwhelmed trying to tackle the mounting data until we found TiDB, a MySQL-compatible NewSQL hybrid transactional and analytical processing (HTAP) database, built and supported by PingCAP. Now we can harness our data with more confidence than ever before and provide better services for our users to enjoy a better life.</description>
+    </item>
+    
+    <item>
+      <title>TiDB 2.1 GA: Battle-Tested to Handle an Unpredictable World</title>
+      <link>https://idiks.com/blog/tidb-2.1-ga-Battle-tested-to-handle-an-unpredictable-world/</link>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-2.1-ga-Battle-tested-to-handle-an-unpredictable-world/</guid>
+      <description>PingCAP, a leading distributed database company that created the popular MySQL-compatible cloud-native NewSQL database TiDB, announces that TiDB 2.1 is ready for General Availability.</description>
+    </item>
+    
+    <item>
+      <title>How TiKV Uses &#34;Lease Read&#34; to Guarantee High Performances, Strong Consistency and Linearizability</title>
+      <link>https://idiks.com/blog/lease-read/</link>
+      <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/lease-read/</guid>
+      <description>This post discusses Raft Log Read, &lt;code&gt;ReadIndex&lt;/code&gt; Read, and Lease Read, and why TiKV adopts the Lease Read approach.</description>
+    </item>
+    
+    <item>
+      <title>TiDB: Architecture and Use Cases of A Cloud-Native NewSQL Database</title>
+      <link>https://idiks.com/blog/architecture-and-use-cases-of-a-cloud-native-newsql-database/</link>
+      <pubDate>Fri, 02 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/architecture-and-use-cases-of-a-cloud-native-newsql-database/</guid>
+      <description>This post provides a macro-level overview of TiDB and is the main reference content for readers to orient and dig deeper into other TiDB subjects.</description>
+    </item>
+    
+    <item>
+      <title>Announcing TiDB Cloud, Managed as a Service and in the Marketplace</title>
+      <link>https://idiks.com/blog/announcing-tidb-cloud-managed-as-a-service-and-in-the-marketplace/</link>
+      <pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/announcing-tidb-cloud-managed-as-a-service-and-in-the-marketplace/</guid>
+      <description>This post announces that TiDB Cloud is now available for public preview.</description>
+    </item>
+    
+    <item>
+      <title>Always Fun, Always On: How TiDB Helps iQiyi Deliver Streaming Videos</title>
+      <link>https://idiks.com/success-stories/tidb-in-iqiyi/</link>
+      <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/tidb-in-iqiyi/</guid>
+      <description>As our business grew exponentially, we were overwhelmed trying to handle the mounting data until we found TiDB, a MySQL-compatible NewSQL hybrid transactional and analytical processing (HTAP) database, built and supported by PingCAP. Now we no longer worry about data volume and can bring high-quality entertainment services to our users with more confidence than before.</description>
+    </item>
+    
+    <item>
+      <title>Launching TiDB Academy, First Course-&#34;Distributed Database with TiDB for MySQL DBAs&#34;</title>
+      <link>https://idiks.com/blog/tidb-academy-announce/</link>
+      <pubDate>Tue, 16 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-academy-announce/</guid>
+      <description>Today, we are excited to launch TiDB Academy, a series of technical training courses and certifications on TiDB and distributed databases in general, taught by our senior technical team.</description>
+    </item>
+    
+    <item>
+      <title>PingCAP Raises $50 Million in Series C Round, Sets Eyes on Global Expansion, Cross-Cloud Offering, and More Core Technology Investment</title>
+      <link>https://idiks.com/blog/series-c-announcement/</link>
+      <pubDate>Tue, 11 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/series-c-announcement/</guid>
+      <description>PingCAP, a leading distributed database company that created the popular cloud-native NewSQL database TiDB, announces a $50 million Series C funding round led by FOSUN and Morningside Venture Capital. All previous investors—China Growth Capital, Yunqi Partners, Matrix Partners China, and others—have also participated in this round. PingCAP plans to use this new capital to expand the TiDB ecosystem globally, build cross-cloud product offering, and invest in innovation of its core technology.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Reaches the 200 Contributors Milestone</title>
+      <link>https://idiks.com/blog/tidb-community-200-contributors/</link>
+      <pubDate>Thu, 30 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-community-200-contributors/</guid>
+      <description>TiDB recently added its 200th contributor. As CEO and co-founder of PingCAP who began building TiDB three years ago, I would like to thank the entire TiDB community for helping us reach this important milestone!</description>
+    </item>
+    
+    <item>
+      <title>9 Why&#39;s to Ask When Evaluating a Distributed Database</title>
+      <link>https://idiks.com/blog/9-whys-to-ask-when-evaluating-a-distributed-database/</link>
+      <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/9-whys-to-ask-when-evaluating-a-distributed-database/</guid>
+      <description>Ed Huang, the CTO of PingCAP, has summarized into &amp;ldquo;9 why&#39;s&amp;rdquo; the most frequently asked questions by engineers when they look at a distributed database; he also gives his answers to these questions in this post to help make decision-making of engineers a bit easier.</description>
+    </item>
+    
+    <item>
+      <title>Managing the Surging Data Volume of a Fast-Growing Marketplace with TiDB</title>
+      <link>https://idiks.com/success-stories/tidb-in-zhuanzhuan/</link>
+      <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/tidb-in-zhuanzhuan/</guid>
+      <description>With our fast-growing business, the surging data volume posed a serious challenge to our backend system and put the operations team under great pressure. How to tackle these challenges became a thorny problem until we found TiDB, a MySQL compatible distributed hybrid transactional and analytical processing (HTAP) database, built and supported by PingCAP. Finally, we do not have to worry about scaling databases and can focus on building better applications for our users.</description>
+    </item>
+    
+    <item>
+      <title>Landing Your First Rust Pull Request in TiKV</title>
+      <link>https://idiks.com/blog/adding-built-in-functions-to-tikv/</link>
+      <pubDate>Fri, 03 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/adding-built-in-functions-to-tikv/</guid>
+      <description>This guide is intended to show how you can land your first Pull Request (PR) in Rust to contribute to TiKV in less than 30 minutes. But before we do that, here&#39;s some helpful background.</description>
+    </item>
+    
+    <item>
+      <title>TiSpark: More Data Insights, Less ETL</title>
+      <link>https://idiks.com/blog/tispark-more-data-insights-no-more-etl/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tispark-more-data-insights-no-more-etl/</guid>
+      <description>The motivation behind building TiSpark was to enable real-time analytics on TiDB without the delay and challenges of ETL. Extract, transform, and load (ETL)&amp;ndash;a process to extract data from operational databases, transform that data, then load it into a database designed to supporting analytics&amp;ndash;has been one of the most complex, tedious, error-prone, and therefore disliked tasks for many data engineers. However, it was a necessary evil to make data useful, because there hasn&#39;t been good solutions on the market to render ETL obsolete&amp;ndash;until now.</description>
+    </item>
+    
+    <item>
+      <title>The Hybrid Database Capturing Perishable Insights at Yiguo</title>
+      <link>https://idiks.com/success-stories/hybrid-database-capturing-perishable-insights-at-yiguo/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/hybrid-database-capturing-perishable-insights-at-yiguo/</guid>
+      <description>As the largest B2C fresh produce online marketplace in China, serving close to 5 million users and 1,000+ enterprise customers, Yiguo.com uses TiDB to capture real-time insights from fresh transactional data to make timely and accurate business decisions.</description>
+    </item>
+    
+    <item>
+      <title>How To Spin Up an HTAP Database in 5 Minutes with TiDB &#43; TiSpark</title>
+      <link>https://idiks.com/blog/how_to_spin_up_an_htap_database_in_5_minutes_with_tidb_tispark/</link>
+      <pubDate>Fri, 08 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how_to_spin_up_an_htap_database_in_5_minutes_with_tidb_tispark/</guid>
+      <description>In this 5-minute tutorial for beginners, we will show you how to spin up a standard TiDB cluster using Docker Compose on your local computer, so you can get a taste of its hybrid power, before using it for work or your own project in production.</description>
+    </item>
+    
+    <item>
+      <title>Implement Raft in Rust</title>
+      <link>https://idiks.com/blog/implement-raft-in-rust/</link>
+      <pubDate>Tue, 22 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/implement-raft-in-rust/</guid>
+      <description>As an open-source distributed scalable HTAP database, TiDB uses the Raft Consensus Algorithm in its distributed transactional key-value storage engine, TiKV, to ensure data consistency, auto-failover, and fault tolerance. TiDB has thus far been used by more than 200 companies in their production environments in a wide range of industries, from e-commerce and food delivery, to fintech, media, gaming, and travel.</description>
+    </item>
+    
+    <item>
+      <title>TiDB 2.0 is Ready - Faster, Smarter, and Battle-Tested</title>
+      <link>https://idiks.com/blog/tidb-2-0-announcement/</link>
+      <pubDate>Sun, 29 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-2-0-announcement/</guid>
+      <description>TiDB 2.0 is released! We absorbed insights and feedbacks from our customers, listened to requests and issues from our community, and reflected internally on our ultimate vision of building a distributed hybrid transactional and analytical processing database that scales itself, heals itself, and lives in the cloud.</description>
+    </item>
+    
+    <item>
+      <title>From Chaos to Order -- Tools and Techniques for Testing TiDB, A Distributed NewSQL Database</title>
+      <link>https://idiks.com/blog/chaos-practice-in-tidb/</link>
+      <pubDate>Sat, 14 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/chaos-practice-in-tidb/</guid>
+      <description>As an open source distributed NewSQL Hybrid Transactional/Analytical Processing (HTAP) database, TiDB contains the most important asset of our customers&amp;ndash;their data. One of the fundamental and foremost requirements of our system is to be fault-tolerant. But how do you ensure fault tolerance in a distributed database? This article covers the top fault injection tools and techniques in Chaos Engineering, as well as how to execute Chaos practices in TiDB.</description>
+    </item>
+    
+    <item>
+      <title>Blitzscaling the Largest Dockless Bikesharing Platform with TiDB&#39;s Help</title>
+      <link>https://idiks.com/success-stories/tidb-in-mobike/</link>
+      <pubDate>Tue, 03 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/tidb-in-mobike/</guid>
+      <description>Mobike has been using the TiDB database in the production environment since early 2017. Now they have deployed TiDB in multiple clusters with close to 100 nodes, handling dozens of TBs of data for different application scenarios. This post will provide a deep dive on why Mobike chose TiDB over MySQL and its sharding solutions by illustrating how TiDB solves their pain points.</description>
+    </item>
+    
+    <item>
+      <title>How to Do Performance Tuning on TiDB, a Distributed NewSQL Database</title>
+      <link>https://idiks.com/blog/performance_tuning_on_a_distributed_newsql_database/</link>
+      <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/performance_tuning_on_a_distributed_newsql_database/</guid>
+      <description>Doing performance tuning on distributed systems is no joking matter. It&#39;s much more complicated than on a single node server, and bottlenecks can pop up anywhere, from system resources in a single node or subcomponent, to cooperation between nodes, to even network bandwidth. Performance tuning is a practice that aims to find these bottlenecks and address them, in order to reveal more bottlenecks and address them as well, until the system reaches an optimal performance level. In this article, I will share some best practices on how to tune &amp;ldquo;write&amp;rdquo; operations in TiDB to achieve maximum performance.</description>
+    </item>
+    
+    <item>
+      <title>Bringing TiKV to Rust Devroom at FOSDEM 2018</title>
+      <link>https://idiks.com/blog/FOSDEM-2018-Rust-Devroom-reflection/</link>
+      <pubDate>Thu, 15 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/FOSDEM-2018-Rust-Devroom-reflection/</guid>
+      <description>At the crack of dawn on February 1, I landed in Brussels, Belgium, for the first time in my life. The goal of my trip wasn&#39;t to taste the local cuisine, tour world-famous museums, or grab a pint of the local brew. It was to deliver a talk three days later at FOSDEM 2018 Rust Devroom about our experience at PingCAP using Rust to build TiKV, a distributed transactional Key-Value storage engine.</description>
+    </item>
+    
+    <item>
+      <title>TiDB DevCon 2018 Recap - News, Latest Development, and Roadmap</title>
+      <link>https://idiks.com/blog/tidb-devcon-2018-recap/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-devcon-2018-recap/</guid>
+      <description>On January 20th, 2018, more than 200 coders, hackers, and techies streamed into Garage Café, a chic coffee shop in the heart of Beijing&#39;s techhub, Zhongguancun. They were there to be part of TiDB DevCon 2018, a technology party for the developers, by the developers!</description>
+    </item>
+    
+    <item>
+      <title>2017 Reflection and Gratitude</title>
+      <link>https://idiks.com/blog/pingcap-reflection-and-gratitude/</link>
+      <pubDate>Sat, 30 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/pingcap-reflection-and-gratitude/</guid>
+      <description>Thank you all, our beloved contributors, customers, and partners, for an amazing 2017! Hello, 2018!</description>
+    </item>
+    
+    <item>
+      <title>Tick or Tock? Keeping Time and Order in Distributed Databases</title>
+      <link>https://idiks.com/blog/Time-in-Distributed-Systems/</link>
+      <pubDate>Fri, 22 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/Time-in-Distributed-Systems/</guid>
+      <description>At re:Invent 2017, Amazon Web Services (AWS) announced Amazon Time Sync Service which is a highly accurate and reliable time reference that is natively accessible from Amazon EC2 instances. It is much like the Google TrueTime which was published in 2012. Why do Google and AWS both want to make efforts to provide global time service? Is there any inspiration for building distributed database? This topic is important to think about.</description>
+    </item>
+    
+    <item>
+      <title>PingCAP Plants its Seed in Silicon Valley</title>
+      <link>https://idiks.com/blog/Silicon-Valley-Office-Announcement/</link>
+      <pubDate>Fri, 08 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/Silicon-Valley-Office-Announcement/</guid>
+      <description>PingCAP, a cutting-edge distributed Hybrid Transactional/Analytical Processing (HTAP) database company, is excited to announce the opening of its Silicon Valley office, located at the GSV Labs in Redwood City, California.</description>
+    </item>
+    
+    <item>
+      <title>A TiKV Source Code Walkthrough – Raft Optimization</title>
+      <link>https://idiks.com/blog/optimizing-raft-in-tikv/</link>
+      <pubDate>Tue, 28 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/optimizing-raft-in-tikv/</guid>
+      <description>Paxos or Raft is frequently used to ensure data consistency in the distributed computing area. But Paxos is known for its complexity and is rather difficult to understand while Raft is very simple. Therefore, a lot of emerging databases tend to use Raft as the consensus algorithm at its bottom layer. TiKV is no exception.</description>
+    </item>
+    
+    <item>
+      <title>PingCAP Launches TiDB 1.0</title>
+      <link>https://idiks.com/blog/announcing-tidb-1.0-release/</link>
+      <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/announcing-tidb-1.0-release/</guid>
+      <description>TiDB is compatible with MySQL, strong consistent and highly available.</description>
+    </item>
+    
+    <item>
+      <title>Scale the Relational Database with NewSQL</title>
+      <link>https://idiks.com/blog/cloud-data-next-conference-seattle/</link>
+      <pubDate>Tue, 10 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/cloud-data-next-conference-seattle/</guid>
+      <description>This is the speech Li SHEN gave at the 3rd NEXTCON.</description>
+    </item>
+    
+    <item>
+      <title>Why did we choose Rust over Golang or C/C&#43;&#43; to develop TiKV?</title>
+      <link>https://idiks.com/blog/why-choose-rust-to-develop-tikv/</link>
+      <pubDate>Tue, 26 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/why-choose-rust-to-develop-tikv/</guid>
+      <description>Every developer has his/her favorite programming language. For the TiKV team members, it&#39;s Rust.</description>
+    </item>
+    
+    <item>
+      <title>RocksDB in TiKV</title>
+      <link>https://idiks.com/blog/rocksdb-in-tikv/</link>
+      <pubDate>Fri, 15 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/rocksdb-in-tikv/</guid>
+      <description>This is the speech Siddon Tang gave at the RocksDB meetup on August 28, 2017.</description>
+    </item>
+    
+    <item>
+      <title>Futures and gRPC in Rust</title>
+      <link>https://idiks.com/blog/futures-and-grpc-in-rust/</link>
+      <pubDate>Tue, 12 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/futures-and-grpc-in-rust/</guid>
+      <description>This is the speech Siddon Tang gave at Bay Area Rust Meetup August 2017.</description>
+    </item>
+    
+    <item>
+      <title>How We Found a Data Corruption Bug in RocksDB</title>
+      <link>https://idiks.com/blog/how-to-find-a-rocksdb-bug/</link>
+      <pubDate>Fri, 08 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-to-find-a-rocksdb-bug/</guid>
+      <description>Data was corrupted. A cluster panicked. The crime scene was compromised. What happened? Detective Huang went all lengths to locate the criminal and solved it once and for all.</description>
+    </item>
+    
+    <item>
+      <title>When TiDB Meets Jepsen</title>
+      <link>https://idiks.com/blog/tidb-meets-jepsen/</link>
+      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-meets-jepsen/</guid>
+      <description>What happens when TiDB meets Jepsen?</description>
+    </item>
+    
+    <item>
+      <title>The Design and Implementation of Multi-raft</title>
+      <link>https://idiks.com/blog/design-and-implementation-of-multi-raft/</link>
+      <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/design-and-implementation-of-multi-raft/</guid>
+      <description>The goal of TiKV is to support 100 TB+ of data and it is impossible for one Raft group to make it, we need to use multiple Raft groups, which is called Multi-raft.</description>
+    </item>
+    
+    <item>
+      <title>How TiDB tackles fast data growth and complex queries for yuanfudao.com</title>
+      <link>https://idiks.com/success-stories/tidb-in-yuanfudao/</link>
+      <pubDate>Tue, 08 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/success-stories/tidb-in-yuanfudao/</guid>
+      <description>This document is a case study that details the reasons why yuanfudao.com chose TiDB as its backend database solution to tackle their fast data growth and complex queries.</description>
+    </item>
+    
+    <item>
+      <title>A TiKV Source Code Walkthrough - Raft in TiKV</title>
+      <link>https://idiks.com/blog/raft-in-tikv/</link>
+      <pubDate>Fri, 28 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/raft-in-tikv/</guid>
+      <description>TiKV uses the Raft algorithm to implement the strong consistency of data in a distributed environment. This blog introduces the details how Raft is implemented.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Best Practices</title>
+      <link>https://idiks.com/blog/tidb-best-practice/</link>
+      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-best-practice/</guid>
+      <description>This article summarizes some best practices in using TiDB, mainly including SQL usage, OLAP/OLTP optimization techniques and especially TiDB&#39;s exclusive optimization switches.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Internal (III) - Scheduling</title>
+      <link>https://idiks.com/blog/tidb-internal-scheduling/</link>
+      <pubDate>Thu, 20 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-internal-scheduling/</guid>
+      <description>This is the third one of three blogs to introduce TiDB internal.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Internal (I) - Data Storage</title>
+      <link>https://idiks.com/blog/tidb-internal-data-storage/</link>
+      <pubDate>Tue, 11 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-internal-data-storage/</guid>
+      <description>This is the first one of three blogs to introduce TiDB internal.</description>
+    </item>
+    
+    <item>
+      <title>TiDB Internal (II) - Computing</title>
+      <link>https://idiks.com/blog/tidb-internal-computing/</link>
+      <pubDate>Tue, 11 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/tidb-internal-computing/</guid>
+      <description>This is the second one of three blogs to introduce TiDB internal.</description>
+    </item>
+    
+    <item>
+      <title>Refactoring the Built-in Functions in TiDB</title>
+      <link>https://idiks.com/blog/refactor-builtin/</link>
+      <pubDate>Tue, 27 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/refactor-builtin/</guid>
+      <description>In order to accelerate expression evaluation, we recently refactored its framework. This tutorial will show you how to use the new computational framework to rewrite or add a built-in function in TiDB.</description>
+    </item>
+    
+    <item>
+      <title>Rust in TiKV</title>
+      <link>https://idiks.com/blog/rust-in-tikv/</link>
+      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/rust-in-tikv/</guid>
+      <description>This is the speech Siddon Tang gave at the 1st Rust Meetup in Beijing on April 16, 2017.</description>
+    </item>
+    
+    <item>
+      <title>A Brief Introduction of TiDB</title>
+      <link>https://idiks.com/blog/percona-live-17/</link>
+      <pubDate>Tue, 23 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/percona-live-17/</guid>
+      <description>This is the speech Edward Huang gave at Percona Live Open Source Database Conference 2017.</description>
+    </item>
+    
+    <item>
+      <title>Migration from MySQL to TiDB to handle tens of millions of rows of data per day</title>
+      <link>https://idiks.com/blog/comparison-between-mysql-and-tidb-with-tens-of-millions-of-data-per-day/</link>
+      <pubDate>Mon, 22 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/comparison-between-mysql-and-tidb-with-tens-of-millions-of-data-per-day/</guid>
+      <description>This document is a use case that details the performance of MySQL and TiDB with tens of millions of rows of data per day.</description>
+    </item>
+    
+    <item>
+      <title>About the TiDB Source Code</title>
+      <link>https://idiks.com/blog/about-the-tidb-source-code/</link>
+      <pubDate>Fri, 06 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/about-the-tidb-source-code/</guid>
+      <description>The target audience of this document is the contributors in the TiDB community. The document aims to help them understand the TiDB project. It covers the system architecture, the code structure, and the execution process.</description>
+    </item>
+    
+    <item>
+      <title>Adding Built-in Functions</title>
+      <link>https://idiks.com/blog/adding-built-in-function/</link>
+      <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/adding-built-in-function/</guid>
+      <description>TiDB code is updated and the procedure of adding built-in functions is greatly simplified. This document describes how to add built-in functions to TiDB.</description>
+    </item>
+    
+    <item>
+      <title>Subquery Optimization in TiDB</title>
+      <link>https://idiks.com/blog/subquery-optimization-in-tidb/</link>
+      <pubDate>Wed, 07 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/subquery-optimization-in-tidb/</guid>
+      <description>Subquery optimization, especially rewriting the correlated subquery, is a very difficult part in SQL query optimization. To be compatible with MySQL, TiDB enables users to write subqueries anywhere they want. For those subqueries that are not correlated, which are also called uncorrelated subqueries, TiDB evaluates in advance; for those correlated subqueries, TiDB removes the correlations as much as possible. For example, TiDB can rewrite a correlated subquery to &lt;code&gt;SemiJoin&lt;/code&gt;. This article is focused on introducing the correlated subquery optimization methods in TiDB.</description>
+    </item>
+    
+    <item>
+      <title>MVCC in TiKV</title>
+      <link>https://idiks.com/blog/multi-version-concurrency-control-in-tikv/</link>
+      <pubDate>Thu, 17 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/multi-version-concurrency-control-in-tikv/</guid>
+      <description>This document gives an overview of MVCC implementation in TiKV.</description>
+    </item>
+    
+    <item>
+      <title>Travelling Back in Time and Reclaiming the Lost Treasures</title>
+      <link>https://idiks.com/blog/travelling-back-in-time-and-reclaiming-the-lost-treasures/</link>
+      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/travelling-back-in-time-and-reclaiming-the-lost-treasures/</guid>
+      <description>This document introduces the History Read feature in TiDB.</description>
+    </item>
+    
+    <item>
+      <title>A Deep Dive into TiKV</title>
+      <link>https://idiks.com/blog/deep-dive-into-tikv/</link>
+      <pubDate>Wed, 09 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/deep-dive-into-tikv/</guid>
+      <description>This document introduces how TiKV works as a Key-Value database.</description>
+    </item>
+    
+    <item>
+      <title>How we build TiDB</title>
+      <link>https://idiks.com/blog/how-we-build-tidb/</link>
+      <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/how-we-build-tidb/</guid>
+      <description>This is the speech Max Liu gave at Percona Live Open Source Database Conference 2016.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://idiks.com/blog/README/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://idiks.com/blog/README/</guid>
+      <description>PingCAP Blog Front Matter Example --- title: Blog Title author: [&amp;#39;Author&amp;#39;] date: yyyy-mm-dd summary: Blog Summary tags: [&amp;#39;tag1&amp;#39;, &amp;#39;tag2&amp;#39;] categories: [&amp;#39;category&amp;#39;] image: /images/blog/... --- Metadata  title author  format: list(array) [&amp;lsquo;author-1&amp;rsquo;, &amp;lsquo;author-2&amp;rsquo;]   date:  format: yyyy-mm-dd   summary tags -  format: list(array) [&amp;lsquo;tag-1&amp;rsquo;, &amp;lsquo;tag-2&amp;rsquo;]   categories  format: list(array) [&amp;lsquo;category&amp;rsquo;] category values: Engineering, HTAP, MySQL Scalability, Open Source Community   logo  format: /images/blog/customers/xxx only add to case studies article    For SEO and social media share  image: /images/blogs/&amp;hellip;   This is used to show the thumbnail shown in the social media platform.</description>
+    </item>
+    
+  </channel>
+</rss>

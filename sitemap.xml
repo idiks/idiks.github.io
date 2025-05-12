@@ -1,0 +1,3764 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://idiks.com/case/user-case-zhihu/</loc>
+    <lastmod>2019-06-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/</loc>
+    <lastmod>2021-12-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-shareit-powers-its-ai-workflow-with-tidb-and-tikv/</loc>
+    <lastmod>2021-12-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/</loc>
+    <lastmod>2021-12-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-operator-source-code-reading-v-backup-and-restore/</loc>
+    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/implement-chaos-engineering-in-k8s-chaos-mesh-principle-analysis-and-control-plane-development/</loc>
+    <lastmod>2021-12-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-5.3-delivering-enhancements-for-data-intensive-applications/</loc>
+    <lastmod>2021-12-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-tidb-powers-real-time-analytics-for-a-streaming-media-giant/</loc>
+    <lastmod>2021-12-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/believe-in-the-multiplicative-power-of-openness-open-source-community/</loc>
+    <lastmod>2021-11-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-to-connect-tidb-cloud-to-metabase/</loc>
+    <lastmod>2021-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/use-newsql-dbms-to-improve-data-freshness-and-execute-analytical-queries-in-minutes/</loc>
+    <lastmod>2021-11-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/kubecon-2021-qa-pingcap-recaps-event-and-explores-htap-database/</loc>
+    <lastmod>2021-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-to-troubleshoot-rocksdb-write-stalls-in-tikv/</loc>
+    <lastmod>2021-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pingcap-introduces-its-new-developer-tier-to-boost-application-innovation-with-tidb-cloud/</loc>
+    <lastmod>2021-11-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-cloud-introduces-developer-tier/</loc>
+    <lastmod>2021-11-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/why-shareit-selects-tikv-for-data-storage-for-its-2.4-billion-user-business/</loc>
+    <lastmod>2021-11-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/past-present-future-of-tidb-as-htap-database/</loc>
+    <lastmod>2021-11-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-operator-source-code-reading-4-implement-component-control-loop/</loc>
+    <lastmod>2021-10-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/8x-system-performance-boost-why-we-migrated-from-mysql-to-newsql-database/</loc>
+    <lastmod>2021-10-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/introducing-pingcap-external-referral-program/</loc>
+    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-webassembly-powers-databases-build-a-udf-engine-with-wasm/</loc>
+    <lastmod>2021-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pingcaps-tidb-cloud-attains-gdpr-certification/</loc>
+    <lastmod>2021-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-hacktoberfest-2021/</loc>
+    <lastmod>2021-10-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/benefits-of-a-hybrid-transactional-and-analytical-processing-database/</loc>
+    <lastmod>2021-10-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-databricks-tackles-the-scalability-limit-with-a-mysql-alternative/</loc>
+    <lastmod>2021-10-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/build-a-ruby-on-rails-app-with-tidb/</loc>
+    <lastmod>2021-09-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/best-practices-for-tidb-load-balancing/</loc>
+    <lastmod>2021-09-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-we-scale-out-databases-and-get-big-data-queries-6x-faster-with-a-mysql-alternative/</loc>
+    <lastmod>2021-09-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pingcap-announces-collaboration-with-the-ast-lab/</loc>
+    <lastmod>2021-09-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/get-started-with-juicefs-using-tikv/</loc>
+    <lastmod>2021-09-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-to-run-chaos-experiments-on-your-physical-machine/</loc>
+    <lastmod>2021-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-pinterest-reduced-costs-and-improved-data-consistency-with-newsql-database/</loc>
+    <lastmod>2021-09-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/easy-local-development-with-tidb/</loc>
+    <lastmod>2021-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/raft-and-high-availability/</loc>
+    <lastmod>2021-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/announcing-tidb-5.2/</loc>
+    <lastmod>2021-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/a-mysql-alternative-scale-out-database-helps-xiaomi-hyper-growth/</loc>
+    <lastmod>2021-08-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/</loc>
+    <lastmod>2021-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/transaction-frontiers-research-article-talk4/</loc>
+    <lastmod>2021-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/securing-online-gaming-combine-chaos-engineering-with-devops-practices/</loc>
+    <lastmod>2021-08-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/building-a-real-time-data-warehouse-with-tidb-and-pravega/</loc>
+    <lastmod>2021-08-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/boosting-big-data-performance-by-combining-tidb-with-hive-and-hdfs/</loc>
+    <lastmod>2021-08-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/chaos-mesh-2.0-ga-to-a-chaos-engineering-ecology/</loc>
+    <lastmod>2021-08-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/cannot-use-chaosmesh-without-k8s-then-try-chaosd/</loc>
+    <lastmod>2021-08-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-chaos-mesh-helps-apache-apisix-improve-system-stability/</loc>
+    <lastmod>2021-08-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-to-deploy-tidb-on-google-cloud-platform-part-2/</loc>
+    <lastmod>2021-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-to-deploy-tidb-on-google-cloud-platform-part-1/</loc>
+    <lastmod>2021-08-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/when-big-data-architecture-meets-tidb/</loc>
+    <lastmod>2021-07-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/flink-on-tidb-reliable-convenient-real-time-data-service/</loc>
+    <lastmod>2021-07-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-operator-source-code-reading-3-component-control-loop/</loc>
+    <lastmod>2021-07-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/use-tidb-to-build-real-time-applications/</loc>
+    <lastmod>2021-07-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/simplifing-database-management-in-a-highly-automated-and-scalable-cloud-environment-with-google-cloud/</loc>
+    <lastmod>2021-07-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/transaction-frontiers-research-article-talk3/</loc>
+    <lastmod>2021-07-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-to-efficiently-stress-test-pod-memory/</loc>
+    <lastmod>2021-07-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-5.1-easily-build-your-mission-critical-applications-at-any-scale/</loc>
+    <lastmod>2021-07-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/announcing-iso-27001-certification-for-tidb-cloud/</loc>
+    <lastmod>2021-07-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-we-trace-a-kv-database-with-less-than-5-percent-performance-impact/</loc>
+    <lastmod>2021-06-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tikv-prewrite-request-life-story/</loc>
+    <lastmod>2021-06-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/chaos-mesh-remake-one-step-closer-toward-chaos-as-a-service/</loc>
+    <lastmod>2021-06-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/reduce-query-latency-from-seconds-to-milliseconds-with-a-scale-out-database/</loc>
+    <lastmod>2021-06-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/managing-you-data-lifecycle-with-time-to-live-tables/</loc>
+    <lastmod>2021-06-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-5.0-a-one-stop-htap-database-solution/</loc>
+    <lastmod>2021-06-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/why-we-chose-a-scale-out-data-warehouse-for-real-time-analytics/</loc>
+    <lastmod>2021-05-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-operator-source-code-reading-2-operator-pattern/</loc>
+    <lastmod>2021-05-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tifs-a-tikv-based-partition-tolerant-strictly-consistent-file-system/</loc>
+    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/transaction-frontiers-research-article-talk2/</loc>
+    <lastmod>2021-05-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/async-commit-the-accelerator-for-transaction-commit-in-tidb-5.0/</loc>
+    <lastmod>2021-05-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tide-developing-a-distributed-database-in-a-breeze/</loc>
+    <lastmod>2021-05-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/how-to-keep-data-fresh-and-how-to-realize-value/</loc>
+    <lastmod>2021-05-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pingcap-successfully-completes-soc2-type2-examination-for-tidb-cloud/</loc>
+    <lastmod>2021-05-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-cloud-in-public-preview/</loc>
+    <lastmod>2021-05-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/linux-kernel-vs-memory-fragmentation-2/</loc>
+    <lastmod>2021-05-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/getting-started-with-rails-tidb/</loc>
+    <lastmod>2021-04-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tikv-and-spdk-pushing-the-limits-of-storage-performance/</loc>
+    <lastmod>2021-04-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/announcing-establishment-of-japan-office/</loc>
+    <lastmod>2021-04-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/use-gpu-boosts-tidb-analytics-performance-by-10-to-150-times/</loc>
+    <lastmod>2021-04-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/empower-your-business-with-big-data-real-time-analytics-in-tidb/</loc>
+    <lastmod>2021-04-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-5.0-ga-one-stop-htap-solution-deliver-speed-stability-simplicity/</loc>
+    <lastmod>2021-04-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-i-enabled-tikv-coprocessor-to-support-enum-and-set-calculations/</loc>
+    <lastmod>2021-04-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2021-04-01-tidb-monthly/</loc>
+    <lastmod>2021-04-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/</loc>
+    <lastmod>2021-04-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/using-tidb-in-mission-critical-scenarios-of-the-financial-industry-part-1/</loc>
+    <lastmod>2021-03-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-operator-source-code-reading-1-overview/</loc>
+    <lastmod>2021-03-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/why-this-mysql-alternative-beats-vitess-and-crdb-in-scaling-out-our-databases-on-k8s/</loc>
+    <lastmod>2021-03-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-hackathon-reducing-cross-az-data-transfer-costs-by-89-percent/</loc>
+    <lastmod>2021-03-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/empowering-your-gaming-application-with-a-scale-out-newsql-database/</loc>
+    <lastmod>2021-03-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-on-arm-based-k8s-cluster-achieves-up-to-25-percent-better-price-performance-ratio-than-x86/</loc>
+    <lastmod>2021-03-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/announcing-the-tidb-hacking-camp/</loc>
+    <lastmod>2021-03-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/chaos-engineering-as-a-service/</loc>
+    <lastmod>2021-03-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-lite-a-simpler-way-to-unit-test-golang-database-code/</loc>
+    <lastmod>2021-03-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2021-03-01-tidb-monthly/</loc>
+    <lastmod>2021-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-we-use-a-mysql-alternative-to-avoid-sharding-and-provide-strong-consistency/</loc>
+    <lastmod>2021-02-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tigraph-8700x-computing-performance-achieved-by-combining-graphs-&#43;-rdbms-syntax/</loc>
+    <lastmod>2021-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/let-zhmd-to-help-you-standardizating-chinese-document/</loc>
+    <lastmod>2021-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/one-stop-distributed-database-testing-system-based-on-aws/</loc>
+    <lastmod>2021-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/gpu-to-speed-tidn-up/</loc>
+    <lastmod>2021-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/reduce-real-time-query-latency-from-0.5s-to-0.01s-with-scale-out-htap-database/</loc>
+    <lastmod>2021-02-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-to-efficiently-choose-the-right-database-for-your-applications/</loc>
+    <lastmod>2021-02-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-on-jd-cloud-a-cloud-native-distributed-database-service/</loc>
+    <lastmod>2021-02-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/celebrating-one-year-of-chaos-mesh-looking-back-and-ahead/</loc>
+    <lastmod>2021-02-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/linux-kernel-vs-memory-fragmentation-1/</loc>
+    <lastmod>2021-02-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/when-tidb-meet-graph-database/</loc>
+    <lastmod>2021-02-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2021-02-01-tidb-monthly/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/five-principles-that-guide-tidb-and-pingcap-II/</loc>
+    <lastmod>2021-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/five-principles-that-guide-tidb-and-pingcap/</loc>
+    <lastmod>2021-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/announcing-tidb-incubator-program/</loc>
+    <lastmod>2021-01-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/chaos-mesh-the-first-year-of-open-source/</loc>
+    <lastmod>2021-01-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/goodbye-mysql-sharding-use-scale-out-mysql-alternative-to-store-160-tb-of-data/</loc>
+    <lastmod>2021-01-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/my-story-with-chaos-mesh/</loc>
+    <lastmod>2021-01-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/new-ideas-for-designing-cloud-native-database/</loc>
+    <lastmod>2021-01-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/top-car-trading-platform-chooses-scale-out-database-as-mysql-alternative/</loc>
+    <lastmod>2021-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/schema-application-scenario-for-tidb/</loc>
+    <lastmod>2021-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-to-simulate-io-faults-at-runtime/</loc>
+    <lastmod>2021-01-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/github-discussions-bringing-the-open-source-community-closer-together-and-all-in-github/</loc>
+    <lastmod>2021-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/go-dumpling-makes-exporteddata-stable/</loc>
+    <lastmod>2021-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2021-01-04-tidb-monthly/</loc>
+    <lastmod>2021-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pingcap-2020-year-in-review/</loc>
+    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pingcap-top-10-posts-of-2020/</loc>
+    <lastmod>2020-12-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/use-go-randgen-to-test-join-search/</loc>
+    <lastmod>2020-12-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/trace-linux-system-calls-with-least-impact-on-performance/</loc>
+    <lastmod>2020-12-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/batch-processing-massive-data-much-quicker-with-tispark/</loc>
+    <lastmod>2020-12-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/release-a-cloud-native-distributed-database-on-kubesphere-app-store/</loc>
+    <lastmod>2020-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/linux-kernel-vs-memory-fragmentation-2/</loc>
+    <lastmod>2020-12-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tips-and-tricks-for-writing-linux-bpf-applications-with-libbpf/</loc>
+    <lastmod>2020-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/linux-kernel-vs-memory-fragmentation-1/</loc>
+    <lastmod>2020-12-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/transparent-huge-pages-why-we-disable-it-for-databases/</loc>
+    <lastmod>2020-12-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/how-chinas-insurance-giant-improved-agile-application-performance-with-a-newsql-database/</loc>
+    <lastmod>2020-12-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/why-we-switched-from-bcc-to-libbpf-for-linux-bpf-performance-analysis/</loc>
+    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/chaos-mesh-internals-how-to-inject-io-faults-during-runtime/</loc>
+    <lastmod>2020-12-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/how-we-reduced-batch-processing-time-by-58-percent-with-a-scale-out-mysql-alternative/</loc>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-12-01-tidb-monthly/</loc>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/exploring-the-charming-of-opensource-tidb-committer-baikun/</loc>
+    <lastmod>2020-11-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-a-top-game-company-uses-chaos-engineering-to-improve-testing/</loc>
+    <lastmod>2020-11-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/best-practices-for-tidb-on-aws-cloud/</loc>
+    <lastmod>2020-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/how-we-process-data-five-times-more-efficiently-using-a-scale-out-mysql-alternative/</loc>
+    <lastmod>2020-11-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pingcap-the-company-behind-tidb-raises-270-million-in-series-d-funding/</loc>
+    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/run-cloud-native-distributed-database-on-hybrid-cloud-kubernetes-platform/</loc>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/embracing-newsql-why-we-chose-tidb-over-mongodb-and-mysql/</loc>
+    <lastmod>2020-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/apache-flink-&#43;-tidb-a-scale-out-real-time-data-warehouse-for-analytics-within-seconds/</loc>
+    <lastmod>2020-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/dm-2.0-ga-secure-easy-highly-available-data-migration/</loc>
+    <lastmod>2020-11-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-financial-level-backup-and-multi-center-disaster-recovery/</loc>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-11-02-tidb-monthly/</loc>
+    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/metrics-relation-graph-helps-dba-quickly-locate-performance-problems/</loc>
+    <lastmod>2020-10-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/running-a-scale-out-database-on-arm-as-mysql-alternative/</loc>
+    <lastmod>2020-10-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/when-tidb-and-flink-are-combined/</loc>
+    <lastmod>2020-10-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/making-htap-database-reality-what-i-learned-from-pingcap-vldb-paper/</loc>
+    <lastmod>2020-10-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/why-should-we-disable-thp/</loc>
+    <lastmod>2020-10-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/3x-it-efficiency-boost-use-a-scale-out-htap-database-for-near-real-time-analytics/</loc>
+    <lastmod>2020-10-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/ticdc-ga-offer-high-availability-replication-services-for-production-environments/</loc>
+    <lastmod>2020-10-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-x-hacktoberfest-2020-an-invitation-to-open-source/</loc>
+    <lastmod>2020-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/how-bank-of-china-uses-a-scale-out-database-to-support-zabbix-monitoring-at-scale/</loc>
+    <lastmod>2020-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/how-we-use-a-distributed-database-to-achieve-horizontal-scaling-without-downtime/</loc>
+    <lastmod>2020-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/lessons-from-tidb-no.-1-bug-hunters-who-have-found-over-400-bugs-in-popular-dbmss/</loc>
+    <lastmod>2020-10-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/how-we-use-a-scale-out-htap-database-for-real-time-analytics-and-complex-queries/</loc>
+    <lastmod>2020-10-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-09-30-tidb-monthly/</loc>
+    <lastmod>2020-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/chaos-mesh-action-integrate-chaos-engineering-into-your-ci/</loc>
+    <lastmod>2020-09-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/online-environment-analysis-system/</loc>
+    <lastmod>2020-09-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/Chaos-Mesh-1.0-Chaos-Engineering-on-Kubernetes-Made-Easier/</loc>
+    <lastmod>2020-09-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/chaos-mesh-1.0-ga/</loc>
+    <lastmod>2020-09-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-operator-your-tidb-operations-expert-in-kubernetes/</loc>
+    <lastmod>2020-09-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/scale-out-database-powers-china-letgo-with-reduced-maintenance-costs/</loc>
+    <lastmod>2020-09-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/zalopay-using-a-scale-out-mysql-alternative-to-serve-millions-of-users/</loc>
+    <lastmod>2020-09-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-we-build-an-htap-database-that-simplifies-your-data-platform/</loc>
+    <lastmod>2020-09-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/horizontal-scaling-why-bigo-chose-tidb-over-mysql/</loc>
+    <lastmod>2020-09-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/announcing-htap-support-in-tidb-cloud/</loc>
+    <lastmod>2020-09-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-to-migrate-data-from-amazon-aurora-mysql-to-tidb-cloud/</loc>
+    <lastmod>2020-09-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/celebrate-tikv-graduation-within-cncf/</loc>
+    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-09-01-tidb-monthly/</loc>
+    <lastmod>2020-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pingcapers-make-their-debut-at-vldb/</loc>
+    <lastmod>2020-08-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pingcap-successfully-completes-soc-2-type-1-examination-for-tidb-cloud/</loc>
+    <lastmod>2020-08-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/why-we-chose-a-distributed-sql-database-to-complement-mysql/</loc>
+    <lastmod>2020-08-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/chaos-mesh-combined-with-github-actions/</loc>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-cloud-managed-sql-at-scale-on-aws-and-gcp/</loc>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/use-horoscope-to-test-tidb-optimizer/</loc>
+    <lastmod>2020-08-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/building-automated-testing-framework-based-on-chaos-mesh-and-argo/</loc>
+    <lastmod>2020-08-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/announcing-pd-transfer-to-tikv-project/</loc>
+    <lastmod>2020-08-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/what-is-new-and-improved-in-tidb-docs/</loc>
+    <lastmod>2020-08-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/libbpf-tools/</loc>
+    <lastmod>2020-08-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-4.0-elastic-real-time-htap-database-ready-for-cloud/</loc>
+    <lastmod>2020-08-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-129-20200805/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/create-scale-out-hive-cluster-with-distributed-mysql-compatible-database/</loc>
+    <lastmod>2020-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-08-03-tidb-monthly/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/why-htap-matters/</loc>
+    <lastmod>2020-07-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/heterogeneous-database-replication-to-tidb/</loc>
+    <lastmod>2020-07-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/announcing-chaos-mesh-as-a-cncf-sandbox-project/</loc>
+    <lastmod>2020-07-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/horizontally-scaling-hive-metastore-database-by-migrating-from-mysql-to-tidb/</loc>
+    <lastmod>2020-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-tidb-htap-makes-truly-hybrid-workloads-possible/</loc>
+    <lastmod>2020-07-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/why-you-need-chaos-engineering-and-chaos-mesh/</loc>
+    <lastmod>2020-07-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-128-20200708/</loc>
+    <lastmod>2020-07-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/cluster-diagnostics-troubleshoot-cluster-issues-using-only-sql-queries/</loc>
+    <lastmod>2020-07-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-07-01-tidb-monthly/</loc>
+    <lastmod>2020-07-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/reasons-rust-compiles-slowly/</loc>
+    <lastmod>2020-06-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/building-a-distributed-test-platform-based-on-chaos-mesh-and-argo/</loc>
+    <lastmod>2020-06-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/announcing-tidb-as-a-service-fully-managed-tidb-offering/</loc>
+    <lastmod>2020-06-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-127-20200623/</loc>
+    <lastmod>2020-06-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/rust-huge-compilation-units/</loc>
+    <lastmod>2020-06-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/vldb-2020-tidb-a-raft-based-htap-database/</loc>
+    <lastmod>2020-06-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-4.0-ga-gearing-you-up-for-an-unpredictable-world-with-real-time-htap-database/</loc>
+    <lastmod>2020-06-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/generics-and-compile-time-in-rust/</loc>
+    <lastmod>2020-06-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-we-improved-tpcc-performance-50-percent-and-tpch-performance-100-percent/</loc>
+    <lastmod>2020-06-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-06-01-tidb-monthly/</loc>
+    <lastmod>2020-06-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/easier-troubleshooting-for-distributed-databases/</loc>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pessimistic-locking-better-mysql-compatibility-fewer-rollbacks-under-high-load/</loc>
+    <lastmod>2020-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-126-20200522/</loc>
+    <lastmod>2020-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/replication-latency-in-milliseconds-for-100-tb-clusters/</loc>
+    <lastmod>2020-05-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/large-transactions-in-tidb/</loc>
+    <lastmod>2020-05-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/tidb-at-zalopay-infrastructure-lesson-learned/</loc>
+    <lastmod>2020-05-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-05-11-tidb-weekly/</loc>
+    <lastmod>2020-05-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/sql-plan-management-never-worry-about-slow-queries-again/</loc>
+    <lastmod>2020-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-05-06-tidb-weekly/</loc>
+    <lastmod>2020-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/building-running-and-benchmarking-tikv-and-tidb/</loc>
+    <lastmod>2020-05-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/get-tidb-cluster-up-in-only-one-minute/</loc>
+    <lastmod>2020-04-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-04-27-tidb-weekly/</loc>
+    <lastmod>2020-04-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/observe-distributed-databases-to-discover-unknowns/</loc>
+    <lastmod>2020-04-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/simulating-clock-skew-in-k8s-without-affecting-other-containers-on-node/</loc>
+    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-04-20-tidb-weekly/</loc>
+    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/core-competence-of-future-database/</loc>
+    <lastmod>2020-04-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/back-up-and-restore-a-10-tb-cluster-at-1-gb-per-second/</loc>
+    <lastmod>2020-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-04-13-tidb-weekly/</loc>
+    <lastmod>2020-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-4.0-preview-easier-to-use-production-ready-htap-database/</loc>
+    <lastmod>2020-04-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/future-of-database-unified-infrastructure-to-adapt-intelligently/</loc>
+    <lastmod>2020-04-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/talk-about-the-future-of-databese-on-5th-anniversary-of-pingcap/</loc>
+    <lastmod>2020-04-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-04-07-tidb-weekly/</loc>
+    <lastmod>2020-04-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-03-30-tidb-weekly/</loc>
+    <lastmod>2020-03-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/quickly-find-rust-program-bottlenecks-online-using-a-go-tool/</loc>
+    <lastmod>2020-03-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-03-23-tidb-weekly/</loc>
+    <lastmod>2020-03-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/run-first-chaos-experiment-in-ten-minutes/</loc>
+    <lastmod>2020-03-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-03-16-tidb-weekly/</loc>
+    <lastmod>2020-03-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/choosing-right-database-for-your-applications/</loc>
+    <lastmod>2020-03-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-03-09-tidb-weekly/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-usability-challenge-dare-to-dream-bigger/</loc>
+    <lastmod>2020-03-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-celebrates-400-contributors/</loc>
+    <lastmod>2020-03-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-125-20200305/</loc>
+    <lastmod>2020-03-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/early-impressions-of-go-from-a-rust-programmer/</loc>
+    <lastmod>2020-03-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/rust-compilation-model-calamity/</loc>
+    <lastmod>2020-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-03-02-tidb-weekly/</loc>
+    <lastmod>2020-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/early-impressions-of-go-from-a-rust-programmer/</loc>
+    <lastmod>2020-02-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-02-24-tidb-weekly/</loc>
+    <lastmod>2020-02-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/observability-of-distributed-system/</loc>
+    <lastmod>2020-02-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-we-reduced-multi-region-read-latency-and-network-traffic-by-50/</loc>
+    <lastmod>2020-02-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-124-20200219/</loc>
+    <lastmod>2020-02-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/remote-work-part-3/</loc>
+    <lastmod>2020-02-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-02-17-tidb-weekly/</loc>
+    <lastmod>2020-02-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/remote-work-part-2/</loc>
+    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/remote-work-part-1/</loc>
+    <lastmod>2020-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-02-10-tidb-weekly/</loc>
+    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/doubling-system-read-throughput-with-only-26-lines-of-code/</loc>
+    <lastmod>2020-02-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-02-03-tidb-weekly/</loc>
+    <lastmod>2020-02-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/rust-compilation-model-calamity/</loc>
+    <lastmod>2020-01-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-01-20-tidb-weekly/</loc>
+    <lastmod>2020-01-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/chaos-mesh-your-chaos-engineering-solution-for-system-resiliency-on-kubernetes/</loc>
+    <lastmod>2020-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-01-14-tidb-weekly/</loc>
+    <lastmod>2020-01-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/distributed-system-in-2010s-4/</loc>
+    <lastmod>2020-01-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-tikv-reads-and-writes/</loc>
+    <lastmod>2020-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/distributed-system-in-2010s-3/</loc>
+    <lastmod>2020-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2020-01-06-tidb-weekly/</loc>
+    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/chaos-mesh/</loc>
+    <lastmod>2020-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-122-20200102/</loc>
+    <lastmod>2020-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-123-20200102/</loc>
+    <lastmod>2020-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-12-30-tidb-weekly/</loc>
+    <lastmod>2019-12-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/distributed-system-in-2010s-2/</loc>
+    <lastmod>2019-12-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/autotikv-tikv-tuning-made-easy-by-machine-learning/</loc>
+    <lastmod>2019-12-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-121-20191227/</loc>
+    <lastmod>2019-12-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/distributed-system-in-2010s-1/</loc>
+    <lastmod>2019-12-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-12-23-tidb-weekly/</loc>
+    <lastmod>2019-12-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/manage-many-as-one-with-sql/</loc>
+    <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/squashed-bugs-served-hot-and-fresh-with-failure-rate-heatmaps/</loc>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/from-big-data-to-databases/</loc>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-12-16-tidb-weekly/</loc>
+    <lastmod>2019-12-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/lesson-learned-from-40-k-qps-and-20-billion-rows-of-data-in-a-single-scale-out-cluster/</loc>
+    <lastmod>2019-12-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/fulltext-search-with-tidb-and-elasticsearch/</loc>
+    <lastmod>2019-12-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-12-09-tidb-weekly/</loc>
+    <lastmod>2019-12-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/why-we-chose-tidb-over-other-mysql-based-and-newsql-storage-solutions/</loc>
+    <lastmod>2019-12-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-119-20191203/</loc>
+    <lastmod>2019-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-120-20191211/</loc>
+    <lastmod>2019-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/sqldebug-automatically/</loc>
+    <lastmod>2019-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-community-upgrade/</loc>
+    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-12-02-tidb-weekly/</loc>
+    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/10x-performance-improvement-for-expression-evaluation-made-possible-by-vectorized-execution/</loc>
+    <lastmod>2019-11-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/geographic-data-distribution-traffic-and-latency-halved/</loc>
+    <lastmod>2019-11-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-11-25-tidb-weekly/</loc>
+    <lastmod>2019-11-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/building-a-large-scale-distributed-storage-system-based-on-raft/</loc>
+    <lastmod>2019-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-11-18-tidb-weekly/</loc>
+    <lastmod>2019-11-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-we-compiled-a-golang-database-in-the-browser-using-webassembly/</loc>
+    <lastmod>2019-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/unified-thread-pool/</loc>
+    <lastmod>2019-11-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-11-11-tidb-weekly/</loc>
+    <lastmod>2019-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-in-the-browser-running-a-golang-database-on-webassembly/</loc>
+    <lastmod>2019-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/best-practice-java/</loc>
+    <lastmod>2019-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/delivering-real-time-analytics-and-true-htap-by-combining-columnstore-and-rowstore/</loc>
+    <lastmod>2019-11-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-11-04-tidb-weekly/</loc>
+    <lastmod>2019-11-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/insert-into-tidb-hackathon-2019-values-hack-fun-tidb-ecosystem/</loc>
+    <lastmod>2019-10-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-10-28-tidb-weekly/</loc>
+    <lastmod>2019-10-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-115-20191023/</loc>
+    <lastmod>2019-10-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-116-20191023/</loc>
+    <lastmod>2019-10-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-117-20191023/</loc>
+    <lastmod>2019-10-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-10-21-tidb-weekly/</loc>
+    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-10-14-tidb-weekly/</loc>
+    <lastmod>2019-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-09-30-tidb-weekly/</loc>
+    <lastmod>2019-09-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/migrating-a-crate-from-futures-0-1-to-0-3/</loc>
+    <lastmod>2019-09-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-09-23-tidb-weekly/</loc>
+    <lastmod>2019-09-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/safety-first-common-safety-pitfalls-in-distributed-databases-found-by-jepsen-tests/</loc>
+    <lastmod>2019-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-09-16-tidb-weekly/</loc>
+    <lastmod>2019-09-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/zhihu-the-story-of-contributing-to-tidb-community/</loc>
+    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-113-20190911/</loc>
+    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-114-20190911/</loc>
+    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-09-09-tidb-weekly/</loc>
+    <lastmod>2019-09-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/use-grafana-to-monitor-and-analyze-tidb-metrics/</loc>
+    <lastmod>2019-09-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-112-20190904/</loc>
+    <lastmod>2019-09-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-09-02-tidb-weekly/</loc>
+    <lastmod>2019-09-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-111-201908118/</loc>
+    <lastmod>2019-08-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-tsq-becomes-a-performance-bottleneck-for-tikv-in-aws-arm-environment/</loc>
+    <lastmod>2019-08-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-08-26-tidb-weekly/</loc>
+    <lastmod>2019-08-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/lesson-learned-from-queries-over-1.3-trillion-rows-of-data-within-milliseconds-of-response-time-at-zhihu/</loc>
+    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-08-19-tidb-weekly/</loc>
+    <lastmod>2019-08-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/porting-tidb-to-arm64-for-greater-flexibility/</loc>
+    <lastmod>2019-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-110-20190814/</loc>
+    <lastmod>2019-08-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-08-12-tidb-weekly/</loc>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/migrating-the-tikv-rust-client-from-futures-0.1-to-0.3/</loc>
+    <lastmod>2019-08-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-08-05-tidb-weekly/</loc>
+    <lastmod>2019-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-109-20190731/</loc>
+    <lastmod>2019-07-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/database-cluster-deployment-and-management-made-easy-with-kubernetes/</loc>
+    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-07-29-tidb-weekly/</loc>
+    <lastmod>2019-07-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-07-22-tidb-weekly/</loc>
+    <lastmod>2019-07-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-07-15-tidb-weekly/</loc>
+    <lastmod>2019-07-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-07-08-tidb-weekly/</loc>
+    <lastmod>2019-07-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/why-benchmarking-distributed-databases-is-so-hard/</loc>
+    <lastmod>2019-07-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/kost-stack/</loc>
+    <lastmod>2019-07-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-3.0-announcement/</loc>
+    <lastmod>2019-07-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-07-01-tidb-weekly/</loc>
+    <lastmod>2019-07-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-06-24-tidb-weekly/</loc>
+    <lastmod>2019-06-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/distributed-systems-training-in-go-and-rust/</loc>
+    <lastmod>2019-06-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/best-practices-for-developing-applications-with-tidb/</loc>
+    <lastmod>2019-06-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-107-20190619/</loc>
+    <lastmod>2019-06-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-108-20190619/</loc>
+    <lastmod>2019-06-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-06-17-tidb-weekly/</loc>
+    <lastmod>2019-06-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-passes-jepsen-test-for-snapshot-isolation-and-single-key-linearizability/</loc>
+    <lastmod>2019-06-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/percona-live-austin-summary-and-reflection/</loc>
+    <lastmod>2019-06-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-06-10-tidb-weekly/</loc>
+    <lastmod>2019-06-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-105-20190606/</loc>
+    <lastmod>2019-06-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-106-20190606/</loc>
+    <lastmod>2019-06-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-06-03-tidb-weekly/</loc>
+    <lastmod>2019-06-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-103-20190530/</loc>
+    <lastmod>2019-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-104-20190530/</loc>
+    <lastmod>2019-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-100-20190510/</loc>
+    <lastmod>2019-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-05-27-tidb-weekly/</loc>
+    <lastmod>2019-05-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/use-tidb-dm-to-migrate-and-replicate-data-from-mysqlmariadb-amazon-aurora/</loc>
+    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-102-20190523/</loc>
+    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/fix-two-linux-kernel-bugs-while-testing-tidb-operator-in-k8s/</loc>
+    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-05-20-tidb-weekly/</loc>
+    <lastmod>2019-05-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/design-and-implementation-of-golang-failpoints/</loc>
+    <lastmod>2019-05-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-101-20190514/</loc>
+    <lastmod>2019-05-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-05-13-tidb-weekly/</loc>
+    <lastmod>2019-05-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-binlog-tutorial/</loc>
+    <lastmod>2019-05-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pingcap-open-sources-tidb-binlog-to-reduce-migration-cost/</loc>
+    <lastmod>2019-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-05-06-tidb-weekly/</loc>
+    <lastmod>2019-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/try-to-fix-two-linux-kernel-bugs-while-testing-tidb-operator-in-k8s/</loc>
+    <lastmod>2019-05-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/golang-failpoint/</loc>
+    <lastmod>2019-04-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pingcapers-at-the-first-rustcon-asia/</loc>
+    <lastmod>2019-04-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-04-29-tidb-weekly/</loc>
+    <lastmod>2019-04-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/titan-storage-engine-design-and-implementation/</loc>
+    <lastmod>2019-04-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-04-22-tidb-weekly/</loc>
+    <lastmod>2019-04-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-97-20190420/</loc>
+    <lastmod>2019-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-98-20190420/</loc>
+    <lastmod>2019-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-99-20190420/</loc>
+    <lastmod>2019-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-04-15-tidb-weekly/</loc>
+    <lastmod>2019-04-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-96-20190413/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/tidb-in-xiaomi/</loc>
+    <lastmod>2019-04-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-04-08-tidb-weekly/</loc>
+    <lastmod>2019-04-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-94-20190403/</loc>
+    <lastmod>2019-04-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-95-20190403/</loc>
+    <lastmod>2019-04-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-04-01-tidb-weekly/</loc>
+    <lastmod>2019-04-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/introduction-to-analytics-queries-for-the-mysql-dba/</loc>
+    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-92-20190327/</loc>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-93-20190327/</loc>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-03-25-tidb-weekly/</loc>
+    <lastmod>2019-03-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-91-20190321/</loc>
+    <lastmod>2019-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-03-18-tidb-weekly/</loc>
+    <lastmod>2019-03-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/tidb-in-bookmyshow/</loc>
+    <lastmod>2019-03-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-90-20190314/</loc>
+    <lastmod>2019-03-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-03-11-tidb-weekly/</loc>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/the-near-future-of-database/</loc>
+    <lastmod>2019-03-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-03-04-tidb-weekly/</loc>
+    <lastmod>2019-03-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-89-20190227/</loc>
+    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-02-25-tidb-weekly/</loc>
+    <lastmod>2019-02-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-02-18-tidb-weekly/</loc>
+    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/tidb-in-shopee/</loc>
+    <lastmod>2019-02-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/fosdem-2019-recap-global-technology-local-community/</loc>
+    <lastmod>2019-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-02-11-tidb-weekly/</loc>
+    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-dm-architecture-design-and-implementation-principles/</loc>
+    <lastmod>2019-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/introducing-tidb-lightning/</loc>
+    <lastmod>2019-01-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-binlog-architecture-evolution-and-implementation-principles/</loc>
+    <lastmod>2019-01-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-01-28-tidb-weekly/</loc>
+    <lastmod>2019-01-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-3.0-beta-stability-at-scale/</loc>
+    <lastmod>2019-01-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-01-21-tidb-weekly/</loc>
+    <lastmod>2019-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-88-20190116/</loc>
+    <lastmod>2019-01-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-01-14-tidb-weekly/</loc>
+    <lastmod>2019-01-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-87-20190108/</loc>
+    <lastmod>2019-01-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-01-07-tidb-weekly/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2019-01-02-tidb-weekly/</loc>
+    <lastmod>2019-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-85-20181226/</loc>
+    <lastmod>2018-12-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pingcap-2018-year-in-review/</loc>
+    <lastmod>2018-12-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-12-24-tidb-weekly/</loc>
+    <lastmod>2018-12-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-83-20181220/</loc>
+    <lastmod>2018-12-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-84-20181220/</loc>
+    <lastmod>2018-12-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-12-17-tidb-weekly/</loc>
+    <lastmod>2018-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/5-key-differences-between-mysql-and-tidb-for-scaling-in-the-cloud/</loc>
+    <lastmod>2018-12-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-12-10-tidb-weekly/</loc>
+    <lastmod>2018-12-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/tidb-in-meituan-dianping/</loc>
+    <lastmod>2018-12-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-2.1-ga-Battle-tested-to-handle-an-unpredictable-world/</loc>
+    <lastmod>2018-12-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-12-03-tidb-weekly/</loc>
+    <lastmod>2018-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-81-20181127/</loc>
+    <lastmod>2018-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-82-20181127/</loc>
+    <lastmod>2018-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-11-26-tidb-weekly/</loc>
+    <lastmod>2018-11-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-11-19-tidb-weekly/</loc>
+    <lastmod>2018-11-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/lease-read/</loc>
+    <lastmod>2018-11-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-11-12-tidb-weekly/</loc>
+    <lastmod>2018-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-80-20181112/</loc>
+    <lastmod>2018-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-79-20181107/</loc>
+    <lastmod>2018-11-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-11-05-tidb-weekly/</loc>
+    <lastmod>2018-11-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/architecture-and-use-cases-of-a-cloud-native-newsql-database/</loc>
+    <lastmod>2018-11-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/announcing-tidb-cloud-managed-as-a-service-and-in-the-marketplace/</loc>
+    <lastmod>2018-11-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-78-20181030/</loc>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-10-29-tidb-weekly/</loc>
+    <lastmod>2018-10-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-76-20181023/</loc>
+    <lastmod>2018-10-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-77-20181023/</loc>
+    <lastmod>2018-10-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-10-22-tidb-weekly/</loc>
+    <lastmod>2018-10-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/tidb-in-iqiyi/</loc>
+    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/linearizability-and-raft/</loc>
+    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-academy-announce/</loc>
+    <lastmod>2018-10-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-75-20181016/</loc>
+    <lastmod>2018-10-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-10-15-tidb-weekly/</loc>
+    <lastmod>2018-10-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-09-25-tidb-weekly/</loc>
+    <lastmod>2018-09-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-74-20180919/</loc>
+    <lastmod>2018-09-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-09-17-tidb-weekly/</loc>
+    <lastmod>2018-09-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/series-c-announcement/</loc>
+    <lastmod>2018-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-09-10-tidb-weekly/</loc>
+    <lastmod>2018-09-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/use-tikv-to-build-distributed-redis-service/</loc>
+    <lastmod>2018-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-73-20180905/</loc>
+    <lastmod>2018-09-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-09-03-tidb-weekly/</loc>
+    <lastmod>2018-09-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-community-200-contributors/</loc>
+    <lastmod>2018-08-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-08-27-tidb-weekly/</loc>
+    <lastmod>2018-08-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-72-20180820/</loc>
+    <lastmod>2018-08-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-08-20-tidb-weekly/</loc>
+    <lastmod>2018-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/9-whys-to-ask-when-evaluating-a-distributed-database/</loc>
+    <lastmod>2018-08-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-08-13-tidb-weekly/</loc>
+    <lastmod>2018-08-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/tidb-in-zhuanzhuan/</loc>
+    <lastmod>2018-08-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-08-06-tidb-weekly/</loc>
+    <lastmod>2018-08-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/adding-built-in-functions-to-tikv/</loc>
+    <lastmod>2018-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-07-30-tidb-weekly/</loc>
+    <lastmod>2018-07-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-07-23-tidb-weekly/</loc>
+    <lastmod>2018-07-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-07-16-tidb-weekly/</loc>
+    <lastmod>2018-07-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tispark-more-data-insights-no-more-etl/</loc>
+    <lastmod>2018-07-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-71-20180710/</loc>
+    <lastmod>2018-07-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-07-09-tidb-weekly/</loc>
+    <lastmod>2018-07-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-07-02-tidb-weekly/</loc>
+    <lastmod>2018-07-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-70-20180626/</loc>
+    <lastmod>2018-06-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-06-25-tidb-weekly/</loc>
+    <lastmod>2018-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/hybrid-database-capturing-perishable-insights-at-yiguo/</loc>
+    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-06-19-tidb-weekly/</loc>
+    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-69-20180612/</loc>
+    <lastmod>2018-06-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-06-11-tidb-weekly/</loc>
+    <lastmod>2018-06-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how_to_spin_up_an_htap_database_in_5_minutes_with_tidb_tispark/</loc>
+    <lastmod>2018-06-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-06-04-tidb-weekly/</loc>
+    <lastmod>2018-06-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-68-20180531/</loc>
+    <lastmod>2018-05-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-05-28-tidb-weekly/</loc>
+    <lastmod>2018-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/implement-raft-in-rust/</loc>
+    <lastmod>2018-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-05-21-tidb-weekly/</loc>
+    <lastmod>2018-05-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-05-14-tidb-weekly/</loc>
+    <lastmod>2018-05-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-67-20180509/</loc>
+    <lastmod>2018-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-05-07-tidb-weekly/</loc>
+    <lastmod>2018-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-05-02-tidb-weekly/</loc>
+    <lastmod>2018-05-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-2-0-announcement/</loc>
+    <lastmod>2018-04-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-04-23-tidb-weekly/</loc>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-66-20180417/</loc>
+    <lastmod>2018-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-04-16-tidb-weekly/</loc>
+    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/chaos-practice-in-tidb/</loc>
+    <lastmod>2018-04-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-04-09-tidb-weekly/</loc>
+    <lastmod>2018-04-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-65-20180404/</loc>
+    <lastmod>2018-04-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/tidb-in-mobike/</loc>
+    <lastmod>2018-04-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-04-02-tidb-weekly/</loc>
+    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-03-26-tidb-weekly/</loc>
+    <lastmod>2018-03-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-03-19-tidb-weekly/</loc>
+    <lastmod>2018-03-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/performance_tuning_on_a_distributed_newsql_database/</loc>
+    <lastmod>2018-03-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-64-20180314/</loc>
+    <lastmod>2018-03-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-03-12-tidb-weekly/</loc>
+    <lastmod>2018-03-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-03-05-tidb-weekly/</loc>
+    <lastmod>2018-03-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-02-26-tidb-weekly/</loc>
+    <lastmod>2018-02-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/FOSDEM-2018-Rust-Devroom-reflection/</loc>
+    <lastmod>2018-02-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-02-12-tidb-weekly/</loc>
+    <lastmod>2018-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-63-20180207/</loc>
+    <lastmod>2018-02-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-02-05-tidb-weekly/</loc>
+    <lastmod>2018-02-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-01-29-tidb-weekly/</loc>
+    <lastmod>2018-01-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-devcon-2018-recap/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-01-22-tidb-weekly/</loc>
+    <lastmod>2018-01-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-01-15-tidb-weekly/</loc>
+    <lastmod>2018-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-62-20180110/</loc>
+    <lastmod>2018-01-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-01-08-tidb-weekly/</loc>
+    <lastmod>2018-01-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2018-01-02-tidb-weekly/</loc>
+    <lastmod>2018-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/pingcap-reflection-and-gratitude/</loc>
+    <lastmod>2017-12-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-12-25-tidb-weekly/</loc>
+    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-60-20171223/</loc>
+    <lastmod>2017-12-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/Time-in-Distributed-Systems/</loc>
+    <lastmod>2017-12-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-12-18-tidb-weekly/</loc>
+    <lastmod>2017-12-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-12-11-tidb-weekly/</loc>
+    <lastmod>2017-12-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/Silicon-Valley-Office-Announcement/</loc>
+    <lastmod>2017-12-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-12-04-tidb-weekly/</loc>
+    <lastmod>2017-12-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/optimizing-raft-in-tikv/</loc>
+    <lastmod>2017-11-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-11-27-tidb-weekly/</loc>
+    <lastmod>2017-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-11-20-tidb-weekly/</loc>
+    <lastmod>2017-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-58-20171115/</loc>
+    <lastmod>2017-11-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/rust-key-value-store/</loc>
+    <lastmod>2017-11-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-11-13-tidb-weekly/</loc>
+    <lastmod>2017-11-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-11-06-tidb-weekly/</loc>
+    <lastmod>2017-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-10-30-tidb-weekly/</loc>
+    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-57-20171025/</loc>
+    <lastmod>2017-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-10-23-tidb-weekly/</loc>
+    <lastmod>2017-10-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/announcing-tidb-1.0-release/</loc>
+    <lastmod>2017-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/cloud-data-next-conference-seattle/</loc>
+    <lastmod>2017-10-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-10-09-tidb-weekly/</loc>
+    <lastmod>2017-10-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/why-choose-rust-to-develop-tikv/</loc>
+    <lastmod>2017-09-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-09-25-tidb-weekly/</loc>
+    <lastmod>2017-09-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/talk-about-opensource/</loc>
+    <lastmod>2017-09-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-56-20170920/</loc>
+    <lastmod>2017-09-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-09-18-tidb-weekly/</loc>
+    <lastmod>2017-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/rocksdb-in-tikv/</loc>
+    <lastmod>2017-09-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/futures-and-grpc-in-rust/</loc>
+    <lastmod>2017-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-09-11-tidb-weekly/</loc>
+    <lastmod>2017-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-to-find-a-rocksdb-bug/</loc>
+    <lastmod>2017-09-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-55-20170906/</loc>
+    <lastmod>2017-09-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-09-04-tidb-weekly/</loc>
+    <lastmod>2017-09-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-meets-jepsen/</loc>
+    <lastmod>2017-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-08-28-tidb-weekly/</loc>
+    <lastmod>2017-08-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-54-20170825/</loc>
+    <lastmod>2017-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/linearizability/</loc>
+    <lastmod>2017-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-08-21-tidb-weekly/</loc>
+    <lastmod>2017-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/design-and-implementation-of-multi-raft/</loc>
+    <lastmod>2017-08-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-08-14-tidb-weekly/</loc>
+    <lastmod>2017-08-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/tidb-in-yuanfudao/</loc>
+    <lastmod>2017-08-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-08-07-tidb-weekly/</loc>
+    <lastmod>2017-08-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-53-20170805/</loc>
+    <lastmod>2017-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-07-31-tidb-weekly/</loc>
+    <lastmod>2017-07-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/raft-in-tikv/</loc>
+    <lastmod>2017-07-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-best-practice/</loc>
+    <lastmod>2017-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-07-24-tidb-weekly/</loc>
+    <lastmod>2017-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-52-20170722/</loc>
+    <lastmod>2017-07-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-internal-scheduling/</loc>
+    <lastmod>2017-07-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/pax/</loc>
+    <lastmod>2017-07-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/grpc-rs/</loc>
+    <lastmod>2017-07-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-07-17-tidb-weekly/</loc>
+    <lastmod>2017-07-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-internal-data-storage/</loc>
+    <lastmod>2017-07-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/tidb-internal-computing/</loc>
+    <lastmod>2017-07-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-07-04-tidb-weekly/</loc>
+    <lastmod>2017-07-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-51-20170701/</loc>
+    <lastmod>2017-07-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/refactor-builtin/</loc>
+    <lastmod>2017-06-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-06-26-tidb-weekly/</loc>
+    <lastmod>2017-06-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/flame-graph/</loc>
+    <lastmod>2017-06-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-06-20-tidb-weekly/</loc>
+    <lastmod>2017-06-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/grpc/</loc>
+    <lastmod>2017-06-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-06-12-tidb-weekly/</loc>
+    <lastmod>2017-06-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-06-05-tidb-weekly/</loc>
+    <lastmod>2017-06-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-49-20170603/</loc>
+    <lastmod>2017-06-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/recording/rust-in-tikv/</loc>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/iostat-perf-strace/</loc>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/rust-in-tikv/</loc>
+    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/percona-live-17/</loc>
+    <lastmod>2017-05-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/comparison-between-mysql-and-tidb-with-tens-of-millions-of-data-per-day/</loc>
+    <lastmod>2017-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-05-22-tidb-weekly/</loc>
+    <lastmod>2017-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-05-15-tidb-weekly/</loc>
+    <lastmod>2017-05-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/tile-row-store/</loc>
+    <lastmod>2017-05-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-48-20170513/</loc>
+    <lastmod>2017-05-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/kudu/</loc>
+    <lastmod>2017-05-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-05-08-tidb-weekly/</loc>
+    <lastmod>2017-05-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-47-20170506/</loc>
+    <lastmod>2017-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-05-02-tidb-weekly/</loc>
+    <lastmod>2017-05-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-46-20170422/</loc>
+    <lastmod>2017-04-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/talk-cloud-native/</loc>
+    <lastmod>2017-04-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-04-17-tidb-weekly/</loc>
+    <lastmod>2017-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-45-20170416/</loc>
+    <lastmod>2017-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-04-10-tidb-weekly/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-44-20170408/</loc>
+    <lastmod>2017-04-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-03-27-tidb-weekly/</loc>
+    <lastmod>2017-03-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/how-to-contribute/</loc>
+    <lastmod>2017-03-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-43-20170325/</loc>
+    <lastmod>2017-03-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-03-20-tidb-weekly/</loc>
+    <lastmod>2017-03-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-42-20170318/</loc>
+    <lastmod>2017-03-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-03-13-tidb-weekly/</loc>
+    <lastmod>2017-03-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-41-20170311/</loc>
+    <lastmod>2017-03-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-03-06-tidb-weekly/</loc>
+    <lastmod>2017-03-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-40-20170304/</loc>
+    <lastmod>2017-03-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-02-27-tidb-weekly/</loc>
+    <lastmod>2017-02-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-39-20170225/</loc>
+    <lastmod>2017-02-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/Spanner-cap-truetime-transaction/</loc>
+    <lastmod>2017-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-38-20170218/</loc>
+    <lastmod>2017-02-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-02-13-tidb-weekly/</loc>
+    <lastmod>2017-02-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-02-05-tidb-weekly/</loc>
+    <lastmod>2017-02-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-01-24-tidb-weekly/</loc>
+    <lastmod>2017-01-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-37-20170114/</loc>
+    <lastmod>2017-01-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-01-08-tidb-weekly/</loc>
+    <lastmod>2017-01-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-36-20170107/</loc>
+    <lastmod>2017-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/about-the-tidb-source-code/</loc>
+    <lastmod>2017-01-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2017-01-01-tidb-weekly/</loc>
+    <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-12-26-tidb-weekly/</loc>
+    <lastmod>2016-12-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-35-20161224/</loc>
+    <lastmod>2016-12-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/adding-built-in-function/</loc>
+    <lastmod>2016-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-12-19-tidb-weekly/</loc>
+    <lastmod>2016-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-34-20161217/</loc>
+    <lastmod>2016-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-12-12-tidb-weekly/</loc>
+    <lastmod>2016-12-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-33-20161210/</loc>
+    <lastmod>2016-12-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/subquery-optimization-in-tidb/</loc>
+    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/distributed-system-test-3/</loc>
+    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/recording/distributed-system-test-3/</loc>
+    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-12-05-tidb-weekly/</loc>
+    <lastmod>2016-12-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-32-20161203/</loc>
+    <lastmod>2016-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-11-28-tidb-weekly/</loc>
+    <lastmod>2016-11-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-31-20161126/</loc>
+    <lastmod>2016-11-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-11-21-tidb-weekly/</loc>
+    <lastmod>2016-11-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-30-20161119/</loc>
+    <lastmod>2016-11-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/multi-version-concurrency-control-in-tikv/</loc>
+    <lastmod>2016-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/mpp-smp-tidb/</loc>
+    <lastmod>2016-11-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/recording/mpp-smp-tidb/</loc>
+    <lastmod>2016-11-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/travelling-back-in-time-and-reclaiming-the-lost-treasures/</loc>
+    <lastmod>2016-11-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-11-14-tidb-weekly/</loc>
+    <lastmod>2016-11-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-29-20161112/</loc>
+    <lastmod>2016-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/distributed-system-test-2/</loc>
+    <lastmod>2016-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/recording/distributed-system-test-2/</loc>
+    <lastmod>2016-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/deep-dive-into-tikv/</loc>
+    <lastmod>2016-11-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-11-07-tidb-weekly/</loc>
+    <lastmod>2016-11-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-28-20161105/</loc>
+    <lastmod>2016-11-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/distributed-system-test-1/</loc>
+    <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/recording/distributed-system-test-1/</loc>
+    <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-10-31-tidb-weekly/</loc>
+    <lastmod>2016-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-27-20161029/</loc>
+    <lastmod>2016-10-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-10-24-tidb-weekly/</loc>
+    <lastmod>2016-10-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-26-20161022/</loc>
+    <lastmod>2016-10-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/talk-principles-practice/</loc>
+    <lastmod>2016-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/how-we-build-tidb/</loc>
+    <lastmod>2016-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-10-17-tidb-weekly/</loc>
+    <lastmod>2016-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-25-20161015/</loc>
+    <lastmod>2016-10-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/how-do-we-build-tidb/</loc>
+    <lastmod>2016-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-09-30-tidb-weekly/</loc>
+    <lastmod>2016-09-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-09-26-tidb-weekly/</loc>
+    <lastmod>2016-09-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-24-20160924/</loc>
+    <lastmod>2016-09-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-09-19-tidb-weekly/</loc>
+    <lastmod>2016-09-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-09-12-tidb-weekly/</loc>
+    <lastmod>2016-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-23-20160910/</loc>
+    <lastmod>2016-09-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-09-05-tidb-weekly/</loc>
+    <lastmod>2016-09-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-22-20160903/</loc>
+    <lastmod>2016-09-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-08-29-tidb-weekly/</loc>
+    <lastmod>2016-08-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-21-20160827/</loc>
+    <lastmod>2016-08-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-08-22-tidb-weekly/</loc>
+    <lastmod>2016-08-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-20-20190820/</loc>
+    <lastmod>2016-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/building-distributed-db-with-raft/</loc>
+    <lastmod>2016-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-08-12-tidb-weekly/</loc>
+    <lastmod>2016-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-19-20160806/</loc>
+    <lastmod>2016-08-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-08-05-tidb-weekly/</loc>
+    <lastmod>2016-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/cloud-native-db/</loc>
+    <lastmod>2016-08-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/recording/tidb-optimization-for-subquery/</loc>
+    <lastmod>2016-08-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-18-20160730/</loc>
+    <lastmod>2016-07-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-07-29-tidb-weekly/</loc>
+    <lastmod>2016-07-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/weekly/2016-07-23-tidb-weekly/</loc>
+    <lastmod>2016-07-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-17-20160723/</loc>
+    <lastmod>2016-07-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-16-20160716/</loc>
+    <lastmod>2016-07-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-15-20160709/</loc>
+    <lastmod>2016-07-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-14-20160702/</loc>
+    <lastmod>2016-07-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-13-20160625/</loc>
+    <lastmod>2016-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/recording/tidb-api-union-scan/</loc>
+    <lastmod>2016-06-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-12-20160618/</loc>
+    <lastmod>2016-06-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-11-20160604/</loc>
+    <lastmod>2016-06-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-10-20160528/</loc>
+    <lastmod>2016-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/meetup-09-20160521/</loc>
+    <lastmod>2016-05-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/README/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog-cn/TOC-User-Case/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/blog/README/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/join/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/TOC/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/devcon2018/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/devcon2019/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/devcon2020/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/developer-group/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/hackathon2018/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/hackathon2019/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/high-performance-tidb-challenge/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/organization/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/paper-reading/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/techday2017/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/techday2018/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/techday2019/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/tidb-bug-hunting/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/tidb-performance-challenge/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/tidb-usability-challenge/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/user-group/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community/devcon2020/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community/developer-group/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community/events/high-performance-tidb-challenge/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community/organization/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community/tidb-usability-challenge/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/meetup/recording/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/contact-us/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/coprocessor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/paypay/dba/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/huya/dba/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/xiaomi/dba/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/ddl/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/diagnosis/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/docs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/download/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/download-cn/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/engine/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/execution/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/ucloud/go-engineer-paas/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/ucloud/go-engineer-tidb/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/tuyazhineng/golang-engineer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/tuyazhineng/senior-golang-engineer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/tidb-planet/become-a-contributor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/k8s/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/migrate/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/tidb-planet/milestones/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/news/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/planner/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/privacy-policy/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/zh/privacy-policy/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/raft/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/tidb-planet/release-notes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/scheduling/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/square/software-engineering-manager/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/solutions/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/success-stories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/terms-of-service/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/en/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/tidb-cloud/sign-up/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/tidb-planet/robot/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/tidbslack/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/cases-cn/user-message-2019/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/tidb-cloud/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/tiup/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/transaction/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/tidb-planet/user/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/tidb-planet/village/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/developer/sig/web/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/tidb-planet/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/zh/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/download-cn/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/download-cn/community/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/download-cn/enterprise/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/download-cn/list/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/dewu/dba/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/about-cn/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/xiaomi/engineer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/zhihu/real-time-engineer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/banyu/real-time-computing-senior-engineer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/banyu/storage-senior-engineer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/zhihu/microservice-engineer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/xiaoheikeji/engineer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/edu/engineer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/about-cn/news/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/cases-cn/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/cases-cn/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/user-words/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/licenses/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/solutions/intel/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/bilibili/senior-dba/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/zh/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/bilibili/dba/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/lixiangqiche/dba/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/iqiyi/engineer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://idiks.com/community-cn/careers/bigo/senior-dba/</loc>
+  </url>
+  
+</urlset>

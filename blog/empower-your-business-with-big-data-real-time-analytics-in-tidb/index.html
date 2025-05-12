@@ -1,0 +1,467 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<script>
+window.ga =
+    window.ga ||
+    function() {
+        ;(ga.q = ga.q || []).push(arguments)
+    }
+ga.l = +new Date()
+ga('create', 'UA-99991864-4', 'auto')
+ga('send', 'pageview')
+</script>
+<script async src="https://static.idiks.com/js/ga-analytics.js"></script>
+
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/github-markdown.css">
+
+
+<link rel="stylesheet" href="/css/doc.css">
+
+    
+    <title>Empower Your Business with Big Data &#43; Real-time Analytics in TiDB |&nbsp;TiDB</title><link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="description" content="Big data is a growing need for ambitious companies. Learn the usage, cost, and technology selection of real-time big data analytics and how TiDB prevails over other solutions.">
+<meta name="robots" content="noodp">
+<meta name="keywords" content="TiDB, MySQL, HTAP, Open Source, Cloud-Native, NewSQL, Aurora Alternative">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Empower Your Business with Big Data &#43; Real-time Analytics in TiDB | TiDB">
+<meta property="og:description" content="Big data is a growing need for ambitious companies. Learn the usage, cost, and technology selection of real-time big data analytics and how TiDB prevails over other solutions.">
+<meta property="og:url" content="https://idiks.com/blog/empower-your-business-with-big-data-real-time-analytics-in-tidb/">
+<meta property="og:site_name" content="MySQL at Scale. No more manual sharding">
+<meta property="og:image" content="/images/blog/empower-your-business-with-big-data-and-real-time-analytics-in-tidb.jpg">
+<meta property="og:image:secure_url" content="/images/blog/empower-your-business-with-big-data-and-real-time-analytics-in-tidb.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="og:image:width" content="1200">
+<meta name="og:image:height" content="600"><meta name="twitter:description" content="Big data is a growing need for ambitious companies. Learn the usage, cost, and technology selection of real-time big data analytics and how TiDB prevails over other solutions.">
+<meta name="twitter:title" content="Empower Your Business with Big Data &#43; Real-time Analytics in TiDB | TiDB">
+<meta name="twitter:site" content="@pingcap">
+<meta name="twitter:image" content="https://static.idiks.com/images/blog/empower-your-business-with-big-data-and-real-time-analytics-in-tidb.jpg"><meta name="twitter:creator" content="@pingcap">
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http:\/\/schema.org",
+    "@type": "WebSite",
+    "url": "https:\/\/pingcap.com\/",
+    "name": "PingCAP",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https:\/\/pingcap.com\/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+<script type="text/javascript" async src="https://accounts.pingcap.com/static/pingcap_sso/js/track.beta.js"></script>
+    
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+<link rel="preload" href="https://static.idiks.com/js/jquery.min.js" as="script">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/docsearch.min.css">
+<script type="text/javascript">
+var trackOutboundLink = function(url) {
+  var redirectTriggered = false
+  ga('send', 'event', 'outbound', 'click', url, {
+    hitCallback: function() {
+      redirectTriggered = true
+      document.location = url
+    }
+  })
+  setTimeout(function() {
+    if (!redirectTriggered) {
+      document.location = url
+    }
+  }, 1500)
+}
+
+var trackViews = function(btn_type, event_category) {
+  var event_label = btn_type
+  var eventCategory = event_category
+  ga('send', 'event', {
+    'eventCategory': eventCategory,
+    'eventAction': 'click',
+    'eventLabel': event_label,
+    'transport': 'beacon'
+  });
+}
+</script>
+<script>if (location.pathname === '/') {
+        if (location.hostname === 'idiks.github.io') {
+            location.href = '/en/'
+        }
+    }</script></head>       <body data-lang="en" ><div id="page-content">
+
+<header role="navigation" class="fixed-top">
+    <div class="container">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        <div class="nav-wrapper">
+            <div class="navigation">
+                <ul>
+                <li ><a class="a-en" href="https://idiks.com">Cloud</a></li>
+                <li ><a class="a-en" class="tidb-academy"
+                    href="/tidb-academy">iDIKS Academy</a></li>
+                <li class="docs-type-selector " id="docsTypeSelector">
+                    <a class="header-doc-nav" href="#">Docs</a>
+                    <div class="header-dropdown-menu" id="docsTypeSelectorItem">
+                        <a class="header-dropdown-item" href="/docs/stable/">TiDB</a>
+                        <a class="header-dropdown-item" href="/docs/tidb-in-kubernetes/stable/">TiDB in Kubernetes</a>
+                        <a class="header-dropdown-item" href="/docs/tidb-data-migration/stable/">TiDB Data Migration (DM)</a>
+                    </div>
+                </li>
+                
+                <li ><a class="a-en" href="/success-stories">Success
+                    Stories</a></li>
+                <li class="sel" ><a class="a-en" href="/blog">Blog</a></li>
+                <li ><a class="link-download link-download-en" href="/download">Free Download</a></li>
+                </ul>
+            </div>
+            <div class="global-search">
+                
+                
+                
+                <div class="search-wrapper">
+    <span class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fff" viewBox="0 0 67.125 67.125"><path d="M23.902 0C11.01 0 .523 10.488.523 23.38c0 12.891 10.487 23.379 23.379 23.379a23.258 23.258 0 0 0 14.471-5.037l24.816 24.817c.391.391.902.586 1.414.586s1.023-.195 1.414-.586a2 2 0 0 0 0-2.828L41.293 38.985c3.721-4.142 5.989-9.613 5.989-15.605C47.282 10.488 36.794 0 23.902 0zM4.523 23.38C4.523 12.694 13.216 4 23.902 4c10.687 0 19.38 8.694 19.38 19.38 0 5.396-2.221 10.279-5.791 13.795a1.959 1.959 0 0 0-.488.349 2.003 2.003 0 0 0-.271.343C33.31 40.9 28.825 42.76 23.903 42.76c-10.686-.001-19.38-8.695-19.38-19.38z"/><path d="M24.075 8.591c-8.25 0-14.962 6.712-14.962 14.962a2 2 0 0 0 4 0c0-6.044 4.918-10.962 10.962-10.962a2 2 0 0 0 0-4z"/></svg></span>
+    <input data-lang="en" data-type="" type="search" id="search-input" name="q"
+        placeholder="Search TiDB Docs">
+</div>
+
+<script>
+    const inputNode = document.getElementById("search-input")
+
+    inputNode.addEventListener('keyup', ({key}) => {
+        if (key === "Enter") {
+            if ($('#search-input').data('lang') == 'cn') {
+                lang = 'zh'
+            }
+
+            const query = $('#search-input').val()
+            if (query) {
+                url = "https://idiks.com/docs" + (lang == 'zh' ? 'zh/' : '') + "search/?lang=" + lang + "&type=tidb&version=v4.0&q=" + query
+                window.location.href = url
+            }
+        }
+    })
+</script>
+
+            </div>
+        </div>
+        <div class="nav-btn nav-slider">
+            <i class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 459 459"><path d="M0 382.5h459v-51H0v51zM0 255h459v-51H0v51zM0 76.5v51h459v-51H0z" fill="#FFF"/></svg></i>
+        </div>
+    </div>
+</header>
+
+
+
+<nav class="mobile-sidebar">
+    <div class="nav-header">
+        <div class="logo-wrap">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        </div>
+    </div>
+    <ul class="ul-base">
+        <li ><a href="https://idiks.com/">Cloud</a></li>
+        <li ><a class="tidb-academy" href="/tidb-academy">TiDB Academy</a></li>
+        <li class="docs-type-selector " id="docsTypeSelector">
+            <p class="header-doc-nav">Docs</p>
+            <div class="header-dropdown-menu" id="docsTypeSelectorItem">
+                <a class="header-dropdown-item" href="/docs/stable/">TiDB</a>
+                <a class="header-dropdown-item" href="/docs/tidb-in-kubernetes/stable/">TiDB in Kubernetes</a>
+                <a class="header-dropdown-item" href="/docs/tidb-data-migration/stable/">TiDB Data Migration (DM)</a>
+            </div>
+        </li>
+        <li ><a href="/success-stories">Success Stories</a></li>
+        <li class="sel"><a href="/blog">Blog</a></li>
+        <li><a class="link-download" href="/download">Free Download</a></li>
+    </ul>
+    <div class="nav-footer">
+        <div class="contact-list-wrap">
+        <div class="flex-list">
+            <h4 class="list-title"><strong>Contact</strong></h4>
+            <ul class="social ul-base">
+            <li><a href="https://twitter.com/PingCAP" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="18"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/pingcap/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg></a></li>
+            <li><a href="https://www.reddit.com/r/TiDB/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg></a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/tidb-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="18"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg></a></li>
+            <li><a href="https://stackoverflow.com/questions/tagged/tidb" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg></a></li>
+            </ul>
+        </div>
+        <div class="subscribe">
+            <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"><button class="btn btn-subscribe f-tc" style="margin-left: 0.75rem;">Subscribe to Blog</button></a>
+        </div>
+        </div>
+        <div class="container">
+        <a href="/blog-cn" class="btn-lang" id="lang">中文</a>
+        </div>
+    </div>
+</nav>
+
+<div class="blog">
+        <div class="blogArticle__container">
+            
+            <div class="archive"><div class="article-nav">
+                            <a href="/blog/#Product">BLOG HOME</a> <span> > </span>Product</div><div class="content markdown-body">
+                    <h1 class="title">Empower Your Business with Big Data &#43; Real-time Analytics in TiDB</h1>
+                    <ul class="blog-post-meta">
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-date.svg" alt="Date icon">Thu, Apr 15, 2021</li>
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-writer.svg" alt="Pen icon">Yueyue Zhou,&nbsp;Dan Su</li>
+                    </ul>
+                    <div class="blog-text"><p><strong>Authors:</strong></p>
+<ul>
+<li>Yueyue Zhou (Product Expert at PingCAP)</li>
+<li>Dan Su (Product Expert at PingCAP)</li>
+</ul>
+<p><strong>Transcreator:</strong> <a href="https://github.com/ran-huang">Ran Huang</a>; <strong>Editor:</strong> Tom Dewan</p>
+<p><img src="media/empower-your-business-with-big-data-and-real-time-analytics-in-tidb.jpg" alt="Empower Your Business with Big Data + Real-time Analytics in TiDB"></p>
+<p>Big data, in recent years, is not just a buzzword, but also a growing need for ambitious companies. With skyrocketing data scale and stringent requirements on data freshness, big data-related scenarios are becoming complicated and multi-dimensional. Thus, many companies use real-time data warehouses to meet their business demand.</p>
+<p>But data warehouses are not the only option. An emerging category of databases, <a href="https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing">Hybrid Analytical/Transactional Processing</a> (HTAP) databases, can serve you just as well as data warehouses, if not better. HTAP databases can handle Online Transactional Processing (OLTP) workloads and respond quickly to big data analytical requests in real time.</p>
+<p>In this post, <strong>we will share the usage, cost, and technology selection of real-time big data analytics</strong>. We'll also introduce <strong><a href="https://docs.pingcap.com/">TiDB</a>, an open-source HTAP database designed for massive data</strong>. We hope this will help you in your search for a big data architecture for your organization.</p>
+<h2 id="why-real-time-analytics--big-data">Why real-time analytics + big data</h2>
+<p>For different roles in an organization, real-time data analytics plays a different part in their decision-making process:</p>
+<ul>
+<li><strong>Senior executives</strong> <strong>need to know the current status of their company and chart a course for the next few years</strong>. They'd like to analyze the company's financial conditions by querying the real-time reports and income statements for the past few years, predict the revenue for the next few years based on the existing data models, and determine the company's future plans. In this process, they may need to query data in a fine-grained manner such as per month, per day, or even per hour.</li>
+<li><strong>Managers of a specific business line need to know the revenue, traffic peaks, and health of their business.</strong> They may want to see the visualized business data, real-time reporting, and revenue projections for any point in the past few years.</li>
+<li><strong>Security directors need to keep constant tabs on any information security issues.</strong> They may also need to query the risk data for a given time period in the past week or month.</li>
+</ul>
+<p>These three roles often need real-time data analytics to make decisions. In addition, because they query long time spans, the data scale must be taken into account. It is challenging for the infrastructure software to provide real-time data analytics on a large data scale.</p>
+<h2 id="current-big-data-solutions">Current big data solutions</h2>
+<p>As the business evolves, users are no longer satisfied with performing data analytics on only offline data. They want to base their analytics on fresher data—even on data on the fly. To perform analytics on fresh data, their Online Transactional Processing (OLAP) architecture needs an OLAP-oriented warehouse on top of it.</p>
+<h3 id="technical-limitations">Technical limitations</h3>
+<p>The current data solutions each have their own problems:</p>
+<ul>
+<li>Traditional data warehouse solutions based on Hadoop cannot support real-time analytics well.</li>
+<li>NoSQL solutions such as HBase, though they are scalable and support real-time queries, can't provide the analytical capabilities required.</li>
+<li>Standalone databases do not scale.</li>
+<li>Online Transactional Processing (OLTP) databases usually use row-based storage, which can't perform very well with OLAP workloads.</li>
+</ul>
+<p>In addition, the existing big data platforms based on the above technologies have several disadvantages: <strong>complicated extract, transform, load (ETL), high storage costs, lengthy data transfer processes, and convoluted tech stacks</strong>.</p>
+<p><img src="media/real-time-analytics-the-traditional-big-data-platform.png" alt="The traditional big data platform"></p>
+<div class="caption-center"> The traditional big data platform </div>
+<h3 id="high-costs">High costs</h3>
+<p>In an effort to build and maintain a system like the one above, users must bear the high costs of a fully-functional data team:</p>
+<ul>
+<li>Development team
+<ul>
+<li><strong>Data development engineers</strong> for ETL, back end, and front end. They will build, operate, and maintain the big data platform and data warehouse.</li>
+<li><strong>Data analysts</strong> who aggregate company-wide business data and perform data analytics.</li>
+<li><strong>Data algorithm engineers</strong> who build mathematical models to meet the business requirements. These highly-paid talents are hard to acquire.</li>
+</ul>
+</li>
+<li>Product and operations team
+<ul>
+<li><strong>Data product managers</strong> who try to solve business pain points by data-driven tactics. They identify and assess various requirements and meld them into a standard product.</li>
+<li><strong>Data operations specialists</strong> who help the business team use the data products.</li>
+</ul>
+</li>
+</ul>
+<p>Building a team that covers all these positions will cost the company a fortune, not to mention that some high-level talents are rare in the labor market. Building the team might take six months to a year, and developing the data platform another one to two years. In this process, you might need to introduce various technologies and increase the maintenance complexity.</p>
+<h2 id="how-tidb-prevails">How TiDB prevails</h2>
+<p>TiDB is an open-source, distributed database that supports HTAP workloads. It features horizontal scalability, strong consistency, high availability, and real-time data analytics. In addition, TiDB is MySQL compatible and easy to manage.</p>
+<h3 id="powerful-features">Powerful features</h3>
+<p>One of <strong>TiDB's biggest strengths is its HTAP architecture</strong>. In TiDB, the row store and column store can coexist and provide service for different kinds of queries.</p>
+<ul>
+<li>It provides complete indexes and highly concurrent data access.</li>
+<li>It has a high-performance <a href="https://en.wikipedia.org/wiki/Massively_parallel">massively parallel processing</a> (MPP) framework and an updatable columnar storage engine. Every time the data is updated, TiDB updates the columnar storage engine accordingly so that the OLAP requests can always read the latest data.</li>
+<li>Its HTAP architecture handles both OLTP and OLAP workloads. The optimizer decides which storage engine to use, thus simplifying the architecture.</li>
+</ul>
+<p><img src="media/real-time-analytics-tidb-htap-architecture.png" alt="TiDB's HTAP architecture"></p>
+<div class="caption-center"> TiDB's HTAP architecture </div>
+<p>TiDB also <strong>supports elastic scaling</strong>:</p>
+<ul>
+<li>When TiDB is running, you can elastically scale out or scale in the cluster components without affecting the production environment.</li>
+<li>TiDB's architecture separates computing and storage, so you can scale computing nodes and storage nodes independently.</li>
+</ul>
+<p>TiDB <strong>supports standard SQL syntax and the MySQL protocol</strong>:</p>
+<ul>
+<li>It uses standard SQL syntax including aggregate and window functions, join, sort, DML, and online DDL.</li>
+<li>If you already use MySQL or its peripheral tools, adopting TiDB would be seamless with little code change.</li>
+</ul>
+<p>TiDB is <strong>easy to manage</strong>:</p>
+<ul>
+<li>You can easily spin up a TiDB cluster using the <a href="https://docs.pingcap.com/tidb/dev/tiup-documentation-guide">TiUP</a> cluster manager.</li>
+<li>TiDB doesn't rely on other systems, and its maintenance is simple.</li>
+<li>TiDB provides a built-in monitoring dashboard for performance analysis and troubleshooting.</li>
+</ul>
+<h3 id="ecosystem-tools">Ecosystem tools</h3>
+<p>TiDB provides a variety of tools to import, export, backup, and restore data:</p>
+<ul>
+<li>For data import, you can use <a href="https://docs.pingcap.com/tidb-data-migration/stable">TiDB Data Migration</a> for <strong>full and incremental data replication from MySQL to TiDB</strong>. The migration doesn't affect online data read and write requests. <a href="https://docs.pingcap.com/tidb/stable/tidb-lightning-overview">TiDB Lightning</a> enables you to <strong>quickly import large volumes of data</strong> into TiDB.</li>
+<li>For data export, you can use <a href="https://docs.pingcap.com/tidb/stable/ticdc-overview">TiCDC</a> or <a href="https://docs.pingcap.com/tidb/stable/tidb-binlog-overview">TiDB Binlog</a> to <strong>replicate data into TiDB or third-party downstream platforms</strong> for further processing.</li>
+<li>For backup and restore, you have <a href="https://docs.pingcap.com/tidb/stable/backup-and-restore-tool">Backup &amp; Restore</a> to <strong>perform full and incremental backup and restore</strong>.</li>
+</ul>
+<p>By default, these tools operate on all tables. However if you only need a subset of tables, they also support <a href="https://docs.pingcap.com/tidb/stable/table-filter">table filters</a> to specify the subsets.</p>
+<h3 id="learning-resources">Learning resources</h3>
+<p>TiDB users enjoy many community resources:</p>
+<ul>
+<li>TiDB provides comprehensive <a href="https://docs.pingcap.com/tidb/stable">documentation</a> for each active version of the product, including a user manual, product specification, and troubleshooting tutorials.</li>
+<li>TiDB engineers write <a href="https://pingcap.com/blog">blog</a> posts that dive deeply into many aspects of database technology.</li>
+<li>Users across industries write <a href="https://pingcap.com/case-studies">case studies</a> to share their use scenarios and experience.</li>
+<li>TiDB has an active developer and user community. Whenever you need help, you can always find them on <a href="https://github.com/pingcap/tidb/issues">GitHub</a> and <a href="https://slack.tidb.io/invite?team=tidb-community&amp;channel=everyone&amp;ref=pingcap-blog">Slack</a>.</li>
+</ul>
+<h2 id="adopting-tidb-in-olap-scenarios">Adopting TiDB in OLAP scenarios</h2>
+<p>Many companies have adopted TiDB to empower their business with HTAP capabilities. One example is ZTO Express.</p>
+<h3 id="zto-express-from-oracle-exadata-to-tidb">ZTO Express: from Oracle Exadata to TiDB</h3>
+<p><a href="https://www.crunchbase.com/organization/zto-express">ZTO Express</a> is a leading express delivery company in China and one of the largest express delivery companies in the world. They used to use Oracle Exadata, but as their business quickly developed, it no longer met their requirements:</p>
+<ul>
+<li><strong>Exadata's storage capacity faced big challenges</strong>. The data storage period in Exadata became shorter and shorter, while the application team required the data storage time to be longer and longer.</li>
+<li><strong>The sharding solution wasn't suitable for real-time data analytics</strong>. Data analytics relied on stored procedures, and the system was very hard to scale and maintain.</li>
+<li>At peak hours, <strong>Exadata had high risks of standalone machine performance bottlenecks and single-point failures</strong>. Data was replicated in T+1 mode, so they couldn't perform data analytics in real time.</li>
+</ul>
+<p>To build a real-time data warehouse, they tested HBase and Kudu. But Kudu was not compatible with the existing technology stack, and HBase had very limited support for multi-dimensional queries. Finally, they adopted TiDB to solve their problems.</p>
+<p>ZTO Express built their system based on TiDB as follows:</p>
+<p><img src="media/real-time-analytics-tidb-architecture-at-zto-express.jpg" alt="TiDB architecture at ZTO Express"></p>
+<div class="caption-center"> TiDB architecture at ZTO Express </div>
+<p>This new database infrastructure has brought them the following benefits:</p>
+<ul>
+<li>The supported data storage period extended from 15 days to 45 days.</li>
+<li>TiDB supports online <strong>horizontal scalability</strong>. To scale out or scale in, they can add or remove nodes in the storage or computing layer at any time. The scaling process is transparent to application operations and maintenance staff.</li>
+<li>TiDB has <strong>high performance for OLTP workloads</strong>. Its performance might be slightly lower than that of Oracle, but this is because TiDB is a distributed database.</li>
+<li><strong>OLTP and OLAP workloads are separated</strong>, and the pressure on a single node is gone.</li>
+<li>TiDB supports <strong>more flexible data analytics from various angles</strong>.</li>
+<li>Our <strong>hardware cost is reduced</strong>.</li>
+</ul>
+<p>For more details on how ZTO Express uses TiDB, read <a href="https://pingcap.com/case-studies/3x-it-efficiency-boost-use-a-scale-out-htap-database-for-near-real-time-analytics">their story</a> about their 300% IT efficiency boost.</p>
+<h2 id="summary">Summary</h2>
+<p>As an HTAP database, TiDB can provide better real-time analytics and data warehouse service than OLTP databases. With its row-based and columnar storage engines, its analytical capabilities go way beyond simply locating data in high concurrency. It also covers large-scale interactive business intelligence (BI) queries.</p>
+<p>You can use TiDB independently to build your own real-time data analytics system, but you can also integrate it with big data tools to establish an offline and real-time data warehouse. Some users <a href="https://pingcap.com/blog/apache-flink-+-tidb-a-scale-out-real-time-data-warehouse-for-analytics-within-seconds">connect Apache Flink with TiDB</a> to adapt to more scenarios.</p>
+<p>If you are interested in TiDB's solutions for real-time analytics, feel free to <a href="https://slack.tidb.io/invite?team=tidb-community&amp;channel=everyone&amp;ref=pingcap-blog">join our Slack channel</a> and explore more with us.</p>
+</div>
+                </div>
+                <div class="article-toc"></div><div class="ssba-wrap">
+    <div class="ssba">
+        <a data-site="" class="ssba_twitter_share" href="http://twitter.com/share?url=https%3a%2f%2fidiks.com%2fblog%2fempower-your-business-with-big-data-real-time-analytics-in-tidb%2f" target="_blank">
+        
+            <img src="/images/svgs/twitter-icon.svg" alt="Twitter icon" />
+        </a>
+        <a data-site="reddit" class="ssba_reddit_share" href="http://reddit.com/submit?url=https%3a%2f%2fidiks.com%2fblog%2fempower-your-business-with-big-data-real-time-analytics-in-tidb%2f&title=Empower%20Your%20Business%20with%20Big%20Data%20%2b%20Real-time%20Analytics%20in%20TiDB" target="_blank">
+        
+            <img src="/images/svgs/reddit-icon.svg" alt="Reddit icon" />
+        </a>
+        <a data-site="" class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fidiks.com%2fblog%2fempower-your-business-with-big-data-real-time-analytics-in-tidb%2f" target="_blank">
+        
+            <img src="/images/svgs/facebook-icon.svg" alt="Fackbook icon" />
+        </a>
+        <a data-site="linkedin" class="ssba_linkedin_share" href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fidiks.com%2fblog%2fempower-your-business-with-big-data-real-time-analytics-in-tidb%2f" target="_blank">
+        
+            <img src="/images/svgs/linkedin-icon.svg" alt="Linkedin icon" />
+        </a>
+        <a data-site="hackernews" class="ssba_hackernews_share" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fidiks.com%2fblog%2fempower-your-business-with-big-data-real-time-analytics-in-tidb%2f&t=Empower%20Your%20Business%20with%20Big%20Data%20%2b%20Real-time%20Analytics%20in%20TiDB" target="_blank">
+        
+            <img src="/images/svgs/hacker-news-icon.svg" alt="Hacker News icon" />
+        </a>
+    </div>
+</div>
+<div class="trackable-btns">
+                    <a href="/download" onclick="trackViews('Empower Your Business with Big Data \x2b Real-time Analytics in TiDB', 'download-tidb-btn-bottom')"><button>Download
+                        TiDB</button></a>
+                    <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"
+                      onclick="trackViews('Empower Your Business with Big Data \x2b Real-time Analytics in TiDB', 'subscribe-blog-btn-bottom')"><button>Subscribe to
+                        Blog</button></a>
+                </div>
+            </div>
+            <div class="sidebar-page">
+                <div class="sticky-sidebar">
+                    <p class="toc-title">What’s on this page</p>
+                    <div id="smart_toc_wrapper"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer>
+    <div class="container">
+        <div class="flex-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Product</strong></h4>
+                <ul>
+                <li><a href="/docs/v3.0/">TiDB</a></li>
+                <li><a href="/docs/v3.0/reference/tispark/">TiSpark</a></li>
+                <li><a href="/docs/v3.0/roadmap/">Roadmap</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Docs</strong></h4>
+                <ul>
+                <li><a href="/docs/stable/quick-start-with-tidb/">Quick Start</a></li>
+                <li><a href="/blog/2017-07-24-tidbbestpractice/">Best Practices</a></li>
+                <li><a href="/docs/stable/faq/tidb/">FAQ</a></li>
+                <li><a href="/docs/stable/reference/tools/user-guide/">TiDB Tools</a></li>
+                <li><a href="/docs/dev/releases/rn/">Release Notes</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Resources</strong></h4>
+                <ul>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/weekly/">Monthly</a></li>
+                <li><a href="https://github.com/idiks" target="_blank">GitHub</a></li>
+                <li><a href="/community">TiDB Community</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Company</strong></h4>
+                <ul>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/jobs" target="_blank">Careers</a></li>
+                <li><a href="/news/">News</a></li>
+                <li><a href="/contact-us/">Contact Us</a></li>
+                <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                <li><a href="/terms-of-service/">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="contact-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Connect</strong></h4>
+                <ul>
+                <li><a href="https://twitter.com/idiks" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="19"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg> Twitter</a></li>
+                <li><a href="https://www.linkedin.com/company/idiks/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg> LinkedIn</a></li>
+                <li><a href="https://www.reddit.com/r/idiks/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg>Reddit</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/idiks-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="20"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg>Google Group</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/idiks" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg>Stack Overflow</a></li>
+                </ul>
+            </div>
+            <div class="subscribe">
+                <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"><button class="btn btn-subscribe f-tc">Subscribe to Blog</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="container copyright-container">
+        <p class="copyright">&copy; 2025 iDIKS. All Rights Reserved.</p>
+        <a href="/blog-cn" class="copyright-btn-lang" id="lang">中文</a>
+    </div>
+</footer>
+<button class="back-to-top" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 284.929 284.929"><path d="M282.082 195.285L149.028 62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 195.285C.95 197.191 0 199.378 0 201.853c0 2.474.953 4.664 2.856 6.566l14.272 14.271c1.903 1.903 4.093 2.854 6.567 2.854s4.664-.951 6.567-2.854l112.204-112.202 112.208 112.209c1.902 1.903 4.093 2.848 6.563 2.848 2.478 0 4.668-.951 6.57-2.848l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.566.001-2.476-.944-4.666-2.846-6.569z" fill="#FFF"/></svg>
+</button>
+</div><div class="overlay"></div><script src="https://static.idiks.com/js/jquery.min.js"></script><script type="text/javascript" src="/js/vendor/lazyload.min.js"></script>
+    <script type="text/javascript" src="/js/doc.js"></script>
+    <script type="text/javascript" src="/js/anchor.js"></script><script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script><script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script src="https://browser.sentry-cdn.com/5.11.0/bundle.min.js" integrity="sha384-jbFinqIbKkHNg+QL+yxB4VrBC0EAPTuaLGeRT0T+NfEV89YC6u1bKxHLwoo+/xxY" crossorigin="anonymous"></script><script>Sentry.init({ 
+            dsn: 'https://3f28ed393c5545daa74496b3cdb2e9ba@sentry.io/1887163' 
+        });</script><script src="/js/app.js"></script></body></html>

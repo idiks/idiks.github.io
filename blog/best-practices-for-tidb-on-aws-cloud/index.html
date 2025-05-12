@@ -1,0 +1,687 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<script>
+window.ga =
+    window.ga ||
+    function() {
+        ;(ga.q = ga.q || []).push(arguments)
+    }
+ga.l = +new Date()
+ga('create', 'UA-99991864-4', 'auto')
+ga('send', 'pageview')
+</script>
+<script async src="https://static.idiks.com/js/ga-analytics.js"></script>
+
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/github-markdown.css">
+
+
+<link rel="stylesheet" href="/css/doc.css">
+
+    
+    <title>Best Practices for TiDB on AWS Cloud |&nbsp;TiDB</title><link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="description" content="This article illustrates the best practices of running TiDB on AWS, including how to choose the suitable cloud storage and properly configure the system.">
+<meta name="robots" content="noodp">
+<meta name="keywords" content="TiDB, MySQL, HTAP, Open Source, Cloud-Native, NewSQL, Aurora Alternative">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Best Practices for TiDB on AWS Cloud | TiDB">
+<meta property="og:description" content="This article illustrates the best practices of running TiDB on AWS, including how to choose the suitable cloud storage and properly configure the system.">
+<meta property="og:url" content="https://idiks.com/blog/best-practices-for-tidb-on-aws-cloud/">
+<meta property="og:site_name" content="MySQL at Scale. No more manual sharding">
+<meta property="og:image" content="/images/blog/tidb-on-aws-cloud-best-practices-banner.jpg">
+<meta property="og:image:secure_url" content="/images/blog/tidb-on-aws-cloud-best-practices-banner.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="og:image:width" content="1200">
+<meta name="og:image:height" content="600"><meta name="twitter:description" content="This article illustrates the best practices of running TiDB on AWS, including how to choose the suitable cloud storage and properly configure the system.">
+<meta name="twitter:title" content="Best Practices for TiDB on AWS Cloud | TiDB">
+<meta name="twitter:site" content="@pingcap">
+<meta name="twitter:image" content="https://static.idiks.com/images/blog/tidb-on-aws-cloud-best-practices-banner.jpg"><meta name="twitter:creator" content="@pingcap">
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http:\/\/schema.org",
+    "@type": "WebSite",
+    "url": "https:\/\/pingcap.com\/",
+    "name": "PingCAP",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https:\/\/pingcap.com\/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+<script type="text/javascript" async src="https://accounts.pingcap.com/static/pingcap_sso/js/track.beta.js"></script>
+    
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+<link rel="preload" href="https://static.idiks.com/js/jquery.min.js" as="script">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/docsearch.min.css">
+<script type="text/javascript">
+var trackOutboundLink = function(url) {
+  var redirectTriggered = false
+  ga('send', 'event', 'outbound', 'click', url, {
+    hitCallback: function() {
+      redirectTriggered = true
+      document.location = url
+    }
+  })
+  setTimeout(function() {
+    if (!redirectTriggered) {
+      document.location = url
+    }
+  }, 1500)
+}
+
+var trackViews = function(btn_type, event_category) {
+  var event_label = btn_type
+  var eventCategory = event_category
+  ga('send', 'event', {
+    'eventCategory': eventCategory,
+    'eventAction': 'click',
+    'eventLabel': event_label,
+    'transport': 'beacon'
+  });
+}
+</script>
+<script>if (location.pathname === '/') {
+        if (location.hostname === 'idiks.github.io') {
+            location.href = '/en/'
+        }
+    }</script></head>       <body data-lang="en" ><div id="page-content">
+
+<header role="navigation" class="fixed-top">
+    <div class="container">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        <div class="nav-wrapper">
+            <div class="navigation">
+                <ul>
+                <li ><a class="a-en" href="https://idiks.com">Cloud</a></li>
+                <li ><a class="a-en" class="tidb-academy"
+                    href="/tidb-academy">iDIKS Academy</a></li>
+                <li class="docs-type-selector " id="docsTypeSelector">
+                    <a class="header-doc-nav" href="#">Docs</a>
+                    <div class="header-dropdown-menu" id="docsTypeSelectorItem">
+                        <a class="header-dropdown-item" href="/docs/stable/">TiDB</a>
+                        <a class="header-dropdown-item" href="/docs/tidb-in-kubernetes/stable/">TiDB in Kubernetes</a>
+                        <a class="header-dropdown-item" href="/docs/tidb-data-migration/stable/">TiDB Data Migration (DM)</a>
+                    </div>
+                </li>
+                
+                <li ><a class="a-en" href="/success-stories">Success
+                    Stories</a></li>
+                <li class="sel" ><a class="a-en" href="/blog">Blog</a></li>
+                <li ><a class="link-download link-download-en" href="/download">Free Download</a></li>
+                </ul>
+            </div>
+            <div class="global-search">
+                
+                
+                
+                <div class="search-wrapper">
+    <span class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fff" viewBox="0 0 67.125 67.125"><path d="M23.902 0C11.01 0 .523 10.488.523 23.38c0 12.891 10.487 23.379 23.379 23.379a23.258 23.258 0 0 0 14.471-5.037l24.816 24.817c.391.391.902.586 1.414.586s1.023-.195 1.414-.586a2 2 0 0 0 0-2.828L41.293 38.985c3.721-4.142 5.989-9.613 5.989-15.605C47.282 10.488 36.794 0 23.902 0zM4.523 23.38C4.523 12.694 13.216 4 23.902 4c10.687 0 19.38 8.694 19.38 19.38 0 5.396-2.221 10.279-5.791 13.795a1.959 1.959 0 0 0-.488.349 2.003 2.003 0 0 0-.271.343C33.31 40.9 28.825 42.76 23.903 42.76c-10.686-.001-19.38-8.695-19.38-19.38z"/><path d="M24.075 8.591c-8.25 0-14.962 6.712-14.962 14.962a2 2 0 0 0 4 0c0-6.044 4.918-10.962 10.962-10.962a2 2 0 0 0 0-4z"/></svg></span>
+    <input data-lang="en" data-type="" type="search" id="search-input" name="q"
+        placeholder="Search TiDB Docs">
+</div>
+
+<script>
+    const inputNode = document.getElementById("search-input")
+
+    inputNode.addEventListener('keyup', ({key}) => {
+        if (key === "Enter") {
+            if ($('#search-input').data('lang') == 'cn') {
+                lang = 'zh'
+            }
+
+            const query = $('#search-input').val()
+            if (query) {
+                url = "https://idiks.com/docs" + (lang == 'zh' ? 'zh/' : '') + "search/?lang=" + lang + "&type=tidb&version=v4.0&q=" + query
+                window.location.href = url
+            }
+        }
+    })
+</script>
+
+            </div>
+        </div>
+        <div class="nav-btn nav-slider">
+            <i class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 459 459"><path d="M0 382.5h459v-51H0v51zM0 255h459v-51H0v51zM0 76.5v51h459v-51H0z" fill="#FFF"/></svg></i>
+        </div>
+    </div>
+</header>
+
+
+
+<nav class="mobile-sidebar">
+    <div class="nav-header">
+        <div class="logo-wrap">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        </div>
+    </div>
+    <ul class="ul-base">
+        <li ><a href="https://idiks.com/">Cloud</a></li>
+        <li ><a class="tidb-academy" href="/tidb-academy">TiDB Academy</a></li>
+        <li class="docs-type-selector " id="docsTypeSelector">
+            <p class="header-doc-nav">Docs</p>
+            <div class="header-dropdown-menu" id="docsTypeSelectorItem">
+                <a class="header-dropdown-item" href="/docs/stable/">TiDB</a>
+                <a class="header-dropdown-item" href="/docs/tidb-in-kubernetes/stable/">TiDB in Kubernetes</a>
+                <a class="header-dropdown-item" href="/docs/tidb-data-migration/stable/">TiDB Data Migration (DM)</a>
+            </div>
+        </li>
+        <li ><a href="/success-stories">Success Stories</a></li>
+        <li class="sel"><a href="/blog">Blog</a></li>
+        <li><a class="link-download" href="/download">Free Download</a></li>
+    </ul>
+    <div class="nav-footer">
+        <div class="contact-list-wrap">
+        <div class="flex-list">
+            <h4 class="list-title"><strong>Contact</strong></h4>
+            <ul class="social ul-base">
+            <li><a href="https://twitter.com/PingCAP" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="18"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/pingcap/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg></a></li>
+            <li><a href="https://www.reddit.com/r/TiDB/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg></a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/tidb-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="18"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg></a></li>
+            <li><a href="https://stackoverflow.com/questions/tagged/tidb" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg></a></li>
+            </ul>
+        </div>
+        <div class="subscribe">
+            <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"><button class="btn btn-subscribe f-tc" style="margin-left: 0.75rem;">Subscribe to Blog</button></a>
+        </div>
+        </div>
+        <div class="container">
+        <a href="/blog-cn" class="btn-lang" id="lang">中文</a>
+        </div>
+    </div>
+</nav>
+
+<div class="blog">
+        <div class="blogArticle__container">
+            
+            <div class="archive"><div class="article-nav">
+                            <a href="/blog/#Product">BLOG HOME</a> <span> > </span>Product</div><div class="content markdown-body">
+                    <h1 class="title">Best Practices for TiDB on AWS Cloud</h1>
+                    <ul class="blog-post-meta">
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-date.svg" alt="Date icon">Tue, Nov 24, 2020</li>
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-writer.svg" alt="Pen icon">Xinye Tao</li>
+                    </ul>
+                    <div class="blog-text"><p><strong>Author:</strong> <a href="https://github.com/tabokie">Xinye Tao</a> (Cloud engineer at PingCAP)</p>
+<p><strong>Transcreator:</strong> <a href="https://github.com/ran-huang">Ran Huang</a>; <strong>Editor:</strong> Tom Dewan</p>
+<p><img src="media/tidb-on-aws-cloud-best-practices-banner.jpg" alt="TiDB on AWS Cloud Best Practices"></p>
+<p>Amazon Web Services (AWS) is one of the most popular providers of public cloud services. Running databases on AWS is an essential part of using its cloud services. But how can we best leverage the cloud resources and have the database run at its best performance?</p>
+<p>This post demonstrates how we at <a href="https://pingcap.com/">PingCAP</a> deploy and optimize <a href="https://docs.pingcap.com/tidb/stable">TiDB</a> for production on AWS Cloud. It's our hope that recommendations provided here will also help you configure the TiDB service most suitable for your own workload.</p>
+<p><em>To evaluate the performance of different configurations, we ran <a href="http://www.tpc.org/tpcc/">TPC-C</a> and Yahoo! Cloud Serving Benchmark (<a href="https://en.wikipedia.org/wiki/YCSB">YCSB</a>) tests on a typical three-node cluster. TPC-C is a common benchmark standard that simulates an intensive online transaction workload, while YCSB covers most common cloud application scenarios. This article discusses the results in detail.</em></p>
+<h2 id="cloud-storage">Cloud storage</h2>
+<p>When an application is built on top of a persistent database like TiDB, the database eventually translates user interactions into reads and writes on disk storage. This is why this article focuses on how to better utilize AWS cloud storage as a new storage medium for TiDB.</p>
+<h3 id="aws-elastic-block-storage">AWS Elastic Block Storage</h3>
+<p>In this post, we consider using AWS Elastic Block Storage (EBS) as the primary storage for the TiDB service. Unlike traditional local disks, EBS is:</p>
+<ul>
+<li>Fault-tolerant. On-cloud content is transparently replicated, offering out-of-the-box durability guarantees up to 99.999%.</li>
+<li>Elastic. The storage layer is decoupled from the Elastic Compute Cloud (EC2) instance, and therefore is resilient to host failure and is easy to scale.</li>
+<li>Cloud-friendly. EBS integrates naturally with the AWS cloud ecosystem; for example, it is easy to backup and restore through an S3 snapshot.</li>
+</ul>
+<p>Even though EBS has a smaller annual failure rate (AFR) than commodity hardware, it's still not reliable enough for business-critical applications. They require cross-region availability, which is only possible with distributed databases replicated in multiple availability zones (AZ). In this regard, TiDB is a good match for EBS.</p>
+<h4 id="define-performance-limits">Define performance limits</h4>
+<p>EBS volumes are defined by their performance limits, including maximum and sustained Input/Output Operations Per Second (IOPS) and throughput. In certain cases, EBS volumes can &ldquo;burst&rdquo; to higher performance for short periods. In order for our product to perform predictably, our post focuses more on the <em>sustained</em> EBS performance.</p>
+<p>AWS Cloud takes different approaches to enforce these limits:</p>
+<ul>
+<li>The IOPS limit acts like a hard ceiling. Below the limit, I/O latency is relatively stable with respect to IOPS changes; once IOPS reaches the limit, latency experiences a dramatic penalty, often more than 10 ms.</li>
+<li>Compared to IOPS, the throughput limit is much softer. This means that even below the limit, I/O latency grows proportionally to I/O throughput.</li>
+<li>Different types of SSD-based EBS volumes share comparable access latency.</li>
+</ul>
+<p>EBS connects to EC2 instances through a network interface. Therefore, for a given EC2/EBS pair, the actual disk performance is determined not only by the EBS specs, but also by the EC2's capability of dedicated bandwidth to cloud storage. The following table summarizes the performance of several instance types:</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th>Baseline Bandwidth <br/>(MiB/s)</th>
+<th>Maximum Bandwidth <br/>(MiB/s)<sup>1</sup></th>
+<th>Baseline IOPS</th>
+<th>Maximum IOPS<sup>1</sup></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">m5.2xlarge</td>
+<td>287.5</td>
+<td>593.75</td>
+<td>12,000</td>
+<td>18,750</td>
+</tr>
+<tr>
+<td align="left">m5.4xlarge</td>
+<td>593.75</td>
+<td>593.75</td>
+<td>18,750</td>
+<td>18,750</td>
+</tr>
+<tr>
+<td align="left">m5.8xlarge</td>
+<td>850</td>
+<td>850</td>
+<td>30,000</td>
+<td>30,000</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>1: As per AWS official document, low-power machines can only reach maximum performance for 30 minutes at least once every 24 hours.</p>
+</blockquote>
+<p>The <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html">Amazon EBS-optimized instances document</a> includes detailed specifications on the EC2-to-EBS limit. Generally, EC2's capability is proportional to its computing power. However, larger machines (like <code>m5.8xlarge</code> with 32 cores) tend to have fewer resources per core.</p>
+<p>The following graphic showcases how EC2 bandwidth limits directly affect service performance. Two clusters are cross compared using different types of instances as node servers; namely, m5.2xlarge and m5.4xlarge. Each cluster node is equipped with a 1 TB AWS provisioned IOPS volume of 6,000 IOPS. In theory, this disk has a maximum throughput of 1,500 MiB/s for 256 KiB I/O, but the actual performance is tightly bounded by EC2 bandwidth. After we switched EC2 instances, the performance doubled with nearly the same CPU usage.</p>
+<p><img src="media/tidb-on-aws-tpcc-5000-warehouse.png" alt="TPC-C 5000 Warehouse"></p>
+<div class="caption-center">TPC-C 5,000 warehouse on different AWS EC2 instances</div>
+<h4 id="general-purpose-ssd-gp2">General purpose SSD (gp2)</h4>
+<p>For AWS general-purpose SSDs, the IOPS performance scales linearly to the volume size with a ratio of 3 IOPS per GB, until it reaches an upper bound of 3,000 IOPS at 1 TB. This means a gp2 volume larger than 1 TB is not an economically-optimal choice. Theoretically, gp2's bandwidth limit is always 250 MiB/s. However, because internally <a href="https://aws.amazon.com/premiumsupport/knowledge-center/ebs-calculate-optimal-io-size/">EBS splits user requests into 256 KiB chunks</a>, only volumes larger than 334 GB have enough IOPS quota to deliver that amount of throughput.</p>
+<p>Notably, gp2 is one of the credit-based burstable instances. Based on the number of credits you have, gb2 can burst from baseline to maximum performance for short periods. This feature could be tempting for users with a highly dynamic workload profile that only demands high performance for a limited time. But for our target user base, <strong>we suggest setting a gp2 volume size greater than 1 TB to avoid unpredictable performance caused by bursting</strong>.</p>
+<h4 id="provisioned-iops-ssd-io1io2">Provisioned IOPS SSD (io1/io2)</h4>
+<p>Compared to gp2, provisioned IOPS SSDs further raise the maximum throughput and IOPS capacity. You can provision IOPS up to 64,000 and throughput up to 1,000 MiB/s. In addition to high performance, the new generation io2 offers 99.999% durability.</p>
+<p>For baseline performance, we suggest configuring your io1/io2 volume to 6,000 IOPS per TB. Thanks to the elasticity of cloud storage, you can <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/requesting-ebs-volume-modifications.html">dynamically modify</a> your EBS volume performance. This means you can scale the storage performance of individual nodes up or down by different amounts depending on your application's pressure on the storage layer. You can monitor the I/O load of running instances using our Grafana panel or AWS's CloudWatch.</p>
+<p>In general, <strong>a provisioned IOPS SSD volume is a perfect fit for large-scale, data-intensive applications that require the best storage performance available on cloud</strong>. To best leverage this storage power, users considering this option should take extra caution in choosing a properly sized EC2 instance.</p>
+<h3 id="disk-striping">Disk striping</h3>
+<p>One EBS volume has limited performance, but <strong>you can stripe several volumes together as a RAID 0 array to multiply storage power</strong>. According to our benchmark, the performance of a RAID 0 array with two 1 TB gp2 volumes is comparable to io1 provisioned with 6 K IOPS, but with only 40% of the cost.</p>
+<p><img src="media/tidb-on-aws-tpcc-5000-warehouse-on-striped-gp2.png" alt="TPC-C 5000 warehouse on striped AWS gp2"></p>
+<div class="caption-center">TPC-C 5,000 warehouse on striped AWS gp2</div>
+<p>However, a RAID 0 configuration lacks data redundancy. Therefore, a RAID array's service guarantee is slightly weaker than that of a single volume. For instance, striping two gp2 volumes of 99.8% durability produces an array of 99.6% durability.</p>
+<p>Also, resizing a RAID 0 array involves service downtime. So for users adopting disk striping, we suggest you plan the volume size of each storage node before deploying it.</p>
+<h3 id="recommended-storage-node-configurations">Recommended storage node configurations</h3>
+<p>So far, we have discussed the key elements of storage performance on AWS cloud. An application's workload determines the actual performance requirements. More specifically, queries like batch insert or table scan put significant pressure on storage bandwidth, while transactional processing or random reads rely more on storage IOPS resources.</p>
+<p>The table below is a list of storage node configurations that we consider cost effective for most common workloads. Think of these configurations as general recommendations or building blocks on which you can create your own custom configurations. Besides this list, users can select from a large range of options provided by AWS, based on the principles proposed here.</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th>CPU Core</th>
+<th>Capacity (GB)</th>
+<th>IOPS<sup>1</sup></th>
+<th>Throughput (MiB/s)<sup>1</sup></th>
+<th>Approximate monthly cost ($)<sup>2</sup></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">m5.2xlarge + gp2</td>
+<td>8</td>
+<td>1,000</td>
+<td>3,000</td>
+<td>250</td>
+<td>376</td>
+</tr>
+<tr>
+<td align="left">m5.4xlarge + 2 gp2 in RAID 0</td>
+<td>16</td>
+<td>2,000</td>
+<td>6,000</td>
+<td>500</td>
+<td>753</td>
+</tr>
+<tr>
+<td align="left">m5.4xlarge + io1</td>
+<td>16</td>
+<td>1,000</td>
+<td>6,000+</td>
+<td>593.75</td>
+<td>1,068+</td>
+</tr>
+<tr>
+<td align="left">m5.8xlarge + io1</td>
+<td>32</td>
+<td>2,000</td>
+<td>10,000+</td>
+<td>850</td>
+<td>2,006+</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ul>
+<li>1: Sustained performance</li>
+<li>2: The on-demand cost of a single node for deploying TiKV service</li>
+</ul>
+</blockquote>
+<h2 id="advanced-techniques">Advanced techniques</h2>
+<p>For applications that require extra quality of service, we provide several techniques that can further boost baseline performance with minimal cost. However, these strategies require additional maintenance, and, therefore, are only recommended for professional users.</p>
+<h3 id="raft-volume">Raft volume</h3>
+<p>Logically, TiKV stores the Raft logs separately from key-value data. Because the database only maintains the Raft logs of the most recent transactions, the Raft component has low throughput usage. Compared to sharing a disk with key-value data, <strong>using a separate Raft volume reduces write latency on the critical path.</strong> For this reason, we recommend deploying a separate EBS disk as the Raft volume for latency-sensitive applications.</p>
+<p>You can specify the path to a separate Raft volume in the TiKV configuration file:</p>
+<ul>
+<li>
+<p><code>tikv.toml</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">raftstore</span>]
+<span style="color:#75715e">## The path to RaftDB directory.</span>
+<span style="color:#75715e">## If not set, it will be `{data-dir}/raft`.</span>
+<span style="color:#75715e">## If there are multiple disks on the machine, storing the data of Raft RocksDB on different disks</span>
+<span style="color:#75715e">## can improve TiKV performance.</span>
+<span style="color:#75715e"># raftdb-path = &#34;/path/to/raft&#34;</span>
+</code></pre></div></li>
+<li>
+<p><code>topology.yml</code> for TiUP deployment:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">server_configs:
+  tikv:
+    raftstore.raftdb-path: <span style="color:#e6db74">&#34;/path/to/raft&#34;</span>
+</code></pre></div></li>
+<li>
+<p><code>inventory.ini</code> for TiDB Ansible deployment:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">[tikv_servers]
+192.168.0.3 raftdb_path=/path/to/raft
+</code></pre></div></li>
+</ul>
+<p>To guarantee data persistence, Raftstore frequently issues synchronous writes. Therefore, the top priorities for the Raft volume are disk IOPS and fsync frequency. Several types of EBS can meet these needs. For the best system stability, we suggest using a provisioned IOPS SSD with a small volume size; for example, a 40 GB io1 provisioned with 2 K IOPS. For applications that can tolerate some degree of performance fluctuation, it's appropriate to go for a cheaper general purpose SSD with larger size for acceptable baseline IOPS; for example, a 350 GB gp2 capable of 1,050 IOPS.</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th>Capacity (GB)</th>
+<th>IOPS</th>
+<th>Approximate monthly cost ($)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">io1/io2</td>
+<td>40</td>
+<td>2,000</td>
+<td>135</td>
+</tr>
+<tr>
+<td align="left">gp2</td>
+<td>350</td>
+<td>1,050 <br/> (burst up to 3,000)</td>
+<td>35</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ssd-caching">SSD caching</h3>
+<p>Several EC2 types have one or more local <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html">instance stores</a> attached. These SSD drives co-locate physically with the instance you create, and therefore perform much better than cloud storage. However, the content in instance stores can't persist or be transferred after the instance is terminated. These limitations make instance stores vulnerable to host failures or updates and unfit for storing critical application data. The following table compares network disk and local instance store, tested with fio on <code>m5d.2xlarge</code>:</p>
+<table>
+  <tr>
+   <th rowspan="2">
+   </th>
+   <th colspan="2" >Bandwidth (MiB/S)
+   </th>
+   <th colspan="2" >IOPS
+   </th>
+   <th colspan="2" >Latency (μs)
+   </th>
+   <th rowspan="2">fsync (per sec)
+   </th>
+  </tr>
+  <tr>
+   <th>Write
+   </th>
+   <th>Read
+   </th>
+   <th>Write
+   </th>
+   <th>Read
+   </th>
+   <th>Write
+   </th>
+   <th>Read
+   </th>
+  </tr>
+  <tr>
+   <td>Instance store (270 GB)
+   </td>
+   <td>259
+   </td>
+   <td>2,312
+   </td>
+   <td>56,800
+   </td>
+   <td>117,000
+   </td>
+   <td>37
+   </td>
+   <td>90
+   </td>
+   <td>24,400
+   </td>
+  </tr>
+  <tr>
+   <td>EBS/gp2 (1 TB)
+   </td>
+   <td>251
+   </td>
+   <td>375
+   </td>
+   <td>3,023
+   </td>
+   <td>3,020
+   </td>
+   <td>661
+   </td>
+   <td>222
+   </td>
+   <td>1,798
+   </td>
+  </tr>
+</table>
+<p>Nonetheless, as a fast tier device, <strong>instance stores can be used as cache to offload read pressure from cloud disks.</strong> Because <a href="https://docs.pingcap.com/tidb/dev/rocksdb-overview">RocksDB</a> (the storage engine of TiKV) groups on-disk data by their access recency, cache with a least-recently used (LRU) policy naturally benefits from the way data files are organized.</p>
+<p>To demonstrate the importance of SSD caching, we use EnhanceIO (an <a href="https://github.com/stec-inc/EnhanceIO">open-source solution for SSD caching</a>) to optimize several workloads that are bounded by read IOPS.</p>
+<p><img src="media/tidb-on-aws-ssd-caching-on-aws-gp2.png" alt="SSD caching on AWS gp2"></p>
+<div class="caption-center">Benchmark on AWS gp2 with SSD caching</div>
+<blockquote>
+<p>* YCSB workload A, uniform distribution</p>
+<p>** TPC-C 5000 warehouse, block-size configured to 4 KiB</p>
+</blockquote>
+<p>SSD caching does not bring extra risk to data integrity because we only use local disks as read-only cache. Furthermore, several SSD caching solutions, including EnhanceIO, support hot plugging, so you can dynamically configure the caching strategy while the service stays up.</p>
+<div class="trackable-btns">
+  <a href="/download" onclick="trackViews('Best Practices for TiDB on AWS Cloud', 'download-tidb-btn-middle')"><button>Download TiDB</button></a>
+  <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm" onclick="trackViews('Best Practices for TiDB on AWS Cloud', 'subscribe-blog-btn-middle')"><button>Subscribe to Blog</button></a>
+  </div>
+<h3 id="io-rate-limiting">I/O rate limiting</h3>
+<p>As discussed before, the access latency of EBS is sensitive to I/O throughput. This poses a great threat to performance stability for systems like TiKV that rely on background compaction to provide sustained service. The following graph shows that an increase in the read/write flow causes a decrease in the write operations per second (compaction flow is displayed inverted to illustrate the matching pattern):</p>
+<p><img src="media/tidb-on-aws-impact-of-compaction-on-foreground-writes.png" alt="The impact of compaction on foreground writes"></p>
+<div class="caption-center">The impact of compaction on foreground writes</div>
+<p><strong>To maintain background I/O flow at a stable level, we recommend you set <code>rate-bytes-per-sec</code> at a moderately low value.</strong> In TiKV 4.0.8 and later, you can dynamically change the I/O rate limit, and a DBA can optimize this parameter as the workload evolves. Both methods are listed below.</p>
+<ul>
+<li>
+<p>Method 1: Edit <code>tikv.toml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">rocksdb</span>]
+<span style="color:#75715e">## Limit the disk IO of compaction and flush.</span>
+<span style="color:#75715e">## Compaction and flush can cause terrible spikes if they exceed a certain threshold. Consider</span>
+<span style="color:#75715e">## setting this to 50% ~ 80% of the disk throughput for a more stable result. However, in heavy</span>
+<span style="color:#75715e">## write workload, limiting compaction and flush speed can cause write stalls too.</span>
+<span style="color:#75715e">## 1. rate-bytes-per-sec is the only parameter you want to set most of the time. It controls the</span>
+<span style="color:#75715e">##    total write rate of compaction and flush in bytes per second. Currently, RocksDB does not</span>
+<span style="color:#75715e">##    enforce rate limit for anything other than flush and compaction, e.g. write to WAL.</span>
+<span style="color:#a6e22e">rate</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">bytes</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">per</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">sec</span> = <span style="color:#e6db74">&#34;100MB&#34;</span>
+</code></pre></div></li>
+<li>
+<p>Method 2: Use bash script</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">tikv-ctl --host 127.0.0.1:20160 modify-tikv-config -n rocksdb.rate_bytes_per_sec -v <span style="color:#e6db74">&#34;100MB&#34;</span>
+</code></pre></div></li>
+</ul>
+<p>However, constant manual intervention is inconvenient. Our ultimate goal is a more autonomous, &ldquo;self-driving&rdquo; database. As a step in that direction, we recently introduced a new auto-tuned algorithm that automatically configures rate limits based on user workload, which will be available in the next major release.</p>
+<h2 id="system-configuration">System configuration</h2>
+<p>Based on your workload and budget, you now should decide on your specific cluster configurations. This section describes some internal tuning tricks that can better customize the database service for your needs.</p>
+<h3 id="cache-allocation">Cache allocation</h3>
+<p>Underneath TiKV, we use RocksDB as the storage engine. It uses block cache to store recent reads in uncompressed format. Configuring the block cache size essentially adjusts the proportion of uncompressed and compressed content (system page) stored in memory.</p>
+<p><img src="media/tidb-on-aws-rocksdb-read-path.png" alt="RocksDB read path"></p>
+<div class="caption-center">RocksDB read path</div>
+<p>Reading from block cache is faster than reading from page cache, but it isn't always ideal to allocate large block cache. If you set a relatively small block cache, memory can hold more blocks because they are stored compactly in system page cache, thus avoiding reads to these blocks from hitting disk storage.</p>
+<p>When the application workload is read-heavy and the read set can't fit in the block cache (for example, the dataset is too large or the read pattern is too sparse), it's likely that many read requests will fall through to the persistent layer. Users would normally experience an increase in read and update latency and notice high read I/O pressure on the storage monitor. <strong>In these situations, it's advisable to tune down <code>block-cache-size</code>.</strong> In the 5 K warehouse TPC-C benchmark, to avoid read IOPS from hitting the EBS limit, we reserve 4 GB for block cache in EC2 instances with 32 GB memory.</p>
+<p><code>tikv.toml</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">storage</span>.<span style="color:#a6e22e">block</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">cache</span>]
+<span style="color:#75715e">## Size of the shared block cache. Normally it should be tuned to 30%-50% of system&#39;s total memory.</span>
+<span style="color:#75715e">## When the config is not set, it is decided by the sum of the following fields or their default</span>
+<span style="color:#75715e">## value:</span>
+<span style="color:#75715e">##   * rocksdb.defaultcf.block-cache-size or 25% of system&#39;s total memory</span>
+<span style="color:#75715e">##   * rocksdb.writecf.block-cache-size   or 15% of system&#39;s total memory</span>
+<span style="color:#75715e">##   * rocksdb.lockcf.block-cache-size    or  2% of system&#39;s total memory</span>
+<span style="color:#75715e">##   * raftdb.defaultcf.block-cache-size  or  2% of system&#39;s total memory</span>
+<span style="color:#75715e">##</span>
+<span style="color:#75715e">## To deploy multiple TiKV nodes on a single physical machine, configure this parameter explicitly.</span>
+<span style="color:#75715e">## Otherwise, the OOM problem might occur in TiKV.</span>
+<span style="color:#75715e"># capacity = &#34;4GB&#34;</span>
+</code></pre></div><h3 id="block-size">Block size</h3>
+<p>In RocksDB, a key-value pair is read to memory by first retrieving the physical block it resides in. In this case, the physical I/O size per logical read, also known as the read amplification, is at least the size of one physical block. Decreasing the block size reduces the unnecessary reads involved in a point-get. A downside is that read requests with spatial locality produce more read I/Os. Therefore, <strong>when disk I/O pressure (especially IOPS) is below the EBS limit, users can decrease the block size for better read performance.</strong></p>
+<p><strong>Block size is also useful in balancing I/O throughput and IOPS.</strong> For example, in the m5.4xlarge+io1 configuration, EC2 limits the I/O throughput to 593 MiB/s, which might not be enough for intensive workloads. In this case, users can decrease the block size to reduce the read throughput. However, this comes at the cost of more read I/Os, which can be satisfied by provisioned IOPS. As a rule of thumb, changing block size from 64 KiB to 4 KiB doubles read IOPS and halves read throughput.</p>
+<p>Because block size determines the encoding of disk files, you should do a few test runs with different settings before deciding the best configuration for your application.</p>
+<p><code>tikv.toml</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">rocksdb</span>.<span style="color:#a6e22e">defaultcf</span>]
+<span style="color:#75715e">## The data block size. RocksDB compresses data based on the unit of block.</span>
+<span style="color:#75715e">## Similar to page in other databases, block is the smallest unit cached in block-cache. Note that</span>
+<span style="color:#75715e">## the block size specified here corresponds to uncompressed data.</span>
+<span style="color:#75715e"># block-size = &#34;64KB&#34;</span>
+[<span style="color:#a6e22e">rocksdb</span>.<span style="color:#a6e22e">writecf</span>]
+<span style="color:#75715e"># block-size = &#34;64KB&#34;</span>
+</code></pre></div><h3 id="thread-pool-size">Thread pool size</h3>
+<p>To complete user requests, internal executors must conduct different types of work, in specific CPU and I/O operations. On platforms with higher I/O latency like AWS Cloud, these executors spend more time on I/O operations and cannot efficiently process incoming requests. To resolve this problem, the TiKV team is developing a new asynchronous framework that separates I/O operations from request processing loops. Until this feature is production-ready, <strong>we suggest that users set a larger size for the thread pool of critical components to increase TiKV's overall processing efficiency.</strong></p>
+<p>Inadequate thread pool size is likely to cause slow client response time. Under the <strong>TiKV FastTune</strong> Grafana panel, users can monitor the wait duration of different thread pools and make adjustments accordingly.</p>
+<p><code>tikv.toml</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">storage</span>]
+<span style="color:#75715e">## Scheduler&#39;s worker pool size, i.e. the number of write threads.</span>
+<span style="color:#75715e">## It should be less than total CPU cores. When there are frequent write operations, set it to a</span>
+<span style="color:#75715e">## higher value. More specifically, you can run `top -H -p tikv-pid` to check whether the threads</span>
+<span style="color:#75715e">## named `sched-worker-pool` are busy.</span>
+<span style="color:#75715e"># scheduler-worker-pool-size = 4</span>
+[<span style="color:#a6e22e">raftstore</span>]
+<span style="color:#75715e">## Use how many threads to handle log apply</span>
+<span style="color:#75715e"># apply-pool-size = 2</span>
+<span style="color:#75715e">## Use how many threads to handle raft messages</span>
+<span style="color:#75715e"># store-pool-size = 2</span>
+</code></pre></div><h2 id="whats-next">What's next</h2>
+<p>Through a series of in-depth investigations, we have demonstrated the best practices for running TiDB on AWS cloud. By adhering to these practices, you'll be able to have a TiDB cluster with better performance at a reasonable cost. Next, you can try it out by reading our <a href="https://docs.pingcap.com/tidb/stable/quick-start-with-tidb">tutorial</a> and <a href="https://pingcap.com/blog/how-to-migrate-data-from-amazon-aurora-mysql-to-tidb-cloud/">Aurora migration guide</a>. Feel free to <a href="https://slack.tidb.io/invite?team=tidb-community&amp;channel=everyone&amp;ref=pingcap-blog">join us on Slack</a> to share your experience and raise questions.</p>
+</div>
+                </div>
+                <div class="article-toc"></div><div class="ssba-wrap">
+    <div class="ssba">
+        <a data-site="" class="ssba_twitter_share" href="http://twitter.com/share?url=https%3a%2f%2fidiks.com%2fblog%2fbest-practices-for-tidb-on-aws-cloud%2f" target="_blank">
+        
+            <img src="/images/svgs/twitter-icon.svg" alt="Twitter icon" />
+        </a>
+        <a data-site="reddit" class="ssba_reddit_share" href="http://reddit.com/submit?url=https%3a%2f%2fidiks.com%2fblog%2fbest-practices-for-tidb-on-aws-cloud%2f&title=Best%20Practices%20for%20TiDB%20on%20AWS%20Cloud" target="_blank">
+        
+            <img src="/images/svgs/reddit-icon.svg" alt="Reddit icon" />
+        </a>
+        <a data-site="" class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fidiks.com%2fblog%2fbest-practices-for-tidb-on-aws-cloud%2f" target="_blank">
+        
+            <img src="/images/svgs/facebook-icon.svg" alt="Fackbook icon" />
+        </a>
+        <a data-site="linkedin" class="ssba_linkedin_share" href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fidiks.com%2fblog%2fbest-practices-for-tidb-on-aws-cloud%2f" target="_blank">
+        
+            <img src="/images/svgs/linkedin-icon.svg" alt="Linkedin icon" />
+        </a>
+        <a data-site="hackernews" class="ssba_hackernews_share" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fidiks.com%2fblog%2fbest-practices-for-tidb-on-aws-cloud%2f&t=Best%20Practices%20for%20TiDB%20on%20AWS%20Cloud" target="_blank">
+        
+            <img src="/images/svgs/hacker-news-icon.svg" alt="Hacker News icon" />
+        </a>
+    </div>
+</div>
+<div class="trackable-btns">
+                    <a href="/download" onclick="trackViews('Best Practices for TiDB on AWS Cloud', 'download-tidb-btn-bottom')"><button>Download
+                        TiDB</button></a>
+                    <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"
+                      onclick="trackViews('Best Practices for TiDB on AWS Cloud', 'subscribe-blog-btn-bottom')"><button>Subscribe to
+                        Blog</button></a>
+                </div>
+            </div>
+            <div class="sidebar-page">
+                <div class="sticky-sidebar">
+                    <p class="toc-title">What’s on this page</p>
+                    <div id="smart_toc_wrapper"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer>
+    <div class="container">
+        <div class="flex-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Product</strong></h4>
+                <ul>
+                <li><a href="/docs/v3.0/">TiDB</a></li>
+                <li><a href="/docs/v3.0/reference/tispark/">TiSpark</a></li>
+                <li><a href="/docs/v3.0/roadmap/">Roadmap</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Docs</strong></h4>
+                <ul>
+                <li><a href="/docs/stable/quick-start-with-tidb/">Quick Start</a></li>
+                <li><a href="/blog/2017-07-24-tidbbestpractice/">Best Practices</a></li>
+                <li><a href="/docs/stable/faq/tidb/">FAQ</a></li>
+                <li><a href="/docs/stable/reference/tools/user-guide/">TiDB Tools</a></li>
+                <li><a href="/docs/dev/releases/rn/">Release Notes</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Resources</strong></h4>
+                <ul>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/weekly/">Monthly</a></li>
+                <li><a href="https://github.com/idiks" target="_blank">GitHub</a></li>
+                <li><a href="/community">TiDB Community</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Company</strong></h4>
+                <ul>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/jobs" target="_blank">Careers</a></li>
+                <li><a href="/news/">News</a></li>
+                <li><a href="/contact-us/">Contact Us</a></li>
+                <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                <li><a href="/terms-of-service/">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="contact-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Connect</strong></h4>
+                <ul>
+                <li><a href="https://twitter.com/idiks" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="19"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg> Twitter</a></li>
+                <li><a href="https://www.linkedin.com/company/idiks/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg> LinkedIn</a></li>
+                <li><a href="https://www.reddit.com/r/idiks/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg>Reddit</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/idiks-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="20"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg>Google Group</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/idiks" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg>Stack Overflow</a></li>
+                </ul>
+            </div>
+            <div class="subscribe">
+                <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"><button class="btn btn-subscribe f-tc">Subscribe to Blog</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="container copyright-container">
+        <p class="copyright">&copy; 2025 iDIKS. All Rights Reserved.</p>
+        <a href="/blog-cn" class="copyright-btn-lang" id="lang">中文</a>
+    </div>
+</footer>
+<button class="back-to-top" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 284.929 284.929"><path d="M282.082 195.285L149.028 62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 195.285C.95 197.191 0 199.378 0 201.853c0 2.474.953 4.664 2.856 6.566l14.272 14.271c1.903 1.903 4.093 2.854 6.567 2.854s4.664-.951 6.567-2.854l112.204-112.202 112.208 112.209c1.902 1.903 4.093 2.848 6.563 2.848 2.478 0 4.668-.951 6.57-2.848l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.566.001-2.476-.944-4.666-2.846-6.569z" fill="#FFF"/></svg>
+</button>
+</div><div class="overlay"></div><script src="https://static.idiks.com/js/jquery.min.js"></script><script type="text/javascript" src="/js/vendor/lazyload.min.js"></script>
+    <script type="text/javascript" src="/js/doc.js"></script>
+    <script type="text/javascript" src="/js/anchor.js"></script><script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script><script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script src="https://browser.sentry-cdn.com/5.11.0/bundle.min.js" integrity="sha384-jbFinqIbKkHNg+QL+yxB4VrBC0EAPTuaLGeRT0T+NfEV89YC6u1bKxHLwoo+/xxY" crossorigin="anonymous"></script><script>Sentry.init({ 
+            dsn: 'https://3f28ed393c5545daa74496b3cdb2e9ba@sentry.io/1887163' 
+        });</script><script src="/js/app.js"></script></body></html>

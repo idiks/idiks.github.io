@@ -1,0 +1,1772 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<script>
+window.ga =
+    window.ga ||
+    function() {
+        ;(ga.q = ga.q || []).push(arguments)
+    }
+ga.l = +new Date()
+ga('create', 'UA-99991864-4', 'auto')
+ga('send', 'pageview')
+</script>
+<script async src="https://static.idiks.com/js/ga-analytics.js"></script>
+
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/github-markdown.css">
+
+
+<link rel="stylesheet" href="/css/doc.css">
+
+    
+    <title>TiDB on Arm-based Kubernetes Cluster Achieves Up to 25% Better Price-Performance Ratio than x86 |&nbsp;TiDB</title><link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="description" content="Running TiDB on EKS clusters with Graviton processors offers up to 25% better price-performance ratio compared to an x86-based cluster. This article discusses the benchmark tests we ran.">
+<meta name="robots" content="noodp">
+<meta name="keywords" content="TiDB, MySQL, HTAP, Open Source, Cloud-Native, NewSQL, Aurora Alternative">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TiDB on Arm-based Kubernetes Cluster Achieves Up to 25% Better Price-Performance Ratio than x86 | TiDB">
+<meta property="og:description" content="Running TiDB on EKS clusters with Graviton processors offers up to 25% better price-performance ratio compared to an x86-based cluster. This article discusses the benchmark tests we ran.">
+<meta property="og:url" content="https://idiks.com/blog/tidb-on-arm-based-k8s-cluster-achieves-up-to-25-percent-better-price-performance-ratio-than-x86/">
+<meta property="og:site_name" content="MySQL at Scale. No more manual sharding">
+<meta property="og:image" content="/images/blog/tidb-on-eks-arm-vs-x86-benchmark.jpg">
+<meta property="og:image:secure_url" content="/images/blog/tidb-on-eks-arm-vs-x86-benchmark.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="og:image:width" content="1200">
+<meta name="og:image:height" content="600"><meta name="twitter:description" content="Running TiDB on EKS clusters with Graviton processors offers up to 25% better price-performance ratio compared to an x86-based cluster. This article discusses the benchmark tests we ran.">
+<meta name="twitter:title" content="TiDB on Arm-based Kubernetes Cluster Achieves Up to 25% Better Price-Performance Ratio than x86 | TiDB">
+<meta name="twitter:site" content="@pingcap">
+<meta name="twitter:image" content="https://static.idiks.com/images/blog/tidb-on-eks-arm-vs-x86-benchmark.jpg"><meta name="twitter:creator" content="@pingcap">
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http:\/\/schema.org",
+    "@type": "WebSite",
+    "url": "https:\/\/pingcap.com\/",
+    "name": "PingCAP",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https:\/\/pingcap.com\/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+<script type="text/javascript" async src="https://accounts.pingcap.com/static/pingcap_sso/js/track.beta.js"></script>
+    
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+<link rel="preload" href="https://static.idiks.com/js/jquery.min.js" as="script">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/docsearch.min.css">
+<script type="text/javascript">
+var trackOutboundLink = function(url) {
+  var redirectTriggered = false
+  ga('send', 'event', 'outbound', 'click', url, {
+    hitCallback: function() {
+      redirectTriggered = true
+      document.location = url
+    }
+  })
+  setTimeout(function() {
+    if (!redirectTriggered) {
+      document.location = url
+    }
+  }, 1500)
+}
+
+var trackViews = function(btn_type, event_category) {
+  var event_label = btn_type
+  var eventCategory = event_category
+  ga('send', 'event', {
+    'eventCategory': eventCategory,
+    'eventAction': 'click',
+    'eventLabel': event_label,
+    'transport': 'beacon'
+  });
+}
+</script>
+<script>if (location.pathname === '/') {
+        if (location.hostname === 'idiks.github.io') {
+            location.href = '/en/'
+        }
+    }</script></head>       <body data-lang="en" ><div id="page-content">
+
+<header role="navigation" class="fixed-top">
+    <div class="container">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        <div class="nav-wrapper">
+            <div class="navigation">
+                <ul>
+                <li ><a class="a-en" href="https://idiks.com">Cloud</a></li>
+                <li ><a class="a-en" class="tidb-academy"
+                    href="/tidb-academy">iDIKS Academy</a></li>
+                <li class="docs-type-selector " id="docsTypeSelector">
+                    <a class="header-doc-nav" href="#">Docs</a>
+                    <div class="header-dropdown-menu" id="docsTypeSelectorItem">
+                        <a class="header-dropdown-item" href="/docs/stable/">TiDB</a>
+                        <a class="header-dropdown-item" href="/docs/tidb-in-kubernetes/stable/">TiDB in Kubernetes</a>
+                        <a class="header-dropdown-item" href="/docs/tidb-data-migration/stable/">TiDB Data Migration (DM)</a>
+                    </div>
+                </li>
+                
+                <li ><a class="a-en" href="/success-stories">Success
+                    Stories</a></li>
+                <li class="sel" ><a class="a-en" href="/blog">Blog</a></li>
+                <li ><a class="link-download link-download-en" href="/download">Free Download</a></li>
+                </ul>
+            </div>
+            <div class="global-search">
+                
+                
+                
+                <div class="search-wrapper">
+    <span class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fff" viewBox="0 0 67.125 67.125"><path d="M23.902 0C11.01 0 .523 10.488.523 23.38c0 12.891 10.487 23.379 23.379 23.379a23.258 23.258 0 0 0 14.471-5.037l24.816 24.817c.391.391.902.586 1.414.586s1.023-.195 1.414-.586a2 2 0 0 0 0-2.828L41.293 38.985c3.721-4.142 5.989-9.613 5.989-15.605C47.282 10.488 36.794 0 23.902 0zM4.523 23.38C4.523 12.694 13.216 4 23.902 4c10.687 0 19.38 8.694 19.38 19.38 0 5.396-2.221 10.279-5.791 13.795a1.959 1.959 0 0 0-.488.349 2.003 2.003 0 0 0-.271.343C33.31 40.9 28.825 42.76 23.903 42.76c-10.686-.001-19.38-8.695-19.38-19.38z"/><path d="M24.075 8.591c-8.25 0-14.962 6.712-14.962 14.962a2 2 0 0 0 4 0c0-6.044 4.918-10.962 10.962-10.962a2 2 0 0 0 0-4z"/></svg></span>
+    <input data-lang="en" data-type="" type="search" id="search-input" name="q"
+        placeholder="Search TiDB Docs">
+</div>
+
+<script>
+    const inputNode = document.getElementById("search-input")
+
+    inputNode.addEventListener('keyup', ({key}) => {
+        if (key === "Enter") {
+            if ($('#search-input').data('lang') == 'cn') {
+                lang = 'zh'
+            }
+
+            const query = $('#search-input').val()
+            if (query) {
+                url = "https://idiks.com/docs" + (lang == 'zh' ? 'zh/' : '') + "search/?lang=" + lang + "&type=tidb&version=v4.0&q=" + query
+                window.location.href = url
+            }
+        }
+    })
+</script>
+
+            </div>
+        </div>
+        <div class="nav-btn nav-slider">
+            <i class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 459 459"><path d="M0 382.5h459v-51H0v51zM0 255h459v-51H0v51zM0 76.5v51h459v-51H0z" fill="#FFF"/></svg></i>
+        </div>
+    </div>
+</header>
+
+
+
+<nav class="mobile-sidebar">
+    <div class="nav-header">
+        <div class="logo-wrap">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        </div>
+    </div>
+    <ul class="ul-base">
+        <li ><a href="https://idiks.com/">Cloud</a></li>
+        <li ><a class="tidb-academy" href="/tidb-academy">TiDB Academy</a></li>
+        <li class="docs-type-selector " id="docsTypeSelector">
+            <p class="header-doc-nav">Docs</p>
+            <div class="header-dropdown-menu" id="docsTypeSelectorItem">
+                <a class="header-dropdown-item" href="/docs/stable/">TiDB</a>
+                <a class="header-dropdown-item" href="/docs/tidb-in-kubernetes/stable/">TiDB in Kubernetes</a>
+                <a class="header-dropdown-item" href="/docs/tidb-data-migration/stable/">TiDB Data Migration (DM)</a>
+            </div>
+        </li>
+        <li ><a href="/success-stories">Success Stories</a></li>
+        <li class="sel"><a href="/blog">Blog</a></li>
+        <li><a class="link-download" href="/download">Free Download</a></li>
+    </ul>
+    <div class="nav-footer">
+        <div class="contact-list-wrap">
+        <div class="flex-list">
+            <h4 class="list-title"><strong>Contact</strong></h4>
+            <ul class="social ul-base">
+            <li><a href="https://twitter.com/PingCAP" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="18"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/pingcap/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg></a></li>
+            <li><a href="https://www.reddit.com/r/TiDB/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg></a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/tidb-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="18"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg></a></li>
+            <li><a href="https://stackoverflow.com/questions/tagged/tidb" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg></a></li>
+            </ul>
+        </div>
+        <div class="subscribe">
+            <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"><button class="btn btn-subscribe f-tc" style="margin-left: 0.75rem;">Subscribe to Blog</button></a>
+        </div>
+        </div>
+        <div class="container">
+        <a href="/blog-cn" class="btn-lang" id="lang">中文</a>
+        </div>
+    </div>
+</nav>
+
+<div class="blog">
+        <div class="blogArticle__container">
+            
+            <div class="archive"><div class="article-nav">
+                            <a href="/blog/#Product">BLOG HOME</a> <span> > </span>Product</div><div class="content markdown-body">
+                    <h1 class="title">TiDB on Arm-based Kubernetes Cluster Achieves Up to 25% Better Price-Performance Ratio than x86</h1>
+                    <ul class="blog-post-meta">
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-date.svg" alt="Date icon">Wed, Mar 10, 2021</li>
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-writer.svg" alt="Pen icon">Ron Xing</li>
+                    </ul>
+                    <div class="blog-text"><p><strong>Author:</strong> Ron Xing (Customer Support Engineer at PingCAP)</p>
+<p><strong>Transcreator:</strong> <a href="https://github.com/CaitinChen">Caitin Chen</a>; <strong>Editor:</strong> Tom Dewan</p>
+<p><img src="media/tidb-on-eks-arm-vs-x86-benchmark.jpg" alt="TiDB on EKS Arm vs. x86 benchmark"></p>
+<h2 id="benchmark-purpose">Benchmark purpose</h2>
+<p>The following tests compare the performance of <a href="https://docs.pingcap.com/tidb/stable/">TiDB</a>, a MySQL compatible NewSQL database, running on an Arm-based Amazon Elastic Kubernetes Service (EKS) cluster and on an x86-based EKS cluster. The tests use an Online Transactional Processing (OLTP) workload, and the benchmarking tools are TPC-C and sysbench. For more information on the inspiration of the benchmark, please refer to <a href="https://aws.amazon.com/blogs/startups/achieve-better-price-to-performance-for-tidb-graviton2-processors/">AWS Startups Blog</a>.</p>
+<h2 id="benchmark-environment">Benchmark environment</h2>
+<p>The test used two EKS clusters with the following instance types and topology.</p>
+<h3 id="instance-types">Instance types</h3>
+<p>The following table summarizes all the EC2 instances we used in the EKS clusters as well as the benchmark node.</p>
+<table>
+  <tr>
+   <td><strong>Instance size (CPU Architecture)</strong>
+   </td>
+   <td><strong>vCPUs</strong>
+   </td>
+   <td><strong>Memory (GiB)</strong>
+   </td>
+   <td><strong>Instance storage (GB)</strong>
+   </td>
+   <td><strong>Network bandwidth (Gbps)</strong>
+   </td>
+   <td><strong>EBS bandwidth (Mbps)</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>c6g.large(Arm)
+   </td>
+   <td>4
+   </td>
+   <td>8
+   </td>
+   <td>EBS-only
+   </td>
+   <td>Up to 10
+   </td>
+   <td>Up to 4,750
+   </td>
+  </tr>
+  <tr>
+   <td>c6g.2xlarge(Arm)
+   </td>
+   <td>8
+   </td>
+   <td>16
+   </td>
+   <td>EBS-only
+   </td>
+   <td>Up to 10
+   </td>
+   <td>Up to 4,750
+   </td>
+  </tr>
+  <tr>
+   <td>r6g.2xlarge(Arm)
+   </td>
+   <td>8
+   </td>
+   <td>64
+   </td>
+   <td>EBS-only
+   </td>
+   <td>Up to 10
+   </td>
+   <td>Up to 4,750
+   </td>
+  </tr>
+  <tr>
+   <td>c5.large(x86)
+   </td>
+   <td>4
+   </td>
+   <td>8
+   </td>
+   <td>EBS-only
+   </td>
+   <td>Up to 10
+   </td>
+   <td>Up to 4,750
+   </td>
+  </tr>
+  <tr>
+   <td>c5.2xlarge(x86)
+   </td>
+   <td>8
+   </td>
+   <td>16
+   </td>
+   <td>EBS-only
+   </td>
+   <td>Up to 10
+   </td>
+   <td>Up to 4,750
+   </td>
+  </tr>
+  <tr>
+   <td>r5.2xlarge(x86)
+   </td>
+   <td>8
+   </td>
+   <td>64
+   </td>
+   <td>EBS-only
+   </td>
+   <td>Up to 10
+   </td>
+   <td>Up to 4,750
+   </td>
+  </tr>
+  <tr>
+   <td>c5.4xlarge(x86)
+   </td>
+   <td>16
+   </td>
+   <td>32
+   </td>
+   <td>EBS-only
+   </td>
+   <td>10
+   </td>
+   <td>4,750
+   </td>
+  </tr>
+</table>
+<h3 id="storage-types">Storage types</h3>
+<p>The following table summarizes the disk that we used for different components.</p>
+<table>
+  <tr>
+   <td><strong>Service type</strong>
+   </td>
+   <td><strong>Storage</strong>
+   </td>
+   <td><strong>Size (GB)</strong>
+   </td>
+   <td><strong>IOPS</strong>
+   </td>
+   <td><strong>Throughput (MiB/s)</strong>
+   </td>
+   <td><strong>Instances</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>TiKV
+   </td>
+   <td>EBS gp3
+   </td>
+   <td>1,000
+   </td>
+   <td>16,000
+   </td>
+   <td>600
+   </td>
+   <td>3
+   </td>
+  </tr>
+  <tr>
+   <td>PD
+   </td>
+   <td>EBS gp2
+   </td>
+   <td>50
+   </td>
+   <td>150
+   </td>
+   <td>128
+   </td>
+   <td>1
+   </td>
+  </tr>
+  <tr>
+   <td>TPC-C/sysbench
+   </td>
+   <td>EBS gp3
+   </td>
+   <td>1,500
+   </td>
+   <td>16,000
+   </td>
+   <td>1,000
+   </td>
+   <td>1
+   </td>
+  </tr>
+</table>
+<h3 id="topology">Topology</h3>
+<p>We used one c5.4xlarge EC2 instance as a benchmark node where TPC-C and sysbench are deployed.</p>
+<p>Each EKS cluster consists of seven worker nodes and one admin (control plane) node. Seven worker nodes serve as dedicated TiDB, TiKV, and PD nodes.</p>
+<p>To better understand the role of each component and architecture diagram, please refer to <a href="https://aws.amazon.com/blogs/startups/achieve-better-price-to-performance-for-tidb-graviton2-processors/">AWS Startups Blog</a>.</p>
+<table>
+  <tr>
+   <td><strong>Cluster/processor</strong>
+   </td>
+   <td><strong>Service type</strong>
+   </td>
+   <td><strong>EC2 type</strong>
+   </td>
+   <td><strong>Instances</strong>
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="4" >Cluster 1: Graviton2 Arm
+   </td>
+   <td>TiDB
+   </td>
+   <td>c6g.2xlarge
+   </td>
+   <td>3
+   </td>
+  </tr>
+  <tr>
+   <td>TiKV
+   </td>
+   <td>r6g.2xlarge
+   </td>
+   <td>3
+   </td>
+  </tr>
+  <tr>
+   <td>PD
+   </td>
+   <td>c6g.large
+   </td>
+   <td>1
+   </td>
+  </tr>
+  <tr>
+   <td>Admin node
+   </td>
+   <td>c6g.large
+   </td>
+   <td>1
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="4" >Cluster 2: Intel Xeon Platinum 8000 series
+   </td>
+   <td>TiDB
+   </td>
+   <td>c5.2xlarge
+   </td>
+   <td>3
+   </td>
+  </tr>
+  <tr>
+   <td>TiKV
+   </td>
+   <td>r5.2xlarge
+   </td>
+   <td>3
+   </td>
+  </tr>
+  <tr>
+   <td>PD
+   </td>
+   <td>c5.large
+   </td>
+   <td>1
+   </td>
+  </tr>
+  <tr>
+   <td>Admin node
+   </td>
+   <td>c5.large
+   </td>
+   <td>1
+   </td>
+  </tr>
+</table>
+<h3 id="software-version">Software version</h3>
+<p>The TiDB cluster software versions and the sysbench tool version are listed below.</p>
+<table>
+  <tr>
+   <td><strong>Service type</strong>
+   </td>
+   <td><strong>Software version</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>TiDB
+   </td>
+   <td>v4.0.10
+   </td>
+  </tr>
+  <tr>
+   <td>TiKV
+   </td>
+   <td>v4.0.10
+   </td>
+  </tr>
+  <tr>
+   <td>PD
+   </td>
+   <td>v4.0.10
+   </td>
+  </tr>
+  <tr>
+   <td>TPC-C (embedded with TiUP)
+   </td>
+   <td>v1.0.8
+   </td>
+  </tr>
+  <tr>
+   <td>sysbench
+   </td>
+   <td>v1.0.20
+   </td>
+  </tr>
+</table>
+<h2 id="cost">Cost</h2>
+<p>In the following cost examples:</p>
+<ul>
+<li>Cost calculations are based on the on-demand rate for instances in the <strong>US West (Oregon)</strong> and <strong>Asia Pacific (Singapore)</strong> regions in US dollars (USD) per month.</li>
+<li>Monthly calculations are based on 730 hours of usage per month.</li>
+</ul>
+<h3 id="storage">Storage</h3>
+<p>In the following table, the total cost per month includes a daily snapshot.</p>
+<table>
+  <tr>
+   <td><strong>Volume type</strong>
+   </td>
+   <td><strong>Size (GB)</strong>
+   </td>
+   <td><strong>IOPS</strong>
+   </td>
+   <td><strong>Throughput (MiB/s)</strong>
+   </td>
+   <td><strong>Instances </strong>
+   </td>
+   <td><strong>Monthly cost (US)</strong>
+   </td>
+   <td><strong>Monthly cost (APAC)</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>gp3
+   </td>
+   <td>1,000
+   </td>
+   <td><p style="text-align: right">
+16,000</p>
+   </td>
+   <td><p style="text-align: right">
+600 </p>
+   </td>
+   <td><p style="text-align: right">
+3</p>
+   </td>
+   <td><p style="text-align: right">
+648.27</p>
+   </td>
+   <td><p style="text-align: right">
+746.58</p>
+   </td>
+  </tr>
+  <tr>
+   <td>gp2
+   </td>
+   <td>50
+   </td>
+   <td><p style="text-align: right">
+100</p>
+   </td>
+   <td><p style="text-align: right">
+128 </p>
+   </td>
+   <td><p style="text-align: right">
+1</p>
+   </td>
+   <td><p style="text-align: right">
+9.75</p>
+   </td>
+   <td><p style="text-align: right">
+10.75</p>
+   </td>
+  </tr>
+</table>
+<h3 id="ec2">EC2</h3>
+<p>We used the following Graviton2 Arm processor based instances. Note that unit prices are based on the rate in both the US region and the APAC region.</p>
+<table>
+  <tr>
+   <td rowspan="2" ><strong>Service type</strong>
+   </td>
+   <td rowspan="2" ><strong>EC2 type</strong>
+   </td>
+   <td rowspan="2" ><strong>Instances</strong>
+   </td>
+   <td colspan="2" ><strong>US region</strong>
+   </td>
+   <td colspan="2" ><strong>APAC region</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Unit price (USD/hr)</strong>
+   </td>
+   <td><strong>Monthly cost</strong>
+   </td>
+   <td><strong>Unit price (USD/hr) </strong>
+   </td>
+   <td><strong>Monthly cost </strong>
+   </td>
+  </tr>
+  <tr>
+   <td>TiDB
+   </td>
+   <td>c6g.2xlarge
+   </td>
+   <td><p style="text-align: right">
+3</p>
+   </td>
+   <td><p style="text-align: right">
+0.272</p>
+   </td>
+   <td><p style="text-align: right">
+595.68</p>
+   </td>
+   <td><p style="text-align: right">
+0.3136</p>
+   </td>
+   <td><p style="text-align: right">
+686.78</p>
+   </td>
+  </tr>
+  <tr>
+   <td>TiKV
+   </td>
+   <td>r6g.2xlarge
+   </td>
+   <td><p style="text-align: right">
+3</p>
+   </td>
+   <td><p style="text-align: right">
+0.4032</p>
+   </td>
+   <td><p style="text-align: right">
+883.01</p>
+   </td>
+   <td><p style="text-align: right">
+0.4864</p>
+   </td>
+   <td><p style="text-align: right">
+1,065.21</p>
+   </td>
+  </tr>
+  <tr>
+   <td>PD
+   </td>
+   <td>c6g.large
+   </td>
+   <td><p style="text-align: right">
+1</p>
+   </td>
+   <td><p style="text-align: right">
+0.068</p>
+   </td>
+   <td><p style="text-align: right">
+49.64</p>
+   </td>
+   <td><p style="text-align: right">
+0.0784</p>
+   </td>
+   <td><p style="text-align: right">
+57.23</p>
+   </td>
+  </tr>
+  <tr>
+   <td>Control plane
+   </td>
+   <td>c6g.large
+   </td>
+   <td><p style="text-align: right">
+1</p>
+   </td>
+   <td><p style="text-align: right">
+0.068</p>
+   </td>
+   <td><p style="text-align: right">
+49.64</p>
+   </td>
+   <td><p style="text-align: right">
+0.0784</p>
+   </td>
+   <td><p style="text-align: right">
+57.23</p>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Total</strong>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td><p style="text-align: right">
+<strong>1,577.97</strong></p>
+   </td>
+   <td>
+   </td>
+   <td><p style="text-align: right">
+<strong>1,866.46</strong></p>
+   </td>
+  </tr>
+</table>
+<p>Here are the configurations and costs of our Intel Xeon Platinum 8000 series processors based instances:</p>
+<table>
+  <tr>
+   <td rowspan="2" ><strong>Service type</strong>
+   </td>
+   <td rowspan="2" ><strong>EC2 type</strong>
+   </td>
+   <td rowspan="2" ><strong>Instances</strong>
+   </td>
+   <td colspan="2" ><strong>US region</strong>
+   </td>
+   <td colspan="2" ><strong>APAC region</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Unit price (USD/hr)</strong>
+   </td>
+   <td><strong>Monthly cost</strong>
+   </td>
+   <td><strong>Unit price (USD/hr) </strong>
+   </td>
+   <td><strong>Monthly cost</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>TiDB
+   </td>
+   <td>c5.2xlarge
+   </td>
+   <td><p style="text-align: right">
+3</p>
+   </td>
+   <td><p style="text-align: right">
+0.34</p>
+   </td>
+   <td><p style="text-align: right">
+744.60</p>
+   </td>
+   <td><p style="text-align: right">
+0.392</p>
+   </td>
+   <td><p style="text-align: right">
+858.48</p>
+   </td>
+  </tr>
+  <tr>
+   <td>TiKV
+   </td>
+   <td>r5.2xlarge
+   </td>
+   <td><p style="text-align: right">
+3</p>
+   </td>
+   <td><p style="text-align: right">
+0.504</p>
+   </td>
+   <td><p style="text-align: right">
+1,103.76</p>
+   </td>
+   <td><p style="text-align: right">
+0.608</p>
+   </td>
+   <td><p style="text-align: right">
+1,331.52</p>
+   </td>
+  </tr>
+  <tr>
+   <td>PD
+   </td>
+   <td>c5.large
+   </td>
+   <td><p style="text-align: right">
+1</p>
+   </td>
+   <td><p style="text-align: right">
+0.085</p>
+   </td>
+   <td><p style="text-align: right">
+62.05</p>
+   </td>
+   <td><p style="text-align: right">
+0.098</p>
+   </td>
+   <td><p style="text-align: right">
+71.54</p>
+   </td>
+  </tr>
+  <tr>
+   <td>Control plane
+   </td>
+   <td>c5.large
+   </td>
+   <td><p style="text-align: right">
+1</p>
+   </td>
+   <td><p style="text-align: right">
+0.085</p>
+   </td>
+   <td><p style="text-align: right">
+62.05</p>
+   </td>
+   <td><p style="text-align: right">
+0.098</p>
+   </td>
+   <td><p style="text-align: right">
+71.54</p>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Total</strong>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td><p style="text-align: right">
+<strong>1,972.46</strong></p>
+   </td>
+   <td>
+   </td>
+   <td><p style="text-align: right">
+<strong>2,333.08</strong></p>
+   </td>
+  </tr>
+</table>
+<h3 id="total-cost">Total cost</h3>
+<p>The following tables summarize the total costs per month in the <strong>US West (Oregon)</strong> and <strong>Asian Pacific (Singapore)</strong> regions. All costs are in US dollars per month.</p>
+<p>AWS US West (Oregon)</p>
+<table>
+  <tr>
+   <td><strong>CPU type</strong>
+   </td>
+   <td><strong>EC2 cost</strong>
+   </td>
+   <td><strong>Storage cost</strong>
+   </td>
+   <td><strong>EKS cost</strong>
+   </td>
+   <td><strong>Total cost</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>Arm
+   </td>
+   <td><p style="text-align: right">
+1,577.97</p>
+   </td>
+   <td><p style="text-align: right">
+740.86</p>
+   </td>
+   <td><p style="text-align: right">
+73.00</p>
+   </td>
+   <td><p style="text-align: right">
+2,391.83</p>
+   </td>
+  </tr>
+  <tr>
+   <td>x86
+   </td>
+   <td><p style="text-align: right">
+1,972.46</p>
+   </td>
+   <td><p style="text-align: right">
+740.86</p>
+   </td>
+   <td><p style="text-align: right">
+73.00</p>
+   </td>
+   <td><p style="text-align: right">
+2,786.32</p>
+   </td>
+  </tr>
+</table>
+<p>AWS Asia Pacific (Singapore)</p>
+<table>
+  <tr>
+   <td><strong>CPU type</strong>
+   </td>
+   <td><strong>EC2 cost</strong>
+   </td>
+   <td><strong>Storage cost</strong>
+   </td>
+   <td><strong>EKS cost</strong>
+   </td>
+   <td><strong>Total cost</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>Arm
+   </td>
+   <td><p style="text-align: right">
+1,866.46</p>
+   </td>
+   <td><p style="text-align: right">
+856.71</p>
+   </td>
+   <td><p style="text-align: right">
+73.00</p>
+   </td>
+   <td><p style="text-align: right">
+2,796.17</p>
+   </td>
+  </tr>
+  <tr>
+   <td>x86
+   </td>
+   <td><p style="text-align: right">
+2,333.08</p>
+   </td>
+   <td><p style="text-align: right">
+856.71</p>
+   </td>
+   <td><p style="text-align: right">
+73.00</p>
+   </td>
+   <td><p style="text-align: right">
+3,262.79</p>
+   </td>
+  </tr>
+</table>
+<h2 id="preparation">Preparation</h2>
+<p>To deploy a TiDB cluster on an x86-based EKS cluster, follow the steps in <a href="https://docs.pingcap.com/tidb-in-kubernetes/stable/deploy-on-aws-eks#deploy-tidb-on-aws-eks">Deploy TiDB on AWS EKS</a>.</p>
+<p>To deploy a TiDB cluster on an Arm-based EKS cluster, follow the steps in <a href="https://github.com/xinghua0123/tidb-deployment/blob/main/README.md">TiDB Deployment on Graviton2-based EKS</a>. The following <a href="https://hub.docker.com/u/pingcap2021">temporary Arm images</a> are used for benchmarking:</p>
+<ul>
+<li>pingcap2021/tidb-operator:v1.1.11</li>
+<li>pingcap2021/pd:v4.0.10</li>
+<li>pingcap2021/tikv:v4.0.10</li>
+<li>pingcap2021/tidb:v4.0.10</li>
+<li>pingcap2021/tidb-monitor-initializer:v4.0.10</li>
+</ul>
+<p>Above images are temporary and not meant for a production environment. Stay tuned for the official Arm images.</p>
+<h2 id="tpc-c-benchmark">TPC-C benchmark</h2>
+<p>As you review the following benchmark tests, keep in mind that these are preliminary results. They should not be considered official TPC-C results.</p>
+<p>To facilitate benchmarking, TiUP has integrated the bench component, which provides two workloads for stress testing: TPC-C and TPC-H. The commands and flags are as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">tiup bench
+Starting component <span style="color:#e6db74">`</span>bench<span style="color:#e6db74">`</span>: /Users/joshua/.tiup/components/bench/v0.0.1/bench
+Benchmark database with different workloads
+
+Usage:
+  tiup bench <span style="color:#f92672">[</span>command<span style="color:#f92672">]</span>
+
+Available Commands:
+  help        Help about any command
+  tpcc
+  tpch
+
+Flags:
+      --count int           Total execution count, <span style="color:#ae81ff">0</span> means infinite
+  -D, --db string           Database name <span style="color:#f92672">(</span>default <span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">)</span>
+  -d, --driver string       Database driver: mysql
+      --dropdata            Cleanup data before prepare
+  -h, --help                help <span style="color:#66d9ef">for</span> /Users/joshua/.tiup/components/bench/v0.0.1/bench
+  -H, --host string         Database host <span style="color:#f92672">(</span>default <span style="color:#e6db74">&#34;127.0.0.1&#34;</span><span style="color:#f92672">)</span>
+      --ignore-error        Ignore error when running workload
+      --interval duration   Output interval time <span style="color:#f92672">(</span>default 10s<span style="color:#f92672">)</span>
+      --isolation int       Isolation Level 0: Default, 1: ReadUncommitted,
+                            2: ReadCommitted, 3: WriteCommitted, 4: RepeatableRead,
+                            5: Snapshot, 6: Serializable, 7: Linerizable
+      --max-procs int       runtime.GOMAXPROCS
+  -p, --password string     Database password
+  -P, --port int            Database port <span style="color:#f92672">(</span>default 4000<span style="color:#f92672">)</span>
+      --pprof string        Address of pprof endpoint
+      --silence             Do not print error when running workload
+      --summary             Print summary TPM only, or also print current TPM when running workload
+  -T, --threads int         Thread concurrency <span style="color:#f92672">(</span>default 16<span style="color:#f92672">)</span>
+      --time duration       Total execution time <span style="color:#f92672">(</span>default 2562047h47m16.854775807s<span style="color:#f92672">)</span>
+  -U, --user string         Database user <span style="color:#f92672">(</span>default <span style="color:#e6db74">&#34;root&#34;</span><span style="color:#f92672">)</span>
+</code></pre></div><p>For TPC-C, the TiUP bench component supports the following commands and flags to run the test:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">tiup bench tpcc
+Available Commands:
+  check       Check data consistency <span style="color:#66d9ef">for</span> the workload
+  cleanup     Cleanup data <span style="color:#66d9ef">for</span> the workload
+  prepare     Prepare data <span style="color:#66d9ef">for</span> the workload
+  run         Run workload
+
+Flags:
+      --check-all        Run all consistency checks
+  -h, --help             help <span style="color:#66d9ef">for</span> tpcc
+      --output string    Output directory <span style="color:#66d9ef">for</span> generating csv file when preparing data
+      --parts int        Number to partition warehouses <span style="color:#f92672">(</span>default 1<span style="color:#f92672">)</span>
+      --tables string    Specified tables <span style="color:#66d9ef">for</span> generating file, separated by <span style="color:#e6db74">&#39;,&#39;</span>. Valid only <span style="color:#66d9ef">if</span> output is set. If this flag is not set, generate all tables by default.
+      --warehouses int   Number of warehouses <span style="color:#f92672">(</span>default 10<span style="color:#f92672">)</span>
+</code></pre></div><h3 id="tpc-c-workloads">TPC-C workloads</h3>
+<p>This table summarizes the workloads we used, both in terms of the number of warehouses and the data sizes.</p>
+<table>
+  <tr>
+   <td><strong>Workload</strong>
+   </td>
+   <td><strong>Warehouses</strong>
+   </td>
+   <td><strong>Data size</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>Lagre1
+   </td>
+   <td>5000
+   </td>
+   <td>~500 GB
+   </td>
+  </tr>
+  <tr>
+   <td>Large2
+   </td>
+   <td>10000
+   </td>
+   <td>~1 TB
+   </td>
+  </tr>
+</table>
+<h3 id="tpc-c-test-procedures">TPC-C test procedures</h3>
+<ol>
+<li>
+<p>On the benchmark VM (c5.4xlarge), deploy the latest version of TiUP.</p>
+</li>
+<li>
+<p>Create warehouses. You should specify the hostname as the load balancer's DNS name since we deployed the TiDB in EKS and exposed the database service as the LoadBalancer type:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">tiup bench tpcc --warehouses <span style="color:#ae81ff">10000</span> --host xxxxxxxxxxx.elb.us-west-2.amazonaws.com prepare
+</code></pre></div></li>
+<li>
+<p>Run the TPC-C test for different threads. (We used 150, 300, 500, 800, and 1000). Each test runs for 30 minutes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">tiup bench tpcc --warehouses <span style="color:#ae81ff">10000</span> --host xxxxxxxxxxx.elb.us-west-2.amazonaws.com --threads <span style="color:#ae81ff">150</span> --time 10m run
+</code></pre></div></li>
+<li>
+<p>Note the tpmC result for each test case. The following is sample output:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Finished
+<span style="color:#f92672">[</span>Summary<span style="color:#f92672">]</span> DELIVERY - Takes<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>: 1796.7, Count: 88527, TPM: 2956.3, Sum<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 242093840, Avg<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 2734, 90th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 4000, 99th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 8000, 99.9th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: <span style="color:#ae81ff">8000</span>
+<span style="color:#f92672">[</span>Summary<span style="color:#f92672">]</span> DELIVERY_ERR - Takes<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>: 1796.7, Count: 133, TPM: 4.4, Sum<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 206560, Avg<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 1553, 90th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 4000, 99th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 4000, 99.9th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: <span style="color:#ae81ff">8000</span>
+<span style="color:#f92672">[</span>Summary<span style="color:#f92672">]</span> NEW_ORDER - Takes<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>: 1798.8, Count: 1002915, TPM: 33453.0, Sum<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 916326214, Avg<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 913, 90th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 1500, 99th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 2000, 99.9th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: <span style="color:#ae81ff">4000</span>
+<span style="color:#f92672">[</span>Summary<span style="color:#f92672">]</span> NEW_ORDER_ERR - Takes<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>: 1798.8, Count: 319, TPM: 10.6, Sum<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 118662, Avg<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 371, 90th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 1000, 99th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 1500, 99.9th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: <span style="color:#ae81ff">1500</span>
+<span style="color:#f92672">[</span>Summary<span style="color:#f92672">]</span> ORDER_STATUS - Takes<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>: 1798.9, Count: 89022, TPM: 2969.3, Sum<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 4346202, Avg<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 48, 90th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 80, 99th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 160, 99.9th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: <span style="color:#ae81ff">512</span>
+<span style="color:#f92672">[</span>Summary<span style="color:#f92672">]</span> ORDER_STATUS_ERR - Takes<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>: 1798.9, Count: 1, TPM: 0.0, Sum<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 19, Avg<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 19, 90th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 20, 99th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 20, 99.9th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: <span style="color:#ae81ff">20</span>
+<span style="color:#f92672">[</span>Summary<span style="color:#f92672">]</span> PAYMENT - Takes<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>: 1798.9, Count: 956516, TPM: 31903.7, Sum<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 628421123, Avg<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 656, 90th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 1000, 99th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 1500, 99.9th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: <span style="color:#ae81ff">2000</span>
+<span style="color:#f92672">[</span>Summary<span style="color:#f92672">]</span> PAYMENT_ERR - Takes<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>: 1798.9, Count: 201, TPM: 6.7, Sum<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 46899, Avg<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 233, 90th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 512, 99th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 1000, 99.9th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: <span style="color:#ae81ff">1000</span>
+<span style="color:#f92672">[</span>Summary<span style="color:#f92672">]</span> STOCK_LEVEL - Takes<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>: 1798.9, Count: 89370, TPM: 2980.8, Sum<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 6052088, Avg<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 67, 90th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 112, 99th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 256, 99.9th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: <span style="color:#ae81ff">512</span>
+<span style="color:#f92672">[</span>Summary<span style="color:#f92672">]</span> STOCK_LEVEL_ERR - Takes<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>: 1798.9, Count: 3, TPM: 0.1, Sum<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 342, Avg<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 114, 90th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 192, 99th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: 192, 99.9th<span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>: <span style="color:#ae81ff">192</span>
+tpmC: 33453.0
+</code></pre></div></li>
+<li>
+<p>To proceed with the next workload, change the number of warehouses.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">tiup bench tpcc --warehouses <span style="color:#ae81ff">5000</span> --host xxxxxxxxxxx.elb.us-west-2.amazonaws.com --threads <span style="color:#ae81ff">150</span> --time 10m run
+</code></pre></div></li>
+<li>
+<p>Beginning at step 2, repeat this procedure for different numbers of warehouses.</p>
+</li>
+</ol>
+<h3 id="tpc-c-benchmark-results">TPC-C benchmark results</h3>
+<p>The following table shows the results for a large1 workload:</p>
+<table>
+  <tr>
+   <td><strong>tpmC</strong>
+   </td>
+   <td><strong>150</strong>
+   </td>
+   <td><strong>300</strong>
+   </td>
+   <td><strong>500</strong>
+   </td>
+   <td><strong>800</strong>
+   </td>
+   <td><strong>1000</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>x86
+   </td>
+   <td><p style="text-align: right">
+30603.8</p>
+   </td>
+   <td><p style="text-align: right">
+33270.4</p>
+   </td>
+   <td><p style="text-align: right">
+36813.8</p>
+   </td>
+   <td><p style="text-align: right">
+36388.6</p>
+   </td>
+   <td><p style="text-align: right">
+34956.3</p>
+   </td>
+  </tr>
+  <tr>
+   <td>Arm
+   </td>
+   <td><p style="text-align: right">
+34114.3</p>
+   </td>
+   <td><p style="text-align: right">
+36715.2</p>
+   </td>
+   <td><p style="text-align: right">
+42493.1</p>
+   </td>
+   <td><p style="text-align: right">
+41275.0</p>
+   </td>
+   <td><p style="text-align: right">
+41426.9</p>
+   </td>
+  </tr>
+  <tr>
+   <td>(Arm-x86)/x86
+   </td>
+   <td><p style="text-align: right">
+11.47%</p>
+   </td>
+   <td><p style="text-align: right">
+10.35%</p>
+   </td>
+   <td><p style="text-align: right">
+15.43%</p>
+   </td>
+   <td><p style="text-align: right">
+13.43%</p>
+   </td>
+   <td><p style="text-align: right">
+18.51%</p>
+   </td>
+  </tr>
+</table>
+<p><img src="media/tpc-c-arm-vs-x86-on-eks-for-large1-workload.jpg" alt="TPC-C Arm vs. x86 on EKS for a large1 workload"></p>
+<div class="caption-center"> TPC-C Arm vs. x86 on EKS for a large1 workload </div>
+<p>The following table shows the results for a large2 workload:</p>
+<table>
+  <tr>
+   <td><strong>tpmC</strong>
+   </td>
+   <td><strong>150</strong>
+   </td>
+   <td><strong>300</strong>
+   </td>
+   <td><strong>500</strong>
+   </td>
+   <td><strong>800</strong>
+   </td>
+   <td><strong>1,000</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>x86
+   </td>
+   <td><p style="text-align: right">
+28624.3</p>
+   </td>
+   <td><p style="text-align: right">
+33464.3</p>
+   </td>
+   <td><p style="text-align: right">
+31478.6</p>
+   </td>
+   <td><p style="text-align: right">
+33892.9</p>
+   </td>
+   <td><p style="text-align: right">
+31562.9</p>
+   </td>
+  </tr>
+  <tr>
+   <td>Arm
+   </td>
+   <td><p style="text-align: right">
+29858.5</p>
+   </td>
+   <td><p style="text-align: right">
+35259.4</p>
+   </td>
+   <td><p style="text-align: right">
+34088.0</p>
+   </td>
+   <td><p style="text-align: right">
+35899.8</p>
+   </td>
+   <td><p style="text-align: right">
+33453.0</p>
+   </td>
+  </tr>
+  <tr>
+   <td>(Arm-x86)/x86
+   </td>
+   <td><p style="text-align: right">
+4.31%</p>
+   </td>
+   <td><p style="text-align: right">
+5.36%</p>
+   </td>
+   <td><p style="text-align: right">
+8.29%</p>
+   </td>
+   <td><p style="text-align: right">
+5.92%</p>
+   </td>
+   <td><p style="text-align: right">
+5.99%</p>
+   </td>
+  </tr>
+</table>
+<p><img src="media/tpc-c-arm-vs-x86-on-eks-for-large2-workload.jpg" alt="TPC-C Arm vs. x86 on EKS for a large2 workload"></p>
+<div class="caption-center"> TPC-C Arm vs. x86 on EKS for a large2 workload </div>
+<h3 id="tpc-c-price-performance-ratio">TPC-C price-performance ratio</h3>
+<p>In the following price-performance table:</p>
+<ul>
+<li>The tpmC values are derived from the average tpmC among 300, 500, and 800 threads.</li>
+<li>The total system costs for the US and APAC regions reflect the estimated five year hardware cost.</li>
+<li>The price-performance ratios compare x86 and Graviton2 Arm processors. A lower cost for more performance is better.</li>
+<li>All costs are in US dollars.</li>
+</ul>
+<table>
+  <tr>
+   <td rowspan="2" >
+   </td>
+   <td rowspan="2" >
+<strong>Workload</strong>
+   </td>
+   <td rowspan="2" ><strong>tpmC</strong>
+   </td>
+   <td colspan="2" ><strong>US region</strong>
+   </td>
+   <td colspan="2" ><strong>APAC region</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Total system cost</strong>
+   </td>
+   <td><strong>Price-performance</strong>
+   </td>
+   <td><strong>Total system cost</strong>
+   </td>
+   <td><strong>Price-performance</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>x86
+   </td>
+   <td>Large1
+   </td>
+   <td><p style="text-align: right">
+35,490.93</p>
+   </td>
+   <td><p style="text-align: right">
+162,208.80</p>
+   </td>
+   <td><p style="text-align: right">
+4.57</p>
+   </td>
+   <td><p style="text-align: right">
+189,804.60</p>
+   </td>
+   <td><p style="text-align: right">
+5.35</p>
+   </td>
+  </tr>
+  <tr>
+   <td>Arm
+   </td>
+   <td>Large1
+   </td>
+   <td><p style="text-align: right">
+40,161.10</p>
+   </td>
+   <td><p style="text-align: right">
+138,539.40</p>
+   </td>
+   <td><p style="text-align: right">
+3.45</p>
+   </td>
+   <td><p style="text-align: right">
+161,807.40</p>
+   </td>
+   <td><p style="text-align: right">
+4.03</p>
+   </td>
+  </tr>
+  <tr>
+   <td>(Arm-x86)/x86
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td><p style="text-align: right">
+-24.52%</p>
+   </td>
+   <td>
+   </td>
+   <td><p style="text-align: right">
+-24.66%</p>
+   </td>
+  </tr>
+  <tr>
+   <td>x86
+   </td>
+   <td>Large2
+   </td>
+   <td>32,945.27
+   </td>
+   <td><p style="text-align: right">
+162,208.80</p>
+   </td>
+   <td><p style="text-align: right">
+4.92</p>
+   </td>
+   <td><p style="text-align: right">
+189,804.60</p>
+   </td>
+   <td><p style="text-align: right">
+5.76</p>
+   </td>
+  </tr>
+  <tr>
+   <td>Arm
+   </td>
+   <td>Large2
+   </td>
+   <td>35,082.40
+   </td>
+   <td><p style="text-align: right">
+138,539.40</p>
+   </td>
+   <td><p style="text-align: right">
+3.95</p>
+   </td>
+   <td><p style="text-align: right">
+161,807.40</p>
+   </td>
+   <td><p style="text-align: right">
+4.61</p>
+   </td>
+  </tr>
+  <tr>
+   <td>(Arm-x86)/x86
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td><p style="text-align: right">
+-19.79%</p>
+   </td>
+   <td>
+   </td>
+   <td><p style="text-align: right">
+-19.94%</p>
+   </td>
+  </tr>
+</table>
+<p>As the following graphic shows, when we compare the absolute tpmC performance under each workload, the Arm-based system outperforms the x86-based system by 5%-15%. After we factor in the hardware cost, the Arm price-performance ratio is up to 25% lower than x86.</p>
+<p><img src="media/tpc-c-price-performance-ratio.jpg" alt="TPC-C price-performance ratio"></p>
+<div class="caption-center"> TPC-C price-performance ratio </div>
+<h2 id="sysbench">Sysbench</h2>
+<p>We will be using <code>oltp_read_write.lua</code> to test the performance for the OLTP workload.</p>
+<h3 id="sysbench-workloads">Sysbench workloads</h3>
+<ul>
+<li>Read (75%) and Write (25%)</li>
+<li>Table: 16</li>
+<li>Table size: 10 M rows per table</li>
+<li>Data size: around 100 GB</li>
+</ul>
+<h3 id="sysbench-test-procedures">Sysbench test procedures</h3>
+<ol>
+<li>
+<p>Deploy the latest version of sysbench on the benchmark VM (c5.4xlarge).</p>
+</li>
+<li>
+<p>Set the sysbench configurations and save them in the configuration file. The following is a sample configuration file:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mysql-host<span style="color:#f92672">=</span><span style="color:#f92672">{</span>TIDB_HOST<span style="color:#f92672">}</span>
+mysql-port<span style="color:#f92672">=</span><span style="color:#ae81ff">4000</span>
+mysql-user<span style="color:#f92672">=</span>root
+mysql-password<span style="color:#f92672">=</span>password
+mysql-db<span style="color:#f92672">=</span>sbtest
+time<span style="color:#f92672">=</span><span style="color:#ae81ff">600</span>
+threads<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span> <span style="color:#75715e"># set to 8 while importing the data</span>
+report-interval<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>
+db-driver<span style="color:#f92672">=</span>mysql
+</code></pre></div></li>
+<li>
+<p>Before you import the data, it is necessary to make some settings to TiDB. Execute the following command in MySQL client:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">set</span> <span style="color:#66d9ef">global</span> tidb_disable_txn_auto_retry <span style="color:#f92672">=</span> <span style="color:#66d9ef">off</span>;
+</code></pre></div></li>
+<li>
+<p>Use <a href="https://docs.pingcap.com/tidb/stable/backup-and-restore-tool">BR</a> to import the prepared data in S3.</p>
+</li>
+<li>
+<p>Change the thread in config file to 300.</p>
+</li>
+<li>
+<p>Run the sysbench test:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sysbench --config-file<span style="color:#f92672">=</span>config oltp_read_write --tables<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span> --table-size<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span> run
+</code></pre></div></li>
+<li>
+<p>Note the test results. The following are sample test results:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">SQL statistics:
+    queries performed:
+        read:                            <span style="color:#ae81ff">10457930</span>
+        write:                           <span style="color:#ae81ff">2966386</span>
+        other:                           <span style="color:#ae81ff">1515584</span>
+        total:                           <span style="color:#ae81ff">14939900</span>
+    transactions:                        <span style="color:#ae81ff">746995</span> <span style="color:#f92672">(</span>2489.02 per sec.<span style="color:#f92672">)</span>
+    queries:                             <span style="color:#ae81ff">14939900</span> <span style="color:#f92672">(</span>49780.45 per sec.<span style="color:#f92672">)</span>
+    ignored errors:                      <span style="color:#ae81ff">0</span>      <span style="color:#f92672">(</span>0.00 per sec.<span style="color:#f92672">)</span>
+    reconnects:                          <span style="color:#ae81ff">0</span>      <span style="color:#f92672">(</span>0.00 per sec.<span style="color:#f92672">)</span>
+
+General statistics:
+    total time:                          300.1146s
+    total number of events:              <span style="color:#ae81ff">746995</span>
+
+Latency <span style="color:#f92672">(</span>ms<span style="color:#f92672">)</span>:
+        min:                                   43.84
+        avg:                                  120.50
+        max:                                  381.92
+        95th percentile:                      153.02
+        sum:                             90013122.40
+
+Threads fairness:
+    events <span style="color:#f92672">(</span>avg/stddev<span style="color:#f92672">)</span>:           2489.9833/235.76
+    execution time <span style="color:#f92672">(</span>avg/stddev<span style="color:#f92672">)</span>:   300.0437/0.03
+</code></pre></div></li>
+<li>
+<p>Beginning at step 5, repeat this procedure and set the thread to 600 and 900.</p>
+</li>
+</ol>
+<h3 id="sysbench-benchmark-results">Sysbench benchmark results</h3>
+<p>Results for 300, 600, and 900 threads are listed below. Since the QPS and TPS in sysbench are proportional, we will only compare the TPS in our test.</p>
+<table>
+  <tr>
+   <td><strong>Metrics</strong>
+   </td>
+   <td><strong>300</strong>
+   </td>
+   <td><strong>600</strong>
+   </td>
+   <td><strong>900</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>x86 P95 latency (ms)
+   </td>
+   <td><p style="text-align: right">
+155.80</p>
+   </td>
+   <td><p style="text-align: right">
+282.25</p>
+   </td>
+   <td><p style="text-align: right">
+427.07</p>
+   </td>
+  </tr>
+  <tr>
+   <td>Arm P95 latency (ms)
+   </td>
+   <td><p style="text-align: right">
+147.61</p>
+   </td>
+   <td><p style="text-align: right">
+267.41</p>
+   </td>
+   <td><p style="text-align: right">
+383.33</p>
+   </td>
+  </tr>
+  <tr>
+   <td>x86 QPS
+   </td>
+   <td><p style="text-align: right">
+48814.94</p>
+   </td>
+   <td><p style="text-align: right">
+52342.03</p>
+   </td>
+   <td><p style="text-align: right">
+52413.17</p>
+   </td>
+  </tr>
+  <tr>
+   <td>Arm QPS
+   </td>
+   <td><p style="text-align: right">
+51892.58</p>
+   </td>
+   <td><p style="text-align: right">
+55886.22</p>
+   </td>
+   <td><p style="text-align: right">
+57465.90</p>
+   </td>
+  </tr>
+  <tr>
+   <td>x86 TPS
+   </td>
+   <td><p style="text-align: right">
+2440.75</p>
+   </td>
+   <td><p style="text-align: right">
+2617.10</p>
+   </td>
+   <td><p style="text-align: right">
+2620.66</p>
+   </td>
+  </tr>
+  <tr>
+   <td>Arm TPS
+   </td>
+   <td><p style="text-align: right">
+2594.63</p>
+   </td>
+   <td><p style="text-align: right">
+2794.31</p>
+   </td>
+   <td><p style="text-align: right">
+2873.30</p>
+   </td>
+  </tr>
+  <tr>
+   <td>For TPS: (Arm-x86)/x86
+   </td>
+   <td><p style="text-align: right">
+6.30%</p>
+   </td>
+   <td><p style="text-align: right">
+6.77%</p>
+   </td>
+   <td><p style="text-align: right">
+9.64%</p>
+   </td>
+  </tr>
+</table>
+<p><img src="media/sysbench-arm-vs-x86-on-eks.jpg" alt="Sysbench Arm vs. x86 on EKS"></p>
+<div class="caption-center"> Sysbench Arm vs. x86 on EKS </div>
+<h3 id="sysbench-price-performance-ratio">Sysbench price-performance ratio</h3>
+<p>In the following price-performance table:</p>
+<ul>
+<li>TPS values are derived from the average TPS among 300, 600, and 900 threads.</li>
+<li>The total system cost reflects the estimated five year hardware cost. All costs are in US dollars.</li>
+<li>Price-performance compares x86 and Graviton2 Arm processors. A lower value is better. That indicates a lower cost for more performance.</li>
+</ul>
+<table>
+  <tr>
+   <td rowspan="2" >
+   </td>
+   <td rowspan="2" >
+<strong>TPS</strong>
+   </td>
+   <td colspan="2" ><strong>US region</strong>
+   </td>
+   <td colspan="2" ><strong>APAC region</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Total system cost</strong>
+   </td>
+   <td><strong>Price-performance</strong>
+   </td>
+   <td><strong>Total system cost</strong>
+   </td>
+   <td><strong>Price-performance</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>x86
+   </td>
+   <td><p style="text-align: right">
+2,559.50</p>
+   </td>
+   <td><p style="text-align: right">
+162,208.80</p>
+   </td>
+   <td><p style="text-align: right">
+63.38</p>
+   </td>
+   <td><p style="text-align: right">
+189,804.60</p>
+   </td>
+   <td><p style="text-align: right">
+74.16</p>
+   </td>
+  </tr>
+  <tr>
+   <td>Arm
+   </td>
+   <td><p style="text-align: right">
+2,754.08</p>
+   </td>
+   <td><p style="text-align: right">
+138,539.40</p>
+   </td>
+   <td><p style="text-align: right">
+50.30</p>
+   </td>
+   <td><p style="text-align: right">
+161,807.40</p>
+   </td>
+   <td><p style="text-align: right">
+58.75</p>
+   </td>
+  </tr>
+  <tr>
+   <td>(Arm-x86)/x86
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td><p style="text-align: right">
+-20.64%</p>
+   </td>
+   <td>
+   </td>
+   <td><p style="text-align: right">
+-20.77%</p>
+   </td>
+  </tr>
+</table>
+<h2 id="conclusion">Conclusion</h2>
+<p>Benchmarking results from both TPC-C and sysbench have shown that the Graviton2 processor has better performance compared to the x86 processor. In some cases, Graviton2 outperforms x86 by up to 18%. After factoring in the hardware cost, the Graviton2 processor has a better price-performance ratio than the x86—on average 20% lower. The results are only based on the workloads (100 GB, 500 GB, 1 TB) we tested. For limitations and future plans on the benchmark, please refer to <a href="https://aws.amazon.com/blogs/startups/achieve-better-price-to-performance-for-tidb-graviton2-processors/">AWS Startups Blog</a>.</p>
+</div>
+                </div>
+                <div class="article-toc"></div><div class="ssba-wrap">
+    <div class="ssba">
+        <a data-site="" class="ssba_twitter_share" href="http://twitter.com/share?url=https%3a%2f%2fidiks.com%2fblog%2ftidb-on-arm-based-k8s-cluster-achieves-up-to-25-percent-better-price-performance-ratio-than-x86%2f" target="_blank">
+        
+            <img src="/images/svgs/twitter-icon.svg" alt="Twitter icon" />
+        </a>
+        <a data-site="reddit" class="ssba_reddit_share" href="http://reddit.com/submit?url=https%3a%2f%2fidiks.com%2fblog%2ftidb-on-arm-based-k8s-cluster-achieves-up-to-25-percent-better-price-performance-ratio-than-x86%2f&title=TiDB%20on%20Arm-based%20Kubernetes%20Cluster%20Achieves%20Up%20to%2025%25%20Better%20Price-Performance%20Ratio%20than%20x86" target="_blank">
+        
+            <img src="/images/svgs/reddit-icon.svg" alt="Reddit icon" />
+        </a>
+        <a data-site="" class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fidiks.com%2fblog%2ftidb-on-arm-based-k8s-cluster-achieves-up-to-25-percent-better-price-performance-ratio-than-x86%2f" target="_blank">
+        
+            <img src="/images/svgs/facebook-icon.svg" alt="Fackbook icon" />
+        </a>
+        <a data-site="linkedin" class="ssba_linkedin_share" href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fidiks.com%2fblog%2ftidb-on-arm-based-k8s-cluster-achieves-up-to-25-percent-better-price-performance-ratio-than-x86%2f" target="_blank">
+        
+            <img src="/images/svgs/linkedin-icon.svg" alt="Linkedin icon" />
+        </a>
+        <a data-site="hackernews" class="ssba_hackernews_share" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fidiks.com%2fblog%2ftidb-on-arm-based-k8s-cluster-achieves-up-to-25-percent-better-price-performance-ratio-than-x86%2f&t=TiDB%20on%20Arm-based%20Kubernetes%20Cluster%20Achieves%20Up%20to%2025%25%20Better%20Price-Performance%20Ratio%20than%20x86" target="_blank">
+        
+            <img src="/images/svgs/hacker-news-icon.svg" alt="Hacker News icon" />
+        </a>
+    </div>
+</div>
+<div class="trackable-btns">
+                    <a href="/download" onclick="trackViews('TiDB on Arm-based Kubernetes Cluster Achieves Up to 25% Better Price-Performance Ratio than x86', 'download-tidb-btn-bottom')"><button>Download
+                        TiDB</button></a>
+                    <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"
+                      onclick="trackViews('TiDB on Arm-based Kubernetes Cluster Achieves Up to 25% Better Price-Performance Ratio than x86', 'subscribe-blog-btn-bottom')"><button>Subscribe to
+                        Blog</button></a>
+                </div>
+            </div>
+            <div class="sidebar-page">
+                <div class="sticky-sidebar">
+                    <p class="toc-title">What’s on this page</p>
+                    <div id="smart_toc_wrapper"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer>
+    <div class="container">
+        <div class="flex-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Product</strong></h4>
+                <ul>
+                <li><a href="/docs/v3.0/">TiDB</a></li>
+                <li><a href="/docs/v3.0/reference/tispark/">TiSpark</a></li>
+                <li><a href="/docs/v3.0/roadmap/">Roadmap</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Docs</strong></h4>
+                <ul>
+                <li><a href="/docs/stable/quick-start-with-tidb/">Quick Start</a></li>
+                <li><a href="/blog/2017-07-24-tidbbestpractice/">Best Practices</a></li>
+                <li><a href="/docs/stable/faq/tidb/">FAQ</a></li>
+                <li><a href="/docs/stable/reference/tools/user-guide/">TiDB Tools</a></li>
+                <li><a href="/docs/dev/releases/rn/">Release Notes</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Resources</strong></h4>
+                <ul>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/weekly/">Monthly</a></li>
+                <li><a href="https://github.com/idiks" target="_blank">GitHub</a></li>
+                <li><a href="/community">TiDB Community</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Company</strong></h4>
+                <ul>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/jobs" target="_blank">Careers</a></li>
+                <li><a href="/news/">News</a></li>
+                <li><a href="/contact-us/">Contact Us</a></li>
+                <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                <li><a href="/terms-of-service/">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="contact-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Connect</strong></h4>
+                <ul>
+                <li><a href="https://twitter.com/idiks" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="19"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg> Twitter</a></li>
+                <li><a href="https://www.linkedin.com/company/idiks/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg> LinkedIn</a></li>
+                <li><a href="https://www.reddit.com/r/idiks/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg>Reddit</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/idiks-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="20"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg>Google Group</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/idiks" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg>Stack Overflow</a></li>
+                </ul>
+            </div>
+            <div class="subscribe">
+                <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"><button class="btn btn-subscribe f-tc">Subscribe to Blog</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="container copyright-container">
+        <p class="copyright">&copy; 2025 iDIKS. All Rights Reserved.</p>
+        <a href="/blog-cn" class="copyright-btn-lang" id="lang">中文</a>
+    </div>
+</footer>
+<button class="back-to-top" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 284.929 284.929"><path d="M282.082 195.285L149.028 62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 195.285C.95 197.191 0 199.378 0 201.853c0 2.474.953 4.664 2.856 6.566l14.272 14.271c1.903 1.903 4.093 2.854 6.567 2.854s4.664-.951 6.567-2.854l112.204-112.202 112.208 112.209c1.902 1.903 4.093 2.848 6.563 2.848 2.478 0 4.668-.951 6.57-2.848l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.566.001-2.476-.944-4.666-2.846-6.569z" fill="#FFF"/></svg>
+</button>
+</div><div class="overlay"></div><script src="https://static.idiks.com/js/jquery.min.js"></script><script type="text/javascript" src="/js/vendor/lazyload.min.js"></script>
+    <script type="text/javascript" src="/js/doc.js"></script>
+    <script type="text/javascript" src="/js/anchor.js"></script><script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script><script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script src="https://browser.sentry-cdn.com/5.11.0/bundle.min.js" integrity="sha384-jbFinqIbKkHNg+QL+yxB4VrBC0EAPTuaLGeRT0T+NfEV89YC6u1bKxHLwoo+/xxY" crossorigin="anonymous"></script><script>Sentry.init({ 
+            dsn: 'https://3f28ed393c5545daa74496b3cdb2e9ba@sentry.io/1887163' 
+        });</script><script src="/js/app.js"></script></body></html>

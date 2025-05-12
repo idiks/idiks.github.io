@@ -1,0 +1,593 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<script>
+window.ga =
+    window.ga ||
+    function() {
+        ;(ga.q = ga.q || []).push(arguments)
+    }
+ga.l = +new Date()
+ga('create', 'UA-99991864-4', 'auto')
+ga('send', 'pageview')
+</script>
+<script async src="https://static.idiks.com/js/ga-analytics.js"></script>
+
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/github-markdown.css">
+
+
+<link rel="stylesheet" href="/css/doc.css">
+
+    
+    <title>Async Commit, the Accelerator for Transaction Commit in TiDB 5.0 |&nbsp;TiDB</title><link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="description" content="As a major new feature introduced in TiDB 5.0, Async Commit can greatly reduce the latency of transaction commits. This post describes Async Commit&#39;s design ideas and its key implementation details.">
+<meta name="robots" content="noodp">
+<meta name="keywords" content="TiDB, MySQL, HTAP, Open Source, Cloud-Native, NewSQL, Aurora Alternative">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Async Commit, the Accelerator for Transaction Commit in TiDB 5.0 | TiDB">
+<meta property="og:description" content="As a major new feature introduced in TiDB 5.0, Async Commit can greatly reduce the latency of transaction commits. This post describes Async Commit&#39;s design ideas and its key implementation details.">
+<meta property="og:url" content="https://idiks.com/blog/async-commit-the-accelerator-for-transaction-commit-in-tidb-5.0/">
+<meta property="og:site_name" content="MySQL at Scale. No more manual sharding">
+<meta property="og:image" content="/images/blog/async-commit-the-accelerator-for-transaction-commit.jpg">
+<meta property="og:image:secure_url" content="/images/blog/async-commit-the-accelerator-for-transaction-commit.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="og:image:width" content="1200">
+<meta name="og:image:height" content="600"><meta name="twitter:description" content="As a major new feature introduced in TiDB 5.0, Async Commit can greatly reduce the latency of transaction commits. This post describes Async Commit&#39;s design ideas and its key implementation details.">
+<meta name="twitter:title" content="Async Commit, the Accelerator for Transaction Commit in TiDB 5.0 | TiDB">
+<meta name="twitter:site" content="@pingcap">
+<meta name="twitter:image" content="https://static.idiks.com/images/blog/async-commit-the-accelerator-for-transaction-commit.jpg"><meta name="twitter:creator" content="@pingcap">
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http:\/\/schema.org",
+    "@type": "WebSite",
+    "url": "https:\/\/pingcap.com\/",
+    "name": "PingCAP",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https:\/\/pingcap.com\/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+<script type="text/javascript" async src="https://accounts.pingcap.com/static/pingcap_sso/js/track.beta.js"></script>
+    
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+<link rel="preload" href="https://static.idiks.com/js/jquery.min.js" as="script">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/docsearch.min.css">
+<script type="text/javascript">
+var trackOutboundLink = function(url) {
+  var redirectTriggered = false
+  ga('send', 'event', 'outbound', 'click', url, {
+    hitCallback: function() {
+      redirectTriggered = true
+      document.location = url
+    }
+  })
+  setTimeout(function() {
+    if (!redirectTriggered) {
+      document.location = url
+    }
+  }, 1500)
+}
+
+var trackViews = function(btn_type, event_category) {
+  var event_label = btn_type
+  var eventCategory = event_category
+  ga('send', 'event', {
+    'eventCategory': eventCategory,
+    'eventAction': 'click',
+    'eventLabel': event_label,
+    'transport': 'beacon'
+  });
+}
+</script>
+<script>if (location.pathname === '/') {
+        if (location.hostname === 'idiks.github.io') {
+            location.href = '/en/'
+        }
+    }</script></head>       <body data-lang="en" ><div id="page-content">
+
+<header role="navigation" class="fixed-top">
+    <div class="container">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        <div class="nav-wrapper">
+            <div class="navigation">
+                <ul>
+                <li ><a class="a-en" href="https://idiks.com">Cloud</a></li>
+                <li ><a class="a-en" class="tidb-academy"
+                    href="/tidb-academy">iDIKS Academy</a></li>
+                <li class="docs-type-selector " id="docsTypeSelector">
+                    <a class="header-doc-nav" href="#">Docs</a>
+                    <div class="header-dropdown-menu" id="docsTypeSelectorItem">
+                        <a class="header-dropdown-item" href="/docs/stable/">TiDB</a>
+                        <a class="header-dropdown-item" href="/docs/tidb-in-kubernetes/stable/">TiDB in Kubernetes</a>
+                        <a class="header-dropdown-item" href="/docs/tidb-data-migration/stable/">TiDB Data Migration (DM)</a>
+                    </div>
+                </li>
+                
+                <li ><a class="a-en" href="/success-stories">Success
+                    Stories</a></li>
+                <li class="sel" ><a class="a-en" href="/blog">Blog</a></li>
+                <li ><a class="link-download link-download-en" href="/download">Free Download</a></li>
+                </ul>
+            </div>
+            <div class="global-search">
+                
+                
+                
+                <div class="search-wrapper">
+    <span class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fff" viewBox="0 0 67.125 67.125"><path d="M23.902 0C11.01 0 .523 10.488.523 23.38c0 12.891 10.487 23.379 23.379 23.379a23.258 23.258 0 0 0 14.471-5.037l24.816 24.817c.391.391.902.586 1.414.586s1.023-.195 1.414-.586a2 2 0 0 0 0-2.828L41.293 38.985c3.721-4.142 5.989-9.613 5.989-15.605C47.282 10.488 36.794 0 23.902 0zM4.523 23.38C4.523 12.694 13.216 4 23.902 4c10.687 0 19.38 8.694 19.38 19.38 0 5.396-2.221 10.279-5.791 13.795a1.959 1.959 0 0 0-.488.349 2.003 2.003 0 0 0-.271.343C33.31 40.9 28.825 42.76 23.903 42.76c-10.686-.001-19.38-8.695-19.38-19.38z"/><path d="M24.075 8.591c-8.25 0-14.962 6.712-14.962 14.962a2 2 0 0 0 4 0c0-6.044 4.918-10.962 10.962-10.962a2 2 0 0 0 0-4z"/></svg></span>
+    <input data-lang="en" data-type="" type="search" id="search-input" name="q"
+        placeholder="Search TiDB Docs">
+</div>
+
+<script>
+    const inputNode = document.getElementById("search-input")
+
+    inputNode.addEventListener('keyup', ({key}) => {
+        if (key === "Enter") {
+            if ($('#search-input').data('lang') == 'cn') {
+                lang = 'zh'
+            }
+
+            const query = $('#search-input').val()
+            if (query) {
+                url = "https://idiks.com/docs" + (lang == 'zh' ? 'zh/' : '') + "search/?lang=" + lang + "&type=tidb&version=v4.0&q=" + query
+                window.location.href = url
+            }
+        }
+    })
+</script>
+
+            </div>
+        </div>
+        <div class="nav-btn nav-slider">
+            <i class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 459 459"><path d="M0 382.5h459v-51H0v51zM0 255h459v-51H0v51zM0 76.5v51h459v-51H0z" fill="#FFF"/></svg></i>
+        </div>
+    </div>
+</header>
+
+
+
+<nav class="mobile-sidebar">
+    <div class="nav-header">
+        <div class="logo-wrap">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        </div>
+    </div>
+    <ul class="ul-base">
+        <li ><a href="https://idiks.com/">Cloud</a></li>
+        <li ><a class="tidb-academy" href="/tidb-academy">TiDB Academy</a></li>
+        <li class="docs-type-selector " id="docsTypeSelector">
+            <p class="header-doc-nav">Docs</p>
+            <div class="header-dropdown-menu" id="docsTypeSelectorItem">
+                <a class="header-dropdown-item" href="/docs/stable/">TiDB</a>
+                <a class="header-dropdown-item" href="/docs/tidb-in-kubernetes/stable/">TiDB in Kubernetes</a>
+                <a class="header-dropdown-item" href="/docs/tidb-data-migration/stable/">TiDB Data Migration (DM)</a>
+            </div>
+        </li>
+        <li ><a href="/success-stories">Success Stories</a></li>
+        <li class="sel"><a href="/blog">Blog</a></li>
+        <li><a class="link-download" href="/download">Free Download</a></li>
+    </ul>
+    <div class="nav-footer">
+        <div class="contact-list-wrap">
+        <div class="flex-list">
+            <h4 class="list-title"><strong>Contact</strong></h4>
+            <ul class="social ul-base">
+            <li><a href="https://twitter.com/PingCAP" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="18"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/pingcap/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg></a></li>
+            <li><a href="https://www.reddit.com/r/TiDB/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg></a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/tidb-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="18"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg></a></li>
+            <li><a href="https://stackoverflow.com/questions/tagged/tidb" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg></a></li>
+            </ul>
+        </div>
+        <div class="subscribe">
+            <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"><button class="btn btn-subscribe f-tc" style="margin-left: 0.75rem;">Subscribe to Blog</button></a>
+        </div>
+        </div>
+        <div class="container">
+        <a href="/blog-cn" class="btn-lang" id="lang">中文</a>
+        </div>
+    </div>
+</nav>
+
+<div class="blog">
+        <div class="blogArticle__container">
+            
+            <div class="archive"><div class="article-nav">
+                            <a href="/blog/#Engineering">BLOG HOME</a> <span> > </span>Engineering</div><div class="content markdown-body">
+                    <h1 class="title">Async Commit, the Accelerator for Transaction Commit in TiDB 5.0</h1>
+                    <ul class="blog-post-meta">
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-date.svg" alt="Date icon">Tue, May 18, 2021</li>
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-writer.svg" alt="Pen icon">Yilin Chen</li>
+                    </ul>
+                    <div class="blog-text"><p><strong>Author:</strong> <a href="https://github.com/sticnarf">Yilin Chen</a> (Software Engineer at PingCAP, TiKV Commiter)</p>
+<p><strong>Editors:</strong> Tom Dewan, <a href="https://github.com/CharLotteiu">Charlotte Liu</a></p>
+<p><img src="media/async-commit-the-accelerator-for-transaction-commit.jpg" alt="Async Commit"></p>
+<p><a href="https://docs.pingcap.com/tidb/stable">TiDB</a> is an open source, distributed, scale-out MySQL alternative database that supports Hybrid Transactional and Analytical Processing (HTAP) workloads. It provides native support for distributed transactions.</p>
+<p>As TiDB's developers, we have been working on implementing low-latency distributed transactions. Recently, <a href="https://docs.pingcap.com/tidb/stable/release-5.0.0">TiDB 5.0</a> takes a big step to greatly reduce the latency of transaction commits—introducing the <strong>Async Commit</strong> feature.</p>
+<p>This article describes Async Commit's design ideas and its key implementation details.</p>
+<h2 id="additional-delay-of-percolator">Additional delay of Percolator</h2>
+<p>TiDB transactions are based on the Percolator transaction model. To learn more about Percolator's transaction model, you can refer to <a href="https://research.google/pubs/pub36726/">Google's Percolator paper</a>.</p>
+<p>The following diagram shows the commit process in TiDB before Async Commit is introduced.</p>
+<p><img src="media/commit-process-before-ascyn-commit.png" alt="The commit process before Async Commit is introduced"></p>
+<div class="caption-center"> The commit process before Async Commit is introduced </div>
+<p>After the user sends a COMMIT statement to TiDB, TiDB has to go through at least the following steps before returning the commit result to the user:</p>
+<ol>
+<li>Concurrently prewrites all keys.</li>
+<li>Gets a timestamp from Placement Driver (PD) as the commit timestamp (Commit TS).</li>
+<li>Commits the primary key.</li>
+</ol>
+<p>The critical path for the entire commit process includes at least two round trips between <a href="https://docs.pingcap.com/tidb/stable/tidb-architecture#tidb-server">TiDB</a> and <a href="https://docs.pingcap.com/tidb/stable/tidb-architecture#tikv-server">TiKV</a>. Only secondary keys are committed asynchronously in the background.</p>
+<p>In TiDB's transaction model, TiDB nodes are like the coordinators of transactions, and TiKV nodes are the participants. In common two-phase commit implementations, the coordinator's data is stored locally, while in TiDB's transaction model, all transaction-related data is stored on TiKV. Therefore, theoretically the state of a transaction is determined at the end of the first phase, but TiDB needs to complete part of the second phase—storing the state of the transaction on TiKV—before it can return the determined transaction state to the user.</p>
+<p>However, this also means that there is room for improvement in TiDB's original transaction model. Can the Percolator transaction model be improved so that the state of a transaction can be determined without additional remote procedure calls (RPCs) after the first phase is completed?</p>
+<h2 id="determine-the-transaction-state-earlier">Determine the transaction state earlier</h2>
+<p>Before the introduction of Async Commit, a transaction commit was successful only after the primary key of the transaction was committed. The aim of Async Commit is to advance the determination of the transaction state to the moment when prewrites are completed. In this way, the entire second phase of the commit can be done asynchronously. For an Async Commit transaction, this means that the commit is successful as long as all the keys in the transaction have been successfully prewritten.</p>
+<p>The following diagram shows the commit process of an Async Commit transaction. You can see that the original part of getting the Commit TS is missing. Instead, TiDB gets a timestamp from PD as the Min Commit TS before the prewrites. The reasons for the change will be explained in the following sections.</p>
+<p><img src="media/commit-process-of-an-async-commit-transaction.png" alt="The commit process of an Async Commit transaction"></p>
+<div class="caption-center"> The commit process of an Async Commit transaction </div>
+<p>To reach the goal of advancing the time when the transaction state is determined, there are two main issues that need to be addressed:</p>
+<ul>
+<li>How to determine if all keys have been prewritten</li>
+<li>How to determine the Commit TS of a transaction</li>
+</ul>
+<h3 id="how-to-find-all-the-transaction-keys">How to find all the transaction keys</h3>
+<p>Before Async Commit was introduced, the state of a transaction was determined by the primary key only, so you only needed to store a pointer to the primary key on all secondary keys. If you encountered an uncommitted secondary key, you could determine the state of the current transaction by querying the state of the primary key.</p>
+<p><img src="media/pointers-to-the-primary-key.png" alt="Pointers to the primary key"></p>
+<div class="caption-center"> The secondary keys store pointers to the primary key </div>
+<p>As for an Async Commit transaction, we need to know the states of all keys to determine the transaction state; that is, we must be able to query every key of the transaction from any key in the transaction. Therefore, we also store the pointers to each secondary key in the entry of the primary key:</p>
+<p><img src="media/pointers-to-the-secondary-keys.png" alt="Pointers to the secondary keys"></p>
+<div class="caption-center"> The primary key stores pointers to the secondary keys </div>
+<p>The primary key actually stores a list of all secondary keys. Obviously, if a transaction contains a large number of keys, we cannot store them all on the primary key. So an Async Commit transaction cannot be too large. Currently, we only use Async Commit for transactions that contain up to 256 keys, and the total size of all keys must be no more than 4,096 bytes.</p>
+<p>What's more, committing a large transaction takes a long time, so the latency improvement from reducing one round trip between TiDB and TiKV is not significant. Therefore, we also do not consider using a multi-level structure to support Async Commit for larger transactions.</p>
+<h3 id="how-to-determine-the-commit-ts-of-a-transaction">How to determine the Commit TS of a transaction</h3>
+<p>The state of an Async Commit transaction must be determined when the prewrites complete. Therefore, as part of the transaction state, the Commit TS must also be determined at that time.</p>
+<p>By default, TiDB transactions meet the requirements of snapshot isolation and linearizability. To ensure that these properties also hold true for Async Commit transactions, it is critical to determine the appropriate Commit TS for an Async Commit transaction.</p>
+<p>For each key of an Async Commit transaction, TiDB calculates and records the Min Commit TS of this key on TiKV during the prewriting process. The largest Min Commit TS among all the keys of the transaction is the Commit TS of this transaction.</p>
+<p>The following two sections describe how Min Commit TSs are calculated and how they guarantee snapshot isolation and linearizability for Async Commit transactions.</p>
+<h3 id="guarantee-snapshot-isolation">Guarantee snapshot isolation</h3>
+<p>TiDB implements snapshot isolation with multiversion concurrency control (MVCC). TiDB transactions also get a Start TS from the Timestamp Oracle (TSO) at the beginning of the commit. To realize snapshot isolation, we need to ensure that the snapshots read with the Start TS as the snapshot timestamp are always consistent.</p>
+<p>For this reason, every snapshot read from TiDB updates the Max TS on TiKV<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. During the prewriting process, the Min Commit TS must be larger than the current Max TS<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>; that is, larger than the timestamp of all previous snapshot reads. So Max TS + 1 can be chosen as the value of the Min Commit TS. After this Async Commit transaction commits successfully, it does not break snapshot isolation because its Commit TS is larger than the timestamps of all previous snapshot reads.</p>
+<p>In the following example, transaction T1 writes both key <code>x</code> and key <code>y</code> and transaction T2 reads key <code>y</code>. T2 updates the Max TS to 5 when reading <code>y</code>. Therefore, when T1 prewrites <code>y</code> afterwards, the value of Min Commit TS is at least 6. After T1 prewrites <code>y</code> successfully, which means T1 commits successfully, T1's Commit TS is also at least 6. So when T2 reads <code>y</code> again, it does not read the value updated by T1, and the snapshot of transaction T2 remains consistent.</p>
+<table>
+  <tr>
+   <td>T1: Begin(Start TS = 1)
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>T1: Prewrite(x)
+   </td>
+   <td>T2: Begin(Start TS = 5)
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>T2: Read(y) => Max TS = 5
+   </td>
+  </tr>
+  <tr>
+   <td>T1: Prewrite(y) => Min Commit TS = 6
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>T2: Read(y)
+   </td>
+  </tr>
+</table>
+<h3 id="guarantee-linearizability">Guarantee linearizability</h3>
+<p>Linearizability includes two aspects:</p>
+<ul>
+<li>Real-time</li>
+<li>Sequential consistency</li>
+</ul>
+<p>The aspect of &ldquo;real-time&rdquo; requires that transaction changes must be able to be read by a new transaction immediately after the previous transaction successfully commits. The snapshot timestamp of the new transaction is obtained from the TSO on PD, which requires the Commit TS not be too large. The value of Commit TS can only be up to the maximum timestamp allocated by the TSO plus one.</p>
+<p>As mentioned in the snapshot isolation section, one possible value for Min Commit TS is Max TS + 1. The timestamps used to update Max TS are from the TSO, so Max TS + 1 is definitely less than or equal to the minimum unallocated timestamp on the TSO. Thus, the requirement of &ldquo;real-time&rdquo; is satisfied.</p>
+<p>Sequential consistency means that the logical order of transactions does not violate the physical order of precedence. For example, let's assume that there are two transactions, T1 and T2. If T1 is committed before T2, T1's Commit TS should be smaller than or equal to that of T2.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p>To guarantee sequential consistency, TiDB gets a timestamp from TSO on PD as the minimum constraint of Min Commit TS before the prewriting process. Because the real-time property is guaranteed, the timestamp obtained by T2 before the prewriting process must be greater than or equal to the Commit TS of T1. Therefore, we can guarantee that no causal reverse happens, and sequential consistency is guaranteed.</p>
+<p>In summary, the Min Commit TS of each key takes the maximum value between the Max TS + 1 that TiDB gets when prewriting, and the timestamp obtained from the PD before the prewriting process. The Commit TS of a transaction is the maximum Min Commit TS of all keys. They together guarantee both snapshot isolation and linearizability for Async Commit transactions.</p>
+<h3 id="one-phase-commit-1pc">One-phase commit (1PC)</h3>
+<p>If a transaction only updates a non-index column of a record, or inserts a record without a secondary index, it only involves a single <a href="https://docs.pingcap.com/tidb/stable/glossary#regionpeerraft-group">Region</a>. In this scenario, is it possible to complete the transaction commit in only one phase without using the distributed transaction protocol? Well, this is certainly possible, but the difficulty lies in how to determine the Commit TS for a one-phase commit transaction.</p>
+<p>With Async Commit providing a basis for calculating the Commit TS, the difficulty of the one-phase commit implementation is solved. We calculate the Commit TS of a one-phase commit transaction in the same way as Async Commit and commit the transaction directly through a single RPC with TiKV.</p>
+<p><img src="media/one-phase-commit-process.png" alt="The one-phase commit process"></p>
+<div class="caption-center"> The one-phase commit process </div>
+<p>One-phase commits do not use the distributed commit protocol, which reduces the number of TiKV write operations. So if a transaction<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> involves only one <a href="https://docs.pingcap.com/tidb/stable/glossary#regionpeerraft-group">Region</a>, using one-phase commit not only reduces transaction latency, but also improves data throughput.</p>
+<p>TiDB 5.0 introduces the one-phase commit feature as part of Async Commit.</p>
+<h2 id="causal-consistency">Causal consistency</h2>
+<p>As mentioned above, getting the Min Commit TS from the TSO ensures sequential consistency. So what happens if this step is eliminated? Would it save another round trip latency between PD and TiDB?</p>
+<p>In this case, however, there are examples that violate the sequential consistency. Suppose that key <code>x</code> and key <code>y</code> are stored on different TiKV nodes. Transaction T1 modifies <code>x</code>, and transaction T2 modifies <code>y</code>. T1 starts earlier than T2, but the user notifies T1 to commit after T2 commits successfully. For the user, the commit of transaction T1 starts after the commit of transaction T2 completes; however, <em>logically</em> T1 should commit later than T2 if sequential consistency is satisfied.</p>
+<p>Also, if you omit the operation of getting the Min Commit TS before the prewriting process, the Commit TS of T1 may be 2, which is smaller than the Commit TS of T2. If there is a transaction T3 with a Start TS of 3 at the same time, you can observe the fact that T2 is logically later than T1 by reading key <code>x</code> and key <code>y</code> in T3. Therefore, there is no linearizability in this example.</p>
+<table>
+  <tr>
+   <td>T1: Begin(Start TS = 1)
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>T3: Begin(Start TS = 3)
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>T2: Begin(Start TS = 5)
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>T2: Prewrite(y) => Min Commit TS = 6
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>Notify T1 to commit
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>T1: Prewrite(x) => Min Commit TS = 2
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>T3: Read(x, y)
+   </td>
+  </tr>
+</table>
+<p>If TiDB does not get the Min Commit TS from the TSO, the concept of a snapshot may be quite different from what is expected. In the following example, T2, which starts later than T1, notifies T1 to commit, and T1's Commit TS may be smaller than T2's Start TS.</p>
+<p>For users, T2 reading the T1's changes to <code>x</code> is not expected. In this scenario, the property of repeatable readability is not violated, but it is debatable whether the requirement of snapshot isolation is still met <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>.</p>
+<table>
+  <tr>
+   <td>T1: Begin(Start TS = 1)
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>T2: Begin(Start TS = 5)
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>T2: Read(y)
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>Notify T1 to commit
+   </td>
+  </tr>
+  <tr>
+   <td>T1: Prewrite(x) => Min Commit TS = 2
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>T2: Read(x)
+   </td>
+  </tr>
+</table>
+<p>We refer to such weaker consistency as causal consistency: the order of causally-related transactions is the same as the order in which they physically commit, but the commit order between transactions that are not causally related is uncertain. Two transactions are causally related only when the data they lock or write to intersects. Causality here only includes causality that can be known by the database—not external causality such as the &ldquo;side-channel notifications&rdquo; in the example above.</p>
+<p>As it is not very usual for such a special scenario to occur, we still offer users a way to skip getting the Min Commit TS. Transactions opened with <code>START TRANSACTION WITH CAUSAL CONSISTENCY ONLY</code> do not get the Min Commit TS when committing. If your scenario does not involve controlling the commit order of two concurrent transactions outside the database, you can try to lower the consistency level to save one operation of TiDB getting the timestamp from the PD TSO, and thus reduce the time.</p>
+<h2 id="performance-enhancement">Performance enhancement</h2>
+<p>Async Commit moves the transaction completion point to the end of prewrite, making the commit of the primary key asynchronous. The more time consuming the primary key commit step is in the transaction, the more significant the improvement brought by Async Commit will be. Smaller transactions with fewer interactions can often gain large improvement through Async Commit.</p>
+<p>In the sysbench <code>oltp_update_index</code> scenario, a transaction only writes two keys, row record, and index. It is also an auto-commit transaction with no additional interaction, so theoretically Async Commit can significantly reduce its latency.</p>
+<p>Our tests also prove this. As shown in the below chart, when we enable Async Commit and test sysbench <code>oltp_update_index</code> at a fixed 2,000 TPS, the average latency is reduced by 42% and the 99th percentile latency is reduced by 32%.</p>
+<p><img src="media/sysbench-test-result-with-the-async-commit-feature-enabled.png" alt="Test result with Async Commit enabled"></p>
+<div class="caption-center"> Sysbench test result with the Async Commit feature enabled </div>
+<p>As for transactions that involve only one <a href="https://docs.pingcap.com/tidb/stable/glossary#regionpeerraft-group">Region</a>, the optimization of one-phase commit can reduce the latency of the transaction commit even more significantly. It can also improve the data throughput because it reduces the amount of writes to TiKV.</p>
+<p>The chart below shows the result of testing sysbench oltp_update_non_index with a fixed 2,000 TPS. In this scenario, a transaction writes to only one <a href="https://docs.pingcap.com/tidb/stable/glossary#regionpeerraft-group">Region</a>. With one-phase commit enabled, the average latency is reduced by 46% and the 99th percentile latency is reduced by 35%.</p>
+<p><img src="media/sysbench-test-result-with-the-one-phase-commit-feature-enabled.png" alt="Test result with one-phase commit enabled"></p>
+<div class="caption-center"> Sysbench test result with the one-phase commit feature enabled </div>
+<p>Conversely, there are some scenarios where Async Commit does not significantly improve performance:</p>
+<ul>
+<li>If the transaction contains many statements and has long interaction logic, and the time percentage of the transaction commit is low, the improvement brought by Async Commit is limited.</li>
+<li>If the transaction involves many keys and many write operations, for which the time taken for prewrite is significantly longer than the time taken for committing the primary key, Async Commit is less useful in reducing the latency for this transaction.</li>
+<li>Async Commit does not reduce the amount of reads and writes to TiKV, so it does not improve the throughput. If the system itself is close to the throughput limit, Async Commit cannot bring significant improvement.</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>Async Commit reduces the latency of a single write to TiKV for TiDB transaction commits, which is a major improvement over the original Percolator transaction model. Newly-created TiDB 5.0 clusters have Async Commit and one-phase commit enabled by default. Upgrading to a 5.0 cluster from an older version requires the user to manually enable the Async Commit and one-phase commit features: set the global system variables <code>tidb_enable_async_commit</code> and <code>tidb_enable_1pc</code> to <code>ON</code>.</p>
+<p>If you'd like to learn more about the Async Commit design, you can read the <a href="https://github.com/tikv/sig-transaction/tree/master/design/async-commit">design document</a>. In the future, we will continue to improve the performance of TiDB transactions and improve your TiDB experience so that more people can benefit from TiDB.</p>
+<h3 id="join-our-community">Join our community</h3>
+<p>If you are interested in discussing and planning the future development of TiKV distributed transactions, you're welcome to join the <a href="https://tikv.github.io/sig-transaction/">Transaction SIG</a> and find us in the <a href="https://slack.tidb.io/invite?team=tikv-wg&amp;channel=sig-transaction&amp;ref=community-sig">TiKV Community Slack</a> space.</p>
+<!-- Footnotes themselves at the bottom. -->
+<h2 id="notes">Notes</h2>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>In order to ensure that the Max TS of the new leader is large enough after the Region leader transfers, TiKV also gets the latest timestamp from PD to update the Max TS after the Region leader transfers and the Region is merged. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>In the prewriting process, to prevent that a more recent snapshot read breaks this constraint, TiKV adds a memory lock to the prewrite key and temporarily blocks the read requests whose Start TSs are greater than or equal to the Min Commit TS. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>If the T1 and T2 commitment processes overlap, the logical order of their commits cannot be determined. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>To be precise, the one-phase commit feature should only be used when a transaction can be completed by a single TiKV request. In order to improve commit efficiency, larger transactions will be split into many requests, and in this case, even if they all involve the same single Region, one-phase commit is not used. <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p>If you agree that the logical commit time of T1 is earlier than the start time of T2 (because the linearizability is not satisfied), then this case meets the snapshot isolation requirement. <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+</div>
+                </div>
+                <div class="article-toc"></div><div class="ssba-wrap">
+    <div class="ssba">
+        <a data-site="" class="ssba_twitter_share" href="http://twitter.com/share?url=https%3a%2f%2fidiks.com%2fblog%2fasync-commit-the-accelerator-for-transaction-commit-in-tidb-5.0%2f" target="_blank">
+        
+            <img src="/images/svgs/twitter-icon.svg" alt="Twitter icon" />
+        </a>
+        <a data-site="reddit" class="ssba_reddit_share" href="http://reddit.com/submit?url=https%3a%2f%2fidiks.com%2fblog%2fasync-commit-the-accelerator-for-transaction-commit-in-tidb-5.0%2f&title=Async%20Commit%2c%20the%20Accelerator%20for%20Transaction%20Commit%20in%20TiDB%205.0" target="_blank">
+        
+            <img src="/images/svgs/reddit-icon.svg" alt="Reddit icon" />
+        </a>
+        <a data-site="" class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fidiks.com%2fblog%2fasync-commit-the-accelerator-for-transaction-commit-in-tidb-5.0%2f" target="_blank">
+        
+            <img src="/images/svgs/facebook-icon.svg" alt="Fackbook icon" />
+        </a>
+        <a data-site="linkedin" class="ssba_linkedin_share" href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fidiks.com%2fblog%2fasync-commit-the-accelerator-for-transaction-commit-in-tidb-5.0%2f" target="_blank">
+        
+            <img src="/images/svgs/linkedin-icon.svg" alt="Linkedin icon" />
+        </a>
+        <a data-site="hackernews" class="ssba_hackernews_share" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fidiks.com%2fblog%2fasync-commit-the-accelerator-for-transaction-commit-in-tidb-5.0%2f&t=Async%20Commit%2c%20the%20Accelerator%20for%20Transaction%20Commit%20in%20TiDB%205.0" target="_blank">
+        
+            <img src="/images/svgs/hacker-news-icon.svg" alt="Hacker News icon" />
+        </a>
+    </div>
+</div>
+<div class="trackable-btns">
+                    <a href="/download" onclick="trackViews('Async Commit, the Accelerator for Transaction Commit in TiDB 5.0', 'download-tidb-btn-bottom')"><button>Download
+                        TiDB</button></a>
+                    <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"
+                      onclick="trackViews('Async Commit, the Accelerator for Transaction Commit in TiDB 5.0', 'subscribe-blog-btn-bottom')"><button>Subscribe to
+                        Blog</button></a>
+                </div>
+            </div>
+            <div class="sidebar-page">
+                <div class="sticky-sidebar">
+                    <p class="toc-title">What’s on this page</p>
+                    <div id="smart_toc_wrapper"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer>
+    <div class="container">
+        <div class="flex-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Product</strong></h4>
+                <ul>
+                <li><a href="/docs/v3.0/">TiDB</a></li>
+                <li><a href="/docs/v3.0/reference/tispark/">TiSpark</a></li>
+                <li><a href="/docs/v3.0/roadmap/">Roadmap</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Docs</strong></h4>
+                <ul>
+                <li><a href="/docs/stable/quick-start-with-tidb/">Quick Start</a></li>
+                <li><a href="/blog/2017-07-24-tidbbestpractice/">Best Practices</a></li>
+                <li><a href="/docs/stable/faq/tidb/">FAQ</a></li>
+                <li><a href="/docs/stable/reference/tools/user-guide/">TiDB Tools</a></li>
+                <li><a href="/docs/dev/releases/rn/">Release Notes</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Resources</strong></h4>
+                <ul>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/weekly/">Monthly</a></li>
+                <li><a href="https://github.com/idiks" target="_blank">GitHub</a></li>
+                <li><a href="/community">TiDB Community</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Company</strong></h4>
+                <ul>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/jobs" target="_blank">Careers</a></li>
+                <li><a href="/news/">News</a></li>
+                <li><a href="/contact-us/">Contact Us</a></li>
+                <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                <li><a href="/terms-of-service/">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="contact-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Connect</strong></h4>
+                <ul>
+                <li><a href="https://twitter.com/idiks" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="19"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg> Twitter</a></li>
+                <li><a href="https://www.linkedin.com/company/idiks/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg> LinkedIn</a></li>
+                <li><a href="https://www.reddit.com/r/idiks/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg>Reddit</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/idiks-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="20"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg>Google Group</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/idiks" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg>Stack Overflow</a></li>
+                </ul>
+            </div>
+            <div class="subscribe">
+                <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"><button class="btn btn-subscribe f-tc">Subscribe to Blog</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="container copyright-container">
+        <p class="copyright">&copy; 2025 iDIKS. All Rights Reserved.</p>
+        <a href="/blog-cn" class="copyright-btn-lang" id="lang">中文</a>
+    </div>
+</footer>
+<button class="back-to-top" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 284.929 284.929"><path d="M282.082 195.285L149.028 62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 195.285C.95 197.191 0 199.378 0 201.853c0 2.474.953 4.664 2.856 6.566l14.272 14.271c1.903 1.903 4.093 2.854 6.567 2.854s4.664-.951 6.567-2.854l112.204-112.202 112.208 112.209c1.902 1.903 4.093 2.848 6.563 2.848 2.478 0 4.668-.951 6.57-2.848l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.566.001-2.476-.944-4.666-2.846-6.569z" fill="#FFF"/></svg>
+</button>
+</div><div class="overlay"></div><script src="https://static.idiks.com/js/jquery.min.js"></script><script type="text/javascript" src="/js/vendor/lazyload.min.js"></script>
+    <script type="text/javascript" src="/js/doc.js"></script>
+    <script type="text/javascript" src="/js/anchor.js"></script><script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script><script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script src="https://browser.sentry-cdn.com/5.11.0/bundle.min.js" integrity="sha384-jbFinqIbKkHNg+QL+yxB4VrBC0EAPTuaLGeRT0T+NfEV89YC6u1bKxHLwoo+/xxY" crossorigin="anonymous"></script><script>Sentry.init({ 
+            dsn: 'https://3f28ed393c5545daa74496b3cdb2e9ba@sentry.io/1887163' 
+        });</script><script src="/js/app.js"></script></body></html>

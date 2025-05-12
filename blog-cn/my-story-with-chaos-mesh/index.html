@@ -1,0 +1,505 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<script>
+window.ga =
+    window.ga ||
+    function() {
+        ;(ga.q = ga.q || []).push(arguments)
+    }
+ga.l = +new Date()
+ga('create', 'UA-99991864-4', 'auto')
+ga('send', 'pageview')
+</script>
+<script async src="https://static.idiks.com/js/ga-analytics.js"></script>
+
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/github-markdown.css">
+
+
+<link rel="stylesheet" href="/css/doc.css">
+
+        <title>「我的工作是制造混沌」，我与 Chaos Mesh® 的故事 |&nbsp;iDIKS</title><link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="description" content="本文将向大家介绍自己与 Chaos Mesh 一起成长的点滴。">
+<meta name="robots" content="noodp">
+<meta name="keywords" content="TiDB, MySQL, HTAP, Open Source, Cloud-Native, NewSQL, Aurora Alternative">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="「我的工作是制造混沌」，我与 Chaos Mesh® 的故事 | PingCAP">
+<meta property="og:description" content="本文将向大家介绍自己与 Chaos Mesh 一起成长的点滴。">
+<meta property="og:url" content="https://idiks.com/blog-cn/my-story-with-chaos-mesh/">
+<meta property="og:site_name" content="MySQL at Scale. No more manual sharding">
+<meta property="og:image" content="/images/pingcap-opengraph.jpg">
+<meta property="og:image:secure_url" content="/images/pingcap-opengraph.jpg"><meta name="twitter:card" content="summary"><meta name="twitter:description" content="本文将向大家介绍自己与 Chaos Mesh 一起成长的点滴。">
+<meta name="twitter:title" content="「我的工作是制造混沌」，我与 Chaos Mesh® 的故事 | PingCAP">
+<meta name="twitter:site" content="@pingcap">
+<meta name="twitter:image" content="https://static.idiks.com/images/pingcap-opengraph.jpg"><meta name="twitter:creator" content="@pingcap">
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http:\/\/schema.org",
+    "@type": "WebSite",
+    "url": "https:\/\/pingcap.com\/",
+    "name": "PingCAP",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https:\/\/pingcap.com\/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+<script type="text/javascript" async src="https://accounts.pingcap.com/static/pingcap_sso/js/track.beta.js"></script>
+    
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+<link rel="preload" href="https://static.idiks.com/js/jquery.min.js" as="script">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/docsearch.min.css">
+<script type="text/javascript">
+var trackOutboundLink = function(url) {
+  var redirectTriggered = false
+  ga('send', 'event', 'outbound', 'click', url, {
+    hitCallback: function() {
+      redirectTriggered = true
+      document.location = url
+    }
+  })
+  setTimeout(function() {
+    if (!redirectTriggered) {
+      document.location = url
+    }
+  }, 1500)
+}
+
+var trackViews = function(btn_type, event_category) {
+  var event_label = btn_type
+  var eventCategory = event_category
+  ga('send', 'event', {
+    'eventCategory': eventCategory,
+    'eventAction': 'click',
+    'eventLabel': event_label,
+    'transport': 'beacon'
+  });
+}
+</script>
+<script>if (location.pathname === '/') {
+        if (location.hostname === 'idiks.github.io') {
+            location.href = '/en/'
+        }
+    }</script></head>       <body data-lang="cn" ><div id="page-content">
+<header role="navigation" class="fixed-top">
+    <div class="container">
+        <a class="nav-brand" href="/zh"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        <div class="nav-wrapper">
+            <div class="navigation">
+                <ul>
+                    <li><a href="/university" target="_blank" class="nav-blinking"
+                            onclick="trackViews('navbar-university', 'pingcap-university_view')">iDIKS University</a></li>
+                    <li class="docs-type-selector " id="docsTypeSelector">
+                        
+                        <a class="header-doc-nav" href="/docs-cn" target="_blank">文档</a>
+                    </li>
+                    <li ><a href="/cases-cn">案例</a></li>
+                    <li ><a href="/community-cn">社区</a></li>
+                    <li class="sel" ><a href="/blog-cn">博客</a></li>
+                    <li ><a href="/about-cn">关于</a></li>
+                    <li><a href="/qa" target="_blank"
+                            onclick="trackViews('navbar-asktug', 'asktug_view')">问答</a></li>
+                    <li ><a href="/download-cn">下载试用</a></li>
+                    <li><a class="link-download" href="mailto:info@idiks.com" target="_blank"
+                            onclick="trackViews('navbar-contact-us', 'mail_to_info_view')">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="global-search">
+                
+                
+                
+                <div class="search-wrapper">
+    <span class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fff" viewBox="0 0 67.125 67.125"><path d="M23.902 0C11.01 0 .523 10.488.523 23.38c0 12.891 10.487 23.379 23.379 23.379a23.258 23.258 0 0 0 14.471-5.037l24.816 24.817c.391.391.902.586 1.414.586s1.023-.195 1.414-.586a2 2 0 0 0 0-2.828L41.293 38.985c3.721-4.142 5.989-9.613 5.989-15.605C47.282 10.488 36.794 0 23.902 0zM4.523 23.38C4.523 12.694 13.216 4 23.902 4c10.687 0 19.38 8.694 19.38 19.38 0 5.396-2.221 10.279-5.791 13.795a1.959 1.959 0 0 0-.488.349 2.003 2.003 0 0 0-.271.343C33.31 40.9 28.825 42.76 23.903 42.76c-10.686-.001-19.38-8.695-19.38-19.38z"/><path d="M24.075 8.591c-8.25 0-14.962 6.712-14.962 14.962a2 2 0 0 0 4 0c0-6.044 4.918-10.962 10.962-10.962a2 2 0 0 0 0-4z"/></svg></span>
+    <input data-lang="cn" data-type="" type="search" id="search-input" name="q"
+        placeholder="搜索 TiDB 文档">
+</div>
+
+<script>
+    const inputNode = document.getElementById("search-input")
+
+    inputNode.addEventListener('keyup', ({key}) => {
+        if (key === "Enter") {
+            if ($('#search-input').data('lang') == 'cn') {
+                lang = 'zh'
+            }
+
+            const query = $('#search-input').val()
+            if (query) {
+                url = "https://idiks.com/docs" + (lang == 'zh' ? 'zh/' : '') + "search/?lang=" + lang + "&type=tidb&version=v4.0&q=" + query
+                window.location.href = url
+            }
+        }
+    })
+</script>
+
+            </div>
+        </div>
+        <div class="nav-btn nav-slider">
+            <i class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 459 459"><path d="M0 382.5h459v-51H0v51zM0 255h459v-51H0v51zM0 76.5v51h459v-51H0z" fill="#FFF"/></svg></i>
+        </div>
+    </div>
+</header>
+
+
+
+<nav class="mobile-sidebar">
+    <div class="nav-header">
+        <div class="logo-wrap">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        </div>
+    </div>
+    <ul class="ul-base">
+        
+
+        <li ><a href="https://docs.pingcap.com/zh/tidb/v4.0/">文档</a></li>
+        <li ><a href="/cases-cn">案例</a></li>
+        <li ><a href="/community-cn">社区</a></li>
+        <li class="sel"><a href="/blog-cn">博客</a></li>
+        <li ><a href="/about-cn">关于</a></li>
+        <li><a href="https://asktug.com" target="_blank"
+            onclick="trackViews('navbar-asktug', 'asktug_view')">问答</a></li>
+        <li ><a href="/download-cn">下载试用</a></li>
+        <li><a class="link-download" href="mailto:info@pingcap.com" target="_blank"
+            onclick="trackViews('navbar-contact-us', 'mail_to_info_view')">联系我们</a></li>
+        <li><a href="https://university.pingcap.com/"
+            onclick="trackViews('navbar-university', 'pingcap-university_view')" target="_blank"
+            class="nav-blinking">PingCAP University</a></li>
+    </ul>
+    <div class="nav-footer">
+        <div class="contact-list-wrap">
+        <div class="flex-list">
+            <h4 class="list-title"><strong>Contact</strong></h4>
+            <ul class="social social-cn ul-base">
+            <li><a href="https://twitter.com/PingCAP" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="18"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/pingcap/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg></a></li>
+            <li><a href="https://www.reddit.com/r/TiDB/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg></a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/tidb-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="18"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg></a></li>
+            <li><a href="https://stackoverflow.com/questions/tagged/tidb" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg></a></li>
+            <li id="wechat-mobile"><a class="wechat" href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 31.403 31.404"><path d="M31.403 21.306c0-4.597-4.388-8.32-9.8-8.32-5.414 0-9.802 3.725-9.802 8.32 0 4.597 4.388 8.322 9.802 8.322 1.701 0 3.302-.369 4.697-1.019l3.863 1.671-.447-4.309c1.066-1.329 1.687-2.937 1.687-4.665zm-13.102-2.254a1.395 1.395 0 1 1 0-2.79 1.395 1.395 0 0 1 0 2.79zm6.604 0a1.395 1.395 0 1 1 .003-2.79 1.395 1.395 0 0 1-.003 2.79z"/><path d="M21.604 11.885c1.515 0 2.957.27 4.271.755.009-.175.03-.345.03-.521 0-6.074-5.801-10.996-12.953-10.996C5.799 1.123 0 6.044 0 12.119c0 2.284.822 4.408 2.229 6.167l-.591 5.694 5.104-2.213c1.264.59 2.661.986 4.136 1.189a8.143 8.143 0 0 1-.179-1.65c.001-5.195 4.892-9.421 10.905-9.421zm-4.287-6.428a1.84 1.84 0 1 1-1.841 1.84c0-1.016.825-1.84 1.841-1.84zM8.586 9.139a1.84 1.84 0 0 1 0-3.682 1.84 1.84 0 1 1 0 3.682z"/></svg></a><div class="qr_code_outer f-hide f-tc">
+    <div class="qr_code">
+        <i id="close_qrcode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224.512 224.512"><path fill="#010002" d="M224.507 6.997L217.521 0 112.256 105.258 6.998 0 .005 6.997l105.258 105.257L.005 217.512l6.993 7L112.256 119.24l105.265 105.272 6.986-7-105.258-105.258z"/></svg></i>
+        <img id="js_qr_code_img" class="qr_code_img" src="/images/wechat-qrcode.jpg" alt="Wechat qrCode" />
+        <p>微信扫一扫<br> 微信ID：pingcap2015</p>
+    </div>
+</div>
+</li>
+            </ul>
+        </div>
+        <div class="subscribe" id="subscribe-mobile"></div>
+        </div>
+        <div class="container">
+        <a href="/blog" class="btn-lang" id="lang">English</a>
+        </div>
+    </div>
+</nav>
+
+<div class="blog">
+        <div class="container">
+<div class="sidebar nav-tags" data-type="single"><div class="title">热门标签<a class="rss" href="/blog-cn/index.xml" title="RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 402.041 402.04"><g fill="#3A59F0"><path d="M54.816 292.382c-15.229 0-28.169 5.331-38.831 15.988C5.33 319.026 0 331.969 0 347.197c0 15.232 5.325 28.172 15.985 38.828 10.662 10.657 23.606 15.988 38.831 15.988 15.227 0 28.168-5.331 38.828-15.988 10.656-10.656 15.986-23.596 15.986-38.828 0-15.229-5.33-28.171-15.986-38.827-10.657-10.657-23.598-15.988-38.828-15.988zM181.01 221.002c-21.51-21.698-46.158-38.97-73.948-51.816-27.79-12.85-56.914-20.511-87.366-22.985h-1.425c-4.949 0-9.042 1.619-12.275 4.854C1.997 154.477 0 158.953 0 164.472v38.543c0 4.757 1.569 8.85 4.708 12.279 3.14 3.429 7.089 5.332 11.848 5.708 43.586 4.189 80.845 21.752 111.773 52.678 30.93 30.926 48.49 68.187 52.677 111.771.382 4.764 2.284 8.712 5.712 11.847 3.427 3.148 7.517 4.72 12.275 4.72h38.545c5.517 0 9.989-1.995 13.415-5.996 3.621-3.812 5.236-8.381 4.863-13.709-2.478-30.447-10.14-59.573-22.987-87.361-12.846-27.792-30.121-52.438-51.819-73.95z"/><path d="M367.728 239.701c-20.365-45.585-48.345-86.078-83.936-121.482-35.405-35.594-75.896-63.572-121.485-83.939C116.723 13.917 68.996 2.494 19.126.02h-.855c-4.949 0-9.136 1.713-12.563 5.14C1.903 8.583 0 12.964 0 18.294v40.825c0 4.76 1.667 8.897 4.996 12.419 3.33 3.523 7.373 5.376 12.132 5.57 40.924 2.478 79.799 12.188 116.63 29.127 36.83 16.94 68.806 38.972 95.93 66.09 27.118 27.123 49.149 59.101 66.089 95.931 16.94 36.836 26.557 75.705 28.839 116.627.195 4.764 2.046 8.809 5.564 12.139 3.524 3.329 7.762 4.999 12.71 4.999h40.823c5.331 0 9.701-1.902 13.134-5.715 3.809-3.806 5.517-8.274 5.144-13.415-2.471-49.874-13.898-97.6-34.263-143.19z"/></g></svg></a></div><a href="#" class="tag all">ALL (77)</a>
+    <div class="tag-list"><a href="#Chaos-Mesh" class="tag sel" data-tag="Chaos-Mesh">Chaos Mesh&nbsp;(10)
+                </a><a href="#Go" class="tag " data-tag="Go">Go&nbsp;(2)
+                </a><a href="#HTAP" class="tag " data-tag="HTAP">HTAP&nbsp;(2)
+                </a><a href="#Hackathon" class="tag " data-tag="Hackathon">Hackathon&nbsp;(2)
+                </a><a href="#Linux" class="tag " data-tag="Linux">Linux&nbsp;(4)
+                </a><a href="#Raft" class="tag " data-tag="Raft">Raft&nbsp;(4)
+                </a><a href="#Rust" class="tag " data-tag="Rust">Rust&nbsp;(5)
+                </a><a href="#SQL" class="tag " data-tag="SQL">SQL&nbsp;(2)
+                </a><a href="#Spanner" class="tag " data-tag="Spanner">Spanner&nbsp;(2)
+                </a><a href="#TiDB" class="tag " data-tag="TiDB">TiDB&nbsp;(27)
+                </a><a href="#TiDB-Hackathon-2020" class="tag " data-tag="TiDB-Hackathon-2020">TiDB Hackathon 2020&nbsp;(4)
+                </a><a href="#TiKV" class="tag " data-tag="TiKV">TiKV&nbsp;(9)
+                </a><a href="#gRPC" class="tag " data-tag="gRPC">gRPC&nbsp;(2)
+                </a><a href="#%e4%ba%8b%e5%8a%a1" class="tag " data-tag="事务">事务&nbsp;(3)
+                </a><a href="#%e5%88%86%e5%b8%83%e5%bc%8f%e7%b3%bb%e7%bb%9f%e5%89%8d%e6%b2%bf%e6%8a%80%e6%9c%af" class="tag " data-tag="分布式系统前沿技术">分布式系统前沿技术&nbsp;(4)
+                </a><a href="#%e5%88%86%e5%b8%83%e5%bc%8f%e7%b3%bb%e7%bb%9f%e6%b5%8b%e8%af%95" class="tag " data-tag="分布式系统测试">分布式系统测试&nbsp;(3)
+                </a><a href="#%e5%b7%a5%e5%85%b7" class="tag " data-tag="工具">工具&nbsp;(2)
+                </a><a href="#%e6%80%a7%e8%83%bd" class="tag " data-tag="性能">性能&nbsp;(2)
+                </a><a href="#%e6%9e%b6%e6%9e%84" class="tag " data-tag="架构">架构&nbsp;(3)
+                </a><a href="#%e7%a4%be%e5%8c%ba" class="tag " data-tag="社区">社区&nbsp;(3)
+                </a>
+    </div>
+</div>
+<div class="archive">
+                <div class="content markdown-body">
+                    <h1 class="title">「我的工作是制造混沌」，我与 Chaos Mesh® 的故事</h1>
+                    <ul class="blog-post-meta">
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-date.svg" alt="Date icon">Thu, Jan 14, 2021</li>
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-writer.svg" alt="Pen icon">殷成文</li>
+                    </ul>
+                    <div class="blog-text"><blockquote>
+<p>作者：殷成文，Maintainer of Chaos Mesh</p>
+</blockquote>
+<p>这段时间北京真是冷得可怕，朋友圈晒出各种零下 20 度的照片，在这样一个寒冷的时候，总是想给自己找点温暖的事情去做。这几天闲时就回顾起自己从实习到现在这段时间的经历，前不久是 Chaos Mesh 开源一周年（2020.12.31），于是就将自己与 Chaos Mesh 一起成长的点滴整理出来和大家分享。 一方面为了庆祝，另一方面也希望能够在这个寒冷的冬天给大家带来点温暖。</p>
+<h2 id="-pingcap-">与 PingCAP 结缘</h2>
+<p>开始 Chaos Mesh 故事之前，先说点自己和 PingCAP 的故事。</p>
+<p>第一次真正接触 PingCAP 是在 2016 年的时候，我参加了一场 PingCAP CTO 黄东旭大佬的技术分享，正好当时在参与一个 Go 语言项目，对 Go 语言生态更加关注，对 Go 圈里的明星项目 TiDB 更是佩服。本以为这会是一个很有深度的分享，会涉及数据库、CAP 定理等等。没想到最后东旭和我们聊了一个小时的 Unix  哲学，说好的数据库？说好的 CAP 定理呢？ 相信当时好多小伙伴和我的心情是一样的——懵逼。但 PingCAP 这个公司却更加吸引我了。</p>
+<p>再次接触 PingCAP 是陪同学一起去北京面试的时候，偶然在 Go 社区看到 PingCAP 的一条实习生招聘信息，一下就被吸引了，在同学的撺掇下就尝试投个简历试一下。 当天晚上八点左右，我就接到秋哥 (PingCAP 创始人崔秋) 的电话，说他们正在 TB，在一家烧烤店撸串看足球，问我要不过去聊聊。当时把我惊到了，哪有大晚上约人去烧烤店面试的！到了烧烤店，他们还真是在看足球，我记得当时还是中国队的比赛，这场神奇的面试就和这场球赛同步进行着。最后球赛结束，中国队输了，但我收到了个 offer，感谢中国队！给了我这次机会！</p>
+<h2 id="chaos-mesh-">Chaos Mesh 前世</h2>
+<p>上面聊了一下我与 PingCAP 结缘的故事，下面就是我与 Chaos Mesh 的故事。</p>
+<p>正式来 PingCAP 实习前，我在某个周六的上午去参加了一期 PingCAP 组织的 Meetup。小小的会议室里面挤满了人，大多数人都是站着的。我记得其中一个主题是由 PingCAP 另一位创始人兼 CEO 刘奇带来的《深度探索分布式系统测试》，奇叔的分享给我留下了深刻的印象。我第一次知道测试还可以这样搞，各种故障注入手段层出不穷，目的就是为了去虐我们的系统。现在想想，当初奇叔分享的不正是混沌工程的思想，同样没有想到的是这个主题会成为我后面一段时间内持续耕耘的事情。</p>
+<p><img src="media/my-story-with-chaos-mesh/1.png" alt="1"></p>
+<p>正式开始实习后，我的第一个任务是对 TiDB 进行性能压测。如果只是想简单地跑出一组数字，这就是一个很简单的任务。但是如果需要去找目前集群的性能瓶颈，并找到集群拓扑的优化方案，这个任务就变得不那么简单了。也正是因为这个任务，让我开始学习 TiDB 的架构设计，以及传说中的玄学调参。这里大家可能觉得和我说的和混沌工程无关，其实不然，在混沌工程中，状态检查以及压力模拟是两个必不可少的步骤。同样从这个任务开始，后续我的很多事情都跟测试或者捣蛋有关。</p>
+<h3 id="cto-">CTO 捣蛋事件</h3>
+<p>大多数情况下，我们都希望系统环境越稳定越好，但是往往情况并不是如此。为了更好地验证系统稳定性以及快速恢复能力，我们的 CTO 东旭大佬，在我们的 IDC 业务测试集群搞起了突然袭击。当时是一个非常重要的用户上线前夕，我们内部有一整套业务测试集群，为了测试系统的可靠性和故障自恢复能力，东旭大佬深夜连上 TiDB 服务器，直接暴力删除物理文件，重启机器各种骚操作，记得当时还真是把许多研发大佬惊出一身冷汗，还好，最后我们的系统抗住了 CTO 的捣蛋。</p>
+<p>程序员都是懒惰的，这个事件之后我们就开始谋划着如何去偷懒，其一是手动实验很难持续，其二是为了更加全面地测试 TiDB ，做一个数据库其实不难，但是如何证明一个分布式系统的正确性和健壮性确是一件很有挑战的事情，而且同时要将这个事情做得高效，自动化就是一个更大的挑战，为了保证每次发出去的版本都是通过各种摧残的版本。我们开始了自动化混沌工程之路，Schrödinger 项目开始登上舞台。</p>
+<h3 id="-schrdinger-">开始 Schrödinger 之旅</h3>
+<p><img src="media/my-story-with-chaos-mesh/2.png" alt="2"></p>
+<p>从项目名字就能看出来我们的设计思想：把待测试集群看作盒子中的猫，然后不断给这个盒子增加各种异常，最后检验这只猫的状态。</p>
+<p>用技术的语言来说，Schrödinger 的核心思想很简单，使用 K8s 作为底座，将不同的 TiDB 测试集群以及测试用例跑在一个个受控的容器集群中（盒子），然后对底层的容器平台进行错误注入。</p>
+<p>开始 Schrödinger 项目还是 2017 年九月份的时候，遇到的第一个挑战就是如何去管理多 TiDB 集群，那时候我们有两个方案：一是使用已经比较成熟的 tidb-ansible 为底座自己去搞个多集群的管理；二是选择刚刚开始搞没多久的 tidb-operator。在和老大简单沟通后，Schrödinger 就成为了 tidb-operator 的第一个用户，作出这个选择的主要原因是我们坚定不移的云原生方向。</p>
+<p><img src="media/my-story-with-chaos-mesh/3.png" alt="3"></p>
+<h3 id="-schrdinger--1">后 Schrödinger 时期</h3>
+<p>经过一年多的时间，Schrödinger 项目逐渐稳定。 同时随着 TiDB 生态的不断成熟，各类周边工具 <a href="https://github.com/pingcap/ticdc">TiCDC</a>、<a href="https://github.com/pingcap/dm">TiDB Data Migration</a>、<a href="https://github.com/pingcap/tidb-lightning">TiDB Lightning</a> 等的出现，测试需求也越来越多。逐渐地，我们发现把这些工具接入 Schrödinger 的困难越来越大。应该是在 19 年初，在和部门老大一起吃饭的时候，聊起这个事情，当时他提了个想法，建议我们可以把故障注入能力单独抽象出来，故障定义成 <a href="https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/">CRD</a> 对象，并使用 <a href="https://kubernetes.io/docs/concepts/architecture/controller/">controller</a> 的方式去监控管理故障对象。听到这个想法后，我顿时感觉一扇新的窗户被打开了。</p>
+<h2 id="chaos-mesh--1">Chaos Mesh 这一年</h2>
+<p>2019 年九月份提交了 Chaos Mesh  迟到半年的第一个 Commit。可能和很多项目一样，Chaos Mesh 第一个 Commit 只有一行，初始化 README 文件。</p>
+<p><img src="media/my-story-with-chaos-mesh/4.png" alt="4"></p>
+<p>经历了一个月的开发，Chaos Mesh 终于具有了最基本的功能，这个时候也迎来了 Chaos Mesh 的第二位开发者<a href="https://github.com/YangKeao">可奥同学</a>，当时可奥同学还是实习生，可是战斗力十足。在后续的一个月里，可奥同学推动使用 <a href="https://github.com/kubernetes-sigs/kubebuilder">Kubebuilder</a> 替换之前原生的 controller, 进一步优化了 Chaos Mesh 中多 controller 的逻辑，进一步拥抱生态。看到自己写的代码逐渐被优化掉，刚开始还真是有点不舍。</p>
+<h3 id="heading">开源之路</h3>
+<p>经过三个多月的密集开发，期间将很多混沌测试成功迁移到 Chaos Mesh 后，我们决定在年底把这个工具开源出去。希望这个工具能够帮助到有需求的小伙伴，也希望能够借助社区的力量更好地推动 Chaos Mesh 发展。</p>
+<p>开源前的几天，是我们几个人(我，强哥，可奥)最忙的时候：测试、文档、视频、文章齐头并进。有些小伙伴可能觉得开源不就是把源码公开就可以了吗？但是从我们以往的经验来看，一个好的开源工具，只开放源码远远不够，想要用户放心快速地使用，必要的测试，入门教程，原理介绍这些都必不可少，完善的文档更是尤为重要。</p>
+<p>实现一个功能往往很简单，但是想要用户放心快速地使用，则需要花费更多的精力。有时候，我们经常看到某某用户在使用某些开源工具时，会经历踩坑到弃坑，分析其中原因，往往归结于文档的缺失，如果这样的用户多了，那这个工具将最终被社区所抛弃。为了能够分享给大家一个开源即可用的工具，我们在开源前这几天一直努力查漏补缺，不断测试，完善文档。努力总是会有收获，终于，我们在 2019 的最后一天顺利开源了 Chaos Mesh。</p>
+<p>Chaos Mesh 开源消息发布的当天，直接登上了 Hacker News 首页，后面连续几天还登顶 Github Go 语言 Treding 项目榜首。Chaos Mesh 的火爆出乎了我的意料，但是开心的同时也多了些压力。</p>
+<p><img src="media/my-story-with-chaos-mesh/5.png" alt="5"></p>
+<h3 id="-cncf">加入 CNCF</h3>
+<p>云原生从 Chaos Mesh 创立之初就写在项目的基因里，成为云原生混沌事实标准一直是我们坚定不移的目标。为了更好地实现我们的目标，让更多的人，乃至全世界的人都可以享受到 Chaos Mesh 的红利，根据之前 TiKV 项目托管到 CNCF 后快速发展的经验， Chaos Mesh 开源后，我们就开始探索把 Chaos Mesh 托管到 CNCF。</p>
+<p>经过调研，CNCF 生态中刚好缺少一个推动混沌工程标准的项目，这更加坚定了我们把 Chaos Mesh 托管到 CNCF 的决心。这里不得不说的是 PingCAP 的理想主义和坚定的全球化战略，让我们在做任何项目的时候，都是毫无保留，考虑的不再是简单的某几个人，而是整个生态，整个世界。这进一步坚定了我们把 Chaos Mesh 去和全世界分享的决心， CNCF 正是一个最佳的选择与平台。在短暂准备后，我们就开始了这段漫长的托管申请之路。</p>
+<p><img src="media/my-story-with-chaos-mesh/6.png" alt="6"></p>
+<p>在申请期间，也发生了很多故事，惊险不断。期间，CNCF 修改了选择 Sandbox 项目的规则，直接导致我们的申请被延期，甚至还出现了一家和 Chaos Mesh 同名的公司，这些意外都一度让我们紧张。同时，为了更好地适应社区发展，我们构建了更加完善的自动测试流程，建立了 Chaos Mesh 的官方网站，增加了开发者指导等等，为 Chaos Mesh 社区之后的发展打下来坚实的基础。最终在 2020 年七月的 CNCF TOC 会议上，Chaos Mesh 成为 Sandbox 项目的提案通过了。</p>
+<p><img src="media/my-story-with-chaos-mesh/7.png" alt="7"></p>
+<p><a href="https://chaos-mesh.org/blog/chaos-mesh-join-cncf-sandbox-project">加入 CNCF</a> 是 Chaos Mesh 在过去一年里的重要里程碑，这对我个人也产生了深远的影响：第一次进行英文分享，第一次和大家一起组织社区会议，同时我对 Chaos Mesh 项目的目标也有了全新的认识和想法。</p>
+<h3 id="heading-1">角色转变</h3>
+<p>随着 Chaos Mesh 项目的成长，小小的团队也渐渐扩大起来，不断有新的力量加入我们：有了专业的前端工程师，有了更多有经验的小伙伴，同时我们的社区开始茁壮成长。还记得最初我们开发新功能的时候，就是觉得这个需求有道理，那就开始搞。现在发现，当初的模式虽然效率高，但是缺乏思考，往往会实现一些没有实际用途的功能。社区的发展推动我们必须转换自己的角色，因为 Chaos Mesh 项目不再是几个人的项目，而是一个社区化的项目，我们也只是社区中的普通一员。同时， Chaos Mesh 也逐渐建立起了用户群体，我们每一个 PR 都要对社区和用户负责。为此我们创建了 <a href="https://github.com/chaos-mesh/rfcs">RFCs</a> 仓库，用来收集和讨论 Chaos Mesh 的需求和设计。如此一来，既保证了我们的设计都经过社区的讨论和认可，也在一定程度上能够吸引更多小伙伴一起帮助 Chaos Mesh 项目成长。</p>
+<p><img src="media/my-story-with-chaos-mesh/8.png" alt="8"></p>
+<p>我们始终相信一个优秀的开源项目，一个人或者几个人的力量是远远不够的，为了吸引更多的小伙伴加入到 Chaos Mesh 项目中，让更多人能够参与进来，Chaos Mesh 为之做了更多工作和努力。</p>
+<p>除了 RFCs 仓库以外，我们对 Issue 进行了更多的分类，把遇到的问题和发版计划都通过 Issues 公开，对于刚接触 Choas Mesh 的小伙伴，带有 “<a href="https://github.com/chaos-mesh/chaos-mesh/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22">good first issue</a>” 标签的 Issues 是一个好的开始，如果有想要在我们后续的版本中加入某些功能，可以在我们的 <a href="https://github.com/chaos-mesh/chaos-mesh/issues/1395">Release Issues</a> 留下评论，一起讨论。除此之外，我们提供了完善的<a href="https://chaos-mesh.org/docs/development_guides/development_overview">开发者文档</a>，帮助开发者快速开始 Chaos Mesh 的开发之旅。当然如果想好和我们进行进一步交流沟通，可以加入到 <a href="https://slack.cncf.io/">CNCF Slack</a> 并搜索 #project-chaos-mesh channel，参与到我们的讨论中来。另外，我们在每个月的最后一个星期四晚上定期举行<a href="https://docs.google.com/document/d/1H8IfmhIJiJ1ltg-XLjqR_P_RaMHUGrl1CzvHnKM_9Sc/edit?usp=sharing">社区会议</a>，一起讨论 Chaos  Mesh 的问题以及后续计划，并且会定期邀请社区的小伙伴一起分享自己的 Chaos Mesh 经历。期待更多小伙伴加入我们，一起打造更加开放、友好的 Chaos Mesh 社区！</p>
+<p>这里我就不多分享 Chaos Mesh 项目本身的成长了，如果有兴趣，可以期待后面我们对 Chaos Mesh 的一周年总结。</p>
+<h2 id="heading-2">最后</h2>
+<p>从 2016 年底到现在，意外地加入 PingCAP，意外地与混沌工程结缘。在这四年里自己见证了混沌工程在 PingCAP 的探索和应用，也伴随着 Chaos Mesh 从 idea 阶段到落地实现。其实上面的经历算不上轰轰烈烈，只是在这个一周年的特殊时刻，自己的一点小矫情罢了。
+时间在继续，我和 Chaos Mesh 的故事也才刚刚开始。在接下来的日子里，挑战不止，精彩无限存在！我将与社区一起努力，将 Chaos Mesh 打造成为真正的混沌工程标准！Chaos Mesh，未来可期！</p>
+<p>最后附上 Chaos Mesh 社区调查链接，填写有惊喜哦：<a href="https://bit.ly/2LzES5o">https://bit.ly/2LzES5o</a></p>
+</div>
+                </div><div class="ssba-wrap">
+    <div class="ssba">
+        <a class="ssba_mail_share" href="mailto:info@pingcap.com" target="_blank"
+        onclick="trackViews('blog-contact-us', 'mail_to_info_view')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="18" height="18"><path d="M7 9L5.268 7.484.316 11.729c.18.167.423.271.691.271h11.986c.267 0 .509-.104.688-.271L8.732 7.484 7 9z"/><path d="M13.684 2.271A1.007 1.007 0 0 0 12.993 2H1.007c-.267 0-.509.104-.689.273L7 8l6.684-5.729zM0 2.878v8.308l4.833-4.107zM9.167 7.079L14 11.186V2.875z"/></svg>
+        </a>
+        <a id="wechat_share_btn" data-site="wechat" data-url="https://idiks.com/blog-cn/my-story-with-chaos-mesh/" class="ssba_wechat_share" href="javascript:void(0)" onclick="toggleBlogQRCode()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 31.403 31.404"><path d="M31.403 21.306c0-4.597-4.388-8.32-9.8-8.32-5.414 0-9.802 3.725-9.802 8.32 0 4.597 4.388 8.322 9.802 8.322 1.701 0 3.302-.369 4.697-1.019l3.863 1.671-.447-4.309c1.066-1.329 1.687-2.937 1.687-4.665zm-13.102-2.254a1.395 1.395 0 1 1 0-2.79 1.395 1.395 0 0 1 0 2.79zm6.604 0a1.395 1.395 0 1 1 .003-2.79 1.395 1.395 0 0 1-.003 2.79z"/><path d="M21.604 11.885c1.515 0 2.957.27 4.271.755.009-.175.03-.345.03-.521 0-6.074-5.801-10.996-12.953-10.996C5.799 1.123 0 6.044 0 12.119c0 2.284.822 4.408 2.229 6.167l-.591 5.694 5.104-2.213c1.264.59 2.661.986 4.136 1.189a8.143 8.143 0 0 1-.179-1.65c.001-5.195 4.892-9.421 10.905-9.421zm-4.287-6.428a1.84 1.84 0 1 1-1.841 1.84c0-1.016.825-1.84 1.841-1.84zM8.586 9.139a1.84 1.84 0 0 1 0-3.682 1.84 1.84 0 1 1 0 3.682z"/></svg>
+        </a>
+    </div>
+</div>
+
+<style type="text/css">
+    .fixed-qrcode {
+        position: fixed;
+        top: 120px;
+        right: 105px;
+        padding: 10px 15px;
+        width: 200px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.9);
+        text-align: center;
+    }
+
+    .fixed-qrcode p {
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.6;
+        margin: 8px 0;
+        color: #333;
+    }
+
+    .fixed-qrcode #close_share_qrcode {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        padding: 10px;
+    }
+
+    .fixed-qrcode #close_share_qrcode svg {
+        display: block;
+    }
+
+    .f-hide #share_qrcode {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .fixed-qrcode #share_qrcode {
+        visibility: visible;
+        opacity: 1;
+        height: 128px;
+        transition: visibility 0s linear 0s, opacity .3s 0s;
+        -webkit-transition: visibility 0s linear 0s, opacity .3s 0s;
+    }
+
+    #share_qrcode img {
+        margin: 0 auto;
+    }
+</style>
+<div id="share_qrcode_outer" class="f-hide">
+    <i id="close_share_qrcode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224.512 224.512"><path fill="#010002" d="M224.507 6.997L217.521 0 112.256 105.258 6.998 0 .005 6.997l105.258 105.257L.005 217.512l6.993 7L112.256 119.24l105.265 105.272 6.986-7-105.258-105.258z"/></svg></i>
+    <p>分享到微信</p>
+    <div id="share_qrcode"></div>
+    <p>打开微信，使用 “扫一扫” 即可将网页分享至朋友圈。</p>
+</div>
+
+<script type="text/javascript" src="/js/vendor/qrcode.min.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        var close_share_qrcode_btn = document.getElementById('close_share_qrcode')
+        var wechat_share_btn = document.getElementById('wechat_share_btn')
+        var blog_url = wechat_share_btn.getAttribute('data-url')
+
+        window.pingcap_blog_qrcode = new QRCode(
+            document.getElementById('share_qrcode'),
+            {
+            text: blog_url,
+            width: 128,
+            height: 128,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+            }
+        )
+
+        close_share_qrcode_btn.addEventListener('click', function(event) {
+            document
+            .getElementById('share_qrcode_outer')
+            .setAttribute('class', 'f-hide')
+        })
+    }
+
+    function toggleBlogQRCode() {
+        var qrcode_wrapper = document.getElementById('share_qrcode_outer')
+
+        if (qrcode_wrapper.getAttribute('class') == 'f-hide') {
+            qrcode_wrapper.setAttribute('class', 'fixed-qrcode')
+        } else {
+            qrcode_wrapper.setAttribute('class', 'f-hide')
+        }
+    }
+</script>
+</div>
+        </div>
+    </div>
+<footer>
+    <div class="container">
+        <div class="flex-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>产品</strong></h4>
+                <ul>
+                <li><a href="/docs-cn/v3.0/" onclick="trackViews('footer-product-tidb', 'docs-cn_view')">TiDB</a></li>
+                <li><a href="/docs-cn/v3.0/reference/iSkillUp/">iSkillUp</a></li>
+                <li><a href="/docs-cn/v3.0/roadmap/">iSkillUp 路线图</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>文档</strong></h4>
+                <ul>
+                <li><a href="https://docs.idiks.com/zh/iSkillUp/v4.0/quick-start-with-SkillUp">快速入门</a></li>
+                <li><a href="/blog-cn/iSkillUp-best-practice/">最佳实践</a></li>
+                <li><a href="/docs-cn/stable/faq/iSkillUp/">常见问题解答</a></li>
+                <li><a href="/docs-cn/stable/reference/tools/user-guide/">iSkillUp 周边工具</a></li>
+                <li><a href="https://docs.idiks.com/zh/iSkillUp/dev/release-notes">版本发布说明</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>资源</strong></h4>
+                <ul>
+                <li><a href="/blog-cn/">博客</a></li>
+                <li><a href="https://github.com/idiks" target="_blank">GitHub</a></li>
+                <li><a href="https://idiks.com/tutorials" target="_blank">iSkillUp in Action</a></li>
+                <li><a href="https://learning.idiks.com/"
+                    onclick="trackViews('footer-source-university', 'idiks-university_view')" target="_blank">PingCAP
+                    University</a></li>
+                <li><a href="/solutions/intel/"
+                    onclick="trackViews('footer-resource-solutions', 'solutions_view')" >联合解决方案</a></li>
+                <li><a href="https://idiks.com/support"
+                    onclick="trackViews('footer-resource-asktug', 'asktug_view')" target="_blank">Ask SUG</a></li>
+                
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>公司</strong></h4>
+                <ul>
+                <li><a href="/about-cn/">关于我们</a></li>
+                <li><a href="https://idiks.com/jobs" target="_blank" onclick="trackViews('footer-recruit-join', 'recruit-join_view')">招贤纳士</a>
+                </li>
+                <li><a href="/about-cn/news/">新闻报道</a></li>
+                <li><a href="/zh/privacy-policy/">隐私申明</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="contact-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>联系我们</strong></h4>
+                <ul>
+                <li><a href="https://twitter.com/idiks" class="twitter"  target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="19"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg> Twitter</a></li>
+                <li><a href="https://www.linkedin.com/company/idiks/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg> LinkedIn</a></li>
+                <li><a href="https://www.reddit.com/r/idiks/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg> Reddit</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/idiks-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="20"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg> Google Group</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/idiks" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg> Stack Overflow</a></li>
+                <li id="wechat"><a class="wechat" href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 31.403 31.404"><path d="M31.403 21.306c0-4.597-4.388-8.32-9.8-8.32-5.414 0-9.802 3.725-9.802 8.32 0 4.597 4.388 8.322 9.802 8.322 1.701 0 3.302-.369 4.697-1.019l3.863 1.671-.447-4.309c1.066-1.329 1.687-2.937 1.687-4.665zm-13.102-2.254a1.395 1.395 0 1 1 0-2.79 1.395 1.395 0 0 1 0 2.79zm6.604 0a1.395 1.395 0 1 1 .003-2.79 1.395 1.395 0 0 1-.003 2.79z"/><path d="M21.604 11.885c1.515 0 2.957.27 4.271.755.009-.175.03-.345.03-.521 0-6.074-5.801-10.996-12.953-10.996C5.799 1.123 0 6.044 0 12.119c0 2.284.822 4.408 2.229 6.167l-.591 5.694 5.104-2.213c1.264.59 2.661.986 4.136 1.189a8.143 8.143 0 0 1-.179-1.65c.001-5.195 4.892-9.421 10.905-9.421zm-4.287-6.428a1.84 1.84 0 1 1-1.841 1.84c0-1.016.825-1.84 1.841-1.84zM8.586 9.139a1.84 1.84 0 0 1 0-3.682 1.84 1.84 0 1 1 0 3.682z"/></svg> 微信公众号</a> <div class="qr_code_outer f-hide f-tc">
+    <div class="qr_code">
+        <i id="close_qrcode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224.512 224.512"><path fill="#010002" d="M224.507 6.997L217.521 0 112.256 105.258 6.998 0 .005 6.997l105.258 105.257L.005 217.512l6.993 7L112.256 119.24l105.265 105.272 6.986-7-105.258-105.258z"/></svg></i>
+        <img id="js_qr_code_img" class="qr_code_img" src="/images/wechat-qrcode.jpg" alt="Wechat qrCode" />
+        <p>微信扫一扫<br> 微信ID：pingcap2015</p>
+    </div>
+</div>
+</li>
+                </ul>
+            </div>
+            <div class="subscribe" id="subscribe-pc"></div>
+        </div>
+    </div>
+    <div class="container copyright-container">
+        <p class="copyright">&copy; 2025 小长科技（上海）有限公司</p>
+        <a href="/blog" class="copyright-btn-lang copyright-btn-en" id="lang">English</a>
+        <a href="https://beian.miit.gov.cn/" target="_blank" class="prepared-num">沪ICP备14049619号-2</a>
+    </div>
+</footer>
+<button class="back-to-top" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 284.929 284.929"><path d="M282.082 195.285L149.028 62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 195.285C.95 197.191 0 199.378 0 201.853c0 2.474.953 4.664 2.856 6.566l14.272 14.271c1.903 1.903 4.093 2.854 6.567 2.854s4.664-.951 6.567-2.854l112.204-112.202 112.208 112.209c1.902 1.903 4.093 2.848 6.563 2.848 2.478 0 4.668-.951 6.57-2.848l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.566.001-2.476-.944-4.666-2.846-6.569z" fill="#FFF"/></svg>
+</button>
+</div><div class="overlay"></div><script src="https://static.idiks.com/js/jquery.min.js"></script><script type="text/javascript" src="/js/vendor/lazyload.min.js"></script>
+    <script type="text/javascript" src="/js/doc.js"></script>
+    <script type="text/javascript" src="/js/anchor.js"></script><script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script><script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script src="https://browser.sentry-cdn.com/5.11.0/bundle.min.js" integrity="sha384-jbFinqIbKkHNg+QL+yxB4VrBC0EAPTuaLGeRT0T+NfEV89YC6u1bKxHLwoo+/xxY" crossorigin="anonymous"></script><script>Sentry.init({ 
+            dsn: 'https://3f28ed393c5545daa74496b3cdb2e9ba@sentry.io/1887163' 
+        });</script><script src="/js/app.js"></script></body></html>

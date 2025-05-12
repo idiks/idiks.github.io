@@ -1,0 +1,553 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<script>
+window.ga =
+    window.ga ||
+    function() {
+        ;(ga.q = ga.q || []).push(arguments)
+    }
+ga.l = +new Date()
+ga('create', 'UA-99991864-4', 'auto')
+ga('send', 'pageview')
+</script>
+<script async src="https://static.idiks.com/js/ga-analytics.js"></script>
+
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/github-markdown.css">
+
+
+<link rel="stylesheet" href="/css/doc.css">
+
+    
+    <title>TiDB on KubeSphere: Run a Cloud-Native Distributed Database on a Hybrid-Cloud Kubernetes Platform |&nbsp;TiDB</title><link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta name="description" content="A site reliability engineer gives a step-by-step tutorial on how to deploy TiDB on KubeSphere, an open-source, distributed GUI operating system with Kubernetes as its kernel.">
+<meta name="robots" content="noodp">
+<meta name="keywords" content="TiDB, MySQL, HTAP, Open Source, Cloud-Native, NewSQL, Aurora Alternative">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TiDB on KubeSphere: Run a Cloud-Native Distributed Database on a Hybrid-Cloud Kubernetes Platform | TiDB">
+<meta property="og:description" content="A site reliability engineer gives a step-by-step tutorial on how to deploy TiDB on KubeSphere, an open-source, distributed GUI operating system with Kubernetes as its kernel.">
+<meta property="og:url" content="https://idiks.com/blog/run-cloud-native-distributed-database-on-hybrid-cloud-kubernetes-platform/">
+<meta property="og:site_name" content="MySQL at Scale. No more manual sharding">
+<meta property="og:image" content="/images/blog/tidb-on-kubesphere-cloud-native-database.jpg">
+<meta property="og:image:secure_url" content="/images/blog/tidb-on-kubesphere-cloud-native-database.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="og:image:width" content="1200">
+<meta name="og:image:height" content="600"><meta name="twitter:description" content="A site reliability engineer gives a step-by-step tutorial on how to deploy TiDB on KubeSphere, an open-source, distributed GUI operating system with Kubernetes as its kernel.">
+<meta name="twitter:title" content="TiDB on KubeSphere: Run a Cloud-Native Distributed Database on a Hybrid-Cloud Kubernetes Platform | TiDB">
+<meta name="twitter:site" content="@pingcap">
+<meta name="twitter:image" content="https://static.idiks.com/images/blog/tidb-on-kubesphere-cloud-native-database.jpg"><meta name="twitter:creator" content="@pingcap">
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http:\/\/schema.org",
+    "@type": "WebSite",
+    "url": "https:\/\/pingcap.com\/",
+    "name": "PingCAP",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https:\/\/pingcap.com\/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+<script type="text/javascript" async src="https://accounts.pingcap.com/static/pingcap_sso/js/track.beta.js"></script>
+    
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/lato/lato-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="https://static.idiks.com/fonts/titilliumweb/titilliumweb-regular-webfont.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+<link rel="preload" href="https://static.idiks.com/js/jquery.min.js" as="script">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://static.idiks.com/style/docsearch.min.css">
+<script type="text/javascript">
+var trackOutboundLink = function(url) {
+  var redirectTriggered = false
+  ga('send', 'event', 'outbound', 'click', url, {
+    hitCallback: function() {
+      redirectTriggered = true
+      document.location = url
+    }
+  })
+  setTimeout(function() {
+    if (!redirectTriggered) {
+      document.location = url
+    }
+  }, 1500)
+}
+
+var trackViews = function(btn_type, event_category) {
+  var event_label = btn_type
+  var eventCategory = event_category
+  ga('send', 'event', {
+    'eventCategory': eventCategory,
+    'eventAction': 'click',
+    'eventLabel': event_label,
+    'transport': 'beacon'
+  });
+}
+</script>
+<script>if (location.pathname === '/') {
+        if (location.hostname === 'idiks.github.io') {
+            location.href = '/en/'
+        }
+    }</script></head>       <body data-lang="en" ><div id="page-content">
+
+<header role="navigation" class="fixed-top">
+    <div class="container">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        <div class="nav-wrapper">
+            <div class="navigation">
+                <ul>
+                <li ><a class="a-en" href="https://idiks.com">Cloud</a></li>
+                <li ><a class="a-en" class="tidb-academy"
+                    href="/tidb-academy">iDIKS Academy</a></li>
+                <li class="docs-type-selector " id="docsTypeSelector">
+                    <a class="header-doc-nav" href="#">Docs</a>
+                    <div class="header-dropdown-menu" id="docsTypeSelectorItem">
+                        <a class="header-dropdown-item" href="/docs/stable/">TiDB</a>
+                        <a class="header-dropdown-item" href="/docs/tidb-in-kubernetes/stable/">TiDB in Kubernetes</a>
+                        <a class="header-dropdown-item" href="/docs/tidb-data-migration/stable/">TiDB Data Migration (DM)</a>
+                    </div>
+                </li>
+                
+                <li ><a class="a-en" href="/success-stories">Success
+                    Stories</a></li>
+                <li class="sel" ><a class="a-en" href="/blog">Blog</a></li>
+                <li ><a class="link-download link-download-en" href="/download">Free Download</a></li>
+                </ul>
+            </div>
+            <div class="global-search">
+                
+                
+                
+                <div class="search-wrapper">
+    <span class="icon-search"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fff" viewBox="0 0 67.125 67.125"><path d="M23.902 0C11.01 0 .523 10.488.523 23.38c0 12.891 10.487 23.379 23.379 23.379a23.258 23.258 0 0 0 14.471-5.037l24.816 24.817c.391.391.902.586 1.414.586s1.023-.195 1.414-.586a2 2 0 0 0 0-2.828L41.293 38.985c3.721-4.142 5.989-9.613 5.989-15.605C47.282 10.488 36.794 0 23.902 0zM4.523 23.38C4.523 12.694 13.216 4 23.902 4c10.687 0 19.38 8.694 19.38 19.38 0 5.396-2.221 10.279-5.791 13.795a1.959 1.959 0 0 0-.488.349 2.003 2.003 0 0 0-.271.343C33.31 40.9 28.825 42.76 23.903 42.76c-10.686-.001-19.38-8.695-19.38-19.38z"/><path d="M24.075 8.591c-8.25 0-14.962 6.712-14.962 14.962a2 2 0 0 0 4 0c0-6.044 4.918-10.962 10.962-10.962a2 2 0 0 0 0-4z"/></svg></span>
+    <input data-lang="en" data-type="" type="search" id="search-input" name="q"
+        placeholder="Search TiDB Docs">
+</div>
+
+<script>
+    const inputNode = document.getElementById("search-input")
+
+    inputNode.addEventListener('keyup', ({key}) => {
+        if (key === "Enter") {
+            if ($('#search-input').data('lang') == 'cn') {
+                lang = 'zh'
+            }
+
+            const query = $('#search-input').val()
+            if (query) {
+                url = "https://idiks.com/docs" + (lang == 'zh' ? 'zh/' : '') + "search/?lang=" + lang + "&type=tidb&version=v4.0&q=" + query
+                window.location.href = url
+            }
+        }
+    })
+</script>
+
+            </div>
+        </div>
+        <div class="nav-btn nav-slider">
+            <i class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 459 459"><path d="M0 382.5h459v-51H0v51zM0 255h459v-51H0v51zM0 76.5v51h459v-51H0z" fill="#FFF"/></svg></i>
+        </div>
+    </div>
+</header>
+
+
+
+<nav class="mobile-sidebar">
+    <div class="nav-header">
+        <div class="logo-wrap">
+        <a class="nav-brand" href="/en"><img src="/images/pingcap-logo.png" alt="PingCAP"></a>
+        </div>
+    </div>
+    <ul class="ul-base">
+        <li ><a href="https://idiks.com/">Cloud</a></li>
+        <li ><a class="tidb-academy" href="/tidb-academy">TiDB Academy</a></li>
+        <li class="docs-type-selector " id="docsTypeSelector">
+            <p class="header-doc-nav">Docs</p>
+            <div class="header-dropdown-menu" id="docsTypeSelectorItem">
+                <a class="header-dropdown-item" href="/docs/stable/">TiDB</a>
+                <a class="header-dropdown-item" href="/docs/tidb-in-kubernetes/stable/">TiDB in Kubernetes</a>
+                <a class="header-dropdown-item" href="/docs/tidb-data-migration/stable/">TiDB Data Migration (DM)</a>
+            </div>
+        </li>
+        <li ><a href="/success-stories">Success Stories</a></li>
+        <li class="sel"><a href="/blog">Blog</a></li>
+        <li><a class="link-download" href="/download">Free Download</a></li>
+    </ul>
+    <div class="nav-footer">
+        <div class="contact-list-wrap">
+        <div class="flex-list">
+            <h4 class="list-title"><strong>Contact</strong></h4>
+            <ul class="social ul-base">
+            <li><a href="https://twitter.com/PingCAP" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="18"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/pingcap/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg></a></li>
+            <li><a href="https://www.reddit.com/r/TiDB/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg></a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/tidb-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="18"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg></a></li>
+            <li><a href="https://stackoverflow.com/questions/tagged/tidb" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg></a></li>
+            </ul>
+        </div>
+        <div class="subscribe">
+            <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"><button class="btn btn-subscribe f-tc" style="margin-left: 0.75rem;">Subscribe to Blog</button></a>
+        </div>
+        </div>
+        <div class="container">
+        <a href="/blog-cn" class="btn-lang" id="lang">中文</a>
+        </div>
+    </div>
+</nav>
+
+<div class="blog">
+        <div class="blogArticle__container">
+            
+            <div class="archive"><div class="article-nav">
+                            <a href="/blog/#Community">BLOG HOME</a> <span> > </span>Community</div><div class="content markdown-body">
+                    <h1 class="title">TiDB on KubeSphere: Run a Cloud-Native Distributed Database on a Hybrid-Cloud Kubernetes Platform</h1>
+                    <ul class="blog-post-meta">
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-date.svg" alt="Date icon">Mon, Nov 16, 2020</li>
+                        <li class="meta-item">
+                            <img src="/images/svgs/icon-writer.svg" alt="Pen icon">Will Zhang</li>
+                    </ul>
+                    <div class="blog-text"><p><strong>Author:</strong> Will Zhang (SRE at iSoftStone)</p>
+<p><strong>Transcreator:</strong> <a href="https://github.com/ran-huang">Ran Huang</a>; <strong>Editor:</strong> Tom Dewan</p>
+<p><img src="media/tidb-on-kubesphere-cloud-native-database.jpg" alt="TiDB on Kubesphere"></p>
+<p><a href="https://kubernetes.io/">Kubernetes</a> is the de facto standard for building application services that span multiple containers, so a scalable, reliable database that can run on Kubernetes is essential. <a href="https://docs.pingcap.com/tidb/dev/overview">TiDB</a>, a cloud-native, open-source NewSQL database that supports Hybrid Transactional and Analytical Processing (HTAP) workloads, meets that need admirably. Its architecture is suitable for Kubernetes, and it is MySQL compatible. TiDB also features horizontal scalability, strong consistency, and high availability.</p>
+<p>As an SRE engineer responsible for cloud applications, I use TiDB as well as <a href="https://kubesphere.io/docs/introduction/what-is-kubesphere/#overview">KubeSphere</a>, an open source distributed operating system that manages cloud-native applications. KubeSphere uses Kubernetes as its kernel and provides a plug-and-play architecture so you can seamlessly integrate your applications into its ecosystem. <a href="https://kubesphere.io/docs/introduction/what-is-kubesphere/#run-kubesphere-everywhere">You can run KubeSphere anywhere</a> without changing any Kubernetes code.</p>
+<p>By combining TiDB with KubeSphere, I can have Kubernetes-powered TiDB clusters and manage the clusters using a developer-friendly web UI. In this post, I will demonstrate how to deploy TiDB on KubeSphere from scratch.</p>
+<h2 id="prepare-the-environment">Prepare the environment</h2>
+<p>Before you can deploy TiDB, you need a Kubernetes cluster. Installing the cluster might seem daunting: you need to prepare working machines, either physical or virtual, and you must configure network rules so that traffic can move smoothly among instances.</p>
+<p>Fortunately, KubeSphere's sponsor, QingCloud, provides a highly-functional platform that enables you to quickly deploy Kubernetes and KubeSphere at the same time with just a few clicks. (You can also deploy Kubernetes by itself.)</p>
+<p>In this tutorial, I use QingCloud Kubernetes Engine (QKE) to prepare the environment, which creates virtual machines, configures networks, and sets storage for you. If you don't use QKE, you may also directly use instances on QingCloud to <a href="https://kubesphere.io/docs/installing-on-linux/public-cloud/install-kubesphere-on-qingcloud-vms/">install KubeSphere and Kubernetes</a> by yourself.</p>
+<p>Note: You can install KubeSphere on any infrastructure. We just use the QingCloud platform as an example. For more details, see the <a href="https://kubesphere.io/docs/">KubeSphere documentation</a>.</p>
+<p>To prepare the environment using QKE:</p>
+<ol>
+<li>
+<p>Log in to the QingCloud <a href="https://console.qingcloud.com/">web console</a>.</p>
+</li>
+<li>
+<p>Create a Kubernetes cluster with KubeSphere installed. From the left <strong>Container Platform</strong> menu, select <strong>KubeSphere (QKE)</strong>. The platform allows you to install various KubeSphere components.</p>
+</li>
+<li>
+<p>Power on KubeSphere's app management feature. On the <strong>Environment Setting</strong> page, in the <strong>Extra Modules</strong> configuration checkbox, select <strong>ks-openpitrix</strong> (<a href="https://github.com/openpitrix/openpitrix">OpenPitrix</a>). (In this example, I selected three working nodes to make sure that I had enough resources for the deployment later. You can customize your configuration based on your needs.)</p>
+<p>The cluster will be up and running in about 10 minutes.</p>
+<p>(Note: To create a Kubernetes cluster on QingCloud, you need to purchase the required computing resources. Before you deploy a cluster, make sure your account has a sufficient balance.)</p>
+</li>
+<li>
+<p>When the cluster is ready, log in to the KubeSphere web console with the default account and password (<code>admin</code>/<code>P@88w0rd</code>). The cluster <strong>Overview</strong> page is displayed:</p>
+<p><img src="media/kubesphere-cluster-overview-page.png" alt="The cluster overview page"></p>
+</li>
+<li>
+<p>Install the TiDB Operator CustomResourceDefinition (CRD). <a href="https://github.com/pingcap/tidb-operator">TiDB Operator</a> is an automatic operation system for TiDB clusters in Kubernetes. In the <strong>Tools</strong> section at the bottom of the page, click the <strong>Kubectl</strong> command line tool and enter the following command:</p>
+<div class="copyable-code-block shell-regular">
+</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://raw.githubusercontent.com/pingcap/tidb-operator/v1.1.6/manifests/crd.yaml
+</code></pre></div><p>The output is shown below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># kubectl apply -f https://raw.githubusercontent.com/pingcap/tidb-operator/v1.1.6/manifests/crd.yaml</span>
+customresourcedefinition.apiextensions.k8s.io/tidbclusters.pingcap.com created
+customresourcedefinition.apiextensions.k8s.io/backups.pingcap.com created
+customresourcedefinition.apiextensions.k8s.io/restores.pingcap.com created
+customresourcedefinition.apiextensions.k8s.io/backupschedules.pingcap.com created
+customresourcedefinition.apiextensions.k8s.io/tidbmonitors.pingcap.com created
+customresourcedefinition.apiextensions.k8s.io/tidbinitializers.pingcap.com created
+customresourcedefinition.apiextensions.k8s.io/tidbclusterautoscalers.pingcap.com created
+</code></pre></div></li>
+<li>
+<p><a href="https://kubesphere.io/docs/quick-start/create-workspace-and-project/#task-2-create-a-workspace">Create a new workspace</a>. In the upper left corner of the current page, click <strong>Platform</strong> to display the <strong>Access Control</strong> page. In <strong>Workspaces</strong>, click <strong>Create</strong> to create a new workspace and give it a name; for example, <code>dev-workspace</code>.</p>
+<p><img src="media/kubesphere-create-new-workspace.png" alt="Create a new workspace"></p>
+<p>In a workspace, users have various permissions to perform project tasks. Usually, a department-wide project requires a multi-tenant system so that everyone is responsible for their own part. In this tutorial, I use the admin account. Review <a href="https://kubesphere.io/docs/quick-start/create-workspace-and-project/">the official KubeSphere documentation</a> to learn more about how the multi-tenant system works.</p>
+</li>
+<li>
+<p>Go to the workspace you just created and add a KubeSphere application repository. Click <strong>Add Repos</strong>:</p>
+<p><img src="media/kubesphere-add-app-repos.png" alt="Add app repos"></p>
+<p>KubeSphere provides two methods to add Helm charts: <strong>App Templates</strong> and <strong>App Repos</strong>. This article only talks about adding a KubeSphere application repository. You can also upload your own application templates and submit them to the KubeSphere App Store.</p>
+</li>
+<li>
+<p>In the <strong>Add App Repository</strong> dialog box, and in the <strong>URL</strong> field add the PingCAP Helm repository (<a href="https://charts.pingcap.org/">https://charts.pingcap.org</a>):</p>
+<p><img src="media/kubesphere-add-repo-url.png" alt="Add repo URL"></p>
+</li>
+</ol>
+<h2 id="deploy-tidb-operator">Deploy TiDB Operator</h2>
+<p><a href="https://github.com/pingcap/tidb-operator">TiDB Operator</a> is an automatic operation system for TiDB clusters in Kubernetes. It provides a full management life-cycle for TiDB, including deployment, upgrades, scaling, backup, fail-over, and configuration changes. With TiDB Operator, TiDB can run seamlessly in Kubernetes clusters deployed on public or private clouds. Before you deploy a TiDB cluster, you should first deploy TiDB Operator on KubeSphere.</p>
+<ol>
+<li>
+<p>Create a project (also known as a namespace) to run the TiDB cluster. On the <strong>Projects</strong> page, click <strong>Create</strong>.</p>
+</li>
+<li>
+<p>After the project is created, navigate to <strong>Applications</strong> and click <strong>Deploy New Application</strong>.</p>
+</li>
+<li>
+<p>In the dialog box below, select <strong>From App Templates</strong>.</p>
+<p><img src="media/kubesphere-from-app-templates.png" alt="From app templates"></p>
+</li>
+<li>
+<p>Deploy TiDB Operator. Switch to the PingCAP repository that stores multiple Helm charts and click <strong>tidb-operator</strong>.</p>
+<p><img src="media/kubesphere-add-tidb-operator.png" alt="Add tidb-operator chart"></p>
+<p>Note: This article only demonstrates how to deploy TiDB Operator and TiDB clusters. You can also deploy other tools based on your needs.</p>
+</li>
+<li>
+<p>On the <strong>tidb-operator</strong> page, select the <strong>Chart Files</strong> tab. You can view the configuration from the console directly or download the default <code>values.yaml</code> file. From the <strong>Versions</strong> drop-down menu on the right, select the version you want to install.</p>
+<p><img src="media/kubesphere-select-chart-files.png" alt="Select chart files"></p>
+</li>
+<li>
+<p>On the <strong>Basic Info</strong> page, confirm your app name, version, and deployment location.</p>
+</li>
+<li>
+<p>On the <strong>App Config</strong> page, you can either edit the <code>values.yaml</code> file, or click <strong>Deploy</strong> directly with the default configurations.</p>
+</li>
+<li>
+<p>On the <strong>Applications</strong> page, wait for TiDB Operator to be up and running.</p>
+<p><img src="media/kubesphere-tidb-operator-running.png" alt="TiDB Operator is running"></p>
+</li>
+<li>
+<p>Verify your deployment. In <strong>Workloads</strong>, you can see two deployments created for TiDB Operator.</p>
+<p><img src="media/kubesphere-tidb-operator-workloads.png" alt="Verify TiDB Operator deployment"></p>
+</li>
+</ol>
+<h2 id="deploy-a-tidb-cluster">Deploy a TiDB cluster</h2>
+<p>After you deploy TiDB Operator, you can deploy a TiDB cluster on Kubernetes. The process of deploying a TiDB cluster is similar to deploying TiDB Operator.</p>
+<p>Note: If you have trouble deploying TiDB on KubeSphere, contact us on <a href="https://github.com/kubesphere/kubesphere">GitHub</a>.</p>
+<ol>
+<li>
+<p>From the PingCAP repository, select <strong>tidb-cluster</strong>.</p>
+</li>
+<li>
+<p>Switch to <strong>Chart Files</strong> and download the <code>values.yaml</code> file.</p>
+</li>
+<li>
+<p>Select the <a href="https://github.com/container-storage-interface/">Container Storage Interface</a> (CSI). In the <code>values.yaml</code> file, set <code>storageClassName</code> to <code>csi-standard</code>.</p>
+<p>Some TiDB components require persistent volumes. QingCloud Platform offers the following storage classes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/ <span style="color:#75715e"># kubectl get sc</span>
+NAME                       PROVISIONER     RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+csi-high-capacity-legacy   csi-qingcloud   Delete          Immediate           true                   71m
+csi-high-perf              csi-qingcloud   Delete          Immediate           true                   71m
+csi-ssd-enterprise         csi-qingcloud   Delete          Immediate           true                   71m
+csi-standard <span style="color:#f92672">(</span>default<span style="color:#f92672">)</span>     csi-qingcloud   Delete          Immediate           true                   71m
+csi-super-high-perf        csi-qingcloud   Delete          Immediate           true                   71m
+</code></pre></div><p>Because I installed KubeSphere through QKE, all of these storage components were deployed automatically. The QingCloud CSI plugin implements an interface between the CSI-enabled Container Orchestrator and QingCloud storage. For more information on the QingCloud CSI, see their <a href="https://github.com/yunify/qingcloud-csi">GitHub repository</a>.</p>
+<p>Note: In this tutorial, to provide external persistent storage, you only need to change the field <code>storageClassName</code>. If you want to deploy each TiDB component, such as <a href="https://docs.pingcap.com/tidb/dev/tidb-architecture#tikv-server">TiKV</a> and <a href="https://docs.pingcap.com/tidb/dev/tidb-architecture#placement-driver-pd-server">Placement Driver</a> (PD), to individual nodes, specify the field <code>nodeAffinity</code>.</p>
+</li>
+<li>
+<p>Click <strong>Deploy</strong>. The Applications list displays two apps:</p>
+<p><img src="media/kubesphere-deploy-two-apps.png" alt="TiDB Operator and TiDB are deployed"></p>
+</li>
+</ol>
+<h2 id="view-the-cluster-status">View the cluster status</h2>
+<p>Now that we have our apps ready, we may need to focus more on observability. KubeSphere dashboard lets us observe applications throughout their lifecycle.</p>
+<ol>
+<li>
+<p>Verify that all TiDB cluster deployments are up and running. Navigate to <strong>Workloads</strong> &gt; <strong>Deployment</strong> and note the status of each cluster.</p>
+<p><img src="media/kubesphere-view-cluster-status.png" alt="View cluster status"></p>
+</li>
+<li>
+<p>Verify the stateful applications: TiDB, TiKV and PD. TiKV and TiDB will be created automatically. It may take a while before they are displayed in the list.</p>
+<p>Click the <strong>StatefulSets</strong> tab. Click on a single StatefulSet item to display its details page. The page shows metrics in line charts over a period of time. The following is an example of TiDB metrics:</p>
+<p><img src="media/kubesphere-statefulsets.png" alt="View statefulsets"></p>
+<p>This page also lists relevant <strong>Pods</strong>. As you can see, the TiDB cluster contains three PD Pods, two TiDB Pods, and three TiKV Pods.</p>
+<p><img src="media/kubesphere-view-pods.png" alt="View pods"></p>
+</li>
+<li>
+<p>Go to the <strong>Storage</strong> section. You can see that TiKV and PD use persistent storage. This page also monitors Volume usage. Here is an example for TiKV:</p>
+<p><img src="media/kubesphere-tikv-persistent-volumes.png" alt="View persistent volumes"></p>
+</li>
+<li>
+<p>On the <strong>Overview</strong> page, you can see the resource usage for the current project.</p>
+<p><img src="media/kubesphere-resource-usage.png" alt="View resource usage"></p>
+</li>
+</ol>
+<h2 id="access-your-tidb-cluster">Access your TiDB cluster</h2>
+<p>Kubernetes lists the running services and the port each service is exposed to, so you can easily access them.</p>
+<ol>
+<li>
+<p>To display information on all services, navigate to <strong>Application Workloads</strong> &gt; <strong>Services</strong>.</p>
+<p>Because the service type is set to <code>NodePort</code>, you can also access a service through the node IP address outside the cluster.</p>
+</li>
+<li>
+<p>Optional: Test the connection to the database through MySQL client.</p>
+<div class="copyable-code-block shell-regular">
+</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#f92672">[</span>root@k8s-master1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># docker run -it --rm mysql bash</span>
+<span style="color:#f92672">[</span>root@0d7cf9d2173e:/# mysql -h 192.168.1.102 -P <span style="color:#ae81ff">32682</span> -u root
+Welcome to the MySQL monitor.  Commands end with ; or <span style="color:#ae81ff">\g</span>.
+Your MySQL connection id is <span style="color:#ae81ff">201</span>
+Server version: 5.7.25-TiDB-v4.0.6 TiDB Server <span style="color:#f92672">(</span>Apache License 2.0<span style="color:#f92672">)</span> Community Edition, MySQL 5.7 compatible
+
+Copyright <span style="color:#f92672">(</span>c<span style="color:#f92672">)</span> 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.
+
+Type <span style="color:#e6db74">&#39;help;&#39;</span> or <span style="color:#e6db74">&#39;\h&#39;</span> <span style="color:#66d9ef">for</span> help. Type <span style="color:#e6db74">&#39;\c&#39;</span> to clear the current input statement.
+
+mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| INFORMATION_SCHEMA |
+| METRICS_SCHEMA     |
+| PERFORMANCE_SCHEMA |
+| mysql              |
+| test               |
++--------------------+
+<span style="color:#ae81ff">5</span> rows in set <span style="color:#f92672">(</span>0.01 sec<span style="color:#f92672">)</span>
+
+mysql&gt;
+</code></pre></div></li>
+<li>
+<p>Access the monitoring dashboard. TiDB also integrates Prometheus and Grafana to monitor database cluster performance. As shown in the first step, Grafana is exposed through <code>NodePort</code>.</p>
+<p>After you <a href="https://docs.pingcap.com/tidb-in-kubernetes/dev/monitor-a-tidb-cluster#view-the-monitoring-dashboard">configure necessary port forwarding rules</a> and open the Grafana port in security groups on QingCloud Platform, you can view metrics from the Grafana UI.</p>
+<p>Log in to the Grafana monitoring at <code>${Grafana-ip}:3000</code>. The default username and password are both <code>admin</code>.</p>
+<p><img src="media/kubesphere-grafana-dashboard.png" alt="Grafana dashboard"></p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong></p>
+<p>After you're done with your cluster, remember to delete all its resources; otherwise, you may receive a large bill for services you didn't use.</p>
+</blockquote>
+<h2 id="summary">Summary</h2>
+<p>I hope you have successfully deployed TiDB. Because TiDB and KubeSphere are such powerful tools for cloud-native applications, I cannot showcase all their features in a single post. For example, the application deployment function (described in <a href="#deploy-tidb-operator">Deploy TiDB Operator</a> has much to offer for cloud-native enthusiasts like me. I will post another article on how to deploy TiDB by uploading Helm charts to the KubeSphere App Store.</p>
+<p>If you have trouble deploying TiDB on KubeSphere, contact us on <a href="https://github.com/kubesphere/kubesphere">GitHub</a>.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/kubesphere/kubesphere">KubeSphere on GitHub</a></li>
+<li><a href="https://kubesphere.io/docs/">KubeSphere Documentation</a></li>
+<li><a href="https://github.com/pingcap/tidb">TiDB on GitHub</a></li>
+<li><a href="https://docs.pingcap.com/tidb/stable">TiDB Documentation</a></li>
+<li><a href="https://docs.pingcap.com/tidb-in-kubernetes/stable">TiDB Operator Documentation</a></li>
+</ul>
+</div>
+                </div>
+                <div class="article-toc"></div><div class="ssba-wrap">
+    <div class="ssba">
+        <a data-site="" class="ssba_twitter_share" href="http://twitter.com/share?url=https%3a%2f%2fidiks.com%2fblog%2frun-cloud-native-distributed-database-on-hybrid-cloud-kubernetes-platform%2f" target="_blank">
+        
+            <img src="/images/svgs/twitter-icon.svg" alt="Twitter icon" />
+        </a>
+        <a data-site="reddit" class="ssba_reddit_share" href="http://reddit.com/submit?url=https%3a%2f%2fidiks.com%2fblog%2frun-cloud-native-distributed-database-on-hybrid-cloud-kubernetes-platform%2f&title=TiDB%20on%20KubeSphere%3a%20Run%20a%20Cloud-Native%20Distributed%20Database%20on%20a%20Hybrid-Cloud%20Kubernetes%20Platform" target="_blank">
+        
+            <img src="/images/svgs/reddit-icon.svg" alt="Reddit icon" />
+        </a>
+        <a data-site="" class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fidiks.com%2fblog%2frun-cloud-native-distributed-database-on-hybrid-cloud-kubernetes-platform%2f" target="_blank">
+        
+            <img src="/images/svgs/facebook-icon.svg" alt="Fackbook icon" />
+        </a>
+        <a data-site="linkedin" class="ssba_linkedin_share" href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fidiks.com%2fblog%2frun-cloud-native-distributed-database-on-hybrid-cloud-kubernetes-platform%2f" target="_blank">
+        
+            <img src="/images/svgs/linkedin-icon.svg" alt="Linkedin icon" />
+        </a>
+        <a data-site="hackernews" class="ssba_hackernews_share" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fidiks.com%2fblog%2frun-cloud-native-distributed-database-on-hybrid-cloud-kubernetes-platform%2f&t=TiDB%20on%20KubeSphere%3a%20Run%20a%20Cloud-Native%20Distributed%20Database%20on%20a%20Hybrid-Cloud%20Kubernetes%20Platform" target="_blank">
+        
+            <img src="/images/svgs/hacker-news-icon.svg" alt="Hacker News icon" />
+        </a>
+    </div>
+</div>
+<div class="trackable-btns">
+                    <a href="/download" onclick="trackViews('TiDB on KubeSphere: Run a Cloud-Native Distributed Database on a Hybrid-Cloud Kubernetes Platform', 'download-tidb-btn-bottom')"><button>Download
+                        TiDB</button></a>
+                    <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"
+                      onclick="trackViews('TiDB on KubeSphere: Run a Cloud-Native Distributed Database on a Hybrid-Cloud Kubernetes Platform', 'subscribe-blog-btn-bottom')"><button>Subscribe to
+                        Blog</button></a>
+                </div>
+            </div>
+            <div class="sidebar-page">
+                <div class="sticky-sidebar">
+                    <p class="toc-title">What’s on this page</p>
+                    <div id="smart_toc_wrapper"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer>
+    <div class="container">
+        <div class="flex-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Product</strong></h4>
+                <ul>
+                <li><a href="/docs/v3.0/">TiDB</a></li>
+                <li><a href="/docs/v3.0/reference/tispark/">TiSpark</a></li>
+                <li><a href="/docs/v3.0/roadmap/">Roadmap</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Docs</strong></h4>
+                <ul>
+                <li><a href="/docs/stable/quick-start-with-tidb/">Quick Start</a></li>
+                <li><a href="/blog/2017-07-24-tidbbestpractice/">Best Practices</a></li>
+                <li><a href="/docs/stable/faq/tidb/">FAQ</a></li>
+                <li><a href="/docs/stable/reference/tools/user-guide/">TiDB Tools</a></li>
+                <li><a href="/docs/dev/releases/rn/">Release Notes</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Resources</strong></h4>
+                <ul>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/weekly/">Monthly</a></li>
+                <li><a href="https://github.com/idiks" target="_blank">GitHub</a></li>
+                <li><a href="/community">TiDB Community</a></li>
+                </ul>
+            </div>
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Company</strong></h4>
+                <ul>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/jobs" target="_blank">Careers</a></li>
+                <li><a href="/news/">News</a></li>
+                <li><a href="/contact-us/">Contact Us</a></li>
+                <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                <li><a href="/terms-of-service/">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="contact-list-wrap">
+            <div class="flex-list">
+                <h4 class="list-title"><strong>Connect</strong></h4>
+                <ul>
+                <li><a href="https://twitter.com/idiks" class="twitter" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="18" height="19"><path d="M612 116.258a250.714 250.714 0 0 1-72.088 19.772c25.929-15.527 45.777-40.155 55.184-69.411-24.322 14.379-51.169 24.82-79.775 30.48-22.907-24.437-55.49-39.658-91.63-39.658-69.334 0-125.551 56.217-125.551 125.513 0 9.828 1.109 19.427 3.251 28.606-104.326-5.24-196.835-55.223-258.75-131.174-10.823 18.51-16.98 40.078-16.98 63.101 0 43.559 22.181 81.993 55.835 104.479a125.556 125.556 0 0 1-56.867-15.756v1.568c0 60.806 43.291 111.554 100.693 123.104-10.517 2.83-21.607 4.398-33.08 4.398-8.107 0-15.947-.803-23.634-2.333 15.985 49.907 62.336 86.199 117.253 87.194-42.947 33.654-97.099 53.655-155.916 53.655-10.134 0-20.116-.612-29.944-1.721 55.567 35.681 121.536 56.485 192.438 56.485 230.948 0 357.188-191.291 357.188-357.188l-.421-16.253c24.666-17.593 46.005-39.697 62.794-64.861z"/></svg> Twitter</a></li>
+                <li><a href="https://www.linkedin.com/company/idiks/" class="linkedin" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 438.536 438.535"><path d="M5.424 145.895H99.64v282.932H5.424zM408.842 171.739c-19.791-21.604-45.967-32.408-78.512-32.408-11.991 0-22.891 1.475-32.695 4.427-9.801 2.95-18.079 7.089-24.838 12.419-6.755 5.33-12.135 10.278-16.129 14.844-3.798 4.337-7.512 9.389-11.136 15.104v-40.232h-93.935l.288 13.706c.193 9.139.288 37.307.288 84.508 0 47.205-.19 108.777-.572 184.722h93.931V270.942c0-9.705 1.041-17.412 3.139-23.127 4-9.712 10.037-17.843 18.131-24.407 8.093-6.572 18.13-9.855 30.125-9.855 16.364 0 28.407 5.662 36.117 16.987 7.707 11.324 11.561 26.98 11.561 46.966V428.82h93.931V266.664c-.007-41.688-9.897-73.328-29.694-94.925zM53.103 9.708c-15.796 0-28.595 4.619-38.4 13.848C4.899 32.787 0 44.441 0 58.529 0 72.42 4.758 84.034 14.275 93.358c9.514 9.325 22.078 13.99 37.685 13.99h.571c15.99 0 28.887-4.661 38.688-13.99 9.801-9.324 14.606-20.934 14.417-34.829-.19-14.087-5.047-25.742-14.561-34.973C81.562 14.323 68.9 9.708 53.103 9.708z"/></svg> LinkedIn</a></li>
+                <li><a href="https://www.reddit.com/r/idiks/" class="reddit" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.748 279.748" width="18" height="18"><path d="M279.748 133.142c0-19.299-15.701-35-35-35-10.768 0-20.674 4.812-27.279 13.064-18.532-8.431-39.663-13.626-62.015-15.271l19.206-60.692 42.895 9.294c3.285 12.782 14.901 22.258 28.693 22.258 16.336 0 29.627-13.29 29.627-29.626 0-16.336-13.291-29.627-29.627-29.627-11.801 0-21.999 6.941-26.759 16.95l-49.497-10.725a10.002 10.002 0 0 0-11.651 6.756L134.636 95.43c-26.164.638-50.988 6.053-72.356 15.775-6.606-8.251-16.512-13.063-27.28-13.063-19.299 0-35 15.701-35 35 0 9.373 3.683 18.173 10.222 24.709-3.9 8.37-5.875 17.076-5.875 25.936 0 24.048 14.396 46.492 40.538 63.199 25.447 16.264 59.183 25.221 94.989 25.221 35.808 0 69.542-8.957 94.989-25.221 26.142-16.707 40.538-39.151 40.538-63.199 0-8.859-1.975-17.565-5.875-25.936 6.539-6.537 10.222-15.336 10.222-24.709zM15.369 145.139c-2.212-3.59-3.369-7.688-3.369-11.997 0-12.682 10.317-23 23-23 5.444 0 10.558 1.851 14.649 5.258-14.622 8.302-26.132 18.289-34.28 29.739zm52.671 20.266c0-13.785 11.215-25 25-25s25 11.215 25 25-11.215 25-25 25-25-11.215-25-25zm123.119 57.054c-9.745 10.637-29.396 17.244-51.285 17.244-21.888 0-41.539-6.607-51.284-17.244a9.937 9.937 0 0 1-2.617-7.192 9.933 9.933 0 0 1 3.235-6.937 9.974 9.974 0 0 1 6.754-2.627c2.797 0 5.484 1.183 7.373 3.244 5.803 6.333 20.827 10.756 36.539 10.756s30.737-4.423 36.539-10.756a10.022 10.022 0 0 1 7.374-3.244c2.508 0 4.906.933 6.755 2.627a9.928 9.928 0 0 1 3.234 6.937 9.933 9.933 0 0 1-2.617 7.192zm-4.451-32.054c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zm77.671-45.266c-8.147-11.45-19.657-21.436-34.28-29.739 4.092-3.408 9.205-5.258 14.649-5.258 12.683 0 23 10.318 23 23 0 4.309-1.157 8.407-3.369 11.997z"/></svg>Reddit</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/idiks-user" class="google-plus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.858 491.858" width="18" height="20"><path d="M377.472 224.957H201.319v58.718H308.79c-16.032 51.048-63.714 88.077-120.055 88.077-69.492 0-125.823-56.335-125.823-125.824 0-69.492 56.333-125.823 125.823-125.823 34.994 0 66.645 14.289 89.452 37.346l42.622-46.328c-34.04-33.355-80.65-53.929-132.074-53.929C84.5 57.193 0 141.693 0 245.928s84.5 188.737 188.736 188.737c91.307 0 171.248-64.844 188.737-150.989v-58.718l-.001-.001zM491.858 224.857h-36.031v-36.031h-30.886v36.031H388.91v30.883h36.031v36.032h30.886V255.74h36.031z"/></svg>Google Group</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/idiks" class="stack-overflow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 547.597 547.597"><path d="M140.81 475.111h.024l189.91-.269c8.434-.013 15.3-6.886 15.3-15.318v-21.298c0-8.428-6.854-15.288-15.3-15.288l-189.91.264c-8.433.012-15.3 6.885-15.3 15.318v21.31c.001 8.427 6.855 15.281 15.276 15.281z"/><path d="M58.667 517.854c.073 29.26.073 29.449 3.072 29.449h.055l10.612.294h.086s85.814 0 171.629-.036c42.914-.019 85.821-.05 118-.092 16.09-.019 29.505-.043 38.887-.074 17.803-.055 17.803-.055 17.803-3.072l.3-10.697V333.299c0-8.434-6.866-15.3-15.3-15.3h-11.909c-8.434 0-15.3 6.866-15.3 15.3V496.22c0 5.062-4.119 9.18-9.181 9.18H110.51c-5.061 0-9.18-4.118-9.18-9.18V333.299c0-8.434-6.867-15.3-15.3-15.3H73.82c-8.433 0-15.3 6.86-15.3 15.3 0 23.342.012 76.084.055 122.981.019 23.447.05 45.442.092 61.574z"/><path d="M142.322 397.399l189.402 17.467c.478.043.948.062 1.413.062 7.956 0 14.468-5.985 15.159-13.917l1.83-21.096c.729-8.396-5.508-15.851-13.898-16.628l-189.102-17.461c-8.593-.795-15.869 5.441-16.653 13.825l-1.97 21.108a15.172 15.172 0 0 0 3.452 11.181 15.19 15.19 0 0 0 10.367 5.459zM437.636 208.849a15.253 15.253 0 0 0 17.694 12.443l21.065-3.678c8.311-1.451 13.898-9.395 12.454-17.706l-32.504-187.23c-1.42-8.207-9.21-13.917-17.692-12.448l-21.065 3.678c-8.311 1.451-13.898 9.395-12.454 17.705l32.502 187.236zM190.333 194.375l163.6 96.708a15.28 15.28 0 0 0 7.778 2.136c5.393 0 10.447-2.876 13.183-7.509l10.876-18.36c2.08-3.519 2.674-7.631 1.658-11.591a15.18 15.18 0 0 0-7.032-9.358l-163.6-96.714c-7.014-4.149-16.836-1.597-20.967 5.374l-10.869 18.36a15.2 15.2 0 0 0-1.658 11.591 15.21 15.21 0 0 0 7.031 9.363zM387.525 240.501a15.276 15.276 0 0 0 12.626 6.659c3.091 0 6.077-.924 8.635-2.681l17.405-11.934c6.953-4.768 8.752-14.314 4.015-21.292L323.29 54.104c-4.584-6.732-14.498-8.623-21.236-3.984l-17.737 12.21c-6.945 4.779-8.727 14.327-3.971 21.291l107.179 156.88zM154.482 302.319l183.465 49.156c1.298.349 2.632.526 3.966.526 6.903 0 12.98-4.67 14.762-11.347l5.508-20.624c2.179-8.152-2.681-16.555-10.826-18.74l-183.465-49.162c-8.017-2.148-16.604 2.852-18.728 10.826l-5.508 20.63c-2.179 8.142 2.68 16.551 10.826 18.735z"/></svg>Stack Overflow</a></li>
+                </ul>
+            </div>
+            <div class="subscribe">
+                <a href="https://share.hsforms.com/1e2W03wLJQQKPd1d9rCbj_Q2npzm"><button class="btn btn-subscribe f-tc">Subscribe to Blog</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="container copyright-container">
+        <p class="copyright">&copy; 2025 iDIKS. All Rights Reserved.</p>
+        <a href="/blog-cn" class="copyright-btn-lang" id="lang">中文</a>
+    </div>
+</footer>
+<button class="back-to-top" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 284.929 284.929"><path d="M282.082 195.285L149.028 62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 195.285C.95 197.191 0 199.378 0 201.853c0 2.474.953 4.664 2.856 6.566l14.272 14.271c1.903 1.903 4.093 2.854 6.567 2.854s4.664-.951 6.567-2.854l112.204-112.202 112.208 112.209c1.902 1.903 4.093 2.848 6.563 2.848 2.478 0 4.668-.951 6.57-2.848l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.566.001-2.476-.944-4.666-2.846-6.569z" fill="#FFF"/></svg>
+</button>
+</div><div class="overlay"></div><script src="https://static.idiks.com/js/jquery.min.js"></script><script type="text/javascript" src="/js/vendor/lazyload.min.js"></script>
+    <script type="text/javascript" src="/js/doc.js"></script>
+    <script type="text/javascript" src="/js/anchor.js"></script><script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script><script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script src="https://browser.sentry-cdn.com/5.11.0/bundle.min.js" integrity="sha384-jbFinqIbKkHNg+QL+yxB4VrBC0EAPTuaLGeRT0T+NfEV89YC6u1bKxHLwoo+/xxY" crossorigin="anonymous"></script><script>Sentry.init({ 
+            dsn: 'https://3f28ed393c5545daa74496b3cdb2e9ba@sentry.io/1887163' 
+        });</script><script src="/js/app.js"></script></body></html>
