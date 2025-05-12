@@ -253,7 +253,7 @@ $(document).ready(function() {
     if (window.matchMedia('(max-width: 600px)').matches) {
       $('.schedule-on-modal img').attr(
         'src',
-        'https://static.itspedia.com/images/hackathon2019/hackathon2019-schedule-mobile.png'
+        'https://static.idiks.com/images/hackathon2019/hackathon2019-schedule-mobile.png'
       )
     }
   })
@@ -264,7 +264,7 @@ $(document).ready(function() {
     if (window.matchMedia('(max-width: 600px)').matches) {
       $('.schedule-on-modal img').attr(
         'src',
-        'https://static.itspedia.com/images/hackathon2019/hackathon2019-grading-mobile.png'
+        'https://static.idiks.com/images/hackathon2019/hackathon2019-grading-mobile.png'
       )
     }
   })

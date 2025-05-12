@@ -67,7 +67,7 @@ function renderTaskGroups(groups) {
                   </a>`),
                 ''
               )
-            : '<img class="avatar" src="https://static.itspedia.com/images/tidb-performance-challenge/github-purple.png" />') +
+            : '<img class="avatar" src="https://static.idiks.com/images/tidb-performance-challenge/github-purple.png" />') +
           '</div>' +
           (g.bonus > 0 ? `<div class="bonus">${g.bonus}</div>` : '') +
           '</div>' +

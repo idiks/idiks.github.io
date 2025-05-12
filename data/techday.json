@@ -2,7 +2,7 @@
   "instructors_2018": [
     {
       "name": "申砾",
-      "image": "https://static.itspedia.com/images/instructors/shenli.jpg",
+      "image": "https://static.idiks.com/images/instructors/shenli.jpg",
       "title": "Engineering VP",
       "company": "PingCAP",
       "intro": ""
@@ -16,28 +16,28 @@
     },
     {
       "name": "黄东旭",
-      "image": "https://static.itspedia.com/images/instructors/huangdongxu.jpg",
+      "image": "https://static.idiks.com/images/instructors/huangdongxu.jpg",
       "title": "CTO",
       "company": "PingCAP",
       "intro": ""
     },
     {
       "name": "杨文",
-      "image": "https://static.itspedia.com/images/instructors/yangwen.jpg",
+      "image": "https://static.idiks.com/images/instructors/yangwen.jpg",
       "title": "TiDB Contributor",
       "company": "",
       "intro": ""
     },
     {
       "name": "孙玄",
-      "image": "https://static.itspedia.com/images/instructors/sunxuan.jpg",
+      "image": "https://static.idiks.com/images/instructors/sunxuan.jpg",
       "title": "首席架构师",
       "company": "转转",
       "intro": ""
     },
     {
       "name": "丁永",
-      "image": "https://static.itspedia.com/images/instructors/dingyong.jpg",
+      "image": "https://static.idiks.com/images/instructors/dingyong.jpg",
       "title": "大数据平台团队负责人",
       "company": "平安产险",
       "intro": ""
@@ -48,8 +48,8 @@
     {
       "title": "TiDB 2.1: What's new & What's next",
       "intro": "TiDB 2.0 版本于今年 4 月底发布，经过两个月的开发，2.1 Beta 版本于 6 月底发布。这个版本在 2.0 的基础之上做了不少改进。申砾老师重点介绍了 TiDB 2.1 Beta 版本在 Raft / PD / SQL 执行引擎等方面的新特性以及未来的规划。",
-      "video": "https://static.itspedia.com/videos/1-what%27s-new.mp4",
-      "poster": "https://static.itspedia.com/images/video-landing-img/1-shenli.jpg",
+      "video": "https://static.idiks.com/videos/1-what%27s-new.mp4",
+      "poster": "https://static.idiks.com/images/video-landing-img/1-shenli.jpg",
       "image": "",
       "extend_reading": "",
       "tencent_video": "https://v.qq.com/x/page/a0744owqaae.html"
@@ -57,8 +57,8 @@
     {
       "title": "TiDB 在转转的千亿级大规模实践",
       "intro": "转转首席架构师孙玄介绍了转转公司 All-in TiDB 的动机（目前线上已接入 11 套 OLTP 业务），深入解读了 TiDB 实践过程中的详细的测试结果，并分享了转转迁移到 TiDB 集群的经验。微信钱包小红点活动带来的 10 倍流量暴增时，TiDB 表现出的高稳定性，低延时引发了大家热烈的讨论。",
-      "video": "https://static.itspedia.com/video/2-zhuanzhuan.mp4",
-      "poster": "https://static.itspedia.com/images/video-landing-img/2-zhuanzhuan.jpg",
+      "video": "https://static.idiks.com/video/2-zhuanzhuan.mp4",
+      "poster": "https://static.idiks.com/images/video-landing-img/2-zhuanzhuan.jpg",
       "image": "",
       "extend_reading": "/cases-cn/user-case-zhuanzhuan/",
       "tencent_video": "https://v.qq.com/x/page/a0744owqaae.html"
@@ -67,14 +67,14 @@
       "title": "TiDB 社区荣誉时刻",
       "intro": "作为社区杰出贡献者，杜川获得了 TiDB Committer 荣誉。我司 CTO 黄东旭亲自为杜川同学颁发证书——“在过去一年中，杜川同学向 TiDB/TiKV 项目总共提交了 80 个PR，代码遍及 TiDB/TiKV 各个模块，尤其是表达式和执行器相关组件，提交了非常多高质量的代码。目前他是社区内最活跃的外部贡献者，除了贡献代码之外，也积极参与架构设计等事项的讨论。他的本职工作是和数据库 SQL 引擎相关的，在这方面有丰富的经验，给 TiDB 提了非常多、很好的建议。我们一致认为杜川同学完全达到了 Committer 的标准，在此授予他 TiDB Committer 证书。希望他能继续关注 TiDB，和大家一起成长， 一起做出世界上最好的分布式关系型数据库。”",
       "video": "",
-      "image": "https://static.itspedia.com/images/video-landing-img/3-hornor-moment.jpg",
+      "image": "https://static.idiks.com/images/video-landing-img/3-hornor-moment.jpg",
       "extend_reading": ""
     },
     {
       "title": "平安产险 TiDB 应用实践 ",
       "intro": "平安产险的丁永老师详细解读了平安产险在 NewSQL 数据库选型中的考量以及 TiDB 的测试数据，详细介绍了核心农业保险系统从 Oracle 迁移到 TiDB 的实践，以及自研的迁移工具。并毫不吝啬对 TiDB 的赞美：运维太友好了，查询功能强大。",
-      "video": "https://static.itspedia.com/videos/4-pingan.mp4",
-      "poster": "https://static.itspedia.com/images/video-landing-img/4-pingan.jpg",
+      "video": "https://static.idiks.com/videos/4-pingan.mp4",
+      "poster": "https://static.idiks.com/images/video-landing-img/4-pingan.jpg",
       "image": "",
       "extend_reading": "",
       "tencent_video": "https://v.qq.com/x/page/g0744yi7k8a.html"
@@ -82,8 +82,8 @@
     {
       "title": "TiDB Contributor 之路",
       "intro": "TiDB Contributor 杨文是 TiDB 社区深圳分舵的活跃分子，在这次活动上他为大家分享了亲身参与 TiDB 社区的经历，包括参与方式、学习路径、干货资料等等。对于想加入我们 TiDB 社区的小伙伴来说，这是一份非常好的新手指南。",
-      "video": "https://static.itspedia.com/videos/5-contributor-road.mp4",
-      "poster": "https://static.itspedia.com/images/video-landing-img/5-contributor-road.jpg",
+      "video": "https://static.idiks.com/videos/5-contributor-road.mp4",
+      "poster": "https://static.idiks.com/images/video-landing-img/5-contributor-road.jpg",
       "image": "",
       "extend_reading": "",
       "tencent_video": "https://v.qq.com/x/page/q0744br0dh4.html"
@@ -91,8 +91,8 @@
     {
       "title": "Chaos Practice in TiDB",
       "intro": "「我司 Rap 担当」唐刘老师分享了 TiDB 的 Chaos 实践——构造一个健壮的分布式数据库系统是一件非常困难的事情，因为我们需要做非常多的工作来保证用户数据安全，不允许数据丢失或者损坏。而在 TiDB 里面，我们是通过实践 Chaos Engineering 来保证的。",
-      "video": "https://static.itspedia.com/videos/6-chaos-practice.mp4",
-      "poster": "https://static.itspedia.com/images/video-landing-img/6-tangliu.jpg",
+      "video": "https://static.idiks.com/videos/6-chaos-practice.mp4",
+      "poster": "https://static.idiks.com/images/video-landing-img/6-tangliu.jpg",
       "image": "",
       "extend_reading": "",
       "tencent_video": "https://v.qq.com/x/page/m0744a0grss.html"
@@ -101,31 +101,31 @@
 
   "moments_2018": [
     {
-      "image": "https://static.itspedia.com/images/moments/tech2018-1.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2018-1.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/tech2018-2.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2018-2.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/tech2018-3.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2018-3.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/tech2018-4.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2018-4.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/tech2018-5.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2018-5.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/tech2018-6.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2018-6.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/tech2018-7.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2018-7.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/tech2018-8.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2018-8.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/tech2018-9.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2018-9.jpg"
     }
   ],
 
@@ -296,29 +296,29 @@
 
   "moments_2017": [
     {
-      "image": "https://static.itspedia.com/images/moments/tech2017-1.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2017-1.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/tech2017-2.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2017-2.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/tech2017-3.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2017-3.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/tech2017-4.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2017-4.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/tech2017-5.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2017-5.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/tech2017-6.jpg"
+      "image": "https://static.idiks.com/images/moments/tech2017-6.jpg"
     }
   ],
 
   "instructors_2017": [
     {
       "name": "申砾",
-      "image": "https://static.itspedia.com/images/instructors/shenli.jpg",
+      "image": "https://static.idiks.com/images/instructors/shenli.jpg",
       "title": "Engineering VP",
       "company": "PingCAP",
       "intro": ""
@@ -343,7 +343,7 @@
     {
     "title": "TechDay 2017",
     "link": "/community-cn/techday2017",
-    "image": "https://static.itspedia.com/images/banners/techday2017-mobile.jpg",
+    "image": "https://static.idiks.com/images/banners/techday2017-mobile.jpg",
     "desc": "2017 年 7 月 8 日，我们在上海启动了 TiDB TechDay 第一站，活动中 PingCAP 工程师为大家深入分享了 TiDB 技术内核以及 TiSpark 技术解密，还有对社区的未来展望。"
   }],
 
@@ -351,42 +351,42 @@
     {
       "title": "TechDay 2018",
       "link": "/community-cn/techday2018",
-      "image": "https://static.itspedia.com/images/banners/techday2018-mobile.jpg",
+      "image": "https://static.idiks.com/images/banners/techday2018-mobile.jpg",
       "desc": "本届 TiDB TechDay 落地鹏城深圳，除了由 PingCAP 讲师带来的 TiDB 技术详解外，我们还邀请到了来自转转、平安产险的讲师现场分享 TiDB 实践经验，以及社区小伙伴分享自己的贡献心得。"
     },
     {
       "title": "TechDay 2017",
       "link": "/community-cn/techday2017",
-      "image": "https://static.itspedia.com/images/banners/techday2017-mobile.jpg",
+      "image": "https://static.idiks.com/images/banners/techday2017-mobile.jpg",
       "desc": "2017 年 7 月 8 日，我们在上海启动了 TiDB TechDay 第一站，活动中 PingCAP 工程师为大家深入分享了 TiDB 技术内核以及 TiSpark 解密，还有对社会的未来展望。"
     }
   ],
 
   "sponsors": [
     {
-      "image": "https://static.itspedia.com/images/sponsors/juejin2.png"
+      "image": "https://static.idiks.com/images/sponsors/juejin2.png"
     },
     {
-      "image": "https://static.itspedia.com/images/sponsors/segmentfault.png"
+      "image": "https://static.idiks.com/images/sponsors/segmentfault.png"
     },
     {
-      "image": "https://static.itspedia.com/images/sponsors/kaiyuanzhongguo.png"
+      "image": "https://static.idiks.com/images/sponsors/kaiyuanzhongguo.png"
     },
     {
-      "image": "https://static.itspedia.com/images/sponsors/csdn.png"
+      "image": "https://static.idiks.com/images/sponsors/csdn.png"
     },
     {
-      "image": "https://static.itspedia.com/images/sponsors/tgo.png"
+      "image": "https://static.idiks.com/images/sponsors/tgo.png"
     },
     {
-      "image": "https://static.itspedia.com/images/sponsors/geek.png"
+      "image": "https://static.idiks.com/images/sponsors/geek.png"
     }
   ],
 
   "schedule_2019": {
     "beijing": {
-      "video_link": "https://static.itspedia.com/videos/tech19-review-beijing.mp4",
-      "video_landing_img": "https://static.itspedia.com/images/techday2019/beijing.jpg",
+      "video_link": "https://static.idiks.com/videos/tech19-review-beijing.mp4",
+      "video_landing_img": "https://static.idiks.com/images/techday2019/beijing.jpg",
       "city": "beijing",
       "video_desc": "活动已结束，3 分钟快速回顾 TiDB TechDay 2019 - 北京站",
       "time": "2019.06-23 10:00 - 16:50",
@@ -409,7 +409,7 @@
           "speaker": ["黄东旭"],
           "company": "PingCAP",
           "speaker_title": "联合创始人兼 CTO",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/huangdongxu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/huangdongxu.png"
         },
         {
           "time": "10:20 - 11:00",
@@ -418,7 +418,7 @@
           "speaker": ["申砾"],
           "company": "PingCAP",
           "speaker_title": "Engineering VP",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/shenli.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/shenli.png"
         },
         {
           "time": "11:00 - 11:40",
@@ -427,7 +427,7 @@
           "speaker": ["崔秋"],
           "company": "PingCAP",
           "speaker_title": "联合创始人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/cuiqiu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/cuiqiu.png"
         },
         {
           "time": "11:40 - 12:10",
@@ -436,7 +436,7 @@
           "speaker": ["胡盼盼"],
           "company": "微众银行",
           "speaker_title": "数据平台室室经理",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/hupanpan.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/hupanpan.png"
         },
         {
           "time": "12:10 - 13:30",
@@ -454,7 +454,7 @@
           "speaker": ["马晓宇"],
           "company": "PingCAP",
           "speaker_title": "分析型产品负责人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/maxiaoyu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/maxiaoyu.png"
         },
         {
           "time": "14:10 - 14:40",
@@ -463,7 +463,7 @@
           "speaker": ["孙晓光"],
           "company": "知乎",
           "speaker_title": "搜索后端负责人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/sunxiaoguang.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/sunxiaoguang.png"
         },
         {
           "time": "14:40 - 15:20",
@@ -472,7 +472,7 @@
           "speaker": ["刘寅", "邓栓"],
           "company": ["PingCAP", "PingCAP"],
           "speaker_title": ["商业产品团队负责人", "核心工程师"],
-          "image": ["https://static.itspedia.com/images/techday2019/instructors/liuyin.png", "https://static.itspedia.com/images/techday2019/instructors/dengshuan.png"]
+          "image": ["https://static.idiks.com/images/techday2019/instructors/liuyin.png", "https://static.idiks.com/images/techday2019/instructors/dengshuan.png"]
         },
         {
           "time": "15:20 - 15:40",
@@ -490,7 +490,7 @@
           "speaker": ["郭磊涛"],
           "company": "爱奇艺",
           "speaker_title": "数据库服务负责人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/guoleitao.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/guoleitao.png"
         },
         {
           "time": "16:10 - 16:50",
@@ -499,16 +499,16 @@
           "speaker": ["唐刘"],
           "company": "PingCAP",
           "speaker_title": "首席架构师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/tangliu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/tangliu.png"
         }
       ]
     },
 
     "shanghai": {
-      "video_link": "https://static.itspedia.com/videos/tech19-review-shanghai.mp4",
+      "video_link": "https://static.idiks.com/videos/tech19-review-shanghai.mp4",
       "city": "shanghai",
       "video_desc": "活动已结束，3 分钟快速回顾 TiDB TechDay 2019 - 上海站",
-      "video_landing_img": "https://static.itspedia.com/images/techday2019/shanghai.jpg",
+      "video_landing_img": "https://static.idiks.com/images/techday2019/shanghai.jpg",
       "time": "2019.06-30 10:00 - 17:20",
       "addr": "上海 · 长宁区延安西路 918 号 HelloCoffee  （锦江达华酒店侧楼一楼）",
       "link": "http://hdxu.cn/5Btct",
@@ -530,7 +530,7 @@
           "speaker": ["黄东旭"],
           "company": "PingCAP",
           "speaker_title": "联合创始人兼 CTO",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/huangdongxu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/huangdongxu.png"
         },
         {
           "time": "10:20 - 11:00",
@@ -539,7 +539,7 @@
           "speaker": ["申砾"],
           "company": "PingCAP",
           "speaker_title": "Engineering VP",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/shenli.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/shenli.png"
         },
         {
           "time": "11:00 - 11:40",
@@ -548,7 +548,7 @@
           "speaker": ["崔秋"],
           "company": "PingCAP",
           "speaker_title": "联合创始人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/cuiqiu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/cuiqiu.png"
         },
         {
           "time": "11:40 - 12:10",
@@ -557,7 +557,7 @@
           "speaker": ["李振环"],
           "company": "贝壳金服",
           "speaker_title": "数据基础架构负责人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/lizhenhuan.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/lizhenhuan.png"
         },
         {
           "time": "12:10 - 13:30",
@@ -576,7 +576,7 @@
           "speaker": ["马晓宇"],
           "company": "PingCAP",
           "speaker_title": "分析型产品负责人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/maxiaoyu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/maxiaoyu.png"
         },
         {
           "time": "14:10 - 14:40",
@@ -585,7 +585,7 @@
           "speaker": ["罗瑞星"],
           "company": "易果生鲜",
           "speaker_title": "数据架构专家",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/luoruixing.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/luoruixing.png"
         },
         {
           "time": "14:40 - 15:20",
@@ -600,7 +600,7 @@
             "研发工程师",
             "研发工程师"
           ],
-          "image": ["https://static.itspedia.com/images/techday2019/instructors/changjunchang.png", "https://static.itspedia.com/images/techday2019/instructors/wuyelei.png"]
+          "image": ["https://static.idiks.com/images/techday2019/instructors/changjunchang.png", "https://static.idiks.com/images/techday2019/instructors/wuyelei.png"]
         },
         {
           "time": "15:20 - 15:40",
@@ -622,7 +622,7 @@
           ],
           "company": "小红书",
           "speaker_title": "数据库与中间件团队负责人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/zhangjunjun.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/zhangjunjun.png"
         },
         {
           "time": "16:10 - 16:50",
@@ -633,7 +633,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "TiKV 研发工程师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/shiwenxuan.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/shiwenxuan.png"
         },
         {
           "time": "16:50 - 17:20",
@@ -644,13 +644,13 @@
           ],
           "company": "陆金所",
           "speaker_title": "大数据平台负责人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/wenchu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/wenchu.png"
         }
       ]
     },
 
     "chengdu": {
-      "image_link": "https://static.itspedia.com/images/techday2019/chengdu.jpg",
+      "image_link": "https://static.idiks.com/images/techday2019/chengdu.jpg",
       "city": "chengdu",
       "video_desc": "活动已结束",
       "time": "2019.07-06 10:00 - 16:50",
@@ -676,7 +676,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "联合创始人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/cuiqiu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/cuiqiu.png"
         },
         {
           "time": "11:00 - 11:40",
@@ -687,7 +687,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "Developer of SQL Engine Team",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/yaokenan.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/yaokenan.png"
         },
         {
           "time": "11:40 - 12:10",
@@ -698,7 +698,7 @@
           ],
           "company": "马上消费金融",
           "speaker_title": "容器云 NewSQL 负责人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/liyinlong.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/liyinlong.png"
         },
         {
           "time": "12:10 - 13:30",
@@ -721,7 +721,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "分析型产品负责人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/maxiaoyu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/maxiaoyu.png"
         },
         {
           "time": "14:10 - 14:40",
@@ -732,7 +732,7 @@
           ],
           "company": "58 集团",
           "speaker_title": "高级 DBA",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/liuchunlei.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/liuchunlei.png"
         },
         {
           "time": "14:40 - 15:20",
@@ -750,7 +750,7 @@
             "商业产品团队负责人",
             "核心工程师"
           ],
-          "image": ["https://static.itspedia.com/images/techday2019/instructors/liuyin.png", "https://static.itspedia.com/images/techday2019/instructors/dengshuan.png"]
+          "image": ["https://static.idiks.com/images/techday2019/instructors/liuyin.png", "https://static.idiks.com/images/techday2019/instructors/dengshuan.png"]
         },
         {
           "time": "15:20 - 15:40",
@@ -772,7 +772,7 @@
           ],
           "company": "北京银行",
           "speaker_title": "资深架构师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/yuzhenhua.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/yuzhenhua.png"
         },
         {
           "time": "16:10 - 16:50",
@@ -783,14 +783,14 @@
           ],
           "company": "PingCAP",
           "speaker_title": "TiKV 核心开发工程师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/wuxuelian.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/wuxuelian.png"
         }
       ]
     },
 
     "shenzhen": {
-      "video_link": "https://static.itspedia.com/videos/tech19-review-shenzhen.mp4",
-      "video_landing_img": "https://static.itspedia.com/images/techday2019/shenzhen.jpg",
+      "video_link": "https://static.idiks.com/videos/tech19-review-shenzhen.mp4",
+      "video_landing_img": "https://static.idiks.com/images/techday2019/shenzhen.jpg",
       "video_desc": "活动已结束，2 分钟快速回顾 TiDB TechDay 2019 - 深圳站",
       "city": ["shenzhen", "深圳"],
       "time": "2019.07.14 10:00 - 17:10",
@@ -816,7 +816,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "联合创始人兼 CTO",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/huangdongxu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/huangdongxu.png"
         },
         {
           "time": "10:20 - 11:00",
@@ -827,7 +827,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "TiDB SQL Infra Team Tech Lead",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/yaowei.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/yaowei.png"
         },
         {
           "time": "11:00 - 11:40",
@@ -836,7 +836,7 @@
           "speaker": ["崔秋"],
           "company": "PingCAP",
           "speaker_title": "联合创始人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/cuiqiu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/cuiqiu.png"
         },
         {
           "time": "11:40 - 12:10",
@@ -847,7 +847,7 @@
           ],
           "company": "平安科技",
           "speaker_title": "资深云数据库工程师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/hezhiyong.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/hezhiyong.png"
         },
         {
           "time": "12:10 - 13:30",
@@ -870,7 +870,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "数据库核心研发工程师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/weiwan.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/weiwan.png"
         },
         {
           "time": "14:10 - 14:40",
@@ -881,7 +881,7 @@
           ],
           "company": "微众银行",
           "speaker_title": "高级 DBA 工程师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/huangwei.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/huangwei.png"
         },
         {
           "time": "14:40 - 15:20",
@@ -899,7 +899,7 @@
             "商业产品团队负责人",
             "核心工程师"
           ],
-          "image": ["https://static.itspedia.com/images/techday2019/instructors/liuyin.png", "https://static.itspedia.com/images/techday2019/instructors/dengshuan.png"]
+          "image": ["https://static.idiks.com/images/techday2019/instructors/liuyin.png", "https://static.idiks.com/images/techday2019/instructors/dengshuan.png"]
         },
         {
           "time": "15:20 - 15:40",
@@ -921,7 +921,7 @@
           ],
           "company": "360 金融",
           "speaker_title": "软件工程师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/huanglong.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/huanglong.png"
         },
         {
           "time": "16:10 - 16:50",
@@ -932,7 +932,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "首席架构师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/tangliu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/tangliu.png"
         },
         {
           "time": "16:50 - 17:10",
@@ -943,16 +943,16 @@
           ],
           "company": "汉得信息",
           "speaker_title": "移动技术中心总经理",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/zhaozhenkun.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/zhaozhenkun.png"
         }
       ]
     },
 
     "wuhan": {
-      "video_link": "https://static.itspedia.com/videos/tech19-review-wuhan.mp4",
+      "video_link": "https://static.idiks.com/videos/tech19-review-wuhan.mp4",
       "city": "wuhan",
       "video_desc": "活动已结束，3 分钟快速回顾 TiDB TechDay 2019 - 武汉站",
-      "video_landing_img": "https://static.itspedia.com/images/techday2019/wuhan.jpg",
+      "video_landing_img": "https://static.idiks.com/images/techday2019/wuhan.jpg",
       "time": "2019.07-20 10:00 - 16:50",
       "addr": "武汉 · 洪山区光谷大道现代光谷世贸中心 B 栋 19 楼 腾讯众创空间",
       "link": "http://hdxu.cn/LQeh6",
@@ -976,7 +976,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "联合创始人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/cuiqiu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/cuiqiu.png"
         },
         {
           "time": "11:00 - 11:40",
@@ -987,7 +987,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "TiDB 架构组研发组长",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/yushuaipeng.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/yushuaipeng.png"
         }, 
         {
           "time": "11:40 - 12:10",
@@ -998,7 +998,7 @@
           ],
           "company": "光迅科技",
           "speaker_title": "资深软件工程师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/tanglingfei.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/tanglingfei.png"
         },
         {
           "time": "12:10 - 13:30",
@@ -1021,7 +1021,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "研发工程师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/hanfei.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/hanfei.png"
         },
         {
           "time": "14:10 - 14:40",
@@ -1032,7 +1032,7 @@
           ],
           "company": "新东方",
           "speaker_title": "数据团队负责人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/fushaofeng.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/fushaofeng.png"
         },
         {
           "time": "14:40 - 15:20",
@@ -1050,7 +1050,7 @@
             "研发工程师",
             "研发工程师"
           ],
-          "image": ["https://static.itspedia.com/images/techday2019/instructors/changjunchang.png", "https://static.itspedia.com/images/techday2019/instructors/wuyelei.png"]
+          "image": ["https://static.idiks.com/images/techday2019/instructors/changjunchang.png", "https://static.idiks.com/images/techday2019/instructors/wuyelei.png"]
         },
         {
           "time": "15:20 - 15:40",
@@ -1072,7 +1072,7 @@
           ],
           "company": "武汉光电国家研究中心并行数据存储实验室",
           "speaker_title": "博四在读",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/yaoting.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/yaoting.png"
         },
         {
           "time": "16:10 - 16:50",
@@ -1083,14 +1083,14 @@
           ],
           "company": "PingCAP",
           "speaker_title": "研发工程师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/chenshuning.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/chenshuning.png"
         }
       ]
     },
 
     "hangzhou": {
-      "video_landing_img": "https://static.itspedia.com/images/techday2019/hangzhou.jpg",
-      "video_link": "https://static.itspedia.com/videos/tech19-review-hangzhou.mp4",
+      "video_landing_img": "https://static.idiks.com/images/techday2019/hangzhou.jpg",
+      "video_link": "https://static.idiks.com/videos/tech19-review-hangzhou.mp4",
       "video_desc": "活动已结束，2 分钟快速回顾 TiDB TechDay 2019 - 杭州站",
       "city": ["hangzhou", "杭州"],
       "time": "2019.07-27 10:00 - 16:50",
@@ -1114,7 +1114,7 @@
           "speaker": ["崔秋"],
           "company": "PingCAP",
           "speaker_title": "联合创始人",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/cuiqiu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/cuiqiu.png"
         },
         {
           "time": "11:00 - 11:40",
@@ -1125,7 +1125,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "TiDB 首席商业产品经理",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/duanbing.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/duanbing.png"
         },
         {
           "time": "11:40 - 12:10",
@@ -1136,7 +1136,7 @@
           ],
           "company": "甜橙金融",
           "speaker_title": "创新技术中心总经理",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/zhangxiaohu.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/zhangxiaohu.png"
         },
         {
           "time": "12:10 - 13:30",
@@ -1159,7 +1159,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "分布式存储资深架构师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/liucong.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/liucong.png"
         },
         {
           "time": "14:10 - 14:40",
@@ -1170,7 +1170,7 @@
           ],
           "company": "京东",
           "speaker_title": "产品研发部专家架构师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/cuican.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/cuican.png"
         },
         {
           "time": "14:40 - 15:20",
@@ -1185,7 +1185,7 @@
             "研发工程师",
             "研发工程师"
           ],
-          "image": ["https://static.itspedia.com/images/techday2019/instructors/changjunchang.png", "https://static.itspedia.com/images/techday2019/instructors/wuyelei.png"]
+          "image": ["https://static.idiks.com/images/techday2019/instructors/changjunchang.png", "https://static.idiks.com/images/techday2019/instructors/wuyelei.png"]
         },
         {
           "time": "15:20 - 15:40",
@@ -1207,7 +1207,7 @@
           ],
           "company": "二维火",
           "speaker_title": "架构运维负责人 ",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/tongyunfeng.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/tongyunfeng.png"
         },
         {
           "time": "16:10 - 16:50",
@@ -1218,7 +1218,7 @@
           ],
           "company": "PingCAP",
           "speaker_title": "TiKV 核心开发工程师",
-          "image": "https://static.itspedia.com/images/techday2019/instructors/wuxuelian.png"
+          "image": "https://static.idiks.com/images/techday2019/instructors/wuxuelian.png"
         }
       ]
     }
@@ -1227,207 +1227,207 @@
   "share_records": [
     {
       "title": "畅想未来的数据库",
-      "image": "https://static.itspedia.com/images/techday2019/sr-video-land-img1.jpg",
-      "link": "https://static.itspedia.com/videos/tech19-share-huangdongxu.mp4",
-      "video": "https://static.itspedia.com/videos/tech19-share-huangdongxu.mp4",
+      "image": "https://static.idiks.com/images/techday2019/sr-video-land-img1.jpg",
+      "link": "https://static.idiks.com/videos/tech19-share-huangdongxu.mp4",
+      "video": "https://static.idiks.com/videos/tech19-share-huangdongxu.mp4",
       "tencent_video": "https://v.qq.com/x/page/w0909d3s0cb.html"
     },
     {
       "title": "全面解析 TiDB 3.0： 易用性， 扩展性， 性能",
-      "image": "https://static.itspedia.com/images/techday2019/sr-video-land-img2.jpg",
-      "link": "https://static.itspedia.com/videos/tech19-share-shenli.mp4",
-      "video": "https://static.itspedia.com/videos/tech19-share-shenli.mp4",
+      "image": "https://static.idiks.com/images/techday2019/sr-video-land-img2.jpg",
+      "link": "https://static.idiks.com/videos/tech19-share-shenli.mp4",
+      "video": "https://static.idiks.com/videos/tech19-share-shenli.mp4",
       "tencent_video": "https://v.qq.com/x/page/k0909c4nvcy.html"
     },
     {
       "title": "不止于代码：TiDB 社区发展及生态构建",
-      "image": "https://static.itspedia.com/images/techday2019/sr-video-land-img3.jpg",
-      "link": "https://static.itspedia.com/videos/tech19-share-cuiqiu.mp4",
-      "video": "https://static.itspedia.com/videos/tech19-share-cuiqiu.mp4",
+      "image": "https://static.idiks.com/images/techday2019/sr-video-land-img3.jpg",
+      "link": "https://static.idiks.com/videos/tech19-share-cuiqiu.mp4",
+      "video": "https://static.idiks.com/videos/tech19-share-cuiqiu.mp4",
       "tencent_video": "https://v.qq.com/x/page/y0910vd0htr.html"
     },
     {
       "title": "TiDB 新 OLAP 架构深度解析",
-      "image": "https://static.itspedia.com/images/techday2019/sr-video-land-img4.jpg",
-      "link": "https://static.itspedia.com/videos/tech19-share-maxiaoyu.mp4",
-      "video": "https://static.itspedia.com/videos/tech19-share-maxiaoyu.mp4",
+      "image": "https://static.idiks.com/images/techday2019/sr-video-land-img4.jpg",
+      "link": "https://static.idiks.com/videos/tech19-share-maxiaoyu.mp4",
+      "video": "https://static.idiks.com/videos/tech19-share-maxiaoyu.mp4",
       "tencent_video": "https://v.qq.com/x/page/m0910xwx85s.html"
     },
     {
       "title": "云原生：TiDB 的最佳使用姿势",
-      "image": "https://static.itspedia.com/images/techday2019/sr-video-land-img5.jpg",
-      "link": "https://static.itspedia.com/videos/tech19-share-liuyin.mp4",
-      "video": "https://static.itspedia.com/videos/tech19-share-liuyin.mp4",
+      "image": "https://static.idiks.com/images/techday2019/sr-video-land-img5.jpg",
+      "link": "https://static.idiks.com/videos/tech19-share-liuyin.mp4",
+      "video": "https://static.idiks.com/videos/tech19-share-liuyin.mp4",
       "tencent_video": "https://v.qq.com/x/page/d0910kzvuvr.html"
     },
     {
       "title": "TiKV 的演进：从性能大幅提升谈起",
-      "image": "https://static.itspedia.com/images/techday2019/sr-video-land-img6.jpg",
-      "link": "https://static.itspedia.com/videos/tech19-share-tangliu.mp4",
-      "video": "https://static.itspedia.com/videos/tech19-share-tangliu.mp4",
+      "image": "https://static.idiks.com/images/techday2019/sr-video-land-img6.jpg",
+      "link": "https://static.idiks.com/videos/tech19-share-tangliu.mp4",
+      "video": "https://static.idiks.com/videos/tech19-share-tangliu.mp4",
       "tencent_video": "https://v.qq.com/x/page/e0909k4kjwh.html"
     },
     {
       "title": "TiDB 在知乎万亿量级业务数据下的实践和挑战",
-      "image": "https://static.itspedia.com/images/techday2019/sr-video-land-img7.jpg",
+      "image": "https://static.idiks.com/images/techday2019/sr-video-land-img7.jpg",
       "link": "/cases-cn/user-case-zhihu/"
     },
     {
       "title": "TiDB 在小红书从 0 到 200+ 节点的探索和应用",
-      "image": "https://static.itspedia.com/images/techday2019/sr-video-land-img8.jpg",
+      "image": "https://static.idiks.com/images/techday2019/sr-video-land-img8.jpg",
       "link": "/cases-cn/user-case-xiaohongshu/"
     },
     {
       "title": "微众银行数据库架构演进及 TiDB 实践经验",
-      "image": "https://static.itspedia.com/images/techday2019/sr-video-land-img9.jpg",
+      "image": "https://static.idiks.com/images/techday2019/sr-video-land-img9.jpg",
       "link": "/cases-cn/user-case-webank/"
     }
   ],
 
   "moments_2019": [
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/1.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/1.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/2.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/2.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/3.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/3.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/4.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/4.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/5.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/5.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/6.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/6.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/7.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/7.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/8.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/8.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/9.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/9.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/10.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/10.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/11.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/11.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/12.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/12.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/13.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/13.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/14.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/14.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/15.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/15.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/16.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/16.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/17.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/17.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/18.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/18.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/19.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/19.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/20.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/20.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/21.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/21.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/22.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/22.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/23.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/23.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/24.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/24.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/25.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/25.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/26.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/26.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/27.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/27.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/28.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/28.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/29.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/29.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/30.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/30.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/31.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/31.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/32.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/32.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/33.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/33.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/34.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/34.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/35.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/35.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/36.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/36.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/37.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/37.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/38.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/38.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/39.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/39.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/40.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/40.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/41.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/41.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/42.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/42.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/43.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/43.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/44.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/44.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/45.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/45.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/46.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/46.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/47.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/47.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/techday2019/moments/48.jpg"
+      "image": "https://static.idiks.com/images/techday2019/moments/48.jpg"
     }
   ]
 }

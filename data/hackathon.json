@@ -6,7 +6,7 @@
       "bonus": "现金：¥ 60000",
       "intro": "TiDB Batch and Streaming SQL（简称 TBSSQL）扩展了 TiDB 的 SQL 引擎，支持用户以类似 StreamSQL 的语法将 Kafka, Pulsar 等外部数据源以流式表的方式接入 TiDB。通过简单的 SQL 语句，用户可以实现对流式数据的过滤，流式表与普通表的 Join（ 比如流式事实表与多个普通维度表），甚至通过 CREATE TABLE AS SELECT 语法将处理过的流式数据写入普通表中。此外，针对流式数据的时间属性,我们实现了基于时间窗口的聚合 / 排序算子,使得我们可以对流式数据进行时间维度的聚合 / 排序。",
       "github_repo": "https://github.com/qiuyesuifeng/tidb",
-      "image": "https://static.itspedia.com/images/hackathon2018-winners/tbssql.jpg"
+      "image": "https://static.idiks.com/images/hackathon2018-winners/tbssql.jpg"
     },
     {
       "award": "二等奖",
@@ -14,7 +14,7 @@
       "bonus": "现金：¥ 30000",
       "intro": "为 TiDB 培训体系增加一个可以动态观测 TiDB/TiKV/PD 细节的动画教学 Lab，让用户可以一边进行真实操作一边观察组件之间的变化，例如 SQL 的解析，Region 的变更等等。让用户可以生动地理解 TiDB 的工作原理。",
       "github_repo": "https://dev.azure.com/tidb-hackathon-qq-team/tidb-lab/_git/lab-frontend",
-      "image": "https://static.itspedia.com/images/hackathon2018-winners/laboratory.jpg"
+      "image": "https://static.idiks.com/images/hackathon2018-winners/laboratory.jpg"
     },
     {
       "award": "二等奖",
@@ -22,7 +22,7 @@
       "bonus": "现金：¥ 30000",
       "intro": "让 TiDB 支持多种外部数据源的访问，针对不同数据源的特点会不同的下推工作，使 TiDB 成为一个通用的数据库查询优化和计算平台。",
       "github_repo": "https://github.com/hailanwhu/tidbhackthon2018",
-      "image": "https://static.itspedia.com/images/hackathon2018-winners/data-source.jpg"
+      "image": "https://static.idiks.com/images/hackathon2018-winners/data-source.jpg"
     },
     {
       "award": "三等奖 & 最佳创意奖",
@@ -30,7 +30,7 @@
       "bonus": "现金：¥ 10000 ",
       "intro": "验证朴素贝叶斯模型在调度 pd 算法里的运用,由此可以设想在其他调参方面这种贝叶斯模型的应用是否可行。",
       "github_repo": "https://github.com/liufuyang/rust-nb-server",
-      "image": "https://static.itspedia.com/images/hackathon2018-winners/pd.jpg"
+      "image": "https://static.idiks.com/images/hackathon2018-winners/pd.jpg"
     },
     {
       "award": "三等奖",
@@ -38,7 +38,7 @@
       "bonus": "现金：¥ 10000",
       "intro": "Region 信息变迁历史可视化工具，通过 PD 记录 Region 的 Split, Merge, ConfChange, LeaderChange 等信息，可以方便的回溯 Region 某个时间的具体状态，为开发人员提供了方便的可视化展示界面及查询功能。",
       "github_repo": "https://github.com/MyonKeminta/pd/tree/region-visualizer",
-      "image": "https://static.itspedia.com/images/hackathon2018-winners/tieye.jpg"
+      "image": "https://static.idiks.com/images/hackathon2018-winners/tieye.jpg"
     },
     {
       "award": "三等奖",
@@ -46,7 +46,7 @@
       "bonus": "现金：¥ 10000",
       "intro": "搜集诊断集群问题所需要的信息，包括集群拓扑，Region 分布，配置，各种系统信息，整理成结构化的数据，并在 TiDB 中支持直接使用 SQL 语言进行查询。开发和运维人员可以在 SQL 环境方便高效地进行问题诊断。",
       "github_repo": "https://github.com/TiNiuB",
-      "image": "https://static.itspedia.com/images/hackathon2018-winners/tiquery.jpg"
+      "image": "https://static.idiks.com/images/hackathon2018-winners/tiquery.jpg"
     }
   ],
 
@@ -137,37 +137,37 @@
     {
       "name": "邓栓",
       "title": "Cloud TiDB 核心开发工程师，Rust 语言中文社区发起人",
-      "avatar": "https://static.itspedia.com/images/instructors/dengshuan.jpg"
+      "avatar": "https://static.idiks.com/images/instructors/dengshuan.jpg"
     },
     {
       "name": "韩飞",
       "title": "TiDB 核心开发工程师",
-      "avatar": "https://static.itspedia.com/images/instructors/hanfei.jpg"
+      "avatar": "https://static.idiks.com/images/instructors/hanfei.jpg"
     },
     {
       "name": "黄东旭",
       "title": "PingCAP 联合创始人兼 CTO",
-      "avatar": "https://static.itspedia.com/images/instructors/huangdongxu.jpg"
+      "avatar": "https://static.idiks.com/images/instructors/huangdongxu.jpg"
     },
     {
       "name": "申砾",
       "title": "Engineering VP",
-      "avatar": "https://static.itspedia.com/images/instructors/shenli.jpg"
+      "avatar": "https://static.idiks.com/images/instructors/shenli.jpg"
     },
     {
       "name": "唐刘",
       "title": "首席架构师",
-      "avatar": "https://static.itspedia.com/images/instructors/tangliu.jpg"
+      "avatar": "https://static.idiks.com/images/instructors/tangliu.jpg"
     },
     {
       "name": "姚维",
       "title": "TiDB 核心开发工程师",
-      "avatar": "https://static.itspedia.com/images/instructors/yaowei.jpg"
+      "avatar": "https://static.idiks.com/images/instructors/yaowei.jpg"
     },
     {
       "name": "张金鹏",
       "title": "TiKV 核心开发工程师",
-      "avatar": "https://static.itspedia.com/images/instructors/zhangjinpeng.jpg"
+      "avatar": "https://static.idiks.com/images/instructors/zhangjinpeng.jpg"
     }
   ],
 
@@ -175,111 +175,111 @@
     {
       "name": "黄东旭",
       "title": "PingCAP | 联合创始人兼 CTO",
-      "avatar": "https://static.itspedia.com/images/instructors/huangdongxu.jpg",
+      "avatar": "https://static.idiks.com/images/instructors/huangdongxu.jpg",
       "judge": true
     },
     {
       "name": "申砾",
       "title": "PingCAP | Engineering VP",
-      "avatar": "https://static.itspedia.com/images/instructors/shenli.jpg",
+      "avatar": "https://static.idiks.com/images/instructors/shenli.jpg",
       "judge": true,
       "tba": false
     },
     {
       "name": "李凯",
       "title": "美团 | 数据库团队负责人",
-      "avatar": "https://static.itspedia.com/images/instructors/likai.jpg",
+      "avatar": "https://static.idiks.com/images/instructors/likai.jpg",
       "judge": true,
       "tba": false
     },
     {
       "name": "于伯伟",
       "title": "58集团 | 数据库高级经理",
-      "avatar": "https://static.itspedia.com/images/instructors/yubowei.jpeg",
+      "avatar": "https://static.idiks.com/images/instructors/yubowei.jpeg",
       "judge": true,
       "tba": false
     },
     {
       "name": "李道兵",
       "title": "京东云 | 高级总监",
-      "avatar": "https://static.itspedia.com/images/instructors/lidaobing.png",
+      "avatar": "https://static.idiks.com/images/instructors/lidaobing.png",
       "judge": true,
       "tba": false
     },
     {
       "name": "赵应钢",
       "title": "美团点评 | 分布式数据库平台开发和运维负责人，研究员",
-      "avatar": "https://static.itspedia.com/images/instructors/zhaoyinggang-hackathon.jpeg",
+      "avatar": "https://static.idiks.com/images/instructors/zhaoyinggang-hackathon.jpeg",
       "judge": true,
       "tba": false
     },
     {
       "name": "侯圣文",
       "title": "贝壳找房 | 数据技术总监",
-      "avatar": "https://static.itspedia.com/images/instructors/houshengwen.jpg",
+      "avatar": "https://static.idiks.com/images/instructors/houshengwen.jpg",
       "judge": true,
       "tba": false
     },
     {
       "name": "唐刘",
       "title": "PingCAP | 首席架构师",
-      "avatar": "https://static.itspedia.com/images/instructors/tangliu.jpg",
+      "avatar": "https://static.idiks.com/images/instructors/tangliu.jpg",
       "judge": false,
       "tba": false
     },
     {
       "name": "姚维",
       "title": "PingCAP | Senior Technical Director",
-      "avatar": "https://static.itspedia.com/images/instructors/yaowei.jpg",
+      "avatar": "https://static.idiks.com/images/instructors/yaowei.jpg",
       "judge": false,
       "tba": false
     },
     {
       "name": "于帅鹏",
       "title": "PingCAP | TiDB 架构组研发组长",
-      "avatar": "https://static.itspedia.com/images/techday2019/instructors/yushuaipeng.png",
+      "avatar": "https://static.idiks.com/images/techday2019/instructors/yushuaipeng.png",
       "judge": false,
       "tba": false
     },
     {
       "name": "冯立元",
       "title": "PingCAP | TiDB 研发工程师",
-      "avatar": "https://static.itspedia.com/images/instructors/fengliyuan.jpeg",
+      "avatar": "https://static.idiks.com/images/instructors/fengliyuan.jpeg",
       "judge": false,
       "tba": false
     },
     {
       "name": "李建俊",
       "title": "PingCAP | TiKV 研发工程师",
-      "avatar": "https://static.itspedia.com/images/instructors/lijianjun.jpeg",
+      "avatar": "https://static.idiks.com/images/instructors/lijianjun.jpeg",
       "judge": false,
       "tba": false
     },
     {
       "name": "常军昌",
       "title": "PingCAP | 研发工程师",
-      "avatar": "https://static.itspedia.com/images/techday2019/instructors/changjunchang.png",
+      "avatar": "https://static.idiks.com/images/techday2019/instructors/changjunchang.png",
       "judge": false,
       "tba": false
     },
     {
       "name": "张建",
       "title": "PingCAP | TiDB 优化器与执行引擎技术负责人",
-      "avatar": "https://static.itspedia.com/images/instructors/zhangjian.jpg",
+      "avatar": "https://static.idiks.com/images/instructors/zhangjian.jpg",
       "judge": false,
       "tba": false
     },
     {
       "name": "周振靖",
       "title": "PingCAP | TiKV 研发工程师",
-      "avatar": "https://static.itspedia.com/images/instructors/zhouzhenjing.jpg",
+      "avatar": "https://static.idiks.com/images/instructors/zhouzhenjing.jpg",
       "judge": false,
       "tba": false
     },
     {
       "name": "刘玮",
       "title": "PingCAP | 研发工程师",
-      "avatar": "https://static.itspedia.com/images/instructors/liuwei.jpg",
+      "avatar": "https://static.idiks.com/images/instructors/liuwei.jpg",
       "judge": false,
       "tba": false
     }
@@ -290,40 +290,40 @@
       "award": "一等奖",
       "bonus": "60,000",
       "team_numbers": "1",
-      "medal": "https://static.itspedia.com/images/hackathon2019/golden.svg",
-      "bg":"https://static.itspedia.com/images/hackathon2019/golden-bg.png"
+      "medal": "https://static.idiks.com/images/hackathon2019/golden.svg",
+      "bg":"https://static.idiks.com/images/hackathon2019/golden-bg.png"
     },
     {
       "award": "二等奖",
       "bonus": "30,000",
       "team_numbers": "2",
-      "medal": "https://static.itspedia.com/images/hackathon2019/sliver.svg",
-      "bg":"https://static.itspedia.com/images/hackathon2019/silver-bg.png"
+      "medal": "https://static.idiks.com/images/hackathon2019/sliver.svg",
+      "bg":"https://static.idiks.com/images/hackathon2019/silver-bg.png"
     },
     {
       "award": "三等奖",
       "bonus": "10,000",
       "team_numbers": "3",
-      "medal": "https://static.itspedia.com/images/hackathon2019/bronze.svg",
-      "bg":"https://static.itspedia.com/images/hackathon2019/bronze-bg.png"
+      "medal": "https://static.idiks.com/images/hackathon2019/bronze.svg",
+      "bg":"https://static.idiks.com/images/hackathon2019/bronze-bg.png"
     },
     {
       "award": "最佳贡献奖",
       "gift": "TiDB 周边礼包",
-      "medal": "https://static.itspedia.com/images/hackathon2019/gift.svg",
-      "bg":"https://static.itspedia.com/images/hackathon2019/gift-bg.png"
+      "medal": "https://static.idiks.com/images/hackathon2019/gift.svg",
+      "bg":"https://static.idiks.com/images/hackathon2019/gift-bg.png"
     },
     {
       "award": "最佳创意奖",
       "gift": "TiDB 周边礼包",
-      "medal": "https://static.itspedia.com/images/hackathon2019/gift.svg",
-      "bg":"https://static.itspedia.com/images/hackathon2019/gift-bg.png"
+      "medal": "https://static.idiks.com/images/hackathon2019/gift.svg",
+      "bg":"https://static.idiks.com/images/hackathon2019/gift-bg.png"
     },
     {
       "award": "最佳潜力奖",
       "gift": "TiDB 周边礼包",
-      "medal": "https://static.itspedia.com/images/hackathon2019/gift.svg",
-      "bg":"https://static.itspedia.com/images/hackathon2019/gift-bg.png"
+      "medal": "https://static.idiks.com/images/hackathon2019/gift.svg",
+      "bg":"https://static.idiks.com/images/hackathon2019/gift-bg.png"
     }
   ],
 
@@ -349,7 +349,7 @@
       "time": "10 月 26 日 - 27 日 14:30",
       "detail": "一切准备就绪，带上你的电脑和任何你觉得用得上的硬件设备，即刻加入这一场酣畅淋漓的代码狂欢吧。",
       "btn_text": "日程表",
-      "modal_img": "https://static.itspedia.com/images/hackathon2019/hackathon2019-schedule-pc.png"
+      "modal_img": "https://static.idiks.com/images/hackathon2019/hackathon2019-schedule-pc.png"
     },
     {
       "step": "4",
@@ -357,7 +357,7 @@
       "time": "27 日 14:30 - 18:30",
       "detail": "终于到了最激动人心的时刻！今年我们在北京、上海及广州三地同步开启直播演示，就算是 Hackathon 也可以玩一把分布式嘛~",
       "btn_text": "评分标准",
-      "modal_img": "https://static.itspedia.com/images/hackathon2019/hackathon2019-grading-pc.png"
+      "modal_img": "https://static.idiks.com/images/hackathon2019/hackathon2019-grading-pc.png"
     }
   ],
 
@@ -366,54 +366,54 @@
       "title": "专项学习文档",
       "desc": "这里汇总了 TiDB 核心团队出品的数十篇精选技术详解文章，轻松掌握 TiDB 各核心组件的原理及功能。",
       "link": "https://github.com/idiks/presentations/blob/master/hackathon-2019/reference-document-of-hackathon-2019.md",
-      "thumbnail_pc": "https://static.itspedia.com/images/hackathon2019/learning-docs-thumbnail-pc.jpg",
-      "thumbnail_mobile": "https://static.itspedia.com/images/hackathon2019/learning-docs-thumbnail-mobile.jpg"
+      "thumbnail_pc": "https://static.idiks.com/images/hackathon2019/learning-docs-thumbnail-pc.jpg",
+      "thumbnail_mobile": "https://static.idiks.com/images/hackathon2019/learning-docs-thumbnail-mobile.jpg"
     },
     {
       "title": "在线视频课程",
       "desc": "PingCAP University 汇集 TiDB 架构、原理及最佳实践等多角度视频课程，致力于培养熟悉分布式系统、具备独立运维 TiDB 集群能力的一流人才。",
       "link": "https://university.pingcap.com/",
-      "thumbnail_pc": "https://static.itspedia.com/images/hackathon2019/pu-thumbnail-pc.jpg",
-      "thumbnail_mobile": "https://static.itspedia.com/images/hackathon2019/pu-thumbnail-mobile.jpg"
+      "thumbnail_pc": "https://static.idiks.com/images/hackathon2019/pu-thumbnail-pc.jpg",
+      "thumbnail_mobile": "https://static.idiks.com/images/hackathon2019/pu-thumbnail-mobile.jpg"
     }
   ],
 
   "moments_2018": [
     {
-      "image": "https://static.itspedia.com/images/moments/hack2018-1.jpg"
+      "image": "https://static.idiks.com/images/moments/hack2018-1.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/hack2018-2.jpg"
+      "image": "https://static.idiks.com/images/moments/hack2018-2.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/hack2018-3.jpg"
+      "image": "https://static.idiks.com/images/moments/hack2018-3.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/hack2018-4.jpg"
+      "image": "https://static.idiks.com/images/moments/hack2018-4.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/hack2018-5.jpg"
+      "image": "https://static.idiks.com/images/moments/hack2018-5.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/hack2018-6.jpg"
+      "image": "https://static.idiks.com/images/moments/hack2018-6.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/hack2018-7.jpg"
+      "image": "https://static.idiks.com/images/moments/hack2018-7.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/hack2018-8.jpg"
+      "image": "https://static.idiks.com/images/moments/hack2018-8.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/hack2018-9.jpg"
+      "image": "https://static.idiks.com/images/moments/hack2018-9.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/hack2018-10.jpg"
+      "image": "https://static.idiks.com/images/moments/hack2018-10.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/hack2018-11.jpg"
+      "image": "https://static.idiks.com/images/moments/hack2018-11.jpg"
     },
     {
-      "image": "https://static.itspedia.com/images/moments/hack2018-12.jpg"
+      "image": "https://static.idiks.com/images/moments/hack2018-12.jpg"
     }
   ],
 
@@ -427,19 +427,19 @@
 
   "sponsors_2019": [
     {
-      "img": "https://static.itspedia.com/images/sponsors/ucloud.png"
+      "img": "https://static.idiks.com/images/sponsors/ucloud.png"
     }
   ],
 
   "partners_2019": [
     {
-      "img": "https://static.itspedia.com/images/sponsors/segamentfault-new.png"
+      "img": "https://static.idiks.com/images/sponsors/segamentfault-new.png"
     },
     {
-      "img": "https://static.itspedia.com/images/sponsors/juejin2.png"
+      "img": "https://static.idiks.com/images/sponsors/juejin2.png"
     },
     {
-      "img": "https://static.itspedia.com/images/sponsors/kaiyuanzhongguo.png"
+      "img": "https://static.idiks.com/images/sponsors/kaiyuanzhongguo.png"
     }
   ],
 
@@ -507,107 +507,107 @@
 
   "winners_2019": [
     {
-      "thumbnail": "https://static.itspedia.com/images/hackathon2019/winners/first.jpg",
+      "thumbnail": "https://static.idiks.com/images/hackathon2019/winners/first.jpg",
       "award": "一等奖",
       "team_name": "逊馁",
       "project_name": "Unified Thread Pool",
       "project_intro": "在 TiKV 中使用一个统一的自适应线程池处理读请求，能够显著提升性能，并可预测性地限制大查询对小请求的干扰。",
       "github": "https://github.com/sticnarf/kvproto/tree/hackathon",
-      "medal": "https://static.itspedia.com/images/hackathon2019/golden.svg"
+      "medal": "https://static.idiks.com/images/hackathon2019/golden.svg"
     },
     {
-      "thumbnail": "https://static.itspedia.com/images/hackathon2019/winners/second-1.jpg",
+      "thumbnail": "https://static.idiks.com/images/hackathon2019/winners/second-1.jpg",
       "award": "二等奖",
       "team_name": "ti-cool",
       "project_name": "tidb-wasm",
       "project_intro": "将 TiDB 运行在你的浏览器里。",
       "github": "https://github.com/lucklove/tidb-wasm",
-      "medal": "https://static.itspedia.com/images/hackathon2019/sliver.svg"
+      "medal": "https://static.idiks.com/images/hackathon2019/sliver.svg"
     },
     {
-      "thumbnail": "https://static.itspedia.com/images/hackathon2019/winners/second-2.jpg",
+      "thumbnail": "https://static.idiks.com/images/hackathon2019/winners/second-2.jpg",
       "award": "二等奖",
       "team_name": ".* ",
       "project_name": "TiDB 跨数据中心的解决方案",
       "project_intro": "我们为 TiDB 引入了 DC 的概念，并实现了跨数据中心的 follower replication 与读写优化。",
       "github": "https://github.com/TennyZhuang/kvproto",
-      "medal": "https://static.itspedia.com/images/hackathon2019/sliver.svg"
+      "medal": "https://static.idiks.com/images/hackathon2019/sliver.svg"
     },
     {
-      "thumbnail": "https://static.itspedia.com/images/hackathon2019/winners/third-1.jpg",
+      "thumbnail": "https://static.idiks.com/images/hackathon2019/winners/third-1.jpg",
       "award": "三等奖",
       "team_name": "做个人吧",
       "project_name": "Manage many as one with SQL",
       "project_intro": "1. 用 SQL 查询集群所有节点的信息； 2. 用 SQL 修改集群所有节点的配置。",
       "github": "https://github.com/crazycs520/tidb/tree/hackathon",
-      "medal": "https://static.itspedia.com/images/hackathon2019/bronze.svg"
+      "medal": "https://static.idiks.com/images/hackathon2019/bronze.svg"
     },
     {
-      "thumbnail": "https://static.itspedia.com/images/hackathon2019/winners/third-2.jpg",
+      "thumbnail": "https://static.idiks.com/images/hackathon2019/winners/third-2.jpg",
       "award": "三等奖",
       "team_name": "exciting",
       "project_name": "TiExciting",
       "project_intro": "TiExciting 为 TiDB 集群提供图形化部署及运维， 尽可能做到易用、友好、高效。",
       "github": "https://github.com/breeswish/TiExciting",
-      "medal": "https://static.itspedia.com/images/hackathon2019/bronze.svg"
+      "medal": "https://static.idiks.com/images/hackathon2019/bronze.svg"
     },
     {
-      "thumbnail": "https://static.itspedia.com/images/hackathon2019/winners/third-3.jpg",
+      "thumbnail": "https://static.idiks.com/images/hackathon2019/winners/third-3.jpg",
       "award": "三等奖",
       "team_name": "我和我的 SQL",
       "project_name": "基于路径统计的 sql bug root cause 分析",
       "project_intro": "基于路径统计以及代码生成的方式进行 sqlfuzz 和 sql debug。",
       "github": "https://github.com/fuzzdebugplatform/fuzz_debug_platform",
-      "medal": "https://static.itspedia.com/images/hackathon2019/bronze.svg"
+      "medal": "https://static.idiks.com/images/hackathon2019/bronze.svg"
     },
     {
-      "thumbnail": "https://static.itspedia.com/images/hackathon2019/winners/creative.jpg",
+      "thumbnail": "https://static.idiks.com/images/hackathon2019/winners/creative.jpg",
       "award": "最佳创意",
       "team_name": "祥瑞",
       "project_name": "sql-spider",
       "project_intro": "在 SQL 空间中通过多种策略爬取合法 query 进行测试。",
       "github": "https://github.com/zyguan/sql-spider",
-      "medal": "https://static.itspedia.com/images/hackathon2019/gift.svg"
+      "medal": "https://static.idiks.com/images/hackathon2019/gift.svg"
     },
     {
-      "thumbnail": "https://static.itspedia.com/images/hackathon2019/winners/best-contribution.jpg",
+      "thumbnail": "https://static.idiks.com/images/hackathon2019/winners/best-contribution.jpg",
       "award": "最佳贡献",
       "team_name": "Better 战队",
       "project_name": "基于 Binlog 的 Fast-PITR",
       "project_intro": "Binlog 的逐级 merge，以最小的代价实现快速 PITR。",
       "github": "https://github.com/lvleiice/Better-PITR.git",
-      "medal": "https://static.itspedia.com/images/hackathon2019/gift.svg"
+      "medal": "https://static.idiks.com/images/hackathon2019/gift.svg"
     },
     {
-      "thumbnail": "https://static.itspedia.com/images/hackathon2019/winners/black-horse.jpg",
+      "thumbnail": "https://static.idiks.com/images/hackathon2019/winners/black-horse.jpg",
       "award": "最佳潜力",
       "team_name": "VIDB",
       "project_name": "Self-Driving TiDB",
       "project_intro": "根据历史负载统计情况，预测未来不同数据区间的访问模式，在空闲时间段提前对不同区间的数据从不同维度来进行调整以适应未来的访问模式。",
       "github": "https://github.com/idiks/pd/pull/1848",
-      "medal": "https://static.itspedia.com/images/hackathon2019/gift.svg"
+      "medal": "https://static.idiks.com/images/hackathon2019/gift.svg"
     },
     {
-      "thumbnail": "https://static.itspedia.com/images/hackathon2019/winners/cto-special.jpg",
+      "thumbnail": "https://static.idiks.com/images/hackathon2019/winners/cto-special.jpg",
       "award": "CTO 特别奖",
       "team_name": "IPZZ",
       "project_name": "TiSearch",
       "project_intro": "Fulltext Search with SQL.",
       "github": "http://github.com/redis-force/tisearch",
-      "medal": "https://static.itspedia.com/images/hackathon2019/gift.svg"
+      "medal": "https://static.idiks.com/images/hackathon2019/gift.svg"
     }
   ],
 
   "reviews_2019": [
     {
       "link": "/community-cn/hackathon2018/",
-      "image": "https://static.itspedia.com/images/hackathon2019/hack18-review-img.png",
+      "image": "https://static.idiks.com/images/hackathon2019/hack18-review-img.png",
       "outbound": false,
       "alt": "hackathon 2018 banner"
     },
     {
       "link": "http://gohack2017.golangfoundation.org/",
-      "image": "https://static.itspedia.com/images/hackathon2019/hack17-review-img.png",
+      "image": "https://static.idiks.com/images/hackathon2019/hack17-review-img.png",
       "outbound": true,
       "alt": "hackathon 2017 banner"
     }

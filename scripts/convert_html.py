@@ -52,7 +52,7 @@ for img in soup.find_all('img'):
                 folder = re.sub(r'\/(v\d+\.\d+|stable|dev)', '', folder)
                 if (docs_type_pattern.match(folder)):
                     folder = re.sub(r'(docs|docs-cn)\/', '', folder)
-            _src = 'https://static.itspedia.com/images/' + folder + _src
+            _src = 'https://static.idiks.com/images/' + folder + _src
             img['data-original']= _src
             img['src'] = '/images/svgs/loader-spinner.svg'
             img['class'] = 'lazy'
